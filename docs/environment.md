@@ -26,6 +26,17 @@
 - Host network adapter: 5 GbE
 - Physical network link: 2.5 GbE
 
+## Automation Server
+
+- Platform: Raspberry Pi 5
+- Host OS: Raspberry Pi OS (64-bit), based on Debian GNU/Linux 13 (trixie)
+- Architecture: aarch64
+- RAM: 8 GB
+- Primary storage: 240 GB NVMe SSD
+- Additional storage: 2 TB SSD
+- Physical network link: 1 GbE
+- Planned roles: Network automation, Ansible control node, Python automation, SNMP trap receiver, and NAS services
+
 ## Management Connectivity
 
 CML Server 1 is reachable from other devices on the home LAN through its bridged VMware network interface.
