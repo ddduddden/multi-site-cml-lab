@@ -30,6 +30,7 @@
 
 - Platform: Raspberry Pi 5
 - Host OS: Raspberry Pi OS (64-bit), based on Debian GNU/Linux 13 (trixie)
+- Architecture: aarch64
 - RAM: 8 GB
 - Primary storage: 240 GB NVMe SSD
 - Additional storage: 2 TB SSD
