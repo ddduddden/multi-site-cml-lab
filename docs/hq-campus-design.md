@@ -15,3 +15,32 @@ The HQ campus forms the first stage of a larger multi-site lab. Later phases wil
 ## High-Level Topology
 
 ![HQ Campus - OSPF Area 10](../diagrams/hq-campus-area10-topology.png)
+
+## VLAN and Gateway Design
+
+| VLAN ID | VLAN Name | Function | IPv4 Prefix | HSRP Virtual IP | `hq-d1` SVI Address | `hq-d2` SVI Address |
+|---:|---|---|---|---|---|---|
+| 112 | `CORP-USERS` | Corporate user endpoints | `10.10.12.0/22` | `10.10.12.1` | `10.10.12.2` | `10.10.12.3` |
+| 120 | `VOICE` | IP telephony endpoints | `10.10.20.0/23` | `10.10.20.1` | `10.10.20.2` | `10.10.20.3` |
+| 130 | `SERVERS` | Server and application services | `10.10.30.0/25` | `10.10.30.1` | `10.10.30.2` | `10.10.30.3` |
+| 140 | `IOT-CCTV` | IoT and surveillance devices | `10.10.40.0/23` | `10.10.40.1` | `10.10.40.2` | `10.10.40.3` |
+| 152 | `GUEST` | Guest network access | `10.10.52.0/22` | `10.10.52.1` | `10.10.52.2` | `10.10.52.3` |
+| 160 | `FACILITIES` | Printers and facilities devices | `10.10.60.0/26` | `10.10.60.1` | `10.10.60.2` | `10.10.60.3` |
+| 170 | `BYOD-WLAN` | BYOD and wireless client access | `10.10.70.0/23` | `10.10.70.1` | `10.10.70.2` | `10.10.70.3` |
+| 190 | `NATIVE` | Dedicated IEEE 802.1Q native VLAN | — | — | — | — |
+| 191 | `PARKING` | Unused access ports | — | — | — | — |
+| 199 | `NET-MGMT` | Network infrastructure management | `10.10.99.0/26` | `10.10.99.1` | `10.10.99.2` | `10.10.99.3` |
+
+### Addressing and VLAN Conventions
+
+For each routed VLAN, gateway addressing follows a consistent allocation:
+
+- First usable address — HSRP Virtual IP and client default gateway
+- Second usable address — `hq-d1` SVI address
+- Third usable address — `hq-d2` SVI address
+
+VLAN 190 is reserved as the dedicated non-default native VLAN for IEEE 802.1Q trunks and does not have an SVI.
+
+VLAN 191 is reserved for unused access ports and does not have an SVI. Unused ports assigned to this VLAN are administratively shut down.
+
+VLAN 1 is not used for production user traffic, management, or as the configured native VLAN in this design.
