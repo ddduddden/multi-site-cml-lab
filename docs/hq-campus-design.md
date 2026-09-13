@@ -44,3 +44,50 @@ VLAN 190 is reserved as the dedicated non-default native VLAN for IEEE 802.1Q tr
 VLAN 191 is reserved for unused access ports and does not have an SVI. Unused ports assigned to this VLAN are administratively shut down.
 
 VLAN 1 is not used for production user traffic, management, or as the configured native VLAN in this design.
+
+## Master Layer 3 Addressing Schedule
+
+| Device | Interface | Role / Purpose | IPv4 Address / Prefix | HSRP Virtual IP | Peer / Routing Notes |
+|---|---|---|---|---|---|
+| `hq-d1` | `Vlan112` | Corporate user gateway SVI | `10.10.12.2/22` | `10.10.12.1` | HSRP with `hq-d2` |
+| `hq-d2` | `Vlan112` | Corporate user gateway SVI | `10.10.12.3/22` | `10.10.12.1` | HSRP with `hq-d1` |
+| `hq-d1` | `Vlan120` | Voice gateway SVI | `10.10.20.2/23` | `10.10.20.1` | HSRP with `hq-d2` |
+| `hq-d2` | `Vlan120` | Voice gateway SVI | `10.10.20.3/23` | `10.10.20.1` | HSRP with `hq-d1` |
+| `hq-d1` | `Vlan130` | Server gateway SVI | `10.10.30.2/25` | `10.10.30.1` | HSRP with `hq-d2` |
+| `hq-d2` | `Vlan130` | Server gateway SVI | `10.10.30.3/25` | `10.10.30.1` | HSRP with `hq-d1` |
+| `hq-d1` | `Vlan140` | IoT/CCTV gateway SVI | `10.10.40.2/23` | `10.10.40.1` | HSRP with `hq-d2` |
+| `hq-d2` | `Vlan140` | IoT/CCTV gateway SVI | `10.10.40.3/23` | `10.10.40.1` | HSRP with `hq-d1` |
+| `hq-d1` | `Vlan152` | Guest gateway SVI | `10.10.52.2/22` | `10.10.52.1` | HSRP with `hq-d2` |
+| `hq-d2` | `Vlan152` | Guest gateway SVI | `10.10.52.3/22` | `10.10.52.1` | HSRP with `hq-d1` |
+| `hq-d1` | `Vlan160` | Facilities gateway SVI | `10.10.60.2/26` | `10.10.60.1` | HSRP with `hq-d2` |
+| `hq-d2` | `Vlan160` | Facilities gateway SVI | `10.10.60.3/26` | `10.10.60.1` | HSRP with `hq-d1` |
+| `hq-d1` | `Vlan170` | BYOD/WLAN gateway SVI | `10.10.70.2/23` | `10.10.70.1` | HSRP with `hq-d2` |
+| `hq-d2` | `Vlan170` | BYOD/WLAN gateway SVI | `10.10.70.3/23` | `10.10.70.1` | HSRP with `hq-d1` |
+| `hq-d1` | `Vlan199` | Network management gateway SVI | `10.10.99.2/26` | `10.10.99.1` | HSRP with `hq-d2` |
+| `hq-d2` | `Vlan199` | Network management gateway SVI | `10.10.99.3/26` | `10.10.99.1` | HSRP with `hq-d1` |
+| `hq-d1` | `Po101` | Routed L3 Port-channel to `hq-r1` | `10.255.10.0/31` | — | `hq-r1` / OSPF Area 10 |
+| `hq-r1` | `Po101` | Routed L3 Port-channel to `hq-d1` | `10.255.10.1/31` | — | `hq-d1` / OSPF Area 10 |
+| `hq-d2` | `Po201` | Routed L3 Port-channel to `hq-r2` | `10.255.10.2/31` | — | `hq-r2` / OSPF Area 10 |
+| `hq-r2` | `Po201` | Routed L3 Port-channel to `hq-d2` | `10.255.10.3/31` | — | `hq-d2` / OSPF Area 10 |
+| `hq-d1` | `E3/0` | Routed cross-link to `hq-r2` | `10.255.10.4/31` | — | `hq-r2 E1/0` / OSPF Area 10 |
+| `hq-r2` | `E1/0` | Routed cross-link to `hq-d1` | `10.255.10.5/31` | — | `hq-d1 E3/0` / OSPF Area 10 |
+| `hq-d2` | `E3/0` | Routed cross-link to `hq-r1` | `10.255.10.6/31` | — | `hq-r1 E1/0` / OSPF Area 10 |
+| `hq-r1` | `E1/0` | Routed cross-link to `hq-d2` | `10.255.10.7/31` | — | `hq-d2 E3/0` / OSPF Area 10 |
+| `hq-r1` | `Loopback0` | Infrastructure identity / OSPF router ID | `10.255.10.129/32` | — | OSPF router ID `10.255.10.129` |
+| `hq-r2` | `Loopback0` | Infrastructure identity / OSPF router ID | `10.255.10.130/32` | — | OSPF router ID `10.255.10.130` |
+| `hq-d1` | `Loopback0` | Infrastructure identity / OSPF router ID | `10.255.10.131/32` | — | OSPF router ID `10.255.10.131` |
+| `hq-d2` | `Loopback0` | Infrastructure identity / OSPF router ID | `10.255.10.132/32` | — | OSPF router ID `10.255.10.132` |
+
+### Layer 3 Addressing Conventions
+
+The master addressing schedule defines the IPv4 addresses assigned to all routed HQ interfaces.
+
+For routed VLANs, the first usable address is reserved as the HSRP Virtual IP, the second usable address is assigned to `hq-d1`, and the third usable address is assigned to `hq-d2`.
+
+Point-to-point routed infrastructure links use /31 prefixes. The lower address is assigned to the distribution switch and the higher address to the edge router.
+
+Loopback0 provides a stable Layer 3 identity for each routing device and is explicitly used as the OSPF router ID.
+
+Physical interfaces participating in Layer 3 EtherChannels are not individually addressed. The IPv4 address is assigned to the logical Port-channel interface.
+
+VLANs 190 and 191 are intentionally absent from this schedule because they do not have Layer 3 SVIs.
