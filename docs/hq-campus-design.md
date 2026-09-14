@@ -45,7 +45,7 @@ VLAN 191 is reserved for unused access ports and does not have an SVI. Unused po
 
 VLAN 1 is not used for production user traffic, management, or as the configured native VLAN in this design.
 
-## Master Layer 3 Addressing Schedule
+## Layer 3 Addressing Design
 
 | Device | Interface | Role / Purpose | IPv4 Address / Prefix | HSRP Virtual IP | Associated Device / Routing Notes |
 |---|---|---|---|---|---|
