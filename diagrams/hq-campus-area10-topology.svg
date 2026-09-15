@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="950" viewBox="0 0 1600 950">
+<rect width="100%" height="100%" fill="white"/>
+
+<text x="800.0" y="42" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700">HQ Campus — OSPF Area 10</text>
+<text x="800.0" y="72" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400">High-Level Topology</text>
+<rect x="515" y="95" width="570" height="58" rx="12" fill="white" stroke="black" stroke-width="2"/>
+<text x="800" y="131" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">Future Area 0 / Inter-Site Backbone</text>
+
+    <g>
+      <rect x="260" y="205" width="270" height="95" rx="14" ry="14"
+            fill="white" stroke="black" stroke-width="2.5"/>
+      <text x="395.0" y="247" text-anchor="middle"
+            font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700">hq-r1</text>
+      <text x="395.0" y="278" text-anchor="middle"
+            font-family="Arial, Helvetica, sans-serif" font-size="17">Edge Router</text>
+    </g>
+
+    <g>
+      <rect x="1070" y="205" width="270" height="95" rx="14" ry="14"
+            fill="white" stroke="black" stroke-width="2.5"/>
+      <text x="1205.0" y="247" text-anchor="middle"
+            font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700">hq-r2</text>
+      <text x="1205.0" y="278" text-anchor="middle"
+            font-family="Arial, Helvetica, sans-serif" font-size="17">Edge Router</text>
+    </g>
+
+    <g>
+      <rect x="260" y="500" width="270" height="95" rx="14" ry="14"
+            fill="white" stroke="black" stroke-width="2.5"/>
+      <text x="395.0" y="542" text-anchor="middle"
+            font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700">hq-d1</text>
+      <text x="395.0" y="573" text-anchor="middle"
+            font-family="Arial, Helvetica, sans-serif" font-size="17">Distribution Switch</text>
+    </g>
+
+    <g>
+      <rect x="1070" y="500" width="270" height="95" rx="14" ry="14"
+            fill="white" stroke="black" stroke-width="2.5"/>
+      <text x="1205.0" y="542" text-anchor="middle"
+            font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700">hq-d2</text>
+      <text x="1205.0" y="573" text-anchor="middle"
+            font-family="Arial, Helvetica, sans-serif" font-size="17">Distribution Switch</text>
+    </g>
+
+    <g>
+      <rect x="665" y="785" width="270" height="95" rx="14" ry="14"
+            fill="white" stroke="black" stroke-width="2.5"/>
+      <text x="800.0" y="827" text-anchor="middle"
+            font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700">hq-a1</text>
+      <text x="800.0" y="858" text-anchor="middle"
+            font-family="Arial, Helvetica, sans-serif" font-size="17">Access Switch</text>
+    </g>
+<line x1="690" y1="153" x2="430" y2="205" stroke="black" stroke-width="2.3" stroke-dasharray="8 7"/>
+<line x1="910" y1="153" x2="1170" y2="205" stroke="black" stroke-width="2.3" stroke-dasharray="8 7"/>
+<line x1="371" y1="300" x2="371" y2="500" stroke="black" stroke-width="2.3"/>
+<line x1="1181" y1="300" x2="1181" y2="500" stroke="black" stroke-width="2.3"/>
+<line x1="387" y1="300" x2="387" y2="500" stroke="black" stroke-width="2.3"/>
+<line x1="1197" y1="300" x2="1197" y2="500" stroke="black" stroke-width="2.3"/>
+<line x1="403" y1="300" x2="403" y2="500" stroke="black" stroke-width="2.3"/>
+<line x1="1213" y1="300" x2="1213" y2="500" stroke="black" stroke-width="2.3"/>
+<line x1="419" y1="300" x2="419" y2="500" stroke="black" stroke-width="2.3"/>
+<line x1="1229" y1="300" x2="1229" y2="500" stroke="black" stroke-width="2.3"/>
+<text x="340" y="375" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700">4 × /31 routed interfaces</text>
+<text x="340" y="400" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400">OSPF Area 10 • ECMP</text>
+<text x="1260" y="375" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700">4 × /31 routed interfaces</text>
+<text x="1260" y="400" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400">OSPF Area 10 • ECMP</text>
+<line x1="530" y1="275" x2="1070" y2="520" stroke="black" stroke-width="2.5" stroke-dasharray="10 8"/>
+<line x1="1070" y1="275" x2="530" y2="520" stroke="black" stroke-width="2.5" stroke-dasharray="10 8"/>
+<rect x="610" y="315" width="380" height="62" rx="10" fill="white" stroke="black" stroke-width="1.5"/>
+<text x="800" y="340" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700">Cross-connected /31 routed interfaces</text>
+<text x="800" y="363" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400">Higher OSPF cost • alternate paths</text>
+<line x1="530" y1="548" x2="1070" y2="548" stroke="black" stroke-width="5"/>
+<rect x="738" y="525" width="124" height="46" rx="10" fill="white" stroke="black" stroke-width="2"/>
+<text x="800" y="555" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">Po30</text>
+<text x="800" y="590" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400">802.1Q trunk • LACP</text>
+<line x1="395" y1="595" x2="725" y2="785" stroke="black" stroke-width="5"/>
+<line x1="1205" y1="595" x2="875" y2="785" stroke="black" stroke-width="5"/>
+<rect x="535" y="665" width="105" height="42" rx="9" fill="white" stroke="black" stroke-width="2"/>
+<text x="587.5" y="692" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700">Po10</text>
+<rect x="960" y="665" width="105" height="42" rx="9" fill="white" stroke="black" stroke-width="2"/>
+<text x="1012.5" y="692" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700">Po20</text>
+<text x="515" y="735" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400">802.1Q trunk • LACP</text>
+<text x="1085" y="735" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400">802.1Q trunk • LACP</text>
+<line x1="470" y1="915" x2="525" y2="915" stroke="black" stroke-width="3"/>
+<text x="540" y="921" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400">Routed interface / Layer 3 path</text>
+<line x1="800" y1="915" x2="855" y2="915" stroke="black" stroke-width="3" stroke-dasharray="10 8"/>
+<text x="870" y="921" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400">Higher-cost alternate routed interface</text>
+</svg>
