@@ -120,21 +120,55 @@ On Cisco IOS, an active OSPF area-range summary installs a Null0 discard route f
 
 For this reason, addresses within `10.10.0.0/16` must remain part of the controlled HQ addressing plan and must not be allocated casually elsewhere in the topology. This preserves both the operational meaning of the HQ summary and the clarity of the overall addressing hierarchy.
 
-### Gateway Addressing Convention
+### Gateway and SVI Addressing Plan
 
-For every routed VLAN:
+The gateway addressing convention is standardised across every routed VLAN:
 
-* First usable address — HSRP virtual IP
-* Second usable address — `hq-d1`
-* Third usable address — `hq-d2`
+- First usable address — HSRP virtual IP
+- Second usable address — `hq-d1`
+- Third usable address — `hq-d2`
 
-Example for VLAN 130:
+HSRP group numbers match their associated VLAN IDs.
 
-* HSRP virtual IP — `10.10.30.1`
-* `hq-d1`, interface `Vlan130` — `10.10.30.2/25`
-* `hq-d2`, interface `Vlan130` — `10.10.30.3/25`
+| VLAN | Name | IPv4 Prefix | HSRP Group | HSRP Virtual IP | `hq-d1` SVI | `hq-d2` SVI | Preferred Active |
+|---:|---|---|---:|---|---|---|---|
+| 112 | `CORP-USERS` | `10.10.12.0/22` | 112 | `10.10.12.1` | `10.10.12.2/22` | `10.10.12.3/22` | `hq-d1` |
+| 120 | `VOICE` | `10.10.20.0/23` | 120 | `10.10.20.1` | `10.10.20.2/23` | `10.10.20.3/23` | `hq-d2` |
+| 130 | `SERVERS` | `10.10.30.0/25` | 130 | `10.10.30.1` | `10.10.30.2/25` | `10.10.30.3/25` | `hq-d1` |
+| 140 | `IOT-CCTV` | `10.10.40.0/23` | 140 | `10.10.40.1` | `10.10.40.2/23` | `10.10.40.3/23` | `hq-d2` |
+| 152 | `GUEST` | `10.10.52.0/22` | 152 | `10.10.52.1` | `10.10.52.2/22` | `10.10.52.3/22` | `hq-d1` |
+| 160 | `FACILITIES` | `10.10.60.0/26` | 160 | `10.10.60.1` | `10.10.60.2/26` | `10.10.60.3/26` | `hq-d2` |
+| 170 | `BYOD-WLAN` | `10.10.70.0/23` | 170 | `10.10.70.1` | `10.10.70.2/23` | `10.10.70.3/23` | `hq-d1` |
+| 199 | `NET-MGMT` | `10.10.99.0/26` | 199 | `10.10.99.1` | `10.10.99.2/26` | `10.10.99.3/26` | `hq-d2` |
 
-The complete Distribution Switch SVI addressing will be maintained consistently with this convention so that the VLAN/VLSM plan and gateway-addressing documentation remain synchronised.
+#### HSRP Policy
+
+The preferred multilayer distribution switch uses an HSRP priority of `110`, while the standby multilayer distribution switch uses the default priority of `100`. Preemption is enabled on the preferred switch so that it can resume the Active role after recovering from a failure.
+
+Gateway ownership is deliberately split between the two multilayer distribution switches:
+
+- `hq-d1` is preferred Active for VLANs `112`, `130`, `152`, and `170`.
+- `hq-d2` is preferred Active for VLANs `120`, `140`, `160`, and `199`.
+
+The preferred HSRP Active switch for each VLAN is also intended to operate as the Rapid PVST+ root primary for that VLAN. The HSRP Standby switch is intended to operate as the STP root secondary.
+
+This aligns the preferred Layer 2 forwarding path with the active Layer 3 default gateway while allowing both multilayer distribution switches to participate in normal forwarding.
+
+#### Management SVI Allocation
+
+VLAN 199 provides the in-band management subnet for network infrastructure.
+
+The HSRP virtual gateway and multilayer distribution switch SVI addresses are allocated above. The management SVI address for `hq-a1` will be selected separately from the remaining usable addresses within `10.10.99.0/26` as part of the management-addressing convention.
+
+`hq-a1` remains a Layer 2 access switch. Its management SVI provides IP reachability for device administration and does not provide inter-VLAN routing.
+
+#### HSRP Versioning — Forward Design Note
+
+The current HQ convention of matching the HSRP group number to the VLAN ID is compatible with the planned VLANs because every HQ group number falls within the HSRP version 1 range.
+
+When the Branch Campus is designed, the same convention must not be copied automatically without checking the VLAN IDs. If future VLAN IDs exceed `255`, HSRP version 2 should be evaluated if the design is to preserve the VLAN-ID-to-HSRP-group-number relationship.
+
+This requirement will be revisited during the Branch Campus design rather than changing the current HQ HSRP design unnecessarily.
 
 ### Reserved VLAN Policy
 
@@ -158,28 +192,58 @@ VLAN 1 carries no production traffic, no infrastructure management traffic, and 
 
 ## 4. Layer 3 Infrastructure Addressing
 
-HQ infrastructure uses the `10.255.10.0/24` address space.
+HQ Layer 3 infrastructure addressing is allocated from `10.255.10.0/24`, which forms part of the wider `10.255.0.0/16` infrastructure and transit address space.
 
-Point-to-point routed interfaces use `/31` prefixes. Loopback interfaces use `/32` addresses.
+Point-to-point routed interfaces use `/31` prefixes, while loopback interfaces use `/32` addresses.
 
-### Point-to-Point Routed Interfaces
+### Point-to-Point Routed Interface Addressing
 
-| Distribution Switch | Interface | Edge Router | Interface | IPv4 Prefix |
-|---|---|---|---|---|
-| `hq-d1` | `E2/0` | `hq-r1` | `E0/0` | `10.255.10.0/31` |
-| `hq-d2` | `E2/0` | `hq-r2` | `E0/0` | `10.255.10.2/31` |
-| `hq-d1` | `E3/0` | `hq-r2` | `E1/0` | `10.255.10.4/31` |
-| `hq-d2` | `E3/0` | `hq-r1` | `E1/0` | `10.255.10.6/31` |
-| `hq-d1` | `E2/1` | `hq-r1` | `E0/1` | `10.255.10.8/31` |
-| `hq-d1` | `E2/2` | `hq-r1` | `E0/2` | `10.255.10.10/31` |
-| `hq-d1` | `E2/3` | `hq-r1` | `E0/3` | `10.255.10.12/31` |
-| `hq-d2` | `E2/1` | `hq-r2` | `E0/1` | `10.255.10.14/31` |
-| `hq-d2` | `E2/2` | `hq-r2` | `E0/2` | `10.255.10.16/31` |
-| `hq-d2` | `E2/3` | `hq-r2` | `E0/3` | `10.255.10.18/31` |
+For consistency, the lower address in each `/31` is assigned to the multilayer distribution switch and the higher address is assigned to the edge router.
 
-For consistency, the lower address in each `/31` is assigned to the Distribution Switch interface and the higher address to the edge-router interface.
+The design intentionally uses four independent routed links between each directly paired multilayer distribution switch and edge router to demonstrate OSPF equal-cost multipath across multiple physical paths.
+
+Two additional cross-connected routed links provide alternate paths and are intended to use higher OSPF costs than the direct ECMP links.
+
+| Link | Distribution Interface | Distribution IP | Edge Interface | Edge IP | Path Role |
+|---|---|---|---|---|---|
+| `hq-d1` ↔ `hq-r1` | `hq-d1 E2/0` | `10.255.10.0/31` | `hq-r1 E0/0` | `10.255.10.1/31` | Direct ECMP |
+| `hq-d2` ↔ `hq-r2` | `hq-d2 E2/0` | `10.255.10.2/31` | `hq-r2 E0/0` | `10.255.10.3/31` | Direct ECMP |
+| `hq-d1` ↔ `hq-r2` | `hq-d1 E3/0` | `10.255.10.4/31` | `hq-r2 E1/0` | `10.255.10.5/31` | Higher-cost cross-link |
+| `hq-d2` ↔ `hq-r1` | `hq-d2 E3/0` | `10.255.10.6/31` | `hq-r1 E1/0` | `10.255.10.7/31` | Higher-cost cross-link |
+| `hq-d1` ↔ `hq-r1` | `hq-d1 E2/1` | `10.255.10.8/31` | `hq-r1 E0/1` | `10.255.10.9/31` | Direct ECMP |
+| `hq-d1` ↔ `hq-r1` | `hq-d1 E2/2` | `10.255.10.10/31` | `hq-r1 E0/2` | `10.255.10.11/31` | Direct ECMP |
+| `hq-d1` ↔ `hq-r1` | `hq-d1 E2/3` | `10.255.10.12/31` | `hq-r1 E0/3` | `10.255.10.13/31` | Direct ECMP |
+| `hq-d2` ↔ `hq-r2` | `hq-d2 E2/1` | `10.255.10.14/31` | `hq-r2 E0/1` | `10.255.10.15/31` | Direct ECMP |
+| `hq-d2` ↔ `hq-r2` | `hq-d2 E2/2` | `10.255.10.16/31` | `hq-r2 E0/2` | `10.255.10.17/31` | Direct ECMP |
+| `hq-d2` ↔ `hq-r2` | `hq-d2 E2/3` | `10.255.10.18/31` | `hq-r2 E0/3` | `10.255.10.19/31` | Direct ECMP |
+
+#### /31 Addressing Rationale
+
+The routed point-to-point links use `/31` prefixes because each subnet connects exactly two Layer 3 endpoints.
+
+Cisco supports `/31` addressing on point-to-point IPv4 links in accordance with RFC 3021. In this use case, both addresses in the `/31` are usable by the two endpoints, avoiding the network and broadcast address overhead associated with traditional `/30` point-to-point subnets.
+
+Using `/31` prefixes therefore reduces infrastructure address consumption while maintaining a simple and repeatable addressing convention.
+
+#### ECMP and Cross-Link Allocation
+
+The eight direct routed links form two intended four-link equal-cost path sets:
+
+- `hq-d1` ↔ `hq-r1` — four independent routed links
+- `hq-d2` ↔ `hq-r2` — four independent routed links
+
+The two cross-connected links are:
+
+- `hq-d1 E3/0` ↔ `hq-r2 E1/0`
+- `hq-d2 E3/0` ↔ `hq-r1 E1/0`
+
+These cross-links are intended to use deliberately higher OSPF costs so that they remain available as alternate paths rather than joining the normal four-link ECMP path sets.
+
+Their final operational behaviour will be confirmed during implementation and failure testing before they are described as verified backup paths.
 
 ### Loopback Addressing
+
+Loopback interfaces use `/32` addresses and provide stable Layer 3 identities that are independent of individual physical-link state.
 
 | Device | Interface | IPv4 Address | Purpose |
 |---|---|---|---|
@@ -188,40 +252,62 @@ For consistency, the lower address in each `/31` is assigned to the Distribution
 | `hq-d1` | `Loopback0` | `10.255.10.131/32` | Stable identity / OSPF router ID |
 | `hq-d2` | `Loopback0` | `10.255.10.132/32` | Stable identity / OSPF router ID |
 
-Future tunnel-source addressing will be designed during the Area 0/WAN phase rather than pre-allocated here.
+#### Infrastructure Address Allocation Rationale
+
+The low-numbered portion of `10.255.10.0/24` is used for routed point-to-point links, while loopback addresses are allocated separately within the same HQ infrastructure block.
+
+This separation makes transit links and stable device identities easier to distinguish during configuration, verification, and troubleshooting.
+
+Unused addresses within `10.255.10.0/24` remain reserved for future HQ infrastructure requirements rather than being allocated before a defined purpose exists.
+
+Future tunnel-source and Area 0/WAN addressing will be designed during the corresponding project phase rather than being pre-allocated here.
 
 ---
 
 ## 5. Layer 2 Design
 
+The HQ Layer 2 design provides redundant access-to-distribution connectivity using LACP EtherChannel while keeping the Layer 3 Distribution-to-Edge links independent for OSPF ECMP.
+
 ### EtherChannel Plan
 
-| Port-Channel | Connected Devices | Physical Port Mapping | Function | LACP Mode |
-|---|---|---|---|---|
-| `Po10` | `hq-a1` ↔ `hq-d1` | `hq-a1 E0/0-E0/1` ↔ `hq-d1 E0/0-E0/1` | Access-to-Distribution trunk | Active / Active |
-| `Po20` | `hq-a1` ↔ `hq-d2` | `hq-a1 E1/0-E1/1` ↔ `hq-d2 E0/0-E0/1` | Access-to-Distribution trunk | Active / Active |
-| `Po30` | `hq-d1` ↔ `hq-d2` | `hq-d1 E1/0-E1/3` ↔ `hq-d2 E1/0-E1/3` | Distribution interconnect trunk | Active / Active |
+Three Layer 2 EtherChannels are used within the HQ campus:
 
-`Po10` and `Po20` use two member ports.
+| Port-Channel | Connected Devices | Physical Member Interfaces | Members | Function | LACP Mode |
+|---|---|---|---:|---|---|
+| `Po10` | `hq-a1` ↔ `hq-d1` | `hq-a1 E0/0-E0/1` ↔ `hq-d1 E0/0-E0/1` | 2 | Access-to-Distribution trunk | Active / Active |
+| `Po20` | `hq-a1` ↔ `hq-d2` | `hq-a1 E1/0-E1/1` ↔ `hq-d2 E0/0-E0/1` | 2 | Access-to-Distribution trunk | Active / Active |
+| `Po30` | `hq-d1` ↔ `hq-d2` | `hq-d1 E1/0-E1/3` ↔ `hq-d2 E1/0-E1/3` | 4 | Distribution interconnect trunk | Active / Active |
 
-`Po30` is intended to use four member ports.
+`Po10` and `Po20` provide redundant Layer 2 uplinks from `hq-a1` to the two multilayer distribution switches.
+
+`Po30` provides the Layer 2 interconnect between `hq-d1` and `hq-d2`.
+
+LACP is used rather than a static EtherChannel so that member-link participation is negotiated dynamically.
+
+The Layer 3 links between the multilayer distribution switches and edge routers are not EtherChannels. Each remains an independent routed interface for OSPF adjacency formation and ECMP.
 
 ### Trunk Policy
 
-Campus trunks use:
+All HQ campus EtherChannels operate as IEEE 802.1Q trunks.
 
-- VLAN 190 as the configured native VLAN
-- Explicit allowed VLANs
-- No production use of VLAN 1
-- VLAN 191 excluded from normal trunk forwarding
+The trunk policy is standardised as follows:
 
-Intended allowed VLAN set:
+- VLAN `190` is the configured native VLAN.
+- VLAN `191` is reserved as the parking VLAN and is excluded from normal trunk forwarding.
+- VLAN `1` carries no production or infrastructure-management traffic and is not used as the native VLAN.
+- Allowed VLANs are explicitly defined rather than relying on the default all-VLAN trunk behaviour.
+
+The intended allowed VLAN set is:
 
 `112,120,130,140,152,160,170,190,199`
 
+Using an explicit allowed-VLAN list limits each trunk to VLANs that have a defined purpose within the HQ design.
+
 ### Access Switch Port Allocation
 
-| Port(s) | Access VLAN | Voice VLAN | Function | State |
+`hq-a1` remains a Layer 2 access switch. Its physical interfaces are allocated as follows:
+
+| Port(s) | Access VLAN | Voice VLAN | Function | Intended State |
 |---|---:|---:|---|---|
 | `E0/0-E0/1` | — | — | `Po10` members to `hq-d1` | Enabled |
 | `E0/2-E0/3` | 191 | — | Unused / parking | Shutdown |
@@ -236,90 +322,190 @@ Intended allowed VLAN set:
 | `E3/2` | 170 | — | BYOD/WLAN test endpoint | Enabled |
 | `E3/3` | 199 | — | Network-management endpoint | Enabled |
 
-The access-port allocation is part of the intended design and will be adjusted only if the selected switching platform requires different port naming or availability.
+Unused access interfaces are assigned to VLAN `191` and administratively shut down.
+
+The access-port allocation represents the intended design. Exact interface naming and availability will be confirmed against the selected CML switching image during implementation.
+
+### Layer 2 Design Intent
+
+The Layer 2 design deliberately separates two different redundancy mechanisms:
+
+- LACP EtherChannel provides link aggregation and member-link resilience on switched campus links.
+- OSPF ECMP provides Layer 3 multipath routing on the independent Distribution-to-Edge routed links.
+
+This separation avoids presenting the routed ECMP links as a logical Port-Channel and keeps the purpose of each technology clear in both the design and later verification evidence.
 
 ---
 
 ## 6. HSRP and Rapid PVST+ Design
 
-HSRP gateway ownership is aligned with spanning-tree root placement so the preferred Layer 2 path terminates on the Distribution Switch acting as the active default gateway.
+Section 3 defines the HQ HSRP addressing, group-number, priority, preemption, and versioning policies.
 
-| VLANs | `hq-d1` Role | `hq-d2` Role |
+This section defines how the intended HSRP gateway roles are coordinated with Rapid PVST+ root placement so that Layer 2 forwarding is aligned with the preferred Layer 3 gateway.
+
+### HSRP and STP Role Alignment
+
+For the routed VLANs, the preferred HSRP Active multilayer distribution switch is also intended to operate as the Rapid PVST+ root primary. The peer multilayer distribution switch is intended to operate as the HSRP Standby and STP root secondary.
+
+| VLANs | `hq-d1` Intended Role | `hq-d2` Intended Role |
 |---|---|---|
 | `112,130,152,170` | HSRP Active / STP Root Primary | HSRP Standby / STP Root Secondary |
 | `120,140,160,199` | HSRP Standby / STP Root Secondary | HSRP Active / STP Root Primary |
 
-### HSRP Policy
+This alignment keeps the preferred Layer 2 forwarding path directed toward the multilayer distribution switch that owns the active default gateway for the VLAN.
 
-- HSRP group numbers match VLAN IDs
-- Preferred Distribution Switch priority — `110`
-- Standby Distribution Switch priority — `100`
-- Preemption enabled on the preferred switch
-- `.1` HSRP virtual address used as the client default gateway
+It also reduces unnecessary forwarding across the `hq-d1` ↔ `hq-d2` distribution interconnect during normal operation.
+
+The HSRP priority and preemption settings that establish these preferred gateway roles are documented in Section 3 and are not repeated here.
+
+### Native VLAN STP Placement
+
+VLAN `190` is the dedicated native VLAN carried across the HQ campus trunks. It has no SVI and does not use HSRP, but it still requires deterministic spanning-tree root placement.
+
+| VLAN | Function | `hq-d1` STP Role | `hq-d2` STP Role |
+|---:|---|---|---|
+| 190 | Native VLAN | Root Primary | Root Secondary |
+
+Because VLAN `190` has no Layer 3 gateway to align with, `hq-d1` is selected as root primary as a fixed administrative convention. The purpose is deterministic root placement rather than Layer 3 traffic-path optimisation.
+
+VLAN `191` is the parking VLAN. It is excluded from normal trunk forwarding and its unused access interfaces are administratively shut down. No campus-wide STP root role is therefore defined for VLAN `191`.
 
 ### Rapid PVST+ Policy
 
-- Rapid PVST+ is the intended HQ spanning-tree mode
-- HSRP Active aligns with STP Root Primary
-- HSRP Standby aligns with STP Root Secondary
-- Root-primary/root-secondary configuration is preferred over arbitrary manually selected priorities
-- MST remains a later design exercise
+Rapid PVST+ is the intended spanning-tree mode for the HQ campus.
+
+A separate spanning-tree instance is maintained for each participating VLAN, allowing root placement to be controlled on a per-VLAN basis.
+
+The routed user, service, and management VLANs use the root-primary/root-secondary assignments shown above so that STP root ownership follows the preferred HSRP gateway ownership.
+
+VLAN `190` uses the separate STP-only root placement defined above because it has no Layer 3 gateway.
+
+The Layer 2 EtherChannels `Po10`, `Po20`, and `Po30` participate in the switched spanning-tree topology. The independent routed interfaces between the multilayer distribution switches and edge routers do not participate in Rapid PVST+.
+
+Cisco's root-primary and root-secondary mechanism is preferred over selecting arbitrary bridge-priority values manually. Exact configuration syntax and resulting bridge priorities will be verified against the selected CML switching image during implementation.
+
+MST remains a later design exercise and is not part of the current HQ implementation.
+
+### Failover and Verification Intent
+
+The implemented design will verify that the intended HSRP Active and STP root roles are established for each routed VLAN and that VLAN `190` uses the intended STP root placement.
+
+Failure testing will also verify that gateway and Layer 2 forwarding roles change as expected when a preferred multilayer distribution switch or relevant Layer 2 path becomes unavailable.
+
+These behaviours remain design intent until they have been demonstrated and captured as implementation evidence.
 
 ---
 
 ## 7. OSPF Area 10 and ECMP Design
 
-HQ uses **OSPF Area 10**.
+HQ uses OSPFv2 Area `10` for its internal Layer 3 routing.
 
-`Loopback0` provides the explicit OSPF router ID for each Layer 3 device.
+The HQ OSPF process uses process ID `10` as an administrative convention. The process ID is locally significant and is not required to match the OSPF area number or the process ID used by a neighbouring device.
 
-OSPF uses a **passive-by-default** policy:
+The two HQ edge routers are intended to participate in Area `0` during the later backbone phase, at which point they will operate as Area Border Routers between Area `10` and Area `0`.
 
-- User/service SVIs are advertised but do not form OSPF neighbour relationships
-- Loopback0 is advertised but passive
-- Only routed Distribution-to-Edge interfaces form OSPF adjacencies
+The HQ summarisation policy toward Area `0` is defined in Section 3 and is not duplicated here.
 
-The routed Ethernet interfaces are intended to use the OSPF point-to-point network type.
+### OSPF Router Identity
 
-### Direct Equal-Cost Paths
+Each Layer 3 HQ device uses its `Loopback0` address from Section 4 as an explicitly configured OSPF router ID.
 
-The four routed interfaces between `hq-d1` and `hq-r1` form one intended equal-cost path set:
+Using an explicit router ID avoids relying on automatic router-ID selection and keeps the OSPF identity of each device independent of individual physical-interface state.
 
-- `hq-d1 E2/0` ↔ `hq-r1 E0/0`
-- `hq-d1 E2/1` ↔ `hq-r1 E0/1`
-- `hq-d1 E2/2` ↔ `hq-r1 E0/2`
-- `hq-d1 E2/3` ↔ `hq-r1 E0/3`
+### OSPF Interface Participation
 
-The four routed interfaces between `hq-d2` and `hq-r2` form the second intended equal-cost path set:
+OSPF will be enabled on the required interfaces individually rather than by using a broad network statement that could unintentionally include additional interfaces.
 
-- `hq-d2 E2/0` ↔ `hq-r2 E0/0`
-- `hq-d2 E2/1` ↔ `hq-r2 E0/1`
-- `hq-d2 E2/2` ↔ `hq-r2 E0/2`
-- `hq-d2 E2/3` ↔ `hq-r2 E0/3`
+The OSPF process uses a passive-by-default policy. Only interfaces that are intended to form OSPF neighbour relationships are made non-passive.
 
-### Alternate Routed Paths
+| Interface Type | Area | OSPF Adjacency | Policy |
+|---|---:|---|---|
+| Routed Distribution-to-Edge `/31` links | 10 | Yes | Non-passive |
+| Routed user/service SVIs | 10 | No | Passive, prefix advertised |
+| VLAN 199 management SVI | 10 | No | Passive, prefix advertised |
+| `Loopback0` | 10 | No | Passive, `/32` advertised |
+| VLAN 190 native VLAN | — | No | No Layer 3 interface / not in OSPF |
+| VLAN 191 parking VLAN | — | No | No Layer 3 interface / not in OSPF |
 
-The cross-connected paths are:
+The routed user, service, management, and loopback prefixes are therefore advertised into Area `10` without attempting to establish OSPF neighbours on those interfaces.
 
-- `hq-d1 E3/0` ↔ `hq-r2 E1/0`
-- `hq-d2 E3/0` ↔ `hq-r1 E1/0`
+Only the ten routed Distribution-to-Edge links defined in Section 4 form OSPF adjacencies.
 
-These interfaces are intended to use deliberately higher OSPF costs so that they act as alternate paths.
+### Distribution-to-Distribution Routing Scope
 
-They will only be described as backup paths after the full routing behaviour has been implemented and verified.
+`hq-d1` and `hq-d2` do not form an OSPF adjacency directly with each other. Their `Po30` connection is a Layer 2 trunk, and the routed VLAN SVIs carried across it are passive in OSPF.
 
-### ECMP Design Note
+HSRP and the routed OSPF cross-links therefore provide different forms of resilience. HSRP provides default-gateway redundancy for the campus VLANs, while the higher-cost Distribution-to-Edge cross-links provide alternate Layer 3 routing paths when direct routed connectivity toward an edge router is lost.
 
-OSPF ECMP retains each routed interface as an independent Layer 3 path.
+The cross-links do not replace HSRP, and HSRP does not provide an alternate OSPF transit path.
 
-It does not create a logical Port-Channel.
+### Routed-Link OSPF Network Type
+
+Each Distribution-to-Edge `/31` Ethernet link connects exactly two OSPF devices.
+
+These interfaces are therefore intended to use the OSPF point-to-point network type rather than the default Ethernet broadcast network type.
+
+Using the point-to-point network type reflects the actual two-device topology and avoids an unnecessary DR/BDR election on these links.
+
+The network type will be configured consistently at both ends of every routed link.
+
+### OSPF Cost and ECMP Policy
+
+Explicit OSPF interface costs are used so that path preference is determined by the documented design rather than by platform-dependent interface bandwidth calculations.
+
+The four direct routed links in each primary Distribution-to-Edge pair use equal OSPF costs.
+
+The two cross-connected links use a deliberately higher cost.
+
+| Path Set | Links | OSPF Cost per Interface | Intended Role |
+|---|---:|---:|---|
+| `hq-d1` ↔ `hq-r1` | 4 | 10 | Direct equal-cost path set |
+| `hq-d2` ↔ `hq-r2` | 4 | 10 | Direct equal-cost path set |
+| `hq-d1` ↔ `hq-r2` | 1 | 100 | Higher-cost cross-link |
+| `hq-d2` ↔ `hq-r1` | 1 | 100 | Higher-cost cross-link |
+
+The values `10` and `100` are administrative design values rather than representations of physical bandwidth. They create an explicit cost difference while keeping all four links within each direct path set equal.
+
+OSPF is configured to permit a maximum of four equal-cost paths so that the intended four-link ECMP design is explicit rather than dependent on a platform default.
+
+The higher cost of the cross-connected links is intended to make them less preferred than the direct links where a lower-cost direct path is available, rather than allowing them to join the normal four-link ECMP sets.
+
+When Area `0` and the inter-site backbone are introduced, end-to-end OSPF costs will be reviewed again to confirm that the resulting SPF decisions still match the intended primary and alternate path hierarchy.
+
+### ECMP Forwarding Behaviour
+
+OSPF determines which paths qualify as equal-cost routes, while the forwarding plane determines how traffic is distributed across the installed next hops.
+
+The presence of four equal-cost routes does not imply that a single traffic flow will be divided evenly across all four physical links.
+
+ECMP verification will therefore distinguish between:
+
+- successful installation of multiple equal-cost next hops in the routing table;
+- forwarding behaviour across those next hops; and
+- aggregate load sharing observed when multiple traffic flows are generated.
+
+The exact forwarding and hashing behaviour of the selected CML image will be verified during implementation rather than assumed from the design.
+
+### Failure and Convergence Test Intent
+
+With all four direct links operational, routes that use a direct path set should be capable of installing up to four equal-cost next hops.
+
+Failure testing will then remove one direct member at a time and verify that the remaining equal-cost paths continue to provide reachability.
+
+A complete failure of a direct four-link path set will be used to test whether the higher-cost cross-connected paths provide the expected alternate routing behaviour where the surviving topology permits it.
 
 The implementation phase will verify:
 
-- Four equal-cost routes are actually installed where intended
-- Forwarding uses the available paths as expected
-- Route selection changes correctly when interfaces fail
-- The higher-cost cross-connected paths become active when required
+- intended OSPF neighbour formation on all ten routed links;
+- no unintended OSPF neighbours on SVIs or loopbacks;
+- point-to-point OSPF network type on the routed Ethernet links;
+- explicit direct-link and cross-link costs;
+- installation of up to four equal-cost next hops where intended;
+- route removal and reconvergence after individual-link failures;
+- alternate-path behaviour after loss of a complete direct path set; and
+- restoration of the preferred paths when failed links return.
+
+These behaviours remain design intent until they have been demonstrated and captured as implementation evidence.
 
 ---
 
@@ -333,13 +519,20 @@ The implementation phase will verify:
 | OSPF ECMP at Layer 3 | Demonstrates multipath routing across independent routed interfaces |
 | Cross-connected routed paths | Enables path-cost and routing-reconvergence testing |
 | `/31` routed interfaces | Efficient addressing for two-endpoint routed infrastructure |
-| `/32` loopbacks | Stable device identities and explicit OSPF router IDs |
+| `/32` loopbacks | Provides stable device identities and explicit OSPF router IDs |
 | VLSM | Sizes networks by function rather than assigning every VLAN a `/24` |
 | Dedicated native VLAN | Keeps trunk native traffic separate from production user VLANs |
 | Parking VLAN | Keeps unused access ports separate from production VLANs |
 | HSRP/STP alignment | Aligns the preferred Layer 2 path with the active gateway |
-| Split HSRP/STP ownership | Allows both Distribution Switches to participate in normal forwarding |
+| Split HSRP/STP ownership | Allows both multilayer distribution switches to participate in normal forwarding |
+| Deterministic VLAN 190 STP root placement | Prevents native-VLAN root selection from being left to default bridge election behaviour |
+| Rapid PVST+ | Provides per-VLAN spanning-tree instances and allows intentional root placement |
 | Passive-by-default OSPF | Limits neighbour formation to intentional routed interfaces |
+| Interface-specific OSPF activation | Reduces the risk of unintentionally enabling OSPF on additional interfaces |
+| Explicit OSPF router IDs | Keeps OSPF device identity independent of automatic interface-based selection |
+| OSPF point-to-point network type | Matches the two-device routed-link topology and avoids unnecessary DR/BDR elections |
+| Explicit OSPF interface costs | Makes the intended direct-path and alternate-path preference deterministic |
+| Four-path OSPF ECMP limit | Makes the intended four-link equal-cost design explicit rather than relying on a platform default |
 | Separate implementation evidence | Keeps design intent separate from platform-specific behaviour and proof |
 
 ---
@@ -349,30 +542,50 @@ The implementation phase will verify:
 The following are **design decisions**:
 
 - Five-device HQ topology
-- OSPF Area 10
+- Two-tier collapsed-core campus design
+- OSPFv2 Area `10`
+- OSPF process ID `10` as a local administrative convention
 - VLAN and VLSM plan
-- HSRP addressing convention
+- HSRP addressing and group-number convention
+- Split HSRP gateway ownership between `hq-d1` and `hq-d2`
+- Rapid PVST+ with HSRP-aligned root placement
+- Deterministic STP root placement for native VLAN `190`
 - LACP EtherChannels at Layer 2
 - Routed Distribution-to-Edge interfaces
-- Four-path OSPF ECMP intent
-- Higher-cost cross-connected routed paths
-- HSRP/STP role alignment
 - `/31` point-to-point addressing
 - `/32` loopbacks
+- Explicit `Loopback0` OSPF router IDs
+- Passive-by-default OSPF policy
+- Interface-specific OSPF activation
+- OSPF point-to-point network type on routed Distribution-to-Edge links
+- Four-path OSPF ECMP intent
+- Explicit OSPF cost `10` on direct ECMP links
+- Explicit OSPF cost `100` on cross-connected alternate links
+- OSPF maximum equal-cost path limit of `4`
+- Higher-cost cross-connected routed paths
+- No direct OSPF adjacency between `hq-d1` and `hq-d2`
+- Separation of Layer 2 EtherChannel redundancy from Layer 3 OSPF ECMP
 
 The following require implementation evidence before they are considered **as-built**:
 
 - Final platform/image selection
 - Exact interface availability and naming
-- EtherChannel formation
+- EtherChannel formation and member state
 - Trunk VLAN state
-- HSRP failover
-- Rapid PVST+ root/blocking behaviour
-- OSPF adjacency formation
-- Four installed equal-cost routes
+- HSRP Active/Standby roles and failover
+- Rapid PVST+ root and blocking behaviour
+- VLAN `190` STP root placement
+- OSPF router IDs
+- OSPF adjacency formation on all ten routed links
+- Passive-interface behaviour on SVIs and loopbacks
+- OSPF point-to-point network type
+- Direct-link and cross-link OSPF costs
+- Installation of up to four equal-cost next hops
 - ECMP forwarding behaviour
-- Alternate-path failover
-- Failure/reconvergence behaviour
+- Individual-link failure and reconvergence
+- Complete direct-path-set failure behaviour
+- Higher-cost alternate-path behaviour
+- Restoration of preferred paths after recovery
 
 Implementation detail and evidence will be maintained separately as the build progresses.
 
