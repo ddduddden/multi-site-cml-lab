@@ -71,50 +71,88 @@ The two edge routers will later connect HQ Area 10 to the Area 0 inter-site back
 
 ## 3. VLAN and Gateway Design
 
-| VLAN | Name | Function | IPv4 Prefix | HSRP Virtual IP |
-|---:|---|---|---|---|
-| 112 | `CORP-USERS` | Corporate users | `10.10.12.0/22` | `10.10.12.1` |
-| 120 | `VOICE` | IP telephony | `10.10.20.0/23` | `10.10.20.1` |
-| 130 | `SERVERS` | Server/application services | `10.10.30.0/25` | `10.10.30.1` |
-| 140 | `IOT-CCTV` | IoT and surveillance | `10.10.40.0/23` | `10.10.40.1` |
-| 152 | `GUEST` | Guest access | `10.10.52.0/22` | `10.10.52.1` |
-| 160 | `FACILITIES` | Printers/facilities | `10.10.60.0/26` | `10.10.60.1` |
-| 170 | `BYOD-WLAN` | BYOD/wireless | `10.10.70.0/23` | `10.10.70.1` |
-| 190 | `NATIVE` | Dedicated native VLAN | — | — |
-| 191 | `PARKING` | Unused ports | — | — |
-| 199 | `NET-MGMT` | Network infrastructure management | `10.10.99.0/26` | `10.10.99.1` |
+### VLAN and VLSM Addressing Plan
+
+**Site allocation:** `10.10.0.0/16`  
+**OSPF area:** Area 10  
+**HSRP addressing convention:** `.1` = HSRP virtual IP, `.2` = `hq-d1`, `.3` = `hq-d2` for each routed VLAN.
+
+| VLAN | Name         | Function                          | IPv4 Prefix     | Usable Hosts | HSRP Virtual IP |
+| ---: | ------------ | --------------------------------- | --------------- | -----------: | --------------- |
+|  112 | `CORP-USERS` | Corporate users                   | `10.10.12.0/22` |         1022 | `10.10.12.1`    |
+|  120 | `VOICE`      | IP telephony                      | `10.10.20.0/23` |          510 | `10.10.20.1`    |
+|  130 | `SERVERS`    | Server/application services       | `10.10.30.0/25` |          126 | `10.10.30.1`    |
+|  140 | `IOT-CCTV`   | IoT and surveillance              | `10.10.40.0/23` |          510 | `10.10.40.1`    |
+|  152 | `GUEST`      | Guest access                      | `10.10.52.0/22` |         1022 | `10.10.52.1`    |
+|  160 | `FACILITIES` | Printers/facilities               | `10.10.60.0/26` |           62 | `10.10.60.1`    |
+|  170 | `BYOD-WLAN`  | BYOD/wireless                     | `10.10.70.0/23` |          510 | `10.10.70.1`    |
+|  190 | `NATIVE`     | Dedicated native VLAN             | —               |            — | —               |
+|  191 | `PARKING`    | Unused ports                      | —               |            — | —               |
+|  199 | `NET-MGMT`   | Network infrastructure management | `10.10.99.0/26` |           62 | `10.10.99.1`    |
+
+#### Address Allocation Rationale
+
+Unallocated address ranges within `10.10.0.0/16` are intentionally reserved for future HQ VLANs and services. Keeping HQ user and service networks within this site-specific address block provides structured growth while preserving the ability to summarise HQ routes toward the OSPF Area 0 backbone.
+
+The addressing plan also provides a readable relationship between VLAN IDs and IPv4 subnets where practical. For example, VLAN 112 uses `10.10.12.0/22`, VLAN 120 uses `10.10.20.0/23`, and VLAN 152 uses `10.10.52.0/22`. This convention improves operational readability without overriding valid VLSM boundaries or subnet-sizing requirements.
+
+#### Capacity Rationale
+
+`CORP-USERS` and `GUEST` are intentionally allocated `/22` networks because they represent the highest-growth and highest-device-density client segments in the HQ design.
+
+The 1,022-host capacity of a `/22` represents available addressing headroom rather than an assumption that 1,022 endpoints are currently deployed. The larger prefixes provide room for growth while allowing the addressing plan to demonstrate genuine VLSM alongside `/23`, `/25`, and `/26` networks.
+
+A `/22` also creates a comparatively large Layer 2 broadcast domain. In a larger production campus, a similar endpoint population could instead be divided across additional VLANs and smaller subnets. The use of `/22` networks here is therefore a deliberate lab design choice rather than an assumption that larger broadcast domains are always preferable.
+
+#### OSPF Summarisation Policy
+
+The entire `10.10.0.0/16` block is reserved exclusively for HQ Area 10 addressing.
+
+When the Area 0 backbone is introduced, the HQ Area Border Routers are intended to summarise the Area 10 user and service networks toward Area 0 using the HQ site block rather than advertising each individual VLAN prefix separately.
+
+This provides a clear hierarchical addressing model:
+
+* HQ user and service networks — `10.10.0.0/16`
+* Branch user and service networks — `10.20.0.0/16`
+* Infrastructure and transit addressing — `10.255.0.0/16`
+
+On Cisco IOS, an active OSPF area-range summary installs a Null0 discard route for the summary by default. This prevents routing loops for destinations that fall within the advertised summary but for which no more-specific route exists in the routing table. A valid more-specific route still takes precedence through normal longest-prefix matching.
+
+For this reason, addresses within `10.10.0.0/16` must remain part of the controlled HQ addressing plan and must not be allocated casually elsewhere in the topology. This preserves both the operational meaning of the HQ summary and the clarity of the overall addressing hierarchy.
 
 ### Gateway Addressing Convention
 
 For every routed VLAN:
 
-- First usable address — HSRP virtual IP
-- Second usable address — `hq-d1`
-- Third usable address — `hq-d2`
+* First usable address — HSRP virtual IP
+* Second usable address — `hq-d1`
+* Third usable address — `hq-d2`
 
 Example for VLAN 130:
 
-- HSRP VIP — `10.10.30.1`
-- `hq-d1 Vlan130` — `10.10.30.2/25`
-- `hq-d2 Vlan130` — `10.10.30.3/25`
+* HSRP virtual IP — `10.10.30.1`
+* `hq-d1`, interface `Vlan130` — `10.10.30.2/25`
+* `hq-d2`, interface `Vlan130` — `10.10.30.3/25`
+
+The complete Distribution Switch SVI addressing will be maintained consistently with this convention so that the VLAN/VLSM plan and gateway-addressing documentation remain synchronised.
 
 ### Reserved VLAN Policy
 
 **VLAN 190 — `NATIVE`**
 
-- Dedicated non-default native VLAN
-- No SVI
-- No intended endpoint traffic
+* Dedicated non-default native VLAN
+* No SVI
+* No intended endpoint traffic
 
 **VLAN 191 — `PARKING`**
 
-- Reserved for unused ports
-- No SVI
-- Unused ports are administratively shut down
+* Reserved for unused ports
+* No SVI
+* Unused ports are administratively shut down
 
 **VLAN 1**
 
-VLAN 1 is not used for production traffic, infrastructure management, or as the intentionally configured native VLAN.
+VLAN 1 carries no production traffic, no infrastructure management traffic, and is not used as the native VLAN.
 
 ---
 
