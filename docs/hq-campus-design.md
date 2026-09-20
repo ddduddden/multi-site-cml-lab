@@ -16,8 +16,8 @@ The HQ campus uses a five-device, two-tier collapsed-core design:
 
 - `hq-r1` — Edge Router 1
 - `hq-r2` — Edge Router 2
-- `hq-d1` — Distribution Switch 1
-- `hq-d2` — Distribution Switch 2
+- `hq-d1` — Multilayer Distribution Switch 1
+- `hq-d2` — Multilayer Distribution Switch 2
 - `hq-a1` — Access Switch
 
 The internal HQ routing domain operates as **OSPF Area 10**.
@@ -52,9 +52,9 @@ The HQ campus topology is shown below.
 
 ![HQ Campus - OSPF Area 10](../diagrams/hq-campus-area10-topology.svg)
 
-The two Distribution Switches provide the Layer 3 gateway and campus-routing functions for HQ. `hq-a1` is dual-homed to them using `Po10` and `Po20`, while `hq-d1` and `hq-d2` are interconnected by `Po30`.
+The two multilayer distribution switches provide the Layer 3 gateway and campus-routing functions for HQ. `hq-a1` is dual-homed to them using `Po10` and `Po20`, while `hq-d1` and `hq-d2` are interconnected by `Po30`.
 
-Each Distribution Switch also has four routed point-to-point interfaces to its directly paired edge router for the intended OSPF ECMP design:
+Each multilayer distribution switch also has four routed point-to-point interfaces to its directly paired edge router for the intended OSPF ECMP design:
 
 - `hq-d1` ↔ `hq-r1`
 - `hq-d2` ↔ `hq-r2`
@@ -65,6 +65,8 @@ A further cross-connected routed interface is provided in each direction to crea
 - `hq-d2` ↔ `hq-r1`
 
 The two edge routers will later connect HQ Area 10 to the Area 0 inter-site backbone.
+
+The intended CML interface model provides 16 GigabitEthernet interfaces on each switch and eight GigabitEthernet interfaces on each edge router. The detailed interface allocation is defined in Sections 4 and 5 and will be verified during the platform-baseline phase before it is treated as as-built.
 
 
 ---
@@ -106,19 +108,40 @@ A `/22` also creates a comparatively large Layer 2 broadcast domain. In a larger
 
 #### OSPF Summarisation Policy
 
-The entire `10.10.0.0/16` block is reserved exclusively for HQ Area 10 addressing.
+The wider addressing hierarchy remains:
 
-When the Area 0 backbone is introduced, the HQ Area Border Routers are intended to summarise the Area 10 user and service networks toward Area 0 using the HQ site block rather than advertising each individual VLAN prefix separately.
+- HQ user and service networks — `10.10.0.0/16`
+- Branch user and service networks — `10.20.0.0/16`
+- Infrastructure and transit addressing — `10.255.0.0/16`
 
-This provides a clear hierarchical addressing model:
+Within that hierarchy, the HQ addressing plan is structured so that the Area 0 backbone can learn a simplified view of Area 10 without losing the stable device identities used for management and troubleshooting.
 
-* HQ user and service networks — `10.10.0.0/16`
-* Branch user and service networks — `10.20.0.0/16`
-* Infrastructure and transit addressing — `10.255.0.0/16`
+When `hq-r1` and `hq-r2` later operate as Area Border Routers between Area 10 and Area 0, the intended advertisement policy is:
 
-On Cisco IOS, an active OSPF area-range summary installs a Null0 discard route for the summary by default. This prevents routing loops for destinations that fall within the advertised summary but for which no more-specific route exists in the routing table. A valid more-specific route still takes precedence through normal longest-prefix matching.
+| Area 10 prefix type | Internal representation | Advertised toward Area 0 | Treatment |
+|---|---|---|---|
+| HQ user, service, and management VLANs | Individual VLSM prefixes | `10.10.0.0/16` | Summarised at the ABRs |
+| HQ routed transit links | Ten individual `/31` networks | `10.255.10.0/27` | Summarised at the ABRs |
+| HQ `Loopback0` identities | Four individual `/32` routes | Four individual `/32` routes | Advertised without summarisation |
 
-For this reason, addresses within `10.10.0.0/16` must remain part of the controlled HQ addressing plan and must not be allocated casually elsewhere in the topology. This preserves both the operational meaning of the HQ summary and the clarity of the overall addressing hierarchy.
+The `10.10.0.0/16` summary represents the HQ site addressing block. Individual VLAN prefixes remain visible inside Area 10, while Area 0 receives a single site-level route.
+
+The routed transit links use addresses from `10.255.10.0/27`. The current ten `/31` networks consume addresses `10.255.10.0` through `10.255.10.19`, leaving `10.255.10.20` through `10.255.10.31` reserved for future HQ Area 10 transit links. The physical interfaces remain configured with their individual `/31` prefixes; the `/27` is used only as the inter-area summary.
+
+The four `Loopback0` addresses remain individual `/32` routes. They are stable device identities used for OSPF router IDs, management, troubleshooting, monitoring, and later automation, so retaining their individual reachability is more useful than aggregating them simply because they occupy a contiguous allocation.
+
+This creates a functional hierarchy rather than summarising the entire `10.255.10.0/24` infrastructure block:
+
+- `10.10.0.0/16` — HQ user, service, and management addressing
+- `10.255.10.0/27` — HQ Area 10 routed transit allocation
+- `10.255.10.128/29` — HQ loopback allocation pool; active addresses advertised individually as `/32`s
+
+Area 0 infrastructure links will use a separate address range. This keeps each aggregate associated with the area and function it represents and avoids mixing backbone addressing with prefixes summarised from Area 10.
+
+On Cisco IOS, an active OSPF area-range summary installs a Null0 discard route for the aggregate by default. This protects against routing loops for destinations that fall within the advertised summary but have no valid more-specific route. A valid more-specific route continues to take precedence through normal longest-prefix matching.
+
+The summary metric will be explicitly configured and verified on both HQ ABRs when Area 0 is designed. The numerical values are intentionally deferred until the backbone cost model exists so that the summaries participate correctly in the final end-to-end path-selection policy rather than inheriting an arbitrary example value.
+
 
 ### Gateway and SVI Addressing Plan
 
@@ -206,16 +229,16 @@ Two additional cross-connected routed links provide alternate paths and are inte
 
 | Link | Distribution Interface | Distribution IP | Edge Interface | Edge IP | Path Role |
 |---|---|---|---|---|---|
-| `hq-d1` ↔ `hq-r1` | `hq-d1 E2/0` | `10.255.10.0/31` | `hq-r1 E0/0` | `10.255.10.1/31` | Direct ECMP |
-| `hq-d2` ↔ `hq-r2` | `hq-d2 E2/0` | `10.255.10.2/31` | `hq-r2 E0/0` | `10.255.10.3/31` | Direct ECMP |
-| `hq-d1` ↔ `hq-r2` | `hq-d1 E3/0` | `10.255.10.4/31` | `hq-r2 E1/0` | `10.255.10.5/31` | Higher-cost cross-link |
-| `hq-d2` ↔ `hq-r1` | `hq-d2 E3/0` | `10.255.10.6/31` | `hq-r1 E1/0` | `10.255.10.7/31` | Higher-cost cross-link |
-| `hq-d1` ↔ `hq-r1` | `hq-d1 E2/1` | `10.255.10.8/31` | `hq-r1 E0/1` | `10.255.10.9/31` | Direct ECMP |
-| `hq-d1` ↔ `hq-r1` | `hq-d1 E2/2` | `10.255.10.10/31` | `hq-r1 E0/2` | `10.255.10.11/31` | Direct ECMP |
-| `hq-d1` ↔ `hq-r1` | `hq-d1 E2/3` | `10.255.10.12/31` | `hq-r1 E0/3` | `10.255.10.13/31` | Direct ECMP |
-| `hq-d2` ↔ `hq-r2` | `hq-d2 E2/1` | `10.255.10.14/31` | `hq-r2 E0/1` | `10.255.10.15/31` | Direct ECMP |
-| `hq-d2` ↔ `hq-r2` | `hq-d2 E2/2` | `10.255.10.16/31` | `hq-r2 E0/2` | `10.255.10.17/31` | Direct ECMP |
-| `hq-d2` ↔ `hq-r2` | `hq-d2 E2/3` | `10.255.10.18/31` | `hq-r2 E0/3` | `10.255.10.19/31` | Direct ECMP |
+| `hq-d1` ↔ `hq-r1` | `hq-d1 Gi2/0` | `10.255.10.0/31` | `hq-r1 Gi0/0` | `10.255.10.1/31` | Direct ECMP |
+| `hq-d2` ↔ `hq-r2` | `hq-d2 Gi2/0` | `10.255.10.2/31` | `hq-r2 Gi0/0` | `10.255.10.3/31` | Direct ECMP |
+| `hq-d1` ↔ `hq-r2` | `hq-d1 Gi3/0` | `10.255.10.4/31` | `hq-r2 Gi0/4` | `10.255.10.5/31` | Higher-cost cross-link |
+| `hq-d2` ↔ `hq-r1` | `hq-d2 Gi3/0` | `10.255.10.6/31` | `hq-r1 Gi0/4` | `10.255.10.7/31` | Higher-cost cross-link |
+| `hq-d1` ↔ `hq-r1` | `hq-d1 Gi2/1` | `10.255.10.8/31` | `hq-r1 Gi0/1` | `10.255.10.9/31` | Direct ECMP |
+| `hq-d1` ↔ `hq-r1` | `hq-d1 Gi2/2` | `10.255.10.10/31` | `hq-r1 Gi0/2` | `10.255.10.11/31` | Direct ECMP |
+| `hq-d1` ↔ `hq-r1` | `hq-d1 Gi2/3` | `10.255.10.12/31` | `hq-r1 Gi0/3` | `10.255.10.13/31` | Direct ECMP |
+| `hq-d2` ↔ `hq-r2` | `hq-d2 Gi2/1` | `10.255.10.14/31` | `hq-r2 Gi0/1` | `10.255.10.15/31` | Direct ECMP |
+| `hq-d2` ↔ `hq-r2` | `hq-d2 Gi2/2` | `10.255.10.16/31` | `hq-r2 Gi0/2` | `10.255.10.17/31` | Direct ECMP |
+| `hq-d2` ↔ `hq-r2` | `hq-d2 Gi2/3` | `10.255.10.18/31` | `hq-r2 Gi0/3` | `10.255.10.19/31` | Direct ECMP |
 
 #### /31 Addressing Rationale
 
@@ -234,8 +257,8 @@ The eight direct routed links form two intended four-link equal-cost path sets:
 
 The two cross-connected links are:
 
-- `hq-d1 E3/0` ↔ `hq-r2 E1/0`
-- `hq-d2 E3/0` ↔ `hq-r1 E1/0`
+- `hq-d1 Gi3/0` ↔ `hq-r2 Gi0/4`
+- `hq-d2 Gi3/0` ↔ `hq-r1 Gi0/4`
 
 These cross-links are intended to use deliberately higher OSPF costs so that they remain available as alternate paths rather than joining the normal four-link ECMP path sets.
 
@@ -258,7 +281,16 @@ The low-numbered portion of `10.255.10.0/24` is used for routed point-to-point l
 
 This separation makes transit links and stable device identities easier to distinguish during configuration, verification, and troubleshooting.
 
-Unused addresses within `10.255.10.0/24` remain reserved for future HQ infrastructure requirements rather than being allocated before a defined purpose exists.
+Within `10.255.10.0/24` the allocation is:
+
+| Range | Purpose |
+|---|---|
+| `10.255.10.0/27` | HQ routed transit allocation (ten `/31` links in use, `.20`–`.31` reserved for expansion) |
+| `10.255.10.128/29` | HQ loopback allocation pool (`.129`–`.132` in use) |
+
+The `/27` is the transit summary intended for advertisement toward Area 0. The `/29` is an administrative allocation only; the active loopbacks are advertised individually as `/32` routes. See Section 3 for the advertisement policy.
+
+Other unused addresses within `10.255.10.0/24` remain reserved for future HQ infrastructure requirements rather than being allocated before a defined purpose exists.
 
 Future tunnel-source and Area 0/WAN addressing will be designed during the corresponding project phase rather than being pre-allocated here.
 
@@ -274,9 +306,9 @@ Three Layer 2 EtherChannels are used within the HQ campus:
 
 | Port-Channel | Connected Devices | Physical Member Interfaces | Members | Function | LACP Mode |
 |---|---|---|---:|---|---|
-| `Po10` | `hq-a1` ↔ `hq-d1` | `hq-a1 E0/0-E0/1` ↔ `hq-d1 E0/0-E0/1` | 2 | Access-to-Distribution trunk | Active / Active |
-| `Po20` | `hq-a1` ↔ `hq-d2` | `hq-a1 E1/0-E1/1` ↔ `hq-d2 E0/0-E0/1` | 2 | Access-to-Distribution trunk | Active / Active |
-| `Po30` | `hq-d1` ↔ `hq-d2` | `hq-d1 E1/0-E1/3` ↔ `hq-d2 E1/0-E1/3` | 4 | Distribution interconnect trunk | Active / Active |
+| `Po10` | `hq-a1` ↔ `hq-d1` | `hq-a1 Gi0/0-Gi0/1` ↔ `hq-d1 Gi0/0-Gi0/1` | 2 | Access-to-Distribution trunk | Active / Active |
+| `Po20` | `hq-a1` ↔ `hq-d2` | `hq-a1 Gi1/0-Gi1/1` ↔ `hq-d2 Gi0/0-Gi0/1` | 2 | Access-to-Distribution trunk | Active / Active |
+| `Po30` | `hq-d1` ↔ `hq-d2` | `hq-d1 Gi1/0-Gi1/3` ↔ `hq-d2 Gi1/0-Gi1/3` | 4 | Distribution interconnect trunk | Active / Active |
 
 `Po10` and `Po20` provide redundant Layer 2 uplinks from `hq-a1` to the two multilayer distribution switches.
 
@@ -309,22 +341,34 @@ Using an explicit allowed-VLAN list limits each trunk to VLANs that have a defin
 
 | Port(s) | Access VLAN | Voice VLAN | Function | Intended State |
 |---|---:|---:|---|---|
-| `E0/0-E0/1` | — | — | `Po10` members to `hq-d1` | Enabled |
-| `E0/2-E0/3` | 191 | — | Unused / parking | Shutdown |
-| `E1/0-E1/1` | — | — | `Po20` members to `hq-d2` | Enabled |
-| `E1/2-E1/3` | 191 | — | Unused / parking | Shutdown |
-| `E2/0` | 112 | 120 | Corporate workstation + IP phone | Enabled |
-| `E2/1` | 112 | — | Corporate workstation | Enabled |
-| `E2/2` | 130 | — | Server/application endpoint | Enabled |
-| `E2/3` | 140 | — | IoT/CCTV endpoint | Enabled |
-| `E3/0` | 152 | — | Guest endpoint | Enabled |
-| `E3/1` | 160 | — | Printer/facilities endpoint | Enabled |
-| `E3/2` | 170 | — | BYOD/WLAN test endpoint | Enabled |
-| `E3/3` | 199 | — | Network-management endpoint | Enabled |
+| `Gi0/0-Gi0/1` | — | — | `Po10` members to `hq-d1` | Enabled |
+| `Gi0/2-Gi0/3` | 191 | — | Unused / parking | Shutdown |
+| `Gi1/0-Gi1/1` | — | — | `Po20` members to `hq-d2` | Enabled |
+| `Gi1/2-Gi1/3` | 191 | — | Unused / parking | Shutdown |
+| `Gi2/0` | 112 | 120 | Corporate workstation + IP phone | Enabled |
+| `Gi2/1` | 112 | — | Corporate workstation | Enabled |
+| `Gi2/2` | 130 | — | Server/application endpoint | Enabled |
+| `Gi2/3` | 140 | — | IoT/CCTV endpoint | Enabled |
+| `Gi3/0` | 152 | — | Guest endpoint | Enabled |
+| `Gi3/1` | 160 | — | Printer/facilities endpoint | Enabled |
+| `Gi3/2` | 170 | — | BYOD/WLAN test endpoint | Enabled |
+| `Gi3/3` | 199 | — | Network-management endpoint | Enabled |
 
 Unused access interfaces are assigned to VLAN `191` and administratively shut down.
 
-The access-port allocation represents the intended design. Exact interface naming and availability will be confirmed against the selected CML switching image during implementation.
+The access-port allocation reflects the intended 16-interface GigabitEthernet switch model. Phase 01 of the implementation plan will still verify the actual interface presentation on the selected CML image before configuration is treated as as-built.
+
+### Interface Capacity Reservation
+
+The final HQ node layout deliberately retains unused GigabitEthernet interfaces so later phases do not require rebuilding the CML nodes simply to add a new connection.
+
+| Device | Reserved Interfaces | Intended Use |
+|---|---|---|
+| `hq-d1`, `hq-d2` | `Gi0/2-Gi0/3` | Available for future access/distribution EtherChannel expansion if required |
+| `hq-d1`, `hq-d2` | `Gi3/1-Gi3/3` | Spare capacity for later HQ infrastructure requirements |
+| `hq-r1`, `hq-r2` | `Gi0/5-Gi0/7` | Reserved for future Area 0, WAN, cloud, or backbone connectivity |
+
+Unused interfaces remain unconfigured or are administratively disabled until a defined requirement exists.
 
 ### Layer 2 Design Intent
 
@@ -470,7 +514,27 @@ OSPF is configured to permit a maximum of four equal-cost paths so that the inte
 
 The higher cost of the cross-connected links is intended to make them less preferred than the direct links where a lower-cost direct path is available, rather than allowing them to join the normal four-link ECMP sets.
 
-When Area `0` and the inter-site backbone are introduced, end-to-end OSPF costs will be reviewed again to confirm that the resulting SPF decisions still match the intended primary and alternate path hierarchy.
+When Area `0` and the inter-site backbone are introduced, end-to-end OSPF costs will be reviewed again to confirm that the resulting SPF decisions still match the intended primary and alternate path hierarchy. This review includes the explicit summary costs described in Section 3.
+
+### Area 0 Summary and Failure Verification Intent
+
+The Area 10 summaries are design intent until the Area 0 backbone exists and their behaviour has been demonstrated on the selected CML image.
+
+The Area 0 implementation phase will verify:
+
+- normal advertisement of `10.10.0.0/16` and `10.255.10.0/27` from both HQ ABRs;
+- summary behaviour as individual component prefixes become unavailable;
+- withdrawal behaviour when an ABR no longer has qualifying Area 10 reachability;
+- the associated Null0 discard-route behaviour;
+- what the surviving ABR continues to advertise and what Area 0 installs during partial and complete failures;
+- whether partial isolation can create unintended traffic attraction or black-holing;
+- how the selected IOS image reports the ABR role as Area 0 connectivity is introduced, established, and failed; and
+- that inbound traffic can enter through either multilayer distribution switch regardless of the HSRP Active role for the destination VLAN.
+
+These checks belong to the implementation verification plan and will be captured as evidence rather than assumed from the design.
+
+Inbound traffic from Area 0 toward an HQ VLAN does not depend on reaching whichever multilayer distribution switch is HSRP Active. Both `hq-d1` and `hq-d2` have a directly connected SVI in each routed VLAN. HSRP determines the first-hop gateway used by hosts; it does not require inbound traffic to traverse the active HSRP switch.
+
 
 ### ECMP Forwarding Behaviour
 
@@ -513,27 +577,17 @@ These behaviours remain design intent until they have been demonstrated and capt
 
 | Design Decision | Rationale |
 |---|---|
-| Two-tier collapsed core | Provides meaningful campus redundancy within the five-device HQ design |
-| Single access switch | Preserves the five-device HQ limit |
-| LACP at Layer 2 | Demonstrates logical link aggregation and member-link resilience |
-| OSPF ECMP at Layer 3 | Demonstrates multipath routing across independent routed interfaces |
-| Cross-connected routed paths | Enables path-cost and routing-reconvergence testing |
-| `/31` routed interfaces | Efficient addressing for two-endpoint routed infrastructure |
-| `/32` loopbacks | Provides stable device identities and explicit OSPF router IDs |
-| VLSM | Sizes networks by function rather than assigning every VLAN a `/24` |
-| Dedicated native VLAN | Keeps trunk native traffic separate from production user VLANs |
-| Parking VLAN | Keeps unused access ports separate from production VLANs |
-| HSRP/STP alignment | Aligns the preferred Layer 2 path with the active gateway |
-| Split HSRP/STP ownership | Allows both multilayer distribution switches to participate in normal forwarding |
-| Deterministic VLAN 190 STP root placement | Prevents native-VLAN root selection from being left to default bridge election behaviour |
-| Rapid PVST+ | Provides per-VLAN spanning-tree instances and allows intentional root placement |
-| Passive-by-default OSPF | Limits neighbour formation to intentional routed interfaces |
-| Interface-specific OSPF activation | Reduces the risk of unintentionally enabling OSPF on additional interfaces |
-| Explicit OSPF router IDs | Keeps OSPF device identity independent of automatic interface-based selection |
-| OSPF point-to-point network type | Matches the two-device routed-link topology and avoids unnecessary DR/BDR elections |
-| Explicit OSPF interface costs | Makes the intended direct-path and alternate-path preference deterministic |
-| Four-path OSPF ECMP limit | Makes the intended four-link equal-cost design explicit rather than relying on a platform default |
-| Separate implementation evidence | Keeps design intent separate from platform-specific behaviour and proof |
+| Two-tier collapsed core | Provides meaningful campus redundancy within the five-device HQ topology while keeping the design practical for the CML node limit |
+| LACP at Layer 2 | Provides link aggregation and member-link resilience on switched campus connections |
+| OSPF ECMP at Layer 3 | Provides multipath routing across independent routed interfaces without presenting them as a logical Port-Channel |
+| Higher-cost cross-connected routed paths | Provides alternate Layer 3 paths for cost manipulation, failure testing, and routing reconvergence |
+| VLSM with `/31` transit links and `/32` loopbacks | Uses VLSM to allocate address space by function, with `/31` prefixes for point-to-point transit links and `/32` loopbacks for stable device identities |
+| Dedicated native and parking VLANs | Separates native trunk traffic and unused access ports from production VLANs |
+| HSRP and Rapid PVST+ role alignment | Aligns STP root placement with HSRP gateway ownership so each VLAN follows its intended Layer 2 and Layer 3 forwarding path |
+| Controlled OSPF neighbour formation | Passive-by-default operation and interface-specific activation restrict OSPF adjacencies to the intended routed links |
+| Explicit OSPF path control | Explicit router IDs, point-to-point network types, interface costs, and a four-path ECMP limit reduce reliance on platform defaults |
+| Functional inter-area summarisation | Summarises HQ user and transit networks toward Area 0 while keeping individual loopback routes visible for management and troubleshooting |
+| Separate implementation evidence | Keeps architectural intent separate from platform-specific behaviour, verification results, troubleshooting, and accepted deviations |
 
 ---
 
@@ -554,6 +608,12 @@ The following are **design decisions**:
 - Routed Distribution-to-Edge interfaces
 - `/31` point-to-point addressing
 - `/32` loopbacks
+- Area 10 user/service summary of `10.10.0.0/16` toward Area 0
+- Area 10 transit summary of `10.255.10.0/27` toward Area 0
+- Individual `/32` advertisement of HQ loopbacks toward Area 0
+- `10.255.10.128/29` reserved as the HQ loopback allocation pool without OSPF summarisation
+- Separate addressing for future Area 0 infrastructure links
+- Explicit ABR summary metrics to be selected during the Area 0 cost-design phase
 - Explicit `Loopback0` OSPF router IDs
 - Passive-by-default OSPF policy
 - Interface-specific OSPF activation
@@ -586,6 +646,8 @@ The following require implementation evidence before they are considered **as-bu
 - Complete direct-path-set failure behaviour
 - Higher-cost alternate-path behaviour
 - Restoration of preferred paths after recovery
+- Area 0 phase: ABR summary advertisement, withdrawal, Null0 behaviour, and dual-ABR behaviour (Section 7)
+- Area 0 phase: explicit summary costs on both ABRs
 
 Implementation detail and evidence will be maintained separately as the build progresses.
 
@@ -605,5 +667,7 @@ After the HQ baseline is implemented and verified, the project will progress tow
 - Dual-tunnel resilience
 - WAN failover / wider ECMP testing
 - Python and Ansible automation
+
+During the GRE phase, tunnel-endpoint reachability will be provided by the underlay rather than learned through the tunnel itself. This keeps the transport path independent of the overlay routes carried across GRE and avoids recursive-routing behaviour.
 
 The HQ design should remain stable unless implementation evidence identifies a genuine platform or architectural constraint.
