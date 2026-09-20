@@ -1,0 +1,366 @@
+HQ-VP-01.04 — Platform Capability Review
+Date: 2026-09-20
+Site: HQ Campus — OSPF Area 10
+
+Purpose
+-------
+Confirm that the representative CML image families expose the platform capabilities
+required by the approved HQ design before feature implementation begins.
+
+Representative devices
+----------------------
+IOSvL2 capability checks: hq-d1
+IOSv capability checks:   hq-r1
+
+This record confirms command/parser availability and clean baseline behaviour only.
+Operational feature behaviour will be verified in the later implementation phases.
+
+======================================================================
+IOSvL2 — hq-d1
+======================================================================
+
+1. EtherChannel / LACP command family
+
+Command:
+show etherchannel summary
+
+Observed:
+Number of channel-groups in use: 0
+Number of aggregators:           0
+
+Interpretation:
+EtherChannel operational show support is present and the clean baseline contains
+no configured channel-groups.
+
+Command:
+channel-group 10 mode ?
+
+Observed:
+  active     Enable LACP unconditionally
+  auto       Enable PAgP only if a PAgP device is detected
+  desirable  Enable PAgP unconditionally
+  on         Enable Etherchannel only
+  passive    Enable LACP only if a LACP device is detected
+
+Result:
+LACP active/passive modes are available for the planned Layer 2 EtherChannels.
+
+
+2. Spanning Tree
+
+Command:
+show spanning-tree summary
+
+Observed:
+Switch is in pvst mode
+
+Command:
+spanning-tree mode ?
+
+Observed:
+  mst         Multiple spanning tree mode
+  pvst        Per-Vlan spanning tree mode
+  rapid-pvst  Per-Vlan rapid spanning tree mode
+
+Result:
+Rapid PVST+ mode is available. The baseline remains in PVST mode until the
+dedicated spanning-tree implementation phase.
+
+
+3. Routed physical interfaces
+
+Command:
+no switchport ?
+
+Observed:
+  <cr>
+
+The command was briefly applied to GigabitEthernet0/0 as a capability check,
+then immediately reversed with:
+
+switchport
+
+Verification:
+show interfaces GigabitEthernet0/0 switchport
+
+Observed:
+Switchport: Enabled
+
+Result:
+The IOSvL2 image supports converting a physical switchport to a routed port, and
+the test interface was restored to its original Layer 2 baseline state.
+
+
+4. HSRP
+
+Command:
+standby 112 ?
+
+Observed:
+  authentication  Authentication
+  follow          Name of HSRP group to follow
+  ip              Enable HSRP IPv4 and set the virtual IP address
+  ipv6            Enable HSRP IPv6
+  mac-address     Virtual MAC address
+  name            Redundancy name string
+  preempt         Overthrow lower priority Active routers
+  priority        Priority level
+  timers          Hello and hold timers
+  track           Priority tracking
+
+Result:
+The HSRP command family exposes the IPv4 virtual IP, priority and preempt
+functions required by the approved HQ gateway design.
+
+
+5. Interface-specific OSPF controls
+
+Command:
+ip ospf ?
+
+Observed:
+  <1-65535>            Process ID
+  authentication       Enable authentication
+  authentication-key   Authentication password (key)
+  cost                 Interface cost
+  database-filter      Filter OSPF LSA during synchronization and flooding
+  dead-interval        Interval after which a neighbor is declared dead
+  demand-circuit       OSPF Demand Circuit
+  flood-reduction      OSPF Flood Reduction
+  hello-interval       Time between HELLO packets
+  lls                  Link-local Signaling (LLS) support
+  message-digest-key   Message digest authentication password (key)
+  mtu-ignore           Ignores the MTU in DBD packets
+  multi-area           Set the OSPF multi-area ID
+  network              Network type
+  prefix-suppression   OSPF prefix suppression
+  priority             Router priority
+  resync-timeout       Interval after which adjacency is reset if oob-resync is not started
+  retransmit-interval  Time between retransmitting lost link state advertisements
+  shutdown             Set OSPF protocol's state to disable under current interface
+  transmit-delay       Link state transmit delay
+  ttl-security         TTL security check
+
+Result:
+Interface-specific OSPF activation and the planned interface cost/network-type
+controls are exposed by the IOSvL2 image.
+
+
+6. OSPF ECMP path limit
+
+Command:
+router ospf 1
+maximum-paths ?
+
+Observed:
+  <1-32>  Number of paths
+
+Cleanup:
+no router ospf 1
+
+Verification:
+show running-config | section router ospf
+
+Observed:
+No output.
+
+Result:
+The image supports the planned maximum-paths 4 setting, and the temporary OSPF
+process used for the capability check was removed.
+
+
+======================================================================
+IOSv — hq-r1
+======================================================================
+
+1. IPv4 routed-interface addressing
+
+Command:
+interface GigabitEthernet0/0
+ip address ?
+
+Observed:
+  A.B.C.D  IP address
+  dhcp     IP Address negotiated via DHCP
+  pool     IP Address autoconfigured from a local DHCP pool
+
+Result:
+IPv4 addressing is available on the routed physical interface.
+
+
+2. Interface-specific OSPF command family
+
+Command:
+ip ospf ?
+
+Observed:
+  <1-65535>            Process ID
+  adjacency            Adjacency staggering
+  authentication       Enable authentication
+  authentication-key   Authentication password (key)
+  bfd                  Enable BFD on this interface
+  cost                 Interface cost
+  database-filter      Filter OSPF LSA during synchronization and flooding
+  dead-interval        Interval after which a neighbor is declared dead
+  demand-circuit       OSPF Demand Circuit
+  flood-reduction      OSPF Flood Reduction
+  hello-interval       Time between HELLO packets
+  lls                  Link-local Signaling (LLS) support
+  message-digest-key   Message digest authentication password (key)
+  mtu-ignore           Ignores the MTU in DBD packets
+  multi-area           Set the OSPF multi-area ID
+  network              Network type
+  prefix-suppression   OSPF prefix suppression
+  priority             Router priority
+  resync-timeout       Interval after which adjacency is reset if oob-resync is not started
+  retransmit-interval  Time between retransmitting lost link state advertisements
+  shutdown             Set OSPF protocol's state to disable under current interface
+
+Command:
+ip ospf 1 area ?
+
+Observed:
+  <0-4294967295>  OSPF area ID as a decimal value
+  A.B.C.D         OSPF area ID in IP address format
+
+Result:
+Interface-specific OSPF activation is available on IOSv.
+
+
+3. OSPF point-to-point network type
+
+Command:
+ip ospf network ?
+
+Observed:
+  broadcast            Specify OSPF broadcast multi-access network
+  non-broadcast        Specify OSPF NBMA network
+  point-to-multipoint  Specify OSPF point-to-multipoint network
+  point-to-point       Specify OSPF point-to-point network
+
+Result:
+The planned point-to-point OSPF network type is available.
+
+
+4. OSPF interface cost
+
+Command:
+ip ospf cost ?
+
+Observed:
+  <1-65535>  Cost
+
+Result:
+Explicit OSPF interface cost control is available for the direct and cross-link
+cost-engineering design.
+
+
+5. Explicit OSPF router ID
+
+Command:
+router ospf 1
+router-id ?
+
+Observed:
+  A.B.C.D  OSPF router-id in IP address format
+
+Result:
+Explicit OSPF router-ID configuration is available.
+
+
+6. Passive-interface policy
+
+Command:
+passive-interface ?
+
+Observed excerpt:
+  GigabitEthernet    GigabitEthernet IEEE 802.3z
+  Loopback           Loopback interface
+  default            Suppress routing updates on all interfaces
+
+Result:
+The parser exposes the passive-interface default policy required by the approved
+OSPF design. Later OSPF implementation will verify the complete passive-by-default
+and selective no-passive-interface behaviour operationally.
+
+
+7. OSPF ECMP path limit
+
+Command:
+router ospf 1
+maximum-paths ?
+
+Observed:
+  <1-32>  Number of paths
+
+Result:
+The IOSv image supports the planned maximum-paths 4 setting.
+
+
+8. OSPF area range command family
+
+Command:
+area 10 range ?
+
+Observed:
+  A.B.C.D  IP address to match
+
+Result:
+The OSPF area-range command family is exposed for the later Area 10 inter-area
+summarisation implementation. Exact summary configuration and behaviour will be
+verified when the Area 0 backbone exists.
+
+
+9. Cleanup verification
+
+Command:
+show running-config | section router ospf
+
+Observed:
+No output.
+
+Command:
+show running-config interface GigabitEthernet0/0
+
+Observed:
+interface GigabitEthernet0/0
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+
+Command:
+show ip interface brief | include GigabitEthernet0/0
+
+Observed:
+GigabitEthernet0/0         unassigned      YES unset  administratively down down
+
+Result:
+The temporary OSPF process was removed and GigabitEthernet0/0 remained unaddressed
+and administratively shut down after capability testing.
+
+
+======================================================================
+Overall result
+======================================================================
+
+No platform capability blocker was identified for the approved HQ design based on
+the representative IOSvL2 and IOSv checks performed during Phase 01.
+
+Capabilities demonstrated at parser/platform level:
+- Layer 2 EtherChannel / LACP active-passive modes
+- Rapid PVST+
+- Routed physical interfaces on IOSvL2
+- HSRP command family
+- Interface-specific OSPF activation
+- OSPF point-to-point network type
+- OSPF interface cost control
+- Explicit OSPF router IDs
+- Passive-interface default policy
+- OSPF maximum-paths with support for four-path ECMP
+- OSPF area-range command family
+
+These checks establish platform suitability only. Actual protocol operation,
+adjacencies, failover, convergence, path selection, summarisation and failure
+behaviour remain subject to the later implementation and verification phases.
