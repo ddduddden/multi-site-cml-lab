@@ -102,7 +102,7 @@ Each verification test uses the `Status` field to record its result.
 | `In progress` | The test or related investigation is currently underway. |
 | `Verified` | The expected behaviour has been demonstrated and recorded. |
 | `Blocked` | The test cannot currently be completed because an unresolved issue, dependency, or platform limitation is preventing progress. |
-| `Deviated` | The implementation intentionally differs from the design and an accepted `HQ-DEV-NNN` record exists for that test. |
+| `Deviated` | The implementation intentionally differs from the design and an accepted `HQ-DEV-NNN` record exists for the test. |
 
 `Blocked` does not mean the test has permanently failed. It means progress is currently prevented until the blocking issue is resolved or an accepted deviation is recorded.
 
@@ -123,7 +123,7 @@ A phase does not show as `Deviated` just because one test in it has an accepted 
 | Phase | Scope | Status |
 |---:|---|---|
 | 01 | Platform baseline | **Verified** |
-| 02 | Layer 2 / VLAN baseline | Not started |
+| 02 | Layer 2 / VLAN baseline | **Verified** |
 | 03 | LACP EtherChannel | Not started |
 | 04 | Rapid PVST+ | Not started |
 | 05 | SVIs and HSRP | Not started |
@@ -141,12 +141,13 @@ Evidence folders are created only when genuine artifacts exist.
 | Phase | Folder |
 |---:|---|
 | 01 | `evidence/hq/platform-baseline/` |
+| 02 | `evidence/hq/layer2-vlan-baseline/` |
 | 03 | `evidence/hq/etherchannel/` |
 | 04 | `evidence/hq/spanning-tree/` |
 | 05 | `evidence/hq/hsrp/` |
 | 07–09 | `evidence/hq/ospf/` |
 | 10 | `evidence/hq/failure-tests/` |
-| 02, 06, 11 | No dedicated folder unless useful artifacts warrant one |
+| 06, 11 | No dedicated folder unless useful artifacts warrant one |
 
 Smaller evidence sets can use files directly inside the relevant phase folder:
 

@@ -49,3 +49,36 @@ Production VLAN, EtherChannel, Rapid PVST+, HSRP, routed-link, and OSPF configur
 ### Next
 
 **Phase 02 — Layer 2 / VLAN Baseline**
+
+---
+
+## Phase 02 — Layer 2 / VLAN Baseline
+
+**Completed:** `21-09-2026`
+
+### Implemented
+
+- Created and named the approved HQ VLAN database on `hq-d1`, `hq-d2`, and `hq-a1`.
+- Configured the intended `hq-a1` endpoint-facing access ports, including voice VLAN `120` on `Gi2/0`.
+- Assigned all `hq-a1` interfaces not yet in service to VLAN `191` (`PARKING`) and administratively shut them down, including the future `Po10` and `Po20` members until Phase 03.
+- Left VLAN `1` present as the platform default with no production or management access ports assigned.
+
+### Verification
+
+- `HQ-VP-02.01` — VLAN Database
+- `HQ-VP-02.02` — Access-Port Assignments
+- `HQ-VP-02.03` — Parking-VLAN Policy
+
+### Result
+
+**Phase 02 verified.** The approved VLAN database, access-port assignments, voice-VLAN assignment, and parking-VLAN policy were demonstrated and recorded.
+
+EtherChannel/trunking and later Layer 2 and Layer 3 features remain for subsequent phases.
+
+### Evidence
+
+[`evidence/hq/layer2-vlan-baseline/`](../../../evidence/hq/layer2-vlan-baseline/)
+
+### Next
+
+**Phase 03 — LACP EtherChannel**
