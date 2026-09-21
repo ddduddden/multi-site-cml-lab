@@ -12,7 +12,7 @@ The five documents have distinct primary responsibilities, with deliberate cross
 |---|---|
 | `README.md` | Dashboard, working rules, phase index, status rules, and reference-ID key |
 | `verification-plan.md` | What we intend to prove and how each test will be verified |
-| `build-log.md` | Chronological record of deliberate implementation activity |
+| `build-log.md` | Chronological record of significant implementation steps |
 | `troubleshooting.md` | Meaningful diagnostic investigations |
 | `deviations.md` | Accepted differences between design intent and as-built implementation |
 
@@ -86,7 +86,7 @@ Only phases 01 and 02 are detailed initially in `verification-plan.md`. Phases 0
 
 - **Design intent stays separate from implementation reality.** `hq-campus-design.md` is not edited merely because the lab behaves unexpectedly.
 - **The verification plan is a controlled living document.** Assigned test IDs remain permanent; expected results and exact verification commands may be refined when platform behaviour is confirmed.
-- **Build log is chronological.** Every deliberate implementation action is recorded, whether it succeeds or exposes a problem.
+- **The build log is chronological.** Significant implementation steps are recorded as the build progresses.
 - **Troubleshooting records are selective.** A typo or immediately corrected command does not get a `HQ-TS-NNN` record. Meaningful diagnosis does.
 - **Deviations are accepted differences.** A test may be marked `Deviated` only when an accepted `HQ-DEV-NNN` record exists for that test.
 - **Evidence and configs are created only when real content exists.** No empty scaffolding.
@@ -102,7 +102,7 @@ Each verification test uses the `Status` field to record its result.
 | `In progress` | The test or related investigation is currently underway. |
 | `Verified` | The expected behaviour has been demonstrated and recorded. |
 | `Blocked` | The test cannot currently be completed because an unresolved issue, dependency, or platform limitation is preventing progress. |
-| `Deviated` | The implementation intentionally differs from the design and an accepted `HQ-DEV-NNN` record exists for the test. |
+| `Deviated` | The implementation intentionally differs from the design and an accepted `HQ-DEV-NNN` record exists for that test. |
 
 `Blocked` does not mean the test has permanently failed. It means progress is currently prevented until the blocking issue is resolved or an accepted deviation is recorded.
 
@@ -118,11 +118,11 @@ Evaluate these rules from top to bottom; first match wins:
 4. If **all** tests are `Verified` → phase is **Verified**.
 5. Otherwise → phase is **In progress**.
 
-A phase does not show as `Deviated` just because one test in it has an accepted deviation — every test in the phase has to be resolved first. Otherwise a phase that's mostly untouched could misleadingly read as "done, just deviated."
+A phase does not show as `Deviated` just because one test in it has an accepted deviation — every test in the phase has to be resolved first.
 
 | Phase | Scope | Status |
 |---:|---|---|
-| 01 | Platform baseline | Not started |
+| 01 | Platform baseline | **Verified** |
 | 02 | Layer 2 / VLAN baseline | Not started |
 | 03 | LACP EtherChannel | Not started |
 | 04 | Rapid PVST+ | Not started |
@@ -140,14 +140,21 @@ Evidence folders are created only when genuine artifacts exist.
 
 | Phase | Folder |
 |---:|---|
+| 01 | `evidence/hq/platform-baseline/` |
 | 03 | `evidence/hq/etherchannel/` |
 | 04 | `evidence/hq/spanning-tree/` |
 | 05 | `evidence/hq/hsrp/` |
 | 07–09 | `evidence/hq/ospf/` |
 | 10 | `evidence/hq/failure-tests/` |
-| 01, 02, 06, 11 | No dedicated folder unless useful artifacts warrant one |
+| 02, 06, 11 | No dedicated folder unless useful artifacts warrant one |
 
-Evidence paths include the verification ID, for example:
+Smaller evidence sets can use files directly inside the relevant phase folder:
+
+```text
+evidence/hq/platform-baseline/HQ-VP-01.04-platform-capability-review.txt
+```
+
+Where one verification test produces several related artifacts, a dedicated verification-ID subfolder can be used:
 
 ```text
 evidence/hq/etherchannel/HQ-VP-03.04-member-link-failure/
@@ -155,15 +162,15 @@ evidence/hq/etherchannel/HQ-VP-03.04-member-link-failure/
 
 ## Configs and Git traceability
 
-`configs/hq/` is created when real device configs exist:
+`configs/hq/` is created when meaningful as-built device configurations exist:
 
 ```text
 configs/hq/
-├── hq-r1.cfg
-├── hq-r2.cfg
-├── hq-d1.cfg
-├── hq-d2.cfg
-└── hq-a1.cfg
+├── hq-r1-running-config.txt
+├── hq-r2-running-config.txt
+├── hq-d1-running-config.txt
+├── hq-d2-running-config.txt
+└── hq-a1-running-config.txt
 ```
 
 Once configs exist, relevant build-log and verification entries should record the config filename **and** the Git commit hash representing the device state at the time of the test.
