@@ -181,6 +181,8 @@ These checks confirm platform support only. Operational protocol behaviour, fail
 
 ## Phase 02 — Layer 2 / VLAN Baseline
 
+**Completed:** `21-09-2026`
+
 **Objective:** Establish the VLAN database, intended access-port assignments, and parking-VLAN policy before EtherChannel/trunk implementation begins.
 
 Native-VLAN and trunk verification belongs to Phase 03 because the production trunks are created and verified with the EtherChannels there.
@@ -202,16 +204,18 @@ VLAN creation and naming on the applicable switches.
 `show vlan brief`
 
 **Observed result:**  
-Pending
+All ten approved HQ VLANs were present and active on `hq-d1`, `hq-d2`, and `hq-a1`, with VLAN IDs and names matching the approved design.
+
+VLAN `1` remained present as the platform default but was not used for production or management access. VLAN `190` remains reserved as the native VLAN for the Phase 03 trunk implementation.
 
 **Status:**  
-Not started
+Verified
 
 **Evidence:**  
-—
+`evidence/hq/layer2-vlan-baseline/HQ-VP-02.01-hq-d1-show-vlan-brief.txt`; `HQ-VP-02.01-hq-d2-show-vlan-brief.txt`; `HQ-VP-02.01-hq-a1-show-vlan-brief.txt`.
 
 **Notes / Troubleshooting:**  
-—
+No troubleshooting record required.
 
 ---
 
@@ -227,47 +231,51 @@ Access-port and voice-VLAN assignments match the approved HQ access-switch port 
 Access-mode, access-VLAN, and voice-VLAN configuration on the intended access ports.
 
 **Verification command(s):**  
-Verify switchport mode, access-VLAN assignment, and voice-VLAN assignment where applicable using the platform-appropriate switchport display command.
+`show vlan brief`; `show interfaces switchport`
 
 **Observed result:**  
-Pending
+`hq-a1` access-port assignments matched the approved HQ port plan. All eight endpoint-facing interfaces were configured as static access ports with the correct access VLANs, and `Gi2/0` was additionally assigned voice VLAN `120` (`VOICE`).
+
+All endpoint-facing interfaces were administratively enabled and remained operationally down because no endpoints were connected during verification.
 
 **Status:**  
-Not started
+Verified
 
 **Evidence:**  
-—
+`evidence/hq/layer2-vlan-baseline/HQ-VP-02.02-hq-a1-show-interfaces-switchport.txt`; `HQ-VP-02.03-hq-a1-parking-vlan-state.txt`.
 
 **Notes / Troubleshooting:**  
-—
+No troubleshooting record required.
 
 ---
 
 ### Parking-VLAN Policy — HQ-VP-02.03
 
 **Objective:**  
-Confirm unused `hq-a1` access ports are separated from production VLANs and administratively disabled as designed.
+Confirm `hq-a1` interfaces that are not yet in service during Phase 02 are separated from production VLANs and administratively disabled.
 
 **Expected result:**  
-The unused `hq-a1` access ports designated for parking are assigned to VLAN `191` (`PARKING`) and administratively shut down.
+All `hq-a1` interfaces not yet in service are assigned to VLAN `191` (`PARKING`) and administratively shut down. Future `Po10` and `Po20` member interfaces remain parked until Phase 03.
 
 **Configuration involved:**  
-Parking-VLAN assignment and administrative shutdown of the intended unused `hq-a1` access ports.
+Parking-VLAN assignment and administrative shutdown of `hq-a1` interfaces not yet in service.
 
 **Verification command(s):**  
-Verify VLAN membership and administrative state using platform-appropriate interface/VLAN display commands.
+`show vlan brief`; `show ip interface brief`; `show interfaces switchport`
 
 **Observed result:**  
-Pending
+All `hq-a1` interfaces not yet in service during Phase 02 were assigned to VLAN `191` (`PARKING`) and administratively shut down.
+
+The future `Po10` and `Po20` member interfaces remain parked until Phase 03, when they will be reconfigured for their intended EtherChannel trunk roles.
 
 **Status:**  
-Not started
+Verified
 
 **Evidence:**  
-—
+`evidence/hq/layer2-vlan-baseline/HQ-VP-02.03-hq-a1-parking-vlan-state.txt`; `HQ-VP-02.02-hq-a1-show-interfaces-switchport.txt`.
 
 **Notes / Troubleshooting:**  
-—
+No troubleshooting record required.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 

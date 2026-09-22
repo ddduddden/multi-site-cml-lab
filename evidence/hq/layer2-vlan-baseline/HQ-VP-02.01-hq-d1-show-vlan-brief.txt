@@ -1,0 +1,23 @@
+hq-d1#show vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Gi0/0, Gi0/1, Gi0/2, Gi0/3
+                                                Gi1/0, Gi1/1, Gi1/2, Gi1/3
+                                                Gi2/0, Gi2/1, Gi2/2, Gi2/3
+                                                Gi3/0, Gi3/1, Gi3/2, Gi3/3
+112  CORP-USERS                       active
+120  VOICE                            active
+130  SERVERS                          active
+140  IOT-CCTV                         active
+152  GUEST                            active
+160  FACILITIES                       active
+170  BYOD-WLAN                        active
+190  NATIVE                           active
+191  PARKING                          active
+199  NET-MGMT                         active
+1002 fddi-default                     act/unsup
+1003 token-ring-default               act/unsup
+1004 fddinet-default                  act/unsup
+1005 trnet-default                    act/unsup
+hq-d1#
