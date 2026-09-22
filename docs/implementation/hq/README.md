@@ -80,7 +80,7 @@ The phase numbers are a project-specific indexing convention. They are not a Cis
 | 10 | Failure testing | Exercise defined device, interface, Port-Channel, and routing failures and recovery |
 | 11 | Final acceptance | Confirm the evidence required to describe HQ as verified as-built |
 
-Only phases 01 and 02 are detailed initially in `verification-plan.md`. Phases 03–11 remain objective-only until the platform and earlier phases have been confirmed.
+Phases 01–05 are detailed in `verification-plan.md`. Phases 06–11 remain objective-only until the project reaches them.
 
 ## Working rules
 
@@ -204,5 +204,5 @@ Check that:
 - Each verification test uses the `Status` field to record its result.
 - Meaningful faults use `HQ-TS-NNN`, not routine typing mistakes.
 - `Deviated` is backed by an accepted `HQ-DEV-NNN`, and every test in the phase is resolved before the phase itself reads as `Deviated`.
-- Phases 03–11 have not been given premature command-level test detail.
+- Phases 06–11 have not been given premature command-level test detail.
 - Config/evidence directories contain real content rather than placeholders.
