@@ -1,0 +1,57 @@
+hq-a1#show spanning-tree summary
+Switch is in rapid-pvst mode
+Root bridge for: none
+Extended system ID                      is enabled
+Portfast Default                        is disabled
+Portfast Edge BPDU Guard Default        is disabled
+Portfast Edge BPDU Filter Default       is disabled
+Loopguard Default                       is disabled
+PVST Simulation Default                 is enabled but inactive in rapid-pvst mode
+Bridge Assurance                        is enabled
+EtherChannel misconfig guard            is enabled
+Configured Pathcost method used is short
+UplinkFast                              is disabled
+BackboneFast                            is disabled
+
+Name                   Blocking Listening Learning Forwarding STP Active
+---------------------- -------- --------- -------- ---------- ----------
+VLAN0112                     1         0        0          3          4
+VLAN0120                     1         0        0          2          3
+VLAN0130                     1         0        0          2          3
+VLAN0140                     1         0        0          2          3
+VLAN0152                     1         0        0          2          3
+VLAN0160                     1         0        0          2          3
+VLAN0170                     1         0        0          2          3
+VLAN0190                     1         0        0          1          2
+VLAN0199                     1         0        0          2          3
+---------------------- -------- --------- -------- ---------- ----------
+9 vlans                      9         0        0         18         27
+hq-a1#show spanning-tree root
+
+                                        Root    Hello Max Fwd
+Vlan                   Root ID          Cost    Time  Age Dly  Root Port
+---------------- -------------------- --------- ----- --- ---  ------------
+VLAN0112         24688 5254.004c.e159         3    2   20  15  Po10
+VLAN0120         24696 5254.00f8.03e6         3    2   20  15  Po20
+VLAN0130         24706 5254.004c.e159         3    2   20  15  Po10
+VLAN0140         24716 5254.00f8.03e6         3    2   20  15  Po20
+VLAN0152         24728 5254.004c.e159         3    2   20  15  Po10
+VLAN0160         24736 5254.00f8.03e6         3    2   20  15  Po20
+VLAN0170         24746 5254.004c.e159         3    2   20  15  Po10
+VLAN0190         24766 5254.004c.e159         3    2   20  15  Po10
+VLAN0199         24775 5254.00f8.03e6         3    2   20  15  Po20
+hq-a1#show spanning-tree bridge
+
+                                                   Hello  Max  Fwd
+Vlan                         Bridge ID              Time  Age  Dly  Protocol
+---------------- --------------------------------- -----  ---  ---  --------
+VLAN0112         32880 (32768, 112) 5254.007a.6f09    2    20   15  rstp
+VLAN0120         32888 (32768, 120) 5254.007a.6f09    2    20   15  rstp
+VLAN0130         32898 (32768, 130) 5254.007a.6f09    2    20   15  rstp
+VLAN0140         32908 (32768, 140) 5254.007a.6f09    2    20   15  rstp
+VLAN0152         32920 (32768, 152) 5254.007a.6f09    2    20   15  rstp
+VLAN0160         32928 (32768, 160) 5254.007a.6f09    2    20   15  rstp
+VLAN0170         32938 (32768, 170) 5254.007a.6f09    2    20   15  rstp
+VLAN0190         32958 (32768, 190) 5254.007a.6f09    2    20   15  rstp
+VLAN0199         32967 (32768, 199) 5254.007a.6f09    2    20   15  rstp
+hq-a1#

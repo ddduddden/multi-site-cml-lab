@@ -118,3 +118,39 @@ Deterministic Rapid PVST+ root placement and forwarding behaviour remain for Pha
 ### Next
 
 **Phase 04 — Rapid PVST+**
+
+---
+
+## Phase 04 — Rapid PVST+
+
+**Completed:** `24-09-2026`
+
+### Implemented
+
+- Enabled Rapid PVST+ on `hq-a1`, `hq-d1`, and `hq-d2`.
+- Configured `hq-d1` as root primary for VLANs `112,130,152,170,190`.
+- Configured `hq-d2` as root primary for VLANs `120,140,160,199`.
+- Configured each multilayer distribution switch as root secondary for the other's VLAN group.
+- Configured deterministic `hq-d1` root placement for native VLAN `190`.
+- Preserved the existing Phase 03 EtherChannel and trunk configuration.
+- Corrected the VLAN `152` name on `hq-a1` to `GUEST` after a minor naming issue was identified during evidence review. No functional behaviour was affected.
+
+### Verification
+
+- `HQ-VP-04.01` — Rapid PVST+ Mode and Root Placement
+- `HQ-VP-04.02` — Access-Layer Forwarding and Alternate Paths
+- `HQ-VP-04.03` — STP Path Failure and Recovery
+
+### Result
+
+**Phase 04 verified.** Rapid PVST+ operated across all three HQ switches and matched the approved root-placement design. Representative VLAN checks confirmed the expected forwarding paths, and controlled failures of `Po10` and `Po20` proved alternate-path recovery in both directions.
+
+SVI addressing and HSRP gateway redundancy remain for Phase 05.
+
+### Evidence
+
+[`evidence/hq/spanning-tree/`](../../../evidence/hq/spanning-tree/)
+
+### Next
+
+**Phase 05 — SVIs and HSRP**

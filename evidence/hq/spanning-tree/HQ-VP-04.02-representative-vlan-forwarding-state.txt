@@ -1,0 +1,139 @@
+HQ-VP-04.02 — Access-Layer Forwarding and Alternate Paths
+==========================================================
+
+The section headings below are editorial labels only.
+Cisco CLI output is retained from the original captures.
+
+VLAN 112 — hq-d1 Root Group
+----------------------------
+
+hq-a1#show spanning-tree vlan 112
+
+VLAN0112
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24688
+             Address     5254.004c.e159
+             Cost        3
+             Port        65 (Port-channel10)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32880  (priority 32768 sys-id-ext 112)
+             Address     5254.007a.6f09
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi2/0               Desg FWD 4         128.9    P2p 
+Gi2/1               Desg FWD 4         128.10   P2p 
+Po10                Root FWD 3         128.65   P2p 
+Po20                Altn BLK 3         128.66   P2p
+
+hq-d1#show spanning-tree vlan 112
+
+VLAN0112
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24688
+             Address     5254.004c.e159
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    24688  (priority 24576 sys-id-ext 112)
+             Address     5254.004c.e159
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Po10                Desg FWD 3         128.65   P2p 
+Po30                Desg FWD 3         128.66   P2p
+
+hq-d2#show spanning-tree vlan 112
+
+VLAN0112
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24688
+             Address     5254.004c.e159
+             Cost        3
+             Port        66 (Port-channel30)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    28784  (priority 28672 sys-id-ext 112)
+             Address     5254.00f8.03e6
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Po20                Desg FWD 3         128.65   P2p 
+Po30                Root FWD 3         128.66   P2p
+
+
+VLAN 120 — hq-d2 Root Group
+----------------------------
+
+hq-a1#show spanning-tree vlan 120
+
+VLAN0120
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24696
+             Address     5254.00f8.03e6
+             Cost        3
+             Port        66 (Port-channel20)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32888  (priority 32768 sys-id-ext 120)
+             Address     5254.007a.6f09
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi2/0               Desg FWD 4         128.9    P2p
+Po10                Altn BLK 3         128.65   P2p
+Po20                Root FWD 3         128.66   P2p
+
+hq-a1#
+
+hq-d1#show spanning-tree vlan 120
+
+VLAN0120
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24696
+             Address     5254.00f8.03e6
+             Cost        3
+             Port        66 (Port-channel30)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    28792  (priority 28672 sys-id-ext 120)
+             Address     5254.004c.e159
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Po10                Desg FWD 3         128.65   P2p
+Po30                Root FWD 3         128.66   P2p
+
+hq-d1#
+
+hq-d2#show spanning-tree vlan 120
+
+VLAN0120
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24696
+             Address     5254.00f8.03e6
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    24696  (priority 24576 sys-id-ext 120)
+             Address     5254.00f8.03e6
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Po20                Desg FWD 3         128.65   P2p
+Po30                Desg FWD 3         128.66   P2p
+
+hq-d2#

@@ -1,0 +1,425 @@
+HQ-VP-04.03 — STP Path Failure and Recovery
+=============================================
+
+The section headings below are editorial labels only.
+Cisco CLI output is retained from the original captures. Repeated command
+legends and unrelated trunk output may be omitted for readability.
+
+Test 1 — VLAN 112 / Port-Channel10
+-----------------------------------
+
+Baseline — hq-a1
+----------------
+
+hq-a1#show etherchannel summary
+Flags:  D - down        P - bundled in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        U - in use      N - not in use, no aggregation
+        f - failed to allocate aggregator
+
+        M - not in use, minimum links not met
+        m - not in use, port not aggregated due to minimum links not met
+        u - unsuitable for bundling
+        w - waiting to be aggregated
+        d - default port
+
+        A - formed by Auto LAG
+
+
+Number of channel-groups in use: 2
+Number of aggregators:           2
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+10     Po10(SU)        LACP      Gi0/0(P)    Gi0/1(P)    
+20     Po20(SU)        LACP      Gi1/0(P)    Gi1/1(P)
+
+hq-a1#show spanning-tree vlan 112
+
+VLAN0112
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24688
+             Address     5254.004c.e159
+             Cost        3
+             Port        65 (Port-channel10)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32880  (priority 32768 sys-id-ext 112)
+             Address     5254.007a.6f09
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi2/0               Desg FWD 4         128.9    P2p 
+Gi2/1               Desg FWD 4         128.10   P2p 
+Po10                Root FWD 3         128.65   P2p 
+Po20                Altn BLK 3         128.66   P2p
+
+
+Failure — hq-a1
+---------------
+
+hq-a1#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+hq-a1(config)#interface port-channel10
+hq-a1(config-if)#shutdown
+hq-a1(config-if)#end
+hq-a1#show spanning-tree vlan 112
+
+VLAN0112
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24688
+             Address     5254.004c.e159
+             Cost        6
+             Port        66 (Port-channel20)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32880  (priority 32768 sys-id-ext 112)
+             Address     5254.007a.6f09
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi2/0               Desg FWD 4         128.9    P2p 
+Gi2/1               Desg FWD 4         128.10   P2p 
+Po20                Root FWD 3         128.66   P2p 
+
+
+hq-a1#show interfaces trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Po20        on               802.1q         trunking      190
+
+Port        Vlans allowed on trunk
+Po20        112,120,130,140,152,160,170,190,199
+
+Port        Vlans allowed and active in management domain
+Po20        112,120,130,140,152,160,170,190,199
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Po20        112,120,130,140,152,160,170,190,199
+hq-a1#show etherchannel summary 
+Flags:  D - down        P - bundled in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        U - in use      N - not in use, no aggregation
+        f - failed to allocate aggregator
+
+        M - not in use, minimum links not met
+        m - not in use, port not aggregated due to minimum links not met
+        u - unsuitable for bundling
+        w - waiting to be aggregated
+        d - default port
+
+        A - formed by Auto LAG
+
+
+Number of channel-groups in use: 2
+Number of aggregators:           2
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+10     Po10(SD)        LACP      Gi0/0(D)    Gi0/1(D)    
+20     Po20(SU)        LACP      Gi1/0(P)    Gi1/1(P)
+
+
+Recovery — hq-a1
+----------------
+
+hq-a1#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+hq-a1(config)#interface port-channel10
+hq-a1(config-if)#no shutdown
+hq-a1(config-if)#end
+hq-a1#show spanning-tree vlan 112
+
+VLAN0112
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24688
+             Address     5254.004c.e159
+             Cost        3
+             Port        65 (Port-channel10)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32880  (priority 32768 sys-id-ext 112)
+             Address     5254.007a.6f09
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi2/0               Desg FWD 4         128.9    P2p 
+Gi2/1               Desg FWD 4         128.10   P2p 
+Po10                Root FWD 3         128.65   P2p 
+Po20                Altn BLK 3         128.66   P2p 
+
+
+hq-a1#show etherchannel summary
+Flags:  D - down        P - bundled in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        U - in use      N - not in use, no aggregation
+        f - failed to allocate aggregator
+
+        M - not in use, minimum links not met
+        m - not in use, port not aggregated due to minimum links not met
+        u - unsuitable for bundling
+        w - waiting to be aggregated
+        d - default port
+
+        A - formed by Auto LAG
+
+
+Number of channel-groups in use: 2
+Number of aggregators:           2
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+10     Po10(SU)        LACP      Gi0/0(P)    Gi0/1(P)    
+20     Po20(SU)        LACP      Gi1/0(P)    Gi1/1(P)
+
+
+Test 2 — VLAN 120 / Port-Channel20
+-----------------------------------
+
+Baseline — hq-a1
+----------------
+
+hq-a1#show spanning-tree vlan 120
+
+VLAN0120
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24696
+             Address     5254.00f8.03e6
+             Cost        3
+             Port        66 (Port-channel20)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32888  (priority 32768 sys-id-ext 120)
+             Address     5254.007a.6f09
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi2/0               Desg FWD 4         128.9    P2p
+Po10                Altn BLK 3         128.65   P2p
+Po20                Root FWD 3         128.66   P2p
+
+hq-a1#show interfaces trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Po10        on               802.1q         trunking      190
+Po20        on               802.1q         trunking      190
+
+Port        Vlans allowed on trunk
+Po10        112,120,130,140,152,160,170,190,199
+Po20        112,120,130,140,152,160,170,190,199
+
+Port        Vlans allowed and active in management domain
+Po10        112,120,130,140,152,160,170,190,199
+Po20        112,120,130,140,152,160,170,190,199
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Po10        112,130,152,170,190
+Po20        120,140,160,199
+
+hq-a1#show etherchannel summary
+Flags:  D - down        P - bundled in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        U - in use      N - not in use, no aggregation
+        f - failed to allocate aggregator
+
+        M - not in use, minimum links not met
+        m - not in use, port not aggregated due to minimum links not met
+        u - unsuitable for bundling
+        w - waiting to be aggregated
+        d - default port
+
+        A - formed by Auto LAG
+
+Number of channel-groups in use: 2
+Number of aggregators:           2
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+10     Po10(SU)        LACP      Gi0/0(P)    Gi0/1(P)
+20     Po20(SU)        LACP      Gi1/0(P)    Gi1/1(P)
+
+Failure — hq-a1
+---------------
+
+hq-a1(config)#interface port-channel20
+hq-a1(config-if)#shutdown
+hq-a1(config-if)#end
+hq-a1#show spanning-tree vlan 120
+
+VLAN0120
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24696
+             Address     5254.00f8.03e6
+             Cost        6
+             Port        65 (Port-channel10)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32888  (priority 32768 sys-id-ext 120)
+             Address     5254.007a.6f09
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi2/0               Desg FWD 4         128.9    P2p
+Po10                Root FWD 3         128.65   P2p
+
+hq-a1#show interfaces trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Po10        on               802.1q         trunking      190
+
+Port        Vlans allowed on trunk
+Po10        112,120,130,140,152,160,170,190,199
+
+Port        Vlans allowed and active in management domain
+Po10        112,120,130,140,152,160,170,190,199
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Po10        112,120,130,140,152,160,170,190,199
+
+hq-a1#show etherchannel summary
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+10     Po10(SU)        LACP      Gi0/0(P)    Gi0/1(P)
+20     Po20(SD)        LACP      Gi1/0(D)    Gi1/1(D)
+
+Failure — hq-d1
+---------------
+
+hq-d1#show spanning-tree vlan 120
+
+VLAN0120
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24696
+             Address     5254.00f8.03e6
+             Cost        3
+             Port        66 (Port-channel30)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    28792  (priority 28672 sys-id-ext 120)
+             Address     5254.004c.e159
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Po10                Desg FWD 3         128.65   P2p
+Po30                Root FWD 3         128.66   P2p
+
+hq-d1#
+
+Failure — hq-d2
+---------------
+
+hq-d2#show spanning-tree vlan 120
+
+VLAN0120
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24696
+             Address     5254.00f8.03e6
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    24696  (priority 24576 sys-id-ext 120)
+             Address     5254.00f8.03e6
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Po30                Desg FWD 3         128.66   P2p
+
+hq-d2#
+
+Recovery — hq-a1
+----------------
+
+hq-a1#show spanning-tree vlan 120
+
+VLAN0120
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24696
+             Address     5254.00f8.03e6
+             Cost        3
+             Port        66 (Port-channel20)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32888  (priority 32768 sys-id-ext 120)
+             Address     5254.007a.6f09
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi2/0               Desg FWD 4         128.9    P2p
+Po10                Altn BLK 3         128.65   P2p
+Po20                Root FWD 3         128.66   P2p
+
+hq-a1#
+
+Recovery — hq-d1
+----------------
+
+hq-d1#show spanning-tree vlan 120
+
+VLAN0120
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24696
+             Address     5254.00f8.03e6
+             Cost        3
+             Port        66 (Port-channel30)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    28792  (priority 28672 sys-id-ext 120)
+             Address     5254.004c.e159
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Po10                Desg FWD 3         128.65   P2p
+Po30                Root FWD 3         128.66   P2p
+
+hq-d1#
+
+Recovery — hq-d2
+----------------
+
+hq-d2#show spanning-tree vlan 120
+
+VLAN0120
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24696
+             Address     5254.00f8.03e6
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    24696  (priority 24576 sys-id-ext 120)
+             Address     5254.00f8.03e6
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Po20                Desg FWD 3         128.65   P2p
+Po30                Desg FWD 3         128.66   P2p
+
+hq-d2#
