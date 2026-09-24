@@ -1,0 +1,18 @@
+hq-d2#show interfaces trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Po20        on               802.1q         trunking      190
+Po30        on               802.1q         trunking      190
+
+Port        Vlans allowed on trunk
+Po20        112,120,130,140,152,160,170,190,199
+Po30        112,120,130,140,152,160,170,190,199
+
+Port        Vlans allowed and active in management domain
+Po20        112,120,130,140,152,160,170,190,199
+Po30        112,120,130,140,152,160,170,190,199
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Po20        none
+Po30        112,120,130,140,152,160,170,190,199
+hq-d2#

@@ -4,7 +4,7 @@ This document defines what the HQ implementation must prove before a feature is 
 
 It is a **controlled living document**. Once a verification ID is assigned it remains permanent. Expected results and exact verification commands may be refined when the actual CML platform behaviour is confirmed.
 
-Only phases 01 and 02 are detailed initially. Phases 03–11 contain only their agreed objective until the project reaches them.
+Phases 01–05 are detailed below. Phases 06–11 contain only their agreed objective until the project reaches them.
 
 ## Project reference key
 
@@ -47,9 +47,9 @@ There is no separate Pass/Fail field. `Blocked` means the test cannot currently 
 |---:|---|---|
 | 01 | Platform baseline | Detailed below |
 | 02 | Layer 2 / VLAN baseline | Detailed below |
-| 03 | LACP EtherChannel | Objective only |
-| 04 | Rapid PVST+ | Objective only |
-| 05 | SVIs and HSRP | Objective only |
+| 03 | LACP EtherChannel | Detailed below |
+| 04 | Rapid PVST+ | Detailed below |
+| 05 | SVIs and HSRP | Detailed below |
 | 06 | Routed `/31`s and loopbacks | Objective only |
 | 07 | OSPF Area 10 | Objective only |
 | 08 | ECMP | Objective only |
@@ -281,25 +281,365 @@ No troubleshooting record required.
 
 ## Phase 03 — LACP EtherChannel
 
-**Objective:** Build and verify Po10, Po20, and Po30, including member state, 802.1Q trunking, native-VLAN consistency, allowed-VLAN forwarding, and member-link failure behaviour.
+**Completed:** `22-09-2026`
 
-_No individual verification IDs assigned yet._
+**Objective:** Build and verify `Po10`, `Po20`, and `Po30`, including LACP formation, member participation, 802.1Q trunking, native-VLAN consistency, allowed-VLAN policy, and member-link resilience.
+
+Phase 03 verifies the Layer 2 EtherChannel and trunk infrastructure before deterministic Rapid PVST+ root placement or Layer 3 gateway services are introduced.
+
+Per-VLAN Layer 3 gateway reachability is intentionally deferred to Phase 05, after the production SVIs and HSRP gateways exist.
+
+---
+
+### EtherChannel Formation and LACP State — HQ-VP-03.01
+
+**Objective:**  
+Confirm that `Po10`, `Po20`, and `Po30` form successfully using LACP and contain the intended physical member interfaces.
+
+**Expected result:**  
+`Po10`, `Po20`, and `Po30` are operational LACP EtherChannels with all intended physical members bundled correctly and no unexpected suspended or standalone members.
+
+**Configuration involved:**  
+LACP `active` mode on the intended physical members and creation of `Po10`, `Po20`, and `Po30`.
+
+**Verification command(s):**  
+`show etherchannel summary`; `show lacp neighbor`
+
+**Observed result:**  
+`Po10`, `Po20`, and `Po30` formed successfully as Layer 2 LACP EtherChannels. All intended physical members were bundled in their respective Port-Channels with no suspended or standalone members. LACP neighbor output confirmed Active-mode peers on all three bundles.
+
+**Status:**  
+Verified
+
+**Evidence:**  
+`evidence/hq/etherchannel/HQ-VP-03.01-hq-a1-etherchannel-lacp-state.txt`; `HQ-VP-03.01-hq-d1-etherchannel-lacp-state.txt`; `HQ-VP-03.01-hq-d2-etherchannel-lacp-state.txt`.
+
+**Notes / Troubleshooting:**  
+No troubleshooting record required.
+
+---
+
+### Port-Channel Trunk Policy — HQ-VP-03.02
+
+**Objective:**  
+Confirm that all three logical Port-Channels use the approved HQ 802.1Q trunk policy and that the physical members operate consistently with their logical bundle.
+
+**Expected result:**  
+All three Port-Channels operate as 802.1Q trunks using native VLAN `190` and allowed VLANs `112,120,130,140,152,160,170,190,199`, with VLAN `191` excluded and no conflicting member configuration.
+
+**Configuration involved:**  
+Trunk configuration on `Po10`, `Po20`, and `Po30`, including the explicit native VLAN and allowed-VLAN list.
+
+**Verification command(s):**  
+`show interfaces trunk`; `show etherchannel summary`
+
+**Observed result:**  
+`Po10`, `Po20`, and `Po30` operated as 802.1Q trunks using native VLAN `190`. Each Port-Channel carried the approved allowed-VLAN list `112,120,130,140,152,160,170,190,199`, with VLAN `191` excluded.
+
+**Status:**  
+Verified
+
+**Evidence:**  
+`evidence/hq/etherchannel/HQ-VP-03.02-hq-a1-show-interfaces-trunk.txt`; `HQ-VP-03.02-hq-d1-show-interfaces-trunk.txt`; `HQ-VP-03.02-hq-d2-show-interfaces-trunk.txt`.
+
+**Notes / Troubleshooting:**  
+The effective Port-Channel and trunk behaviour was confirmed from observed IOSvL2 output. No troubleshooting record required.
+
+---
+
+### Operational Trunk and VLAN State — HQ-VP-03.03
+
+**Objective:**  
+Confirm that the configured Port-Channels are operational trunks and that the intended VLANs are active on the Layer 2 trunk infrastructure.
+
+**Expected result:**  
+`Po10`, `Po20`, and `Po30` report an operational trunk state with the approved VLAN set active. Final per-VLAN STP forwarding behaviour is deferred to Phase 04.
+
+**Configuration involved:**  
+No additional configuration beyond the completed Phase 03 EtherChannel and trunk configuration.
+
+**Verification command(s):**  
+`show interfaces trunk`; `show etherchannel summary`
+
+**Observed result:**  
+All three Port-Channels were operational trunks and the complete approved VLAN set was shown as allowed and active. At the time of verification, `hq-d2 Po20` showed no VLANs in the spanning-tree forwarding state; deterministic per-VLAN spanning-tree forwarding behaviour remains intentionally deferred to Phase 04.
+
+**Status:**  
+Verified
+
+**Evidence:**  
+`evidence/hq/etherchannel/HQ-VP-03.02-hq-a1-show-interfaces-trunk.txt`; `HQ-VP-03.02-hq-d1-show-interfaces-trunk.txt`; `HQ-VP-03.02-hq-d2-show-interfaces-trunk.txt`.
+
+**Notes / Troubleshooting:**  
+Per-VLAN gateway reachability remains deferred until Phase 05. No troubleshooting record required.
+
+---
+
+### EtherChannel Member-Link Failure and Recovery — HQ-VP-03.04
+
+**Objective:**  
+Confirm that loss of a physical EtherChannel member does not bring down the logical Port-Channel while other valid members remain available, and that the failed member rejoins correctly after recovery.
+
+**Expected result:**  
+A controlled member-link failure removes only the affected member while the Port-Channel remains operational; the restored member automatically rejoins the bundle.
+
+**Configuration involved:**  
+Controlled administrative failure and restoration of selected physical EtherChannel members.
+
+**Verification command(s):**  
+`show etherchannel summary`
+
+**Observed result:**  
+A single physical member was administratively removed and restored on each of `Po10`, `Po20`, and `Po30`. In every test the affected member left the bundle while the logical Port-Channel remained operational using the surviving members. After restoration, each member automatically rejoined its EtherChannel. During `Po30` recovery, the restored member briefly entered LACP hot-standby state before returning to the bundled state.
+
+**Status:**  
+Verified
+
+**Evidence:**  
+`evidence/hq/etherchannel/HQ-VP-03.04-member-link-failure-recovery.txt`
+
+**Notes / Troubleshooting:**  
+No troubleshooting record required. Complete Port-Channel, device, and combined failure scenarios remain within Phase 10.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ## Phase 04 — Rapid PVST+
 
-**Objective:** Verify intended root placement, forwarding/blocking state, and spanning-tree behaviour during defined failures.
+**Objective:** Verify Rapid PVST+ mode, deterministic per-VLAN root placement, access-layer forwarding paths, alternate-path state, and spanning-tree recovery after a controlled Layer 2 path failure.
 
-_No individual verification IDs assigned yet._
+---
+
+### Rapid PVST+ Mode and Root Placement — HQ-VP-04.01
+
+**Objective:**  
+Confirm that Rapid PVST+ is operating on the HQ switching topology and that the intended root-primary and root-secondary placement is established for every participating VLAN.
+
+**Expected result:**  
+Rapid PVST+ is active, with `hq-d1` root primary for VLANs `112,130,152,170,190` and `hq-d2` root primary for VLANs `120,140,160,199`; the peer is root secondary.
+
+**Configuration involved:**  
+Rapid PVST+ mode and the approved root-primary/root-secondary assignments on `hq-d1` and `hq-d2`.
+
+**Verification command(s):**  
+`show spanning-tree summary`; `show spanning-tree vlan <vlan-id>`
+
+**Observed result:**  
+Not yet tested.
+
+**Status:**  
+Not started
+
+**Evidence:**  
+Not yet captured.
+
+**Notes / Troubleshooting:**  
+VLAN `190` uses deterministic STP-only root placement because it has no SVI or HSRP group.
+
+---
+
+### Access-Layer Forwarding and Alternate Paths — HQ-VP-04.02
+
+**Objective:**  
+Confirm that the actual Rapid PVST+ port roles and states produce the intended per-VLAN forwarding topology between `hq-a1`, `hq-d1`, and `hq-d2`.
+
+**Expected result:**  
+`hq-a1` forwards toward the intended root for each VLAN group, with the redundant Port-Channel in the expected alternate state and no unintended forwarding loop.
+
+**Configuration involved:**  
+No additional configuration beyond the completed Rapid PVST+ root-placement policy.
+
+**Verification command(s):**  
+`show spanning-tree vlan <vlan-id>` on `hq-a1`, `hq-d1`, and `hq-d2`.
+
+**Observed result:**  
+Not yet tested.
+
+**Status:**  
+Not started
+
+**Evidence:**  
+Not yet captured.
+
+**Notes / Troubleshooting:**  
+Representative VLANs may be used where multiple VLANs share identical root placement, provided the complete root-placement set has already been verified by `HQ-VP-04.01`.
+
+---
+
+### STP Path Failure and Recovery — HQ-VP-04.03
+
+**Objective:**  
+Confirm that Rapid PVST+ transitions to the intended alternate Layer 2 path when a preferred access-to-distribution path becomes unavailable and returns to the intended topology after recovery.
+
+**Expected result:**  
+Loss of the preferred Layer 2 path causes the required alternate path to become forwarding; restoration returns the topology to its intended steady state.
+
+**Configuration involved:**  
+Controlled failure and restoration of an access-to-distribution Port-Channel.
+
+**Verification command(s):**  
+`show spanning-tree vlan <vlan-id>`; `show interfaces trunk`; `show etherchannel summary`
+
+**Observed result:**  
+Not yet tested.
+
+**Status:**  
+Not started
+
+**Evidence:**  
+Not yet captured.
+
+**Notes / Troubleshooting:**  
+This is a feature-level Rapid PVST+ recovery test. Whole-switch and combined Layer 2/Layer 3 failures remain within Phase 10.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ## Phase 05 — SVIs and HSRP
 
-**Objective:** Verify SVI addressing, HSRP active/standby roles, preemption, gateway reachability, and failover.
+**Objective:** Build and verify the HQ routed VLAN interfaces and first-hop gateway redundancy, including SVI addressing, HSRP operating state, STP/HSRP alignment, gateway reachability, failover, and recovery to the preferred state.
 
-_No individual verification IDs assigned yet._
+`hq-a1` uses VLAN `199` for in-band management, with address `10.10.99.4/26` and default gateway `10.10.99.1`.
+
+---
+
+### SVI Addressing and Layer 3 Baseline — HQ-VP-05.01
+
+**Objective:**  
+Confirm the production SVI addressing on `hq-d1` and `hq-d2`, establish the VLAN 199 management SVI on `hq-a1`, and verify that only the intended VLANs provide Layer 3 interfaces.
+
+**Expected result:**  
+All eight routed VLANs use the approved `.1` VIP / `.2 hq-d1` / `.3 hq-d2` convention. `hq-a1` uses `10.10.99.4/26` on VLAN `199` with default gateway `10.10.99.1`. VLANs `190` and `191` have no Layer 3 interfaces.
+
+**Configuration involved:**  
+SVI addressing on `hq-d1` and `hq-d2`, plus the VLAN 199 management SVI and default-gateway configuration on `hq-a1`.
+
+**Verification command(s):**  
+`show ip interface brief`; relevant interface configuration checks.
+
+**Observed result:**  
+Not yet tested.
+
+**Status:**  
+Not started
+
+**Evidence:**  
+Not yet captured.
+
+**Notes / Troubleshooting:**  
+`10.10.99.4/26` is the permanent in-band management address assigned to `hq-a1`.
+
+---
+
+### HSRP Configuration and Normal Operating State — HQ-VP-05.02
+
+**Objective:**  
+Confirm that every routed VLAN has the intended HSRP group, virtual IP, priority, preemption policy, and Active/Standby ownership.
+
+**Expected result:**  
+All eight HSRP groups use the correct VIP, group number, priority, and preemption settings, with the intended Active/Standby split established.
+
+**Configuration involved:**  
+HSRP configuration on the eight routed VLAN SVIs on `hq-d1` and `hq-d2`.
+
+**Verification command(s):**  
+`show standby`; `show standby brief`
+
+**Observed result:**  
+Not yet tested.
+
+**Status:**  
+Not started
+
+**Evidence:**  
+Not yet captured.
+
+**Notes / Troubleshooting:**  
+Normal HSRP state is verified before failover testing begins.
+
+---
+
+### HSRP/STP Alignment and Gateway Reachability — HQ-VP-05.03
+
+**Objective:**  
+Confirm that HSRP Active ownership matches the Rapid PVST+ root-primary placement and that the virtual gateways are reachable through the access-layer topology.
+
+**Expected result:**  
+HSRP Active ownership matches the Rapid PVST+ root primary for every routed VLAN, and gateway reachability succeeds through both intended forwarding paths.
+
+**Configuration involved:**  
+Permanent production configuration plus a temporary test-only `Vlan112` SVI on `hq-a1` using `10.10.12.4/22`.
+
+IP routing remains disabled on `hq-a1`.
+
+**Verification command(s):**  
+`show standby brief`; `show spanning-tree vlan 112`; `show spanning-tree vlan 199`; extended ping using the appropriate source address.
+
+**Observed result:**  
+Not yet tested.
+
+**Status:**  
+Not started
+
+**Evidence:**  
+Not yet captured.
+
+**Notes / Troubleshooting:**  
+VLAN `199` validates the path toward the `hq-d2` gateway. Temporary VLAN `112` validates the path toward the `hq-d1` gateway. The temporary `Vlan112` SVI remains in place through `HQ-VP-05.04` and is removed during `HQ-VP-05.05`.
+
+---
+
+### HSRP Gateway Failover — HQ-VP-05.04
+
+**Objective:**  
+Confirm that gateway service recovers through the HSRP peer when the preferred Active SVI becomes unavailable.
+
+**Expected result:**  
+The Standby peer becomes Active, the HSRP virtual IP remains unchanged, and gateway reachability is restored through the surviving multilayer distribution/core switch after HSRP convergence.
+
+**Configuration involved:**  
+Controlled shutdown and restoration of the preferred Active SVI for VLANs `112` and `199`.
+
+**Verification command(s):**  
+`show standby`; `show standby brief`; extended ping from `hq-a1`.
+
+**Observed result:**  
+Not yet tested.
+
+**Status:**  
+Not started
+
+**Evidence:**  
+Not yet captured.
+
+**Notes / Troubleshooting:**  
+VLAN `112` exercises the `hq-d1`-preferred path; VLAN `199` exercises the `hq-d2`-preferred path. Whole-device and combined STP/HSRP failures remain within Phase 10.
+
+---
+
+### HSRP Preemption and Preferred-State Restoration — HQ-VP-05.05
+
+**Objective:**  
+Confirm that restoration of the preferred gateway returns HSRP ownership to the intended multilayer distribution/core switch.
+
+**Expected result:**  
+Preemption restores the planned Active/Standby ownership, re-establishes the intended HSRP/STP alignment, and leaves `hq-a1` in its permanent management configuration.
+
+**Configuration involved:**  
+Restoration of the preferred HSRP SVIs and removal of the temporary `hq-a1 Vlan112` test configuration.
+
+**Verification command(s):**  
+`show standby`; `show standby brief`; `show spanning-tree vlan 112`; `show spanning-tree vlan 199`; `show ip interface brief`; extended ping from `hq-a1`.
+
+**Observed result:**  
+Not yet tested.
+
+**Status:**  
+Not started
+
+**Evidence:**  
+Not yet captured.
+
+**Notes / Troubleshooting:**  
+Failover and preemption are verified separately so successful takeover is not assumed to prove successful restoration.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 

@@ -1,0 +1,51 @@
+hq-d2#show etherchannel summary
+Flags:  D - down        P - bundled in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        U - in use      N - not in use, no aggregation
+        f - failed to allocate aggregator
+
+        M - not in use, minimum links not met
+        m - not in use, port not aggregated due to minimum links not met
+        u - unsuitable for bundling
+        w - waiting to be aggregated
+        d - default port
+
+        A - formed by Auto LAG
+
+
+Number of channel-groups in use: 2
+Number of aggregators:           2
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+20     Po20(SU)        LACP      Gi0/0(P)    Gi0/1(P)
+30     Po30(SU)        LACP      Gi1/0(P)    Gi1/1(P)    Gi1/2(P)
+                                 Gi1/3(P)
+
+hq-d2#show lacp neighbor
+Flags:  S - Device is requesting Slow LACPDUs
+        F - Device is requesting Fast LACPDUs
+        A - Device is in Active mode       P - Device is in Passive mode
+
+Channel group 20 neighbors
+
+Partner's information:
+
+                  LACP port                        Admin  Oper   Port    Port
+Port      Flags   Priority  Dev ID          Age    key    Key    Number  State
+Gi0/0     SA      32768     5254.007a.8000  20s    0x0    0x14   0x101   0x3D
+Gi0/1     SA      32768     5254.007a.8000  12s    0x0    0x14   0x102   0x3D
+
+Channel group 30 neighbors
+
+Partner's information:
+
+                  LACP port                        Admin  Oper   Port    Port
+Port      Flags   Priority  Dev ID          Age    key    Key    Number  State
+Gi1/0     SA      32768     5254.004c.8000  26s    0x0    0x1E   0x101   0x3D
+Gi1/1     SA      32768     5254.004c.8000  24s    0x0    0x1E   0x102   0x3D
+Gi1/2     SA      32768     5254.004c.8000   6s    0x0    0x1E   0x103   0x3D
+Gi1/3     SA      32768     5254.004c.8000  25s    0x0    0x1E   0x104   0x3D
+hq-d2#
