@@ -405,45 +405,52 @@ No troubleshooting record required. Complete Port-Channel, device, and combined 
 
 ## Phase 04 — Rapid PVST+
 
-**Objective:** Verify Rapid PVST+ mode, deterministic per-VLAN root placement, access-layer forwarding paths, alternate-path state, and spanning-tree recovery after a controlled Layer 2 path failure.
+**Completed:** `24-09-2026`
+
+**Objective:**  
+Verify Rapid PVST+ mode, deterministic root placement, forwarding paths, alternate-path behaviour, and recovery after controlled EtherChannel failures.
 
 ---
 
 ### Rapid PVST+ Mode and Root Placement — HQ-VP-04.01
 
 **Objective:**  
-Confirm that Rapid PVST+ is operating on the HQ switching topology and that the intended root-primary and root-secondary placement is established for every participating VLAN.
+Confirm that Rapid PVST+ is operating across the HQ switching topology and that the intended root-primary and root-secondary placement is established for each participating VLAN.
 
 **Expected result:**  
-Rapid PVST+ is active, with `hq-d1` root primary for VLANs `112,130,152,170,190` and `hq-d2` root primary for VLANs `120,140,160,199`; the peer is root secondary.
+Rapid PVST+ is active, with `hq-d1` root for VLANs `112,130,152,170,190` and `hq-d2` root for VLANs `120,140,160,199`. The other multilayer distribution switch holds the secondary role for each group.
 
 **Configuration involved:**  
 Rapid PVST+ mode and the approved root-primary/root-secondary assignments on `hq-d1` and `hq-d2`.
 
 **Verification command(s):**  
-`show spanning-tree summary`; `show spanning-tree vlan <vlan-id>`
+`show spanning-tree summary`; `show spanning-tree root`; `show spanning-tree bridge`; representative `show spanning-tree vlan <vlan-id>` checks.
 
 **Observed result:**  
-Not yet tested.
+`show spanning-tree summary` confirmed Rapid PVST+ mode on all three HQ switches. Root placement matched the approved design: `hq-d1` was root for VLANs `112,130,152,170,190`, while `hq-d2` was root for VLANs `120,140,160,199`. Root switches used base priority `24576`, secondaries `28672`, and `hq-a1` retained the default `32768`. `hq-a1` used `Po10` toward the `hq-d1` group and `Po20` toward the `hq-d2` group.
 
 **Status:**  
-Not started
+Verified
 
 **Evidence:**  
-Not yet captured.
+`evidence/hq/spanning-tree/HQ-VP-04.01-hq-a1-spanning-tree-state.txt`; `HQ-VP-04.01-hq-d1-spanning-tree-state.txt`; `HQ-VP-04.01-hq-d2-spanning-tree-state.txt`.
 
 **Notes / Troubleshooting:**  
-VLAN `190` uses deterministic STP-only root placement because it has no SVI or HSRP group.
+VLAN `1` remains locally present on the multilayer distribution switches because unused ports remain assigned to it. It is not carried on the production trunks and is outside the Phase 04 root-placement policy.
+
+An early VLAN `112` capture showed a transient root-state mismatch immediately after the STP changes. The condition cleared without configuration changes and the final topology matched the design.
+
+No troubleshooting record required.
 
 ---
 
 ### Access-Layer Forwarding and Alternate Paths — HQ-VP-04.02
 
 **Objective:**  
-Confirm that the actual Rapid PVST+ port roles and states produce the intended per-VLAN forwarding topology between `hq-a1`, `hq-d1`, and `hq-d2`.
+Confirm that Rapid PVST+ produces the expected forwarding paths and places the redundant EtherChannel into the alternate state.
 
 **Expected result:**  
-`hq-a1` forwards toward the intended root for each VLAN group, with the redundant Port-Channel in the expected alternate state and no unintended forwarding loop.
+`hq-a1` uses the preferred path toward the correct root bridge for each VLAN group, while the other EtherChannel remains available as the alternate path.
 
 **Configuration involved:**  
 No additional configuration beyond the completed Rapid PVST+ root-placement policy.
@@ -452,45 +459,50 @@ No additional configuration beyond the completed Rapid PVST+ root-placement poli
 `show spanning-tree vlan <vlan-id>` on `hq-a1`, `hq-d1`, and `hq-d2`.
 
 **Observed result:**  
-Not yet tested.
+Representative VLANs confirmed the expected forwarding paths. VLAN `112` used `Po10` toward `hq-d1`, while VLAN `120` used `Po20` toward `hq-d2`, with the opposite Port-Channel held as the alternate path. The resulting topology was loop-free and matched the intended design.
 
 **Status:**  
-Not started
+Verified
 
 **Evidence:**  
-Not yet captured.
+`evidence/hq/spanning-tree/HQ-VP-04.02-representative-vlan-forwarding-state.txt`
 
 **Notes / Troubleshooting:**  
-Representative VLANs may be used where multiple VLANs share identical root placement, provided the complete root-placement set has already been verified by `HQ-VP-04.01`.
+VLANs `112` and `120` were used as representative examples for the two root-placement groups. The blocked path was located at `hq-a1`; during Phase 03, before deterministic root placement was configured, `hq-d2 Po20` showed no VLANs in the spanning-tree forwarding state.
+
+No troubleshooting record required.
 
 ---
 
 ### STP Path Failure and Recovery — HQ-VP-04.03
 
 **Objective:**  
-Confirm that Rapid PVST+ transitions to the intended alternate Layer 2 path when a preferred access-to-distribution path becomes unavailable and returns to the intended topology after recovery.
+Confirm that Rapid PVST+ uses the alternate EtherChannel when a preferred path fails and returns to the normal forwarding path after recovery.
 
 **Expected result:**  
-Loss of the preferred Layer 2 path causes the required alternate path to become forwarding; restoration returns the topology to its intended steady state.
+Loss of either EtherChannel causes the alternate path to become active for the affected VLAN group. Restoring the EtherChannel returns the topology to its normal state.
 
 **Configuration involved:**  
-Controlled failure and restoration of an access-to-distribution Port-Channel.
+Controlled shutdown and restoration of `Po10` with VLAN `112`, and `Po20` with VLAN `120`, to verify failover in both directions.
 
 **Verification command(s):**  
 `show spanning-tree vlan <vlan-id>`; `show interfaces trunk`; `show etherchannel summary`
 
 **Observed result:**  
-Not yet tested.
+Failure of `Po10` for VLAN `112` and `Po20` for VLAN `120` caused the alternate Port-Channel to become the forwarding path while the root bridge remained unchanged. In both tests, the root-path cost increased from `3` to `6` during failure and returned to `3` after recovery.
 
 **Status:**  
-Not started
+Verified
 
 **Evidence:**  
-Not yet captured.
+`evidence/hq/spanning-tree/HQ-VP-04.03-path-failure-recovery.txt`
 
 **Notes / Troubleshooting:**  
-This is a feature-level Rapid PVST+ recovery test. Whole-switch and combined Layer 2/Layer 3 failures remain within Phase 10.
+The logical Port-Channels were shut down so the tests exercised complete EtherChannel failure rather than repeating the member-link resilience already verified in Phase 03.
 
+Whole-switch and combined Layer 2/Layer 3 failures remain in Phase 10.
+
+No troubleshooting record required.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ## Phase 05 — SVIs and HSRP
