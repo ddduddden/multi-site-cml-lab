@@ -281,6 +281,8 @@ No troubleshooting record required.
 
 ## Phase 03 — LACP EtherChannel
 
+**Completed:** `22-09-2026`
+
 **Objective:** Build and verify `Po10`, `Po20`, and `Po30`, including LACP formation, member participation, 802.1Q trunking, native-VLAN consistency, allowed-VLAN policy, and member-link resilience.
 
 Phase 03 verifies the Layer 2 EtherChannel and trunk infrastructure before deterministic Rapid PVST+ root placement or Layer 3 gateway services are introduced.
@@ -304,16 +306,16 @@ LACP `active` mode on the intended physical members and creation of `Po10`, `Po2
 `show etherchannel summary`; `show lacp neighbor`
 
 **Observed result:**  
-Not yet tested.
+`Po10`, `Po20`, and `Po30` formed successfully as Layer 2 LACP EtherChannels. All intended physical members were bundled in their respective Port-Channels with no suspended or standalone members. LACP neighbor output confirmed Active-mode peers on all three bundles.
 
 **Status:**  
-Not started
+Verified
 
 **Evidence:**  
-Not yet captured.
+`evidence/hq/etherchannel/HQ-VP-03.01-hq-a1-etherchannel-lacp-state.txt`; `HQ-VP-03.01-hq-d1-etherchannel-lacp-state.txt`; `HQ-VP-03.01-hq-d2-etherchannel-lacp-state.txt`.
 
 **Notes / Troubleshooting:**  
-No troubleshooting record assigned.
+No troubleshooting record required.
 
 ---
 
@@ -329,19 +331,19 @@ All three Port-Channels operate as 802.1Q trunks using native VLAN `190` and all
 Trunk configuration on `Po10`, `Po20`, and `Po30`, including the explicit native VLAN and allowed-VLAN list.
 
 **Verification command(s):**  
-`show interfaces trunk`; `show interfaces switchport`; `show etherchannel summary`
+`show interfaces trunk`; `show etherchannel summary`
 
 **Observed result:**  
-Not yet tested.
+`Po10`, `Po20`, and `Po30` operated as 802.1Q trunks using native VLAN `190`. Each Port-Channel carried the approved allowed-VLAN list `112,120,130,140,152,160,170,190,199`, with VLAN `191` excluded.
 
 **Status:**  
-Not started
+Verified
 
 **Evidence:**  
-Not yet captured.
+`evidence/hq/etherchannel/HQ-VP-03.02-hq-a1-show-interfaces-trunk.txt`; `HQ-VP-03.02-hq-d1-show-interfaces-trunk.txt`; `HQ-VP-03.02-hq-d2-show-interfaces-trunk.txt`.
 
 **Notes / Troubleshooting:**  
-The effective Port-Channel/member behaviour of the IOSvL2 image is confirmed from observed platform output rather than assumed.
+The effective Port-Channel and trunk behaviour was confirmed from observed IOSvL2 output. No troubleshooting record required.
 
 ---
 
@@ -360,16 +362,16 @@ No additional configuration beyond the completed Phase 03 EtherChannel and trunk
 `show interfaces trunk`; `show etherchannel summary`
 
 **Observed result:**  
-Not yet tested.
+All three Port-Channels were operational trunks and the complete approved VLAN set was shown as allowed and active. At the time of verification, `hq-d2 Po20` showed no VLANs in the spanning-tree forwarding state; deterministic per-VLAN spanning-tree forwarding behaviour remains intentionally deferred to Phase 04.
 
 **Status:**  
-Not started
+Verified
 
 **Evidence:**  
-Not yet captured.
+`evidence/hq/etherchannel/HQ-VP-03.02-hq-a1-show-interfaces-trunk.txt`; `HQ-VP-03.02-hq-d1-show-interfaces-trunk.txt`; `HQ-VP-03.02-hq-d2-show-interfaces-trunk.txt`.
 
 **Notes / Troubleshooting:**  
-Per-VLAN gateway reachability is intentionally deferred until Phase 05 because the production SVIs and HSRP gateways do not yet exist.
+Per-VLAN gateway reachability remains deferred until Phase 05. No troubleshooting record required.
 
 ---
 
@@ -385,19 +387,19 @@ A controlled member-link failure removes only the affected member while the Port
 Controlled administrative failure and restoration of selected physical EtherChannel members.
 
 **Verification command(s):**  
-`show etherchannel summary`; `show lacp neighbor`; `show interfaces trunk`
+`show etherchannel summary`
 
 **Observed result:**  
-Not yet tested.
+A single physical member was administratively removed and restored on each of `Po10`, `Po20`, and `Po30`. In every test the affected member left the bundle while the logical Port-Channel remained operational using the surviving members. After restoration, each member automatically rejoined its EtherChannel. During `Po30` recovery, the restored member briefly entered LACP hot-standby state before returning to the bundled state.
 
 **Status:**  
-Not started
+Verified
 
 **Evidence:**  
-Not yet captured.
+`evidence/hq/etherchannel/HQ-VP-03.04-member-link-failure-recovery.txt`
 
 **Notes / Troubleshooting:**  
-This is a feature-level EtherChannel resilience test. Whole-Port-Channel, device, and combined failure scenarios remain within Phase 10.
+No troubleshooting record required. Complete Port-Channel, device, and combined failure scenarios remain within Phase 10.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 

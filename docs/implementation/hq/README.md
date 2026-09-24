@@ -124,7 +124,7 @@ A phase does not show as `Deviated` just because one test in it has an accepted 
 |---:|---|---|
 | 01 | Platform baseline | **Verified** |
 | 02 | Layer 2 / VLAN baseline | **Verified** |
-| 03 | LACP EtherChannel | Not started |
+| 03 | LACP EtherChannel | **Verified** |
 | 04 | Rapid PVST+ | Not started |
 | 05 | SVIs and HSRP | Not started |
 | 06 | Routed `/31`s and loopbacks | Not started |

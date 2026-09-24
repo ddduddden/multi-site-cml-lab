@@ -82,3 +82,39 @@ EtherChannel/trunking and later Layer 2 and Layer 3 features remain for subseque
 ### Next
 
 **Phase 03 — LACP EtherChannel**
+
+---
+
+## Phase 03 — LACP EtherChannel
+
+**Completed:** `22-09-2026`
+
+### Implemented
+
+- Built `Po10` between `hq-a1` and `hq-d1` using two LACP member links.
+- Built `Po20` between `hq-a1` and `hq-d2` using two LACP member links.
+- Built `Po30` between `hq-d1` and `hq-d2` using four LACP member links.
+- Configured all three Port-Channels as 802.1Q trunks with native VLAN `190`.
+- Applied the approved allowed-VLAN list `112,120,130,140,152,160,170,190,199`.
+- Reconfigured the former Phase 02 parked `Po10` and `Po20` member interfaces for their production EtherChannel roles.
+
+### Verification
+
+- `HQ-VP-03.01` — EtherChannel Formation and LACP State
+- `HQ-VP-03.02` — Port-Channel Trunk Policy
+- `HQ-VP-03.03` — Operational Trunk and VLAN State
+- `HQ-VP-03.04` — EtherChannel Member-Link Failure and Recovery
+
+### Result
+
+**Phase 03 verified.** `Po10`, `Po20`, and `Po30` formed successfully with all intended LACP members bundled. The approved trunk policy was operational across all three Port-Channels, and each bundle remained operational during a controlled single-member failure and recovered correctly after restoration.
+
+Deterministic Rapid PVST+ root placement and forwarding behaviour remain for Phase 04.
+
+### Evidence
+
+[`evidence/hq/etherchannel/`](../../../evidence/hq/etherchannel/)
+
+### Next
+
+**Phase 04 — Rapid PVST+**

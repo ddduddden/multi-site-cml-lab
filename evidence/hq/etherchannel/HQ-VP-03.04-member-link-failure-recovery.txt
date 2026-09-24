@@ -1,0 +1,115 @@
+HQ-VP-03.04 — EtherChannel Member-Link Failure and Recovery
+=============================================================
+
+The section headings below are editorial labels only. The Cisco CLI output
+is preserved exactly as captured.
+
+Test 1 — hq-a1 / Port-Channel20 / Gi1/0
+----------------------------------------
+
+hq-a1#show etherchannel summary
+Flags:  D - down        P - bundled in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        U - in use      N - not in use, no aggregation
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+10     Po10(SU)        LACP      Gi0/0(P)    Gi0/1(P)
+20     Po20(SU)        LACP      Gi1/0(P)    Gi1/1(P)
+
+hq-a1#conf t
+hq-a1(config)#interface gi1/0
+hq-a1(config-if)#shutdown
+hq-a1(config-if)#end
+hq-a1#show etherchannel summary
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+10     Po10(SU)        LACP      Gi0/0(P)    Gi0/1(P)
+20     Po20(SU)        LACP      Gi1/0(D)    Gi1/1(P)
+
+hq-a1#conf t
+hq-a1(config)#interface gi1/0
+hq-a1(config-if)#no shutdown
+hq-a1(config-if)#end
+hq-a1#show etherchannel summary
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+10     Po10(SU)        LACP      Gi0/0(P)    Gi0/1(P)
+20     Po20(SU)        LACP      Gi1/0(P)    Gi1/1(P)
+
+
+Test 2 — hq-d1 / Port-Channel10 / Gi0/0
+----------------------------------------
+
+hq-d1#show etherchannel summary
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+10     Po10(SU)        LACP      Gi0/0(P)    Gi0/1(P)
+30     Po30(SU)        LACP      Gi1/0(P)    Gi1/1(P)    Gi1/2(P)
+                                 Gi1/3(P)
+
+
+hq-d1#conf t
+hq-d1(config)#interface gi0/0
+hq-d1(config-if)#shutdown
+hq-d1(config-if)#end
+hq-d1#show etherchannel summary
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+10     Po10(SU)        LACP      Gi0/0(D)    Gi0/1(P)
+30     Po30(SU)        LACP      Gi1/0(P)    Gi1/1(P)    Gi1/2(P)
+                                 Gi1/3(P)
+
+hq-d1#conf t
+hq-d1(config)#interface gi0/0
+hq-d1(config-if)#no shutdown
+hq-d1(config-if)#end
+hq-d1#show etherchannel summary
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+10     Po10(SU)        LACP      Gi0/0(P)    Gi0/1(P)
+30     Po30(SU)        LACP      Gi1/0(P)    Gi1/1(P)    Gi1/2(P)
+                                 Gi1/3(P)
+
+
+Test 3 — hq-d1 / Port-Channel30 / Gi1/0
+----------------------------------------
+
+hq-d1#conf t
+hq-d1(config)#interface gi1/0
+hq-d1(config-if)#shutdown
+hq-d1(config-if)#end
+hq-d1#show etherchannel summary
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+10     Po10(SU)        LACP      Gi0/0(P)    Gi0/1(P)
+30     Po30(SU)        LACP      Gi1/0(D)    Gi1/1(P)    Gi1/2(P)
+                                 Gi1/3(P)
+
+hq-d1#conf t
+hq-d1(config)#interface gi1/0
+hq-d1(config-if)#no shutdown
+hq-d1(config-if)#end
+hq-d1#show etherchannel summary
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+10     Po10(SU)        LACP      Gi0/0(P)    Gi0/1(P)
+30     Po30(SU)        LACP      Gi1/0(H)    Gi1/1(P)    Gi1/2(P)
+
+hq-d1#show etherchannel summary
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+10     Po10(SU)        LACP      Gi0/0(P)    Gi0/1(P)
+30     Po30(SU)        LACP      Gi1/0(P)    Gi1/1(P)    Gi1/2(P)
+                                 Gi1/3(P)
+hq-d1#
