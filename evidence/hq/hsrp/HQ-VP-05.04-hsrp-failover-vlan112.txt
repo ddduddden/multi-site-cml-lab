@@ -1,0 +1,41 @@
+HQ-VP-05.04 — HSRP Gateway Failover
+===================================
+
+Evidence component — VLAN 112 preferred-gateway failure
+-------------------------------------------------------
+
+Capture date: 26-09-2026
+Source: Device console capture retained in the supplied 26-09-2026 evidence.
+Editorial note: Section labels are editorial. The retained IOS CLI below is unchanged.
+The hq-d1 shutdown/restoration command output was not retained; the test-condition
+heading records the reported action.
+
+Test condition — hq-d1 VLAN 112 SVI shut down
+---------------------------------------------
+
+Failover state — hq-d2
+----------------------
+
+hq-d2#show standby brief
+                     P indicates configured to preempt.
+                     |
+Interface   Grp  Pri P State   Active          Standby         Virtual IP
+Vl112       112  100 P Active  local           unknown         10.10.12.1
+Vl120       120  110 P Active  local           10.10.20.2      10.10.20.1
+Vl130       130  100 P Standby 10.10.30.2      local           10.10.30.1
+Vl140       140  110 P Active  local           10.10.40.2      10.10.40.1
+Vl152       152  100 P Standby 10.10.52.2      local           10.10.52.1
+Vl160       160  110 P Active  local           10.10.60.2      10.10.60.1
+Vl170       170  100 P Standby 10.10.70.2      local           10.10.70.1
+Vl199       199  110 P Active  local           10.10.99.2      10.10.99.1
+hq-d2#
+
+Gateway reachability — hq-a1
+----------------------------
+
+hq-a1#ping 10.10.12.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.10.12.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 6/8/10 ms
+hq-a1#

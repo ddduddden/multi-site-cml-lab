@@ -133,6 +133,7 @@ Deterministic Rapid PVST+ root placement and forwarding behaviour remain for Pha
 - Configured each multilayer distribution switch as root secondary for the other's VLAN group.
 - Configured deterministic `hq-d1` root placement for native VLAN `190`.
 - Preserved the existing Phase 03 EtherChannel and trunk configuration.
+- Applied Root Guard on the distribution-to-access Port-Channels (`hq-d1 Po10` and `hq-d2 Po20`) to protect the intended distribution-layer STP root placement from a superior BPDU arriving from the access layer.
 - Corrected the VLAN `152` name on `hq-a1` to `GUEST` after a minor naming issue was identified during evidence review. No functional behaviour was affected.
 
 ### Verification
@@ -154,3 +155,46 @@ SVI addressing and HSRP gateway redundancy remain for Phase 05.
 ### Next
 
 **Phase 05 — SVIs and HSRP**
+
+
+---
+
+## Phase 05 — SVIs and HSRP
+
+**Completed:** `27-09-2026`
+
+### Implemented
+
+- Configured the approved SVIs and HSRP gateways on `hq-d1` and `hq-d2`, using `.2` / `.3` physical addresses and `.1` virtual gateways.
+- Applied HSRP group numbers matching each routed VLAN, priority `110` on the preferred peer and `100` on the standby peer, with preemption retained only on the preferred peer.
+- Aligned HSRP ownership with the Phase 04 Rapid PVST+ root placement.
+- Configured `hq-a1 Vlan199` as `10.10.99.4/26` with default gateway `10.10.99.1`, and used a temporary `Vlan112` SVI for gateway testing.
+- Configured VTP `transparent` on all three switches so VLAN definitions were locally represented in the exported CML configuration.
+- Corrected unintended HSRP group `0` configuration on `hq-d2`.
+- Verified failover and recovery for representative VLANs `112` and `199`, then removed the temporary `hq-a1 Vlan112` SVI.
+- Restored recent unsaved configuration after an unexpected VMware/CML interruption before verification continued; no fault was identified with the Phase 05 SVI or HSRP design.
+- Updated the operating workflow so significant configuration milestones are written to startup configuration, followed by a CML configuration fetch and retained versioned YAML exports.
+
+### Verification
+
+- `HQ-VP-05.01` — SVI Addressing and Layer 3 Baseline
+- `HQ-VP-05.02` — HSRP Configuration and Normal Operating State
+- `HQ-VP-05.03` — HSRP/STP Alignment and Gateway Reachability
+- `HQ-VP-05.04` — HSRP Gateway Failover
+- `HQ-VP-05.05` — HSRP Preemption and Preferred-State Restoration
+
+### Result
+
+**Phase 05 verified.** The approved SVI addressing, normal HSRP ownership, STP/HSRP alignment and gateway reachability were demonstrated. Controlled failure of the preferred SVI for representative VLANs `112` and `199` transferred gateway ownership to the peer, and restoration returned each VLAN to its planned preferred Active peer. The temporary `hq-a1 Vlan112` test SVI was removed after testing.
+
+During final review, redundant preemption statements were removed from the non-preferred priority-`100` peers so the as-built HSRP configuration matched the approved design. Final normal-state captures confirmed the intended preferred-only preemption policy and unchanged Active/Standby ownership; the completed failover tests were not repeated.
+
+Routed `/31` Distribution-to-Edge links and loopbacks remain for Phase 06.
+
+### Evidence
+
+[`evidence/hq/hsrp/`](../../../evidence/hq/hsrp/)
+
+### Next
+
+**Phase 06 — Routed `/31`s and Loopbacks**

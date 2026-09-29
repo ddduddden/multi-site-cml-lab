@@ -519,25 +519,25 @@ No troubleshooting record required.
 Confirm the production SVI addressing on `hq-d1` and `hq-d2`, establish the VLAN 199 management SVI on `hq-a1`, and verify that only the intended VLANs provide Layer 3 interfaces.
 
 **Expected result:**  
-All eight routed VLANs use the approved `.1` VIP / `.2 hq-d1` / `.3 hq-d2` convention. `hq-a1` uses `10.10.99.4/26` on VLAN `199` with default gateway `10.10.99.1`. VLANs `190` and `191` have no Layer 3 interfaces.
+All eight routed VLANs use the approved `.1` VIP / `.2 hq-d1` / `.3 hq-d2` convention and subnet masks. `hq-a1` uses `10.10.99.4/26` on VLAN `199` with default gateway `10.10.99.1`. VLANs `190` and `191` have no Layer 3 interfaces.
 
 **Configuration involved:**  
 SVI addressing on `hq-d1` and `hq-d2`, plus the VLAN 199 management SVI and default-gateway configuration on `hq-a1`.
 
 **Verification command(s):**  
-`show ip interface brief`; relevant interface configuration checks.
+`show ip interface brief`; `show running-config | section ^interface Vlan`; `show running-config | include ^ip default-gateway` on `hq-a1`.
 
 **Observed result:**  
-Not yet tested.
+All eight SVIs on `hq-d1` and `hq-d2` were up/up with the approved addresses and masks. Neither switch had a VLAN `190` or `191` SVI. Following temporary-SVI removal, `hq-a1` retained only `Vlan199`, up/up at `10.10.99.4/26`, with default gateway `10.10.99.1`.
 
 **Status:**  
-Not started
+Verified
 
 **Evidence:**  
-Not yet captured.
+`evidence/hq/hsrp/HQ-VP-05.01-hq-d1-svi-addressing.txt`; `HQ-VP-05.01-hq-d2-svi-addressing.txt`; `HQ-VP-05.01-hq-a1-management-svi.txt`.
 
 **Notes / Troubleshooting:**  
-`10.10.99.4/26` is the permanent in-band management address assigned to `hq-a1`.
+The final baseline was captured on `27-09-2026`. Temporary `hq-a1 Vlan112` removal is also referenced by `HQ-VP-05.05`.
 
 ---
 
@@ -547,25 +547,25 @@ Not yet captured.
 Confirm that every routed VLAN has the intended HSRP group, virtual IP, priority, preemption policy, and Active/Standby ownership.
 
 **Expected result:**  
-All eight HSRP groups use the correct VIP, group number, priority, and preemption settings, with the intended Active/Standby split established.
+All eight HSRP groups use the approved virtual IPs and VLAN-matching group numbers. Each preferred peer is Active at priority `110`, with the standby peer at priority `100`. Preemption is enabled on the preferred peer only.
 
 **Configuration involved:**  
 HSRP configuration on the eight routed VLAN SVIs on `hq-d1` and `hq-d2`.
 
 **Verification command(s):**  
-`show standby`; `show standby brief`
+`show running-config | section ^interface Vlan`; `show standby brief`
 
 **Observed result:**  
-Not yet tested.
+Final captures confirmed the approved virtual IPs and group numbers, priority `110` on each preferred peer, priority `100` on the standby peer, and preemption only on the preferred peer. `hq-d1` was Active for VLANs `112,130,152,170`; `hq-d2` was Active for VLANs `120,140,160,199`.
 
 **Status:**  
-Not started
+Verified
 
 **Evidence:**  
-Not yet captured.
+`evidence/hq/hsrp/HQ-VP-05.02-hq-d1-hsrp-normal-state.txt`; `HQ-VP-05.02-hq-d2-hsrp-normal-state.txt`.
 
 **Notes / Troubleshooting:**  
-Normal HSRP state is verified before failover testing begins.
+An unintended HSRP group `0` on `hq-d2` and redundant preemption on the non-preferred peers were removed before the final state was recaptured. No troubleshooting or deviation record required.
 
 ---
 
@@ -575,83 +575,81 @@ Normal HSRP state is verified before failover testing begins.
 Confirm that HSRP Active ownership matches the Rapid PVST+ root-primary placement and that the virtual gateways are reachable through the access-layer topology.
 
 **Expected result:**  
-HSRP Active ownership matches the Rapid PVST+ root primary for every routed VLAN, and gateway reachability succeeds through both intended forwarding paths.
+The HSRP Active peer is also the Rapid PVST+ root switch for each routed VLAN. For representative VLANs `112` and `199`, `hq-a1` can reach the virtual gateway and both distribution-switch SVI addresses.
 
 **Configuration involved:**  
-Permanent production configuration plus a temporary test-only `Vlan112` SVI on `hq-a1` using `10.10.12.4/22`.
-
-IP routing remains disabled on `hq-a1`.
+HSRP and Rapid PVST+ on `hq-d1` and `hq-d2`, with gateway testing from `hq-a1` using its permanent `Vlan199` management SVI and temporary `Vlan112` SVI (`10.10.12.4/22`).
 
 **Verification command(s):**  
-`show standby brief`; `show spanning-tree vlan 112`; `show spanning-tree vlan 199`; extended ping using the appropriate source address.
+`show ip interface brief`; `ping` from `hq-a1`. HSRP state is cross-referenced to `HQ-VP-05.02`; STP root placement and access-layer root ports to `HQ-VP-04.01`.
 
 **Observed result:**  
-Not yet tested.
+HSRP Active ownership matched the recorded STP root placement. All six gateway targets returned `5/5`. The Phase 04 evidence shows `hq-a1` using root port `Po10` for VLAN `112` and `Po20` for VLAN `199`.
 
 **Status:**  
-Not started
+Verified
 
 **Evidence:**  
-Not yet captured.
+`evidence/hq/hsrp/HQ-VP-05.03-hq-a1-gateway-reachability.txt`; `HQ-VP-05.02-hq-d1-hsrp-normal-state.txt`; `HQ-VP-05.02-hq-d2-hsrp-normal-state.txt`; `evidence/hq/spanning-tree/HQ-VP-04.01-hq-a1-spanning-tree-state.txt`.
 
 **Notes / Troubleshooting:**  
-VLAN `199` validates the path toward the `hq-d2` gateway. Temporary VLAN `112` validates the path toward the `hq-d1` gateway. The temporary `Vlan112` SVI remains in place through `HQ-VP-05.04` and is removed during `HQ-VP-05.05`.
+STP state comes from the earlier Phase 04 capture, rather than a simultaneous ping capture. The temporary `Vlan112` SVI remained through failover testing; final removal is recorded in `HQ-VP-05.05`.
 
 ---
 
 ### HSRP Gateway Failover — HQ-VP-05.04
 
 **Objective:**  
-Confirm that gateway service recovers through the HSRP peer when the preferred Active SVI becomes unavailable.
+Confirm that gateway service recovers through the Standby peer when the preferred Active SVI becomes unavailable.
 
 **Expected result:**  
-The Standby peer becomes Active, the HSRP virtual IP remains unchanged, and gateway reachability is restored through the surviving multilayer distribution/core switch after HSRP convergence.
+The Standby peer becomes Active, retains the same virtual IP and provides gateway reachability after convergence. Tests cover VLAN `112` with `hq-d1` unavailable and VLAN `199` with `hq-d2` unavailable.
 
 **Configuration involved:**  
-Controlled shutdown and restoration of the preferred Active SVI for VLANs `112` and `199`.
+Controlled shutdown of `hq-d1 Vlan112` and, separately, `hq-d2 Vlan199`, with gateway testing from `hq-a1`.
 
 **Verification command(s):**  
-`show standby`; `show standby brief`; extended ping from `hq-a1`.
+`show standby brief`; `ping` from `hq-a1`; `show ip interface brief` on `hq-d2` to confirm the VLAN `199` shutdown state.
 
 **Observed result:**  
-Not yet tested.
+Shutting down `hq-d1 Vlan112` caused `hq-d2` to become Active for group `112`; a post-failover ping returned `5/5`. Shutting down `hq-d2 Vlan199` caused `hq-d1` to become Active for group `199`; both post-failover pings returned `5/5`. The virtual IPs remained unchanged.
 
 **Status:**  
-Not started
+Verified
 
 **Evidence:**  
-Not yet captured.
+`evidence/hq/hsrp/HQ-VP-05.04-hsrp-failover-vlan112.txt`; `HQ-VP-05.04-hsrp-failover-vlan199.txt`.
 
 **Notes / Troubleshooting:**  
-VLAN `112` exercises the `hq-d1`-preferred path; VLAN `199` exercises the `hq-d2`-preferred path. Whole-device and combined STP/HSRP failures remain within Phase 10.
+The VLAN `199` sequence includes an early capture taken before convergence; later evidence confirms `hq-d2 Vlan199` down and `hq-d1` Active. The tests were completed before redundant non-preferred preemption was removed; that cleanup does not change the recorded failover results. Final HSRP state is recorded in `HQ-VP-05.02`. Whole-device and combined STP/HSRP failures remain within Phase 10.
 
 ---
 
 ### HSRP Preemption and Preferred-State Restoration — HQ-VP-05.05
 
 **Objective:**  
-Confirm that restoration of the preferred gateway returns HSRP ownership to the intended multilayer distribution/core switch.
+Confirm that restoration of the preferred gateway returns HSRP ownership to the intended peer and that temporary access-switch test configuration is removed.
 
 **Expected result:**  
-Preemption restores the planned Active/Standby ownership, re-establishes the intended HSRP/STP alignment, and leaves `hq-a1` in its permanent management configuration.
+Preemption restores the planned Active/Standby ownership and HSRP/STP alignment. `hq-a1` retains its permanent `Vlan199` management SVI, with the temporary `Vlan112` SVI removed.
 
 **Configuration involved:**  
-Restoration of the preferred HSRP SVIs and removal of the temporary `hq-a1 Vlan112` test configuration.
+Restoration of `hq-d1 Vlan112` and `hq-d2 Vlan199`, followed by removal of the temporary `hq-a1 Vlan112` SVI.
 
 **Verification command(s):**  
-`show standby`; `show standby brief`; `show spanning-tree vlan 112`; `show spanning-tree vlan 199`; `show ip interface brief`; extended ping from `hq-a1`.
+`show standby brief`; `show ip interface brief`; `show spanning-tree root`; `ping` from `hq-a1`.
 
 **Observed result:**  
-Not yet tested.
+VLAN `112` returned to `hq-d1` Active / `hq-d2` Standby, and VLAN `199` returned to `hq-d2` Active / `hq-d1` Standby. Recovery pings returned `4/5`, then `5/5` in both tests. All eight groups returned to planned ownership, the final STP root-port split matched the design, the temporary `Vlan112` SVI was removed, and `Vlan199` remained up/up at `10.10.99.4/26`.
 
 **Status:**  
-Not started
+Verified
 
 **Evidence:**  
-Not yet captured.
+`evidence/hq/hsrp/HQ-VP-05.05-hsrp-preemption-recovery-vlan112.txt`; `HQ-VP-05.05-hsrp-preemption-recovery-vlan199.txt`; `HQ-VP-05.05-hq-a1-final-stp-alignment.txt`; `HQ-VP-05.01-hq-a1-management-svi.txt`.
 
 **Notes / Troubleshooting:**  
-Failover and preemption are verified separately so successful takeover is not assumed to prove successful restoration.
+One earlier VLAN `112` recovery ping could not be reliably linked to the final test run, so it was excluded from the evidence. The bridge MAC addresses differed from the Phase 04 capture after the CML environment was restored. CML assigns MAC addresses automatically, and recreated or wiped nodes can receive new addresses; however, the configured STP priorities and intended `Po10`/`Po20` roles were unchanged, so the planned root and forwarding design remained the same. Final as-built preemption policy is recorded in `HQ-VP-05.02`.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 

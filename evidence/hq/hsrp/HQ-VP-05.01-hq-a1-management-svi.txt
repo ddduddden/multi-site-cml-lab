@@ -1,0 +1,42 @@
+HQ-VP-05.01 — SVI Addressing and Layer 3 Baseline
+=================================================
+
+Evidence component — hq-a1 management SVI and cleanup
+-----------------------------------------------------
+
+Capture date: 27-09-2026
+Source: Device console capture, 27-09-2026.
+Editorial note: Selected command/output excerpts; unrelated interface rows,
+blank prompts and repeated pastes are omitted. Section labels are editorial.
+No omitted output has been reconstructed.
+
+Test-SVI cleanup — remove temporary Vlan112
+-------------------------------------------
+
+hq-a1#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+hq-a1(config)#no interface Vlan112
+hq-a1(config)#end
+
+Permanent management SVI state — hq-a1
+--------------------------------------
+
+hq-a1#show ip interface brief
+[Physical interface rows omitted]
+Port-channel10         unassigned      YES unset  up                    up
+Port-channel20         unassigned      YES unset  up                    up
+Vlan199                10.10.99.4      YES manual up                    up
+
+Management SVI configuration — hq-a1
+------------------------------------
+
+hq-a1#show running-config | section ^interface Vlan
+interface Vlan199
+ ip address 10.10.99.4 255.255.255.192
+
+Default-gateway configuration — hq-a1
+-------------------------------------
+
+hq-a1#show running-config | include ^ip default-gateway
+ip default-gateway 10.10.99.1
+hq-a1#

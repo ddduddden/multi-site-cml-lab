@@ -1,0 +1,1175 @@
+annotations: []
+smart_annotations: []
+nodes:
+  - boot_disk_size: null
+    configuration:
+      - name: ios_config.txt
+        content: |-
+          version 15.2
+          service timestamps debug datetime msec
+          service timestamps log datetime msec
+          service password-encryption
+          service compress-config
+          !
+          hostname hq-r1
+          !
+          boot-start-marker
+          boot-end-marker
+          !
+          !
+          no logging console
+          enable secret <sanitised>
+          !
+          username labadmin secret <sanitised>
+          no aaa new-model
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          ip cef
+          no ipv6 cef
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          interface GigabitEthernet0/0
+           negotiation auto
+          !
+          interface GigabitEthernet0/1
+           negotiation auto
+          !
+          interface GigabitEthernet0/2
+           negotiation auto
+          !
+          interface GigabitEthernet0/3
+           negotiation auto
+          !
+          ip forward-protocol nd
+          !
+          !
+          ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+          ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+          !
+          !
+          !
+          !
+          !
+          !
+          control-plane
+          !
+          banner motd @
+
+          ####################################################################
+          #                                                                  #
+          #               NETWORK OPERATIONS / SECURITY NOTICE               #
+          #                        MULTI-SITE CML LAB                        #
+          #                     HQ CAMPUS - OSPF AREA 10                     #
+          #                                                                  #
+          #------------------------------------------------------------------#
+          #                                                                  #
+          #           *** WARNING - AUTHORIZED PERSONNEL ONLY ***            #
+          #                                                                  #
+          #       This system is restricted to authorized users only.        #
+          #        Access to this device is restricted and monitored.        #
+          #         Activity may be logged and reviewed as required.         #
+          #                                                                  #
+          #        Disconnect immediately if you are not authorized.         #
+          #                                                                  #
+          ####################################################################
+
+          @
+          !
+          line con 0
+           exec-timeout 0 0
+           password <sanitised>
+           logging synchronous
+           login local
+          line aux 0
+          line vty 0 4
+           exec-timeout 0 0
+           password <sanitised>
+           login local
+           transport input ssh
+          line vty 5 15
+           password <sanitised>
+           login local
+           transport input ssh
+          !
+          !
+          no banner exec
+          no banner login
+          no banner incoming
+          no ip domain-lookup
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n0
+    image_definition: null
+    label: hq-r1
+    node_definition: iosv
+    parameters: {}
+    priority: null
+    pyats:
+      username: null
+      password: null
+      enable_password: null
+    ram: null
+    tags: []
+    x: -40
+    y: -127
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: GigabitEthernet0/0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: GigabitEthernet0/1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: GigabitEthernet0/2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: GigabitEthernet0/3
+        mac_address: null
+        type: physical
+        slot: 3
+      - id: i5
+        label: GigabitEthernet0/4
+        mac_address: null
+        type: physical
+        slot: 4
+      - id: i6
+        label: GigabitEthernet0/5
+        mac_address: null
+        type: physical
+        slot: 5
+      - id: i7
+        label: GigabitEthernet0/6
+        mac_address: null
+        type: physical
+        slot: 6
+      - id: i8
+        label: GigabitEthernet0/7
+        mac_address: null
+        type: physical
+        slot: 7
+  - boot_disk_size: null
+    configuration:
+      - name: ios_config.txt
+        content: |-
+          version 15.2
+          service timestamps debug datetime msec
+          service timestamps log datetime msec
+          service password-encryption
+          service compress-config
+          !
+          hostname hq-r2
+          !
+          boot-start-marker
+          boot-end-marker
+          !
+          !
+          no logging console
+          enable secret <sanitised>
+          !
+          username labadmin secret <sanitised>
+          no aaa new-model
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          ip cef
+          no ipv6 cef
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          interface GigabitEthernet0/0
+           negotiation auto
+          !
+          interface GigabitEthernet0/1
+           negotiation auto
+          !
+          interface GigabitEthernet0/2
+           negotiation auto
+          !
+          interface GigabitEthernet0/3
+           negotiation auto
+          !
+          ip forward-protocol nd
+          !
+          !
+          ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+          ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+          !
+          !
+          !
+          !
+          !
+          !
+          control-plane
+          !
+          banner motd @
+
+          ####################################################################
+          #                                                                  #
+          #               NETWORK OPERATIONS / SECURITY NOTICE               #
+          #                        MULTI-SITE CML LAB                        #
+          #                     HQ CAMPUS - OSPF AREA 10                     #
+          #                                                                  #
+          #------------------------------------------------------------------#
+          #                                                                  #
+          #           *** WARNING - AUTHORIZED PERSONNEL ONLY ***            #
+          #                                                                  #
+          #       This system is restricted to authorized users only.        #
+          #        Access to this device is restricted and monitored.        #
+          #         Activity may be logged and reviewed as required.         #
+          #                                                                  #
+          #        Disconnect immediately if you are not authorized.         #
+          #                                                                  #
+          ####################################################################
+
+          @
+          !
+          line con 0
+           exec-timeout 0 0
+           password <sanitised>
+           logging synchronous
+           login local
+          line aux 0
+          line vty 0 4
+           exec-timeout 0 0
+           password <sanitised>
+           login local
+           transport input ssh
+          line vty 5 15
+           password <sanitised>
+           login local
+           transport input ssh
+          !
+          !
+          no banner exec
+          no banner login
+          no banner incoming
+          no ip domain-lookup
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n1
+    image_definition: null
+    label: hq-r2
+    node_definition: iosv
+    parameters: {}
+    priority: null
+    pyats:
+      username: null
+      password: null
+      enable_password: null
+    ram: null
+    tags: []
+    x: 338
+    y: -131
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: GigabitEthernet0/0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: GigabitEthernet0/1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: GigabitEthernet0/2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: GigabitEthernet0/3
+        mac_address: null
+        type: physical
+        slot: 3
+      - id: i5
+        label: GigabitEthernet0/4
+        mac_address: null
+        type: physical
+        slot: 4
+      - id: i6
+        label: GigabitEthernet0/5
+        mac_address: null
+        type: physical
+        slot: 5
+      - id: i7
+        label: GigabitEthernet0/6
+        mac_address: null
+        type: physical
+        slot: 6
+      - id: i8
+        label: GigabitEthernet0/7
+        mac_address: null
+        type: physical
+        slot: 7
+  - boot_disk_size: null
+    configuration:
+      - name: ios_config.txt
+        content: |-
+          version 15.2
+          service timestamps debug datetime msec
+          service timestamps log datetime msec
+          service password-encryption
+          service compress-config
+          !
+          hostname hq-a1
+          !
+          boot-start-marker
+          boot-end-marker
+          !
+          !
+          no logging console
+          enable secret <sanitised>
+          !
+          username labadmin secret <sanitised>
+          no aaa new-model
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          ip cef
+          no ipv6 cef
+          !
+          !
+          !
+          spanning-tree mode pvst
+          spanning-tree extend system-id
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          interface GigabitEthernet0/0
+           negotiation auto
+          !
+          interface GigabitEthernet0/1
+           negotiation auto
+          !
+          interface GigabitEthernet0/2
+           negotiation auto
+          !
+          interface GigabitEthernet0/3
+           negotiation auto
+          !
+          ip forward-protocol nd
+          !
+          !
+          ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+          ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+          !
+          !
+          !
+          !
+          !
+          !
+          control-plane
+          !
+          banner motd @
+
+          ####################################################################
+          #                                                                  #
+          #               NETWORK OPERATIONS / SECURITY NOTICE               #
+          #                        MULTI-SITE CML LAB                        #
+          #                     HQ CAMPUS - OSPF AREA 10                     #
+          #                                                                  #
+          #------------------------------------------------------------------#
+          #                                                                  #
+          #           *** WARNING - AUTHORIZED PERSONNEL ONLY ***            #
+          #                                                                  #
+          #       This system is restricted to authorized users only.        #
+          #        Access to this device is restricted and monitored.        #
+          #         Activity may be logged and reviewed as required.         #
+          #                                                                  #
+          #        Disconnect immediately if you are not authorized.         #
+          #                                                                  #
+          ####################################################################
+
+          @
+          !
+          line con 0
+           exec-timeout 0 0
+           password <sanitised>
+           logging synchronous
+           login local
+          line aux 0
+          line vty 0 4
+           exec-timeout 0 0
+           password <sanitised>
+           login local
+           transport input ssh
+          line vty 5 15
+           password <sanitised>
+           login local
+           transport input ssh
+          !
+          !
+          no banner exec
+          no banner login
+          no banner incoming
+          no ip domain-lookup
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n2
+    image_definition: null
+    label: hq-a1
+    node_definition: iosvl2
+    parameters: {}
+    priority: null
+    pyats:
+      username: null
+      password: null
+      enable_password: null
+    ram: null
+    tags: []
+    x: 162
+    y: 326
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: GigabitEthernet0/0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: GigabitEthernet0/1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: GigabitEthernet0/2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: GigabitEthernet0/3
+        mac_address: null
+        type: physical
+        slot: 3
+      - id: i5
+        label: GigabitEthernet1/0
+        mac_address: null
+        type: physical
+        slot: 4
+      - id: i6
+        label: GigabitEthernet1/1
+        mac_address: null
+        type: physical
+        slot: 5
+      - id: i7
+        label: GigabitEthernet1/2
+        mac_address: null
+        type: physical
+        slot: 6
+      - id: i8
+        label: GigabitEthernet1/3
+        mac_address: null
+        type: physical
+        slot: 7
+      - id: i9
+        label: GigabitEthernet2/0
+        mac_address: null
+        type: physical
+        slot: 8
+      - id: i10
+        label: GigabitEthernet2/1
+        mac_address: null
+        type: physical
+        slot: 9
+      - id: i11
+        label: GigabitEthernet2/2
+        mac_address: null
+        type: physical
+        slot: 10
+      - id: i12
+        label: GigabitEthernet2/3
+        mac_address: null
+        type: physical
+        slot: 11
+      - id: i13
+        label: GigabitEthernet3/0
+        mac_address: null
+        type: physical
+        slot: 12
+      - id: i14
+        label: GigabitEthernet3/1
+        mac_address: null
+        type: physical
+        slot: 13
+      - id: i15
+        label: GigabitEthernet3/2
+        mac_address: null
+        type: physical
+        slot: 14
+      - id: i16
+        label: GigabitEthernet3/3
+        mac_address: null
+        type: physical
+        slot: 15
+  - boot_disk_size: null
+    configuration:
+      - name: ios_config.txt
+        content: |-
+          version 15.2
+          service timestamps debug datetime msec
+          service timestamps log datetime msec
+          service password-encryption
+          service compress-config
+          !
+          hostname hq-d2
+          !
+          boot-start-marker
+          boot-end-marker
+          !
+          !
+          no logging console
+          enable secret <sanitised>
+          !
+          username labadmin secret <sanitised>
+          no aaa new-model
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          ip cef
+          no ipv6 cef
+          !
+          !
+          !
+          spanning-tree mode pvst
+          spanning-tree extend system-id
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          interface GigabitEthernet0/0
+           negotiation auto
+          !
+          interface GigabitEthernet0/1
+           negotiation auto
+          !
+          interface GigabitEthernet0/2
+           negotiation auto
+          !
+          interface GigabitEthernet0/3
+           negotiation auto
+          !
+          ip forward-protocol nd
+          !
+          !
+          ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+          ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+          !
+          !
+          !
+          !
+          !
+          !
+          control-plane
+          !
+          banner motd @
+
+          ####################################################################
+          #                                                                  #
+          #               NETWORK OPERATIONS / SECURITY NOTICE               #
+          #                        MULTI-SITE CML LAB                        #
+          #                     HQ CAMPUS - OSPF AREA 10                     #
+          #                                                                  #
+          #------------------------------------------------------------------#
+          #                                                                  #
+          #           *** WARNING - AUTHORIZED PERSONNEL ONLY ***            #
+          #                                                                  #
+          #       This system is restricted to authorized users only.        #
+          #        Access to this device is restricted and monitored.        #
+          #         Activity may be logged and reviewed as required.         #
+          #                                                                  #
+          #        Disconnect immediately if you are not authorized.         #
+          #                                                                  #
+          ####################################################################
+
+          @
+          !
+          line con 0
+           exec-timeout 0 0
+           password <sanitised>
+           logging synchronous
+           login local
+          line aux 0
+          line vty 0 4
+           exec-timeout 0 0
+           password <sanitised>
+           login local
+           transport input ssh
+          line vty 5 15
+           password <sanitised>
+           login local
+           transport input ssh
+          !
+          !
+          no banner exec
+          no banner login
+          no banner incoming
+          no ip domain-lookup
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n3
+    image_definition: null
+    label: hq-d2
+    node_definition: iosvl2
+    parameters: {}
+    priority: null
+    pyats:
+      username: null
+      password: null
+      enable_password: null
+    ram: null
+    tags: []
+    x: 343
+    y: 95
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: GigabitEthernet0/0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: GigabitEthernet0/1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: GigabitEthernet0/2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: GigabitEthernet0/3
+        mac_address: null
+        type: physical
+        slot: 3
+      - id: i5
+        label: GigabitEthernet1/0
+        mac_address: null
+        type: physical
+        slot: 4
+      - id: i6
+        label: GigabitEthernet1/1
+        mac_address: null
+        type: physical
+        slot: 5
+      - id: i7
+        label: GigabitEthernet1/2
+        mac_address: null
+        type: physical
+        slot: 6
+      - id: i8
+        label: GigabitEthernet1/3
+        mac_address: null
+        type: physical
+        slot: 7
+      - id: i9
+        label: GigabitEthernet2/0
+        mac_address: null
+        type: physical
+        slot: 8
+      - id: i10
+        label: GigabitEthernet2/1
+        mac_address: null
+        type: physical
+        slot: 9
+      - id: i11
+        label: GigabitEthernet2/2
+        mac_address: null
+        type: physical
+        slot: 10
+      - id: i12
+        label: GigabitEthernet2/3
+        mac_address: null
+        type: physical
+        slot: 11
+      - id: i13
+        label: GigabitEthernet3/0
+        mac_address: null
+        type: physical
+        slot: 12
+      - id: i14
+        label: GigabitEthernet3/1
+        mac_address: null
+        type: physical
+        slot: 13
+      - id: i15
+        label: GigabitEthernet3/2
+        mac_address: null
+        type: physical
+        slot: 14
+      - id: i16
+        label: GigabitEthernet3/3
+        mac_address: null
+        type: physical
+        slot: 15
+  - boot_disk_size: null
+    configuration:
+      - name: ios_config.txt
+        content: |-
+          version 15.2
+          service timestamps debug datetime msec
+          service timestamps log datetime msec
+          service password-encryption
+          service compress-config
+          !
+          hostname hq-d1
+          !
+          boot-start-marker
+          boot-end-marker
+          !
+          !
+          no logging console
+          enable secret <sanitised>
+          !
+          username labadmin secret <sanitised>
+          no aaa new-model
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          ip cef
+          no ipv6 cef
+          !
+          !
+          !
+          spanning-tree mode pvst
+          spanning-tree extend system-id
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          interface GigabitEthernet0/0
+           negotiation auto
+          !
+          interface GigabitEthernet0/1
+           negotiation auto
+          !
+          interface GigabitEthernet0/2
+           negotiation auto
+          !
+          interface GigabitEthernet0/3
+           negotiation auto
+          !
+          ip forward-protocol nd
+          !
+          !
+          ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+          ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+          !
+          !
+          !
+          !
+          !
+          !
+          control-plane
+          !
+          banner motd @
+
+          ####################################################################
+          #                                                                  #
+          #               NETWORK OPERATIONS / SECURITY NOTICE               #
+          #                        MULTI-SITE CML LAB                        #
+          #                     HQ CAMPUS - OSPF AREA 10                     #
+          #                                                                  #
+          #------------------------------------------------------------------#
+          #                                                                  #
+          #           *** WARNING - AUTHORIZED PERSONNEL ONLY ***            #
+          #                                                                  #
+          #       This system is restricted to authorized users only.        #
+          #        Access to this device is restricted and monitored.        #
+          #         Activity may be logged and reviewed as required.         #
+          #                                                                  #
+          #        Disconnect immediately if you are not authorized.         #
+          #                                                                  #
+          ####################################################################
+
+          @
+          !
+          line con 0
+           exec-timeout 0 0
+           password <sanitised>
+           logging synchronous
+           login local
+          line aux 0
+          line vty 0 4
+           exec-timeout 0 0
+           password <sanitised>
+           login local
+           transport input ssh
+          line vty 5 15
+           password <sanitised>
+           login local
+           transport input ssh
+          !
+          !
+          no banner exec
+          no banner login
+          no banner incoming
+          no ip domain-lookup
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n4
+    image_definition: null
+    label: hq-d1
+    node_definition: iosvl2
+    parameters: {}
+    priority: null
+    pyats:
+      username: null
+      password: null
+      enable_password: null
+    ram: null
+    tags: []
+    x: -30
+    y: 108
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: GigabitEthernet0/0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: GigabitEthernet0/1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: GigabitEthernet0/2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: GigabitEthernet0/3
+        mac_address: null
+        type: physical
+        slot: 3
+      - id: i5
+        label: GigabitEthernet1/0
+        mac_address: null
+        type: physical
+        slot: 4
+      - id: i6
+        label: GigabitEthernet1/1
+        mac_address: null
+        type: physical
+        slot: 5
+      - id: i7
+        label: GigabitEthernet1/2
+        mac_address: null
+        type: physical
+        slot: 6
+      - id: i8
+        label: GigabitEthernet1/3
+        mac_address: null
+        type: physical
+        slot: 7
+      - id: i9
+        label: GigabitEthernet2/0
+        mac_address: null
+        type: physical
+        slot: 8
+      - id: i10
+        label: GigabitEthernet2/1
+        mac_address: null
+        type: physical
+        slot: 9
+      - id: i11
+        label: GigabitEthernet2/2
+        mac_address: null
+        type: physical
+        slot: 10
+      - id: i12
+        label: GigabitEthernet2/3
+        mac_address: null
+        type: physical
+        slot: 11
+      - id: i13
+        label: GigabitEthernet3/0
+        mac_address: null
+        type: physical
+        slot: 12
+      - id: i14
+        label: GigabitEthernet3/1
+        mac_address: null
+        type: physical
+        slot: 13
+      - id: i15
+        label: GigabitEthernet3/2
+        mac_address: null
+        type: physical
+        slot: 14
+      - id: i16
+        label: GigabitEthernet3/3
+        mac_address: null
+        type: physical
+        slot: 15
+links:
+  - id: l0
+    n1: n2
+    n2: n4
+    i1: i1
+    i2: i1
+    conditioning: {}
+    label: hq-a1-GigabitEthernet0/0<->hq-d1-GigabitEthernet0/0
+  - id: l1
+    n1: n2
+    n2: n4
+    i1: i2
+    i2: i2
+    conditioning: {}
+    label: hq-a1-GigabitEthernet0/1<->hq-d1-GigabitEthernet0/1
+  - id: l2
+    n1: n2
+    n2: n3
+    i1: i5
+    i2: i1
+    conditioning: {}
+    label: hq-a1-GigabitEthernet1/0<->hq-d2-GigabitEthernet0/0
+  - id: l3
+    n1: n2
+    n2: n3
+    i1: i6
+    i2: i2
+    conditioning: {}
+    label: hq-a1-GigabitEthernet1/1<->hq-d2-GigabitEthernet0/1
+  - id: l4
+    n1: n4
+    n2: n3
+    i1: i5
+    i2: i5
+    conditioning: {}
+    label: hq-d1-GigabitEthernet1/0<->hq-d2-GigabitEthernet1/0
+  - id: l5
+    n1: n4
+    n2: n3
+    i1: i6
+    i2: i6
+    conditioning: {}
+    label: hq-d1-GigabitEthernet1/1<->hq-d2-GigabitEthernet1/1
+  - id: l6
+    n1: n4
+    n2: n3
+    i1: i7
+    i2: i7
+    conditioning: {}
+    label: hq-d1-GigabitEthernet1/2<->hq-d2-GigabitEthernet1/2
+  - id: l7
+    n1: n4
+    n2: n3
+    i1: i8
+    i2: i8
+    conditioning: {}
+    label: hq-d1-GigabitEthernet1/3<->hq-d2-GigabitEthernet1/3
+  - id: l8
+    n1: n4
+    n2: n0
+    i1: i9
+    i2: i1
+    conditioning: {}
+    label: hq-d1-GigabitEthernet2/0<->hq-r1-GigabitEthernet0/0
+  - id: l9
+    n1: n4
+    n2: n0
+    i1: i10
+    i2: i2
+    conditioning: {}
+    label: hq-d1-GigabitEthernet2/1<->hq-r1-GigabitEthernet0/1
+  - id: l10
+    n1: n4
+    n2: n0
+    i1: i11
+    i2: i3
+    conditioning: {}
+    label: hq-d1-GigabitEthernet2/2<->hq-r1-GigabitEthernet0/2
+  - id: l11
+    n1: n4
+    n2: n0
+    i1: i12
+    i2: i4
+    conditioning: {}
+    label: hq-d1-GigabitEthernet2/3<->hq-r1-GigabitEthernet0/3
+  - id: l12
+    n1: n3
+    n2: n1
+    i1: i9
+    i2: i1
+    conditioning: {}
+    label: hq-d2-GigabitEthernet2/0<->hq-r2-GigabitEthernet0/0
+  - id: l13
+    n1: n3
+    n2: n1
+    i1: i10
+    i2: i2
+    conditioning: {}
+    label: hq-d2-GigabitEthernet2/1<->hq-r2-GigabitEthernet0/1
+  - id: l14
+    n1: n3
+    n2: n1
+    i1: i11
+    i2: i3
+    conditioning: {}
+    label: hq-d2-GigabitEthernet2/2<->hq-r2-GigabitEthernet0/2
+  - id: l15
+    n1: n3
+    n2: n1
+    i1: i12
+    i2: i4
+    conditioning: {}
+    label: hq-d2-GigabitEthernet2/3<->hq-r2-GigabitEthernet0/3
+  - id: l16
+    n1: n4
+    n2: n1
+    i1: i13
+    i2: i5
+    conditioning: {}
+    label: hq-d1-GigabitEthernet3/0<->hq-r2-GigabitEthernet0/4
+  - id: l17
+    n1: n3
+    n2: n0
+    i1: i13
+    i2: i5
+    conditioning: {}
+    label: hq-d2-GigabitEthernet3/0<->hq-r1-GigabitEthernet0/4
+lab:
+  description: ''
+  notes: ''
+  title: HQ Campus - Base Nodes
+  node_staging:
+    enabled: false
+    start_remaining: true
+    abort_on_failure: false
+  version: 0.3.1

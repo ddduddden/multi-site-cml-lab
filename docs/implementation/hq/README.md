@@ -125,8 +125,8 @@ A phase does not show as `Deviated` just because one test in it has an accepted 
 | 01 | Platform baseline | **Verified** |
 | 02 | Layer 2 / VLAN baseline | **Verified** |
 | 03 | LACP EtherChannel | **Verified** |
-| 04 | Rapid PVST+ | Not started |
-| 05 | SVIs and HSRP | Not started |
+| 04 | Rapid PVST+ | **Verified** |
+| 05 | SVIs and HSRP | **Verified** |
 | 06 | Routed `/31`s and loopbacks | Not started |
 | 07 | OSPF Area 10 | Not started |
 | 08 | ECMP | Not started |
@@ -175,6 +175,8 @@ configs/hq/
 ```
 
 Once configs exist, relevant build-log and verification entries should record the config filename **and** the Git commit hash representing the device state at the time of the test.
+
+Per-device files in `configs/hq/` are the readable as-built configuration reference. Selected CML YAML files under `lab/cml-lab-exports/` are milestone lab-restoration artifacts; they complement the per-device configs and do not replace them.
 
 ## What counts as as-built
 

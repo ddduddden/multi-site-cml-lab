@@ -1,0 +1,30 @@
+HQ-VP-05.05 — HSRP Preemption and Preferred-State Restoration
+=============================================================
+
+Evidence component — Final STP alignment on hq-a1
+-------------------------------------------------
+
+Capture date: 27-09-2026
+Source: Device console capture, 27-09-2026.
+Editorial note: Selected command/output excerpts; unrelated interface rows,
+blank prompts and repeated pastes are omitted. Section labels are editorial.
+No omitted output has been reconstructed.
+
+Final spanning-tree root-port alignment — hq-a1
+-----------------------------------------------
+
+hq-a1#show spanning-tree root
+
+                                        Root    Hello Max Fwd
+Vlan                   Root ID          Cost    Time  Age Dly  Root Port
+---------------- -------------------- --------- ----- --- ---  ------------
+VLAN0112         24688 5254.0044.1293         3    2   20  15  Po10
+VLAN0120         24696 5254.006a.22f2         3    2   20  15  Po20
+VLAN0130         24706 5254.0044.1293         3    2   20  15  Po10
+VLAN0140         24716 5254.006a.22f2         3    2   20  15  Po20
+VLAN0152         24728 5254.0044.1293         3    2   20  15  Po10
+VLAN0160         24736 5254.006a.22f2         3    2   20  15  Po20
+VLAN0170         24746 5254.0044.1293         3    2   20  15  Po10
+VLAN0190         24766 5254.0044.1293         3    2   20  15  Po10
+VLAN0199         24775 5254.006a.22f2         3    2   20  15  Po20
+hq-a1#

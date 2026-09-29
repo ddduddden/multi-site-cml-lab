@@ -166,7 +166,7 @@ HSRP group numbers match their associated VLAN IDs.
 
 #### HSRP Policy
 
-The preferred multilayer distribution switch uses an HSRP priority of `110`, while the standby multilayer distribution switch uses the default priority of `100`. Preemption is enabled on the preferred switch so that it can resume the Active role after recovering from a failure.
+The preferred multilayer distribution switch uses an HSRP priority of `110`, while the standby multilayer distribution switch uses the default priority of `100`. Preemption is enabled on the preferred switch so that it can reclaim the Active role after recovering from a failure.
 
 Gateway ownership is deliberately split between the two multilayer distribution switches:
 
@@ -181,7 +181,7 @@ This aligns the preferred Layer 2 forwarding path with the active Layer 3 defaul
 
 VLAN 199 provides the in-band management subnet for network infrastructure.
 
-The HSRP virtual gateway and multilayer distribution switch SVI addresses are allocated above. The management SVI address for `hq-a1` will be selected separately from the remaining usable addresses within `10.10.99.0/26` as part of the management-addressing convention.
+The HSRP virtual gateway and multilayer distribution switch SVI addresses are allocated above. `hq-a1` uses `10.10.99.4/26` as its permanent in-band management address and `10.10.99.1` as its default gateway.
 
 `hq-a1` remains a Layer 2 access switch. Its management SVI provides IP reachability for device administration and does not provide inter-VLAN routing.
 
@@ -335,6 +335,12 @@ The intended allowed VLAN set is:
 
 Using an explicit allowed-VLAN list limits each trunk to VLANs that have a defined purpose within the HQ design.
 
+### VTP Policy
+
+The HQ switches operate in VTP transparent mode. VLAN definitions are managed locally on each switch rather than being synchronised from VTP advertisements.
+
+This keeps VLAN administration explicit within the lab and supports the project workflow in which device configuration is reviewed, saved, fetched from CML, and retained in selected versioned lab exports. VLAN consistency remains an implementation responsibility and is verified from device state rather than assumed from VTP propagation.
+
 ### Access Switch Port Allocation
 
 `hq-a1` remains a Layer 2 access switch. Its physical interfaces are allocated as follows:
@@ -427,6 +433,8 @@ VLAN `190` uses the separate STP-only root placement defined above because it ha
 The Layer 2 EtherChannels `Po10`, `Po20`, and `Po30` participate in the switched spanning-tree topology. The independent routed interfaces between the multilayer distribution switches and edge routers do not participate in Rapid PVST+.
 
 Cisco's root-primary and root-secondary mechanism is preferred over selecting arbitrary bridge-priority values manually. Exact configuration syntax and resulting bridge priorities will be verified against the selected CML switching image during implementation.
+
+Root Guard is applied on the distribution-switch Port-Channels that face `hq-a1` (`hq-d1 Po10` and `hq-d2 Po20`). Its purpose is to prevent an access-layer superior BPDU from changing the intended distribution-layer root placement. Root Guard is not applied to the `Po30` distribution interconnect.
 
 MST remains a later design exercise and is not part of the current HQ implementation.
 
