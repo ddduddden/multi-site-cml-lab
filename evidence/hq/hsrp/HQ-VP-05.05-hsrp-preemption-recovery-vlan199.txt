@@ -1,0 +1,72 @@
+HQ-VP-05.05 — HSRP Preemption and Preferred-State Restoration
+=============================================================
+
+Evidence component — VLAN 199 preferred-state recovery
+------------------------------------------------------
+
+Capture date: 27-09-2026
+Source: Device console capture, 27-09-2026.
+Editorial note: Selected command/output excerpts; unrelated interface rows,
+blank prompts and repeated pastes are omitted. Section labels are editorial.
+No omitted output has been reconstructed.
+
+Preferred hq-d2 VLAN 199 SVI restoration and immediate state
+------------------------------------------------------------
+
+hq-d2#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+hq-d2(config)#interface Vlan199
+hq-d2(config-if)# no shutdown
+hq-d2(config-if)#end
+hq-d2#show standby brief
+[Header and unrelated groups omitted]
+Vl199       199  110 P Init    unknown         unknown         10.10.99.1
+
+Recovered HSRP state — hq-d1 view
+---------------------------------
+
+hq-d1#show standby brief
+                     P indicates configured to preempt.
+                     |
+Interface   Grp  Pri P State   Active          Standby         Virtual IP
+Vl112       112  110 P Active  local           10.10.12.3      10.10.12.1
+Vl120       120  100 P Standby 10.10.20.3      local           10.10.20.1
+Vl130       130  110 P Active  local           10.10.30.3      10.10.30.1
+Vl140       140  100 P Standby 10.10.40.3      local           10.10.40.1
+Vl152       152  110 P Active  local           10.10.52.3      10.10.52.1
+Vl160       160  100 P Standby 10.10.60.3      local           10.10.60.1
+Vl170       170  110 P Active  local           10.10.70.3      10.10.70.1
+Vl199       199  100 P Standby 10.10.99.3      local           10.10.99.1
+hq-d1#
+
+Recovered HSRP state — hq-d2 view
+---------------------------------
+
+hq-d2#show standby brief
+                     P indicates configured to preempt.
+                     |
+Interface   Grp  Pri P State   Active          Standby         Virtual IP
+Vl112       112  100 P Standby 10.10.12.2      local           10.10.12.1
+Vl120       120  110 P Active  local           10.10.20.2      10.10.20.1
+Vl130       130  100 P Standby 10.10.30.2      local           10.10.30.1
+Vl140       140  110 P Active  local           10.10.40.2      10.10.40.1
+Vl152       152  100 P Standby 10.10.52.2      local           10.10.52.1
+Vl160       160  110 P Active  local           10.10.60.2      10.10.60.1
+Vl170       170  100 P Standby 10.10.70.2      local           10.10.70.1
+Vl199       199  110 P Active  local           10.10.99.2      10.10.99.1
+hq-d2#
+
+Gateway reachability after recovery — hq-a1
+-------------------------------------------
+
+hq-a1#ping 10.10.99.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.10.99.1, timeout is 2 seconds:
+.!!!!
+Success rate is 80 percent (4/5), round-trip min/avg/max = 4/5/7 ms
+hq-a1#ping 10.10.99.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.10.99.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 3/5/7 ms
+hq-a1#

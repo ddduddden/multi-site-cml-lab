@@ -1,0 +1,64 @@
+HQ-VP-05.02 — HSRP Configuration and Normal Operating State
+===========================================================
+
+Evidence component — hq-d1 final HSRP as-built state
+----------------------------------------------------
+
+Capture date: 27-09-2026
+Source: Device console capture, 27-09-2026.
+Editorial note: Final post-review reconciliation capture. Section labels are editorial; IOS command/output lines are preserved.
+
+HSRP SVI configuration — hq-d1
+-------------------------------
+
+hq-d1#show running-config | section ^interface Vlan
+interface Vlan112
+ ip address 10.10.12.2 255.255.252.0
+ standby 112 ip 10.10.12.1
+ standby 112 priority 110
+ standby 112 preempt
+interface Vlan120
+ ip address 10.10.20.2 255.255.254.0
+ standby 120 ip 10.10.20.1
+interface Vlan130
+ ip address 10.10.30.2 255.255.255.128
+ standby 130 ip 10.10.30.1
+ standby 130 priority 110
+ standby 130 preempt
+interface Vlan140
+ ip address 10.10.40.2 255.255.254.0
+ standby 140 ip 10.10.40.1
+interface Vlan152
+ ip address 10.10.52.2 255.255.252.0
+ standby 152 ip 10.10.52.1
+ standby 152 priority 110
+ standby 152 preempt
+interface Vlan160
+ ip address 10.10.60.2 255.255.255.192
+ standby 160 ip 10.10.60.1
+interface Vlan170
+ ip address 10.10.70.2 255.255.254.0
+ standby 170 ip 10.10.70.1
+ standby 170 priority 110
+ standby 170 preempt
+interface Vlan199
+ ip address 10.10.99.2 255.255.255.192
+ standby 199 ip 10.10.99.1
+hq-d1#
+
+HSRP normal operating state — hq-d1
+------------------------------------
+
+hq-d1#show standby brief
+                     P indicates configured to preempt.
+                     |
+Interface   Grp  Pri P State   Active          Standby         Virtual IP
+Vl112       112  110 P Active  local           10.10.12.3      10.10.12.1
+Vl120       120  100   Standby 10.10.20.3      local           10.10.20.1
+Vl130       130  110 P Active  local           10.10.30.3      10.10.30.1
+Vl140       140  100   Standby 10.10.40.3      local           10.10.40.1
+Vl152       152  110 P Active  local           10.10.52.3      10.10.52.1
+Vl160       160  100   Standby 10.10.60.3      local           10.10.60.1
+Vl170       170  110 P Active  local           10.10.70.3      10.10.70.1
+Vl199       199  100   Standby 10.10.99.3      local           10.10.99.1
+hq-d1#

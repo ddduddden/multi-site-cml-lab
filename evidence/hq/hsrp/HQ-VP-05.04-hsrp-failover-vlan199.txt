@@ -1,0 +1,65 @@
+HQ-VP-05.04 — HSRP Gateway Failover
+===================================
+
+Evidence component — VLAN 199 preferred-gateway failure
+-------------------------------------------------------
+
+Capture date: 27-09-2026
+Source: Device console capture, 27-09-2026.
+Editorial note: Selected command/output excerpts; unrelated interface rows,
+blank prompts and repeated pastes are omitted. Section labels are editorial.
+No omitted output has been reconstructed.
+
+Baseline — hq-a1
+----------------
+
+hq-a1#ping 10.10.99.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.10.99.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 4/5/8 ms
+hq-a1#
+
+Failure action and immediate state — hq-d2
+------------------------------------------
+
+hq-d2#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+hq-d2(config)#interface Vlan199
+hq-d2(config-if)# shutdown
+hq-d2(config-if)#end
+hq-d2#show standby brief
+[Header and unrelated groups omitted]
+Vl199       199  110 P Active  local           10.10.99.2      10.10.99.1
+
+Failover state — hq-d1
+----------------
+
+hq-d1#show standby brief
+[Header and unrelated groups omitted]
+Vl199       199  100 P Active  local           unknown         10.10.99.1
+
+Post-failover reachability — hq-a1
+----------------------------------
+
+hq-a1#ping 10.10.99.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.10.99.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 4/5/8 ms
+hq-a1#ping 10.10.99.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.10.99.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 6/8/10 ms
+
+Settled failure state — hq-d2
+-----------------------------
+
+hq-d2#show ip interface brief
+[Header and other interfaces omitted]
+Vlan199                10.10.99.3      YES manual administratively down down
+hq-d2#show standby brief
+[Header and unrelated groups omitted]
+Vl199       199  110 P Init    unknown         unknown         10.10.99.1
+hq-d2#

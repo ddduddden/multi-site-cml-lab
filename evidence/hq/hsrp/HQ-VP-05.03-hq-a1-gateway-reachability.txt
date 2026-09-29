@@ -1,0 +1,88 @@
+HQ-VP-05.03 — HSRP/STP Alignment and Gateway Reachability
+=========================================================
+
+Device: hq-a1
+
+Editorial note: Section headings and spacing have been added for readability only.
+The CLI command/output content below is unchanged from the original capture.
+
+Access-switch SVI state
+-----------------------
+
+hq-a1#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0     unassigned      YES unset  up                    up
+GigabitEthernet0/1     unassigned      YES unset  up                    up
+GigabitEthernet0/2     unassigned      YES unset  administratively down down
+GigabitEthernet0/3     unassigned      YES unset  administratively down down
+GigabitEthernet1/0     unassigned      YES unset  up                    up
+GigabitEthernet1/1     unassigned      YES unset  up                    up
+GigabitEthernet1/2     unassigned      YES unset  administratively down down
+GigabitEthernet1/3     unassigned      YES unset  administratively down down
+GigabitEthernet2/0     unassigned      YES unset  down                  down
+GigabitEthernet2/1     unassigned      YES unset  down                  down
+GigabitEthernet2/2     unassigned      YES unset  down                  down
+GigabitEthernet2/3     unassigned      YES unset  down                  down
+GigabitEthernet3/0     unassigned      YES unset  down                  down
+GigabitEthernet3/1     unassigned      YES unset  down                  down
+GigabitEthernet3/2     unassigned      YES unset  down                  down
+GigabitEthernet3/3     unassigned      YES unset  down                  down
+Port-channel10         unassigned      YES unset  up                    up
+Port-channel20         unassigned      YES unset  up                    up
+Vlan112                10.10.12.4      YES manual up                    up
+Vlan199                10.10.99.4      YES manual up                    up
+
+VLAN 199 — HSRP virtual gateway 10.10.99.1
+------------------------------------------
+
+hq-a1#ping 10.10.99.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.10.99.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 3/4/5 ms
+
+VLAN 199 — hq-d1 SVI 10.10.99.2
+-------------------------------
+
+hq-a1#ping 10.10.99.2
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.10.99.2, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 8/8/10 ms
+
+VLAN 199 — hq-d2 SVI 10.10.99.3
+-------------------------------
+
+hq-a1#ping 10.10.99.3
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.10.99.3, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 3/4/6 ms
+
+VLAN 112 — HSRP virtual gateway 10.10.12.1
+------------------------------------------
+
+hq-a1#ping 10.10.12.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.10.12.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 3/5/7 ms
+
+VLAN 112 — hq-d1 SVI 10.10.12.2
+-------------------------------
+
+hq-a1#ping 10.10.12.2
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.10.12.2, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 3/4/6 ms
+
+VLAN 112 — hq-d2 SVI 10.10.12.3
+-------------------------------
+
+hq-a1#ping 10.10.12.3
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.10.12.3, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 7/8/10 ms
+hq-a1#
