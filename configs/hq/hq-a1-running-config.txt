@@ -1,0 +1,255 @@
+Building configuration...
+
+Current configuration : 5310 bytes
+!
+! Last configuration change at 07:05:01 UTC Sun Sep 27 2026 by <sanitised>
+!
+version 15.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+service compress-config
+!
+hostname hq-a1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no logging console
+enable secret 5 <sanitised>
+!
+username <sanitised> secret 5 <sanitised>
+no aaa new-model
+!
+!
+!
+!
+!
+vtp mode transparent
+no ip routing
+!
+!
+!
+no ip domain-lookup
+no ip cef
+no ipv6 cef
+!
+!
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+!
+!
+vlan 112
+ name CORP-USERS
+!
+vlan 120
+ name VOICE
+!
+vlan 130
+ name SERVERS
+!
+vlan 140
+ name IOT-CCTV
+!
+vlan 152
+ name GUEST
+!
+vlan 160
+ name FACILITIES
+!
+vlan 170
+ name BYOD-WLAN
+!
+vlan 190
+ name NATIVE
+!
+vlan 191
+ name PARKING
+!
+vlan 199
+ name NET-MGMT
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Port-channel10
+ switchport trunk allowed vlan 112,120,130,140,152,160,170,190,199
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 190
+ switchport mode trunk
+!
+interface Port-channel20
+ switchport trunk allowed vlan 112,120,130,140,152,160,170,190,199
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 190
+ switchport mode trunk
+!
+interface GigabitEthernet0/0
+ switchport trunk allowed vlan 112,120,130,140,152,160,170,190,199
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 190
+ switchport mode trunk
+ negotiation auto
+ channel-group 10 mode active
+!
+interface GigabitEthernet0/1
+ switchport trunk allowed vlan 112,120,130,140,152,160,170,190,199
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 190
+ switchport mode trunk
+ negotiation auto
+ channel-group 10 mode active
+!
+interface GigabitEthernet0/2
+ switchport access vlan 191
+ switchport mode access
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet0/3
+ switchport access vlan 191
+ switchport mode access
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet1/0
+ switchport trunk allowed vlan 112,120,130,140,152,160,170,190,199
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 190
+ switchport mode trunk
+ negotiation auto
+ channel-group 20 mode active
+!
+interface GigabitEthernet1/1
+ switchport trunk allowed vlan 112,120,130,140,152,160,170,190,199
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 190
+ switchport mode trunk
+ negotiation auto
+ channel-group 20 mode active
+!
+interface GigabitEthernet1/2
+ switchport access vlan 191
+ switchport mode access
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet1/3
+ switchport access vlan 191
+ switchport mode access
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet2/0
+ switchport access vlan 112
+ switchport mode access
+ switchport voice vlan 120
+ negotiation auto
+!
+interface GigabitEthernet2/1
+ switchport access vlan 112
+ switchport mode access
+ negotiation auto
+!
+interface GigabitEthernet2/2
+ switchport access vlan 130
+ switchport mode access
+ negotiation auto
+!
+interface GigabitEthernet2/3
+ switchport access vlan 140
+ switchport mode access
+ negotiation auto
+!
+interface GigabitEthernet3/0
+ switchport access vlan 152
+ switchport mode access
+ negotiation auto
+!
+interface GigabitEthernet3/1
+ switchport access vlan 160
+ switchport mode access
+ negotiation auto
+!
+interface GigabitEthernet3/2
+ switchport access vlan 170
+ switchport mode access
+ negotiation auto
+!
+interface GigabitEthernet3/3
+ switchport access vlan 199
+ switchport mode access
+ negotiation auto
+!
+interface Vlan199
+ ip address 10.10.99.4 255.255.255.192
+ no ip route-cache
+!
+ip default-gateway 10.10.99.1
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+!
+!
+!
+!
+!
+!
+control-plane
+!
+banner motd ^C
+
+####################################################################
+#                                                                  #
+#               NETWORK OPERATIONS / SECURITY NOTICE               #
+#                        MULTI-SITE CML LAB                        #
+#                     HQ CAMPUS - OSPF AREA 10                     #
+#                                                                  #
+#------------------------------------------------------------------#
+#                                                                  #
+#           *** WARNING - AUTHORIZED PERSONNEL ONLY ***            #
+#                                                                  #
+#       This system is restricted to authorized users only.        #
+#        Access to this device is restricted and monitored.        #
+#         Activity may be logged and reviewed as required.         #
+#                                                                  #
+#        Disconnect immediately if you are not authorized.         #
+#                                                                  #
+####################################################################
+
+^C
+!
+line con 0
+ exec-timeout 0 0
+ password 7 <sanitised>
+ logging synchronous
+ login local
+line aux 0
+line vty 0 4
+ exec-timeout 0 0
+ password 7 <sanitised>
+ login local
+ transport input ssh
+line vty 5 15
+ password 7 <sanitised>
+ login local
+ transport input ssh
+!
+!
+end

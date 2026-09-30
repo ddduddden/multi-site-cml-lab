@@ -1,0 +1,288 @@
+HQ-VP-07.04 — OSPF Link-State Database and Learned Routing
+==========================================================
+
+Capture date: 30-09-2026
+Source: Device console capture, 30-09-2026, from the Phase 07 build state.
+Editorial note: Selected command/output excerpts; blank prompts and repeated
+pastes are omitted. Section labels are editorial. No omitted output has been
+reconstructed.
+
+hq-r1
+-----
+hq-r1#show ip ospf database
+
+            OSPF Router with ID (10.255.10.129) (Process ID 10)
+
+                Router Link States (Area 10)
+
+Link ID         ADV Router      Age         Seq#       Checksum Link count
+10.255.10.129   10.255.10.129   82          0x8000000D 0x00F7B5 11
+10.255.10.130   10.255.10.130   74          0x8000000D 0x00A9D9 11
+10.255.10.131   10.255.10.131   73          0x8000001D 0x004CBB 19
+10.255.10.132   10.255.10.132   73          0x80000014 0x0001DD 19
+
+hq-r1#show ip route ospf
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       a - application route
+       + - replicated route, % - next hop override, p - overrides from PfR
+
+Gateway of last resort is not set
+
+      10.0.0.0/8 is variably subnetted, 27 subnets, 6 masks
+O        10.10.12.0/22 [110/11] via 10.255.10.12, 00:14:31, GigabitEthernet0/3
+                       [110/11] via 10.255.10.10, 00:14:31, GigabitEthernet0/2
+                       [110/11] via 10.255.10.8, 00:14:31, GigabitEthernet0/1
+                       [110/11] via 10.255.10.0, 00:14:31, GigabitEthernet0/0
+O        10.10.20.0/23 [110/11] via 10.255.10.12, 00:14:31, GigabitEthernet0/3
+                       [110/11] via 10.255.10.10, 00:14:31, GigabitEthernet0/2
+                       [110/11] via 10.255.10.8, 00:14:31, GigabitEthernet0/1
+                       [110/11] via 10.255.10.0, 00:14:31, GigabitEthernet0/0
+O        10.10.30.0/25 [110/11] via 10.255.10.12, 00:14:31, GigabitEthernet0/3
+                       [110/11] via 10.255.10.10, 00:14:31, GigabitEthernet0/2
+                       [110/11] via 10.255.10.8, 00:14:31, GigabitEthernet0/1
+                       [110/11] via 10.255.10.0, 00:14:31, GigabitEthernet0/0
+O        10.10.40.0/23 [110/11] via 10.255.10.12, 00:14:31, GigabitEthernet0/3
+                       [110/11] via 10.255.10.10, 00:14:31, GigabitEthernet0/2
+                       [110/11] via 10.255.10.8, 00:14:31, GigabitEthernet0/1
+                       [110/11] via 10.255.10.0, 00:14:31, GigabitEthernet0/0
+O        10.10.52.0/22 [110/11] via 10.255.10.12, 00:14:31, GigabitEthernet0/3
+                       [110/11] via 10.255.10.10, 00:14:31, GigabitEthernet0/2
+                       [110/11] via 10.255.10.8, 00:14:31, GigabitEthernet0/1
+                       [110/11] via 10.255.10.0, 00:14:31, GigabitEthernet0/0
+O        10.10.60.0/26 [110/11] via 10.255.10.12, 00:14:31, GigabitEthernet0/3
+                       [110/11] via 10.255.10.10, 00:14:31, GigabitEthernet0/2
+                       [110/11] via 10.255.10.8, 00:14:31, GigabitEthernet0/1
+                       [110/11] via 10.255.10.0, 00:14:31, GigabitEthernet0/0
+O        10.10.70.0/23 [110/11] via 10.255.10.12, 00:14:31, GigabitEthernet0/3
+                       [110/11] via 10.255.10.10, 00:14:31, GigabitEthernet0/2
+                       [110/11] via 10.255.10.8, 00:14:31, GigabitEthernet0/1
+                       [110/11] via 10.255.10.0, 00:14:31, GigabitEthernet0/0
+O        10.10.99.0/26 [110/11] via 10.255.10.12, 00:14:31, GigabitEthernet0/3
+                       [110/11] via 10.255.10.10, 00:14:31, GigabitEthernet0/2
+                       [110/11] via 10.255.10.8, 00:14:31, GigabitEthernet0/1
+                       [110/11] via 10.255.10.0, 00:14:31, GigabitEthernet0/0
+O        10.255.10.2/31
+           [110/110] via 10.255.10.6, 00:04:38, GigabitEthernet0/4
+O        10.255.10.4/31
+           [110/110] via 10.255.10.12, 00:14:31, GigabitEthernet0/3
+           [110/110] via 10.255.10.10, 00:14:31, GigabitEthernet0/2
+           [110/110] via 10.255.10.8, 00:14:31, GigabitEthernet0/1
+           [110/110] via 10.255.10.0, 00:14:31, GigabitEthernet0/0
+O        10.255.10.14/31
+           [110/110] via 10.255.10.6, 00:04:38, GigabitEthernet0/4
+O        10.255.10.16/31
+           [110/110] via 10.255.10.6, 00:04:38, GigabitEthernet0/4
+O        10.255.10.18/31
+           [110/110] via 10.255.10.6, 00:04:38, GigabitEthernet0/4
+O        10.255.10.130/32
+           [110/111] via 10.255.10.12, 00:14:31, GigabitEthernet0/3
+           [110/111] via 10.255.10.10, 00:14:31, GigabitEthernet0/2
+           [110/111] via 10.255.10.8, 00:14:31, GigabitEthernet0/1
+           [110/111] via 10.255.10.0, 00:14:31, GigabitEthernet0/0
+O        10.255.10.131/32
+           [110/11] via 10.255.10.12, 00:14:31, GigabitEthernet0/3
+           [110/11] via 10.255.10.10, 00:14:31, GigabitEthernet0/2
+           [110/11] via 10.255.10.8, 00:14:31, GigabitEthernet0/1
+           [110/11] via 10.255.10.0, 00:14:31, GigabitEthernet0/0
+O        10.255.10.132/32
+           [110/101] via 10.255.10.6, 00:04:38, GigabitEthernet0/4
+
+hq-r2
+-----
+hq-r2#show ip ospf database
+
+            OSPF Router with ID (10.255.10.130) (Process ID 10)
+
+                Router Link States (Area 10)
+
+Link ID         ADV Router      Age         Seq#       Checksum Link count
+10.255.10.129   10.255.10.129   241         0x8000000D 0x00F7B5 11
+10.255.10.130   10.255.10.130   230         0x8000000D 0x00A9D9 11
+10.255.10.131   10.255.10.131   231         0x8000001D 0x004CBB 19
+10.255.10.132   10.255.10.132   231         0x80000014 0x0001DD 19
+
+hq-r2#show ip route ospf
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       a - application route
+       + - replicated route, % - next hop override, p - overrides from PfR
+
+Gateway of last resort is not set
+
+      10.0.0.0/8 is variably subnetted, 27 subnets, 6 masks
+O        10.10.12.0/22 [110/11] via 10.255.10.18, 00:07:26, GigabitEthernet0/3
+                       [110/11] via 10.255.10.16, 00:07:26, GigabitEthernet0/2
+                       [110/11] via 10.255.10.14, 00:07:26, GigabitEthernet0/1
+                       [110/11] via 10.255.10.2, 00:07:26, GigabitEthernet0/0
+O        10.10.20.0/23 [110/11] via 10.255.10.18, 00:07:26, GigabitEthernet0/3
+                       [110/11] via 10.255.10.16, 00:07:26, GigabitEthernet0/2
+                       [110/11] via 10.255.10.14, 00:07:26, GigabitEthernet0/1
+                       [110/11] via 10.255.10.2, 00:07:26, GigabitEthernet0/0
+O        10.10.30.0/25 [110/11] via 10.255.10.18, 00:07:26, GigabitEthernet0/3
+                       [110/11] via 10.255.10.16, 00:07:26, GigabitEthernet0/2
+                       [110/11] via 10.255.10.14, 00:07:26, GigabitEthernet0/1
+                       [110/11] via 10.255.10.2, 00:07:26, GigabitEthernet0/0
+O        10.10.40.0/23 [110/11] via 10.255.10.18, 00:07:26, GigabitEthernet0/3
+                       [110/11] via 10.255.10.16, 00:07:26, GigabitEthernet0/2
+                       [110/11] via 10.255.10.14, 00:07:26, GigabitEthernet0/1
+                       [110/11] via 10.255.10.2, 00:07:26, GigabitEthernet0/0
+O        10.10.52.0/22 [110/11] via 10.255.10.18, 00:07:26, GigabitEthernet0/3
+                       [110/11] via 10.255.10.16, 00:07:26, GigabitEthernet0/2
+                       [110/11] via 10.255.10.14, 00:07:26, GigabitEthernet0/1
+                       [110/11] via 10.255.10.2, 00:07:26, GigabitEthernet0/0
+O        10.10.60.0/26 [110/11] via 10.255.10.18, 00:07:26, GigabitEthernet0/3
+                       [110/11] via 10.255.10.16, 00:07:26, GigabitEthernet0/2
+                       [110/11] via 10.255.10.14, 00:07:26, GigabitEthernet0/1
+                       [110/11] via 10.255.10.2, 00:07:26, GigabitEthernet0/0
+O        10.10.70.0/23 [110/11] via 10.255.10.18, 00:07:26, GigabitEthernet0/3
+                       [110/11] via 10.255.10.16, 00:07:26, GigabitEthernet0/2
+                       [110/11] via 10.255.10.14, 00:07:26, GigabitEthernet0/1
+                       [110/11] via 10.255.10.2, 00:07:26, GigabitEthernet0/0
+O        10.10.99.0/26 [110/11] via 10.255.10.18, 00:07:26, GigabitEthernet0/3
+                       [110/11] via 10.255.10.16, 00:07:26, GigabitEthernet0/2
+                       [110/11] via 10.255.10.14, 00:07:26, GigabitEthernet0/1
+                       [110/11] via 10.255.10.2, 00:07:26, GigabitEthernet0/0
+O        10.255.10.0/31
+           [110/110] via 10.255.10.4, 00:15:53, GigabitEthernet0/4
+O        10.255.10.6/31
+           [110/110] via 10.255.10.18, 00:07:26, GigabitEthernet0/3
+           [110/110] via 10.255.10.16, 00:07:26, GigabitEthernet0/2
+           [110/110] via 10.255.10.14, 00:07:26, GigabitEthernet0/1
+           [110/110] via 10.255.10.2, 00:07:26, GigabitEthernet0/0
+O        10.255.10.8/31
+           [110/110] via 10.255.10.4, 00:15:53, GigabitEthernet0/4
+O        10.255.10.10/31
+           [110/110] via 10.255.10.4, 00:15:53, GigabitEthernet0/4
+O        10.255.10.12/31
+           [110/110] via 10.255.10.4, 00:15:53, GigabitEthernet0/4
+O        10.255.10.129/32
+           [110/111] via 10.255.10.16, 00:07:26, GigabitEthernet0/2
+           [110/111] via 10.255.10.14, 00:07:26, GigabitEthernet0/1
+           [110/111] via 10.255.10.4, 00:15:53, GigabitEthernet0/4
+           [110/111] via 10.255.10.2, 00:07:26, GigabitEthernet0/0
+O        10.255.10.131/32
+           [110/101] via 10.255.10.4, 00:15:53, GigabitEthernet0/4
+O        10.255.10.132/32
+           [110/11] via 10.255.10.18, 00:07:26, GigabitEthernet0/3
+           [110/11] via 10.255.10.16, 00:07:26, GigabitEthernet0/2
+           [110/11] via 10.255.10.14, 00:07:26, GigabitEthernet0/1
+           [110/11] via 10.255.10.2, 00:07:26, GigabitEthernet0/0
+
+hq-d1
+-----
+hq-d1#show ip ospf database
+
+            OSPF Router with ID (10.255.10.131) (Process ID 10)
+
+                Router Link States (Area 10)
+
+Link ID         ADV Router      Age         Seq#       Checksum Link count
+10.255.10.129   10.255.10.129   332         0x8000000D 0x00F7B5 11
+10.255.10.130   10.255.10.130   323         0x8000000D 0x00A9D9 11
+10.255.10.131   10.255.10.131   322         0x8000001D 0x004CBB 19
+10.255.10.132   10.255.10.132   324         0x80000014 0x0001DD 19
+
+hq-d1#show ip route ospf
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       a - application route
+       + - replicated route, % - next hop override, p - overrides from PfR
+
+Gateway of last resort is not set
+
+      10.0.0.0/8 is variably subnetted, 35 subnets, 6 masks
+O        10.255.10.2/31
+           [110/110] via 10.255.10.5, 00:17:19, GigabitEthernet3/0
+O        10.255.10.6/31
+           [110/110] via 10.255.10.13, 00:18:03, GigabitEthernet2/3
+           [110/110] via 10.255.10.11, 00:18:03, GigabitEthernet2/2
+           [110/110] via 10.255.10.9, 00:18:03, GigabitEthernet2/1
+           [110/110] via 10.255.10.1, 00:18:03, GigabitEthernet2/0
+O        10.255.10.14/31
+           [110/110] via 10.255.10.5, 00:17:19, GigabitEthernet3/0
+O        10.255.10.16/31
+           [110/110] via 10.255.10.5, 00:17:19, GigabitEthernet3/0
+O        10.255.10.18/31
+           [110/110] via 10.255.10.5, 00:17:19, GigabitEthernet3/0
+O        10.255.10.129/32
+           [110/11] via 10.255.10.13, 00:20:09, GigabitEthernet2/3
+           [110/11] via 10.255.10.11, 00:20:09, GigabitEthernet2/2
+           [110/11] via 10.255.10.9, 00:20:09, GigabitEthernet2/1
+           [110/11] via 10.255.10.1, 00:20:09, GigabitEthernet2/0
+O        10.255.10.130/32
+           [110/101] via 10.255.10.5, 00:19:48, GigabitEthernet3/0
+O        10.255.10.132/32
+           [110/111] via 10.255.10.11, 00:08:39, GigabitEthernet2/2
+           [110/111] via 10.255.10.9, 00:08:39, GigabitEthernet2/1
+           [110/111] via 10.255.10.5, 00:08:39, GigabitEthernet3/0
+           [110/111] via 10.255.10.1, 00:08:39, GigabitEthernet2/0
+
+hq-d2
+-----
+hq-d2#show ip ospf database
+
+            OSPF Router with ID (10.255.10.132) (Process ID 10)
+
+                Router Link States (Area 10)
+
+Link ID         ADV Router      Age         Seq#       Checksum Link count
+10.255.10.129   10.255.10.129   459         0x8000000D 0x00F7B5 11
+10.255.10.130   10.255.10.130   450         0x8000000D 0x00A9D9 11
+10.255.10.131   10.255.10.131   450         0x8000001D 0x004CBB 19
+10.255.10.132   10.255.10.132   449         0x80000014 0x0001DD 19
+
+hq-d2#show ip route ospf
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       a - application route
+       + - replicated route, % - next hop override, p - overrides from PfR
+
+Gateway of last resort is not set
+
+      10.0.0.0/8 is variably subnetted, 35 subnets, 6 masks
+O        10.255.10.0/31
+           [110/110] via 10.255.10.7, 00:10:57, GigabitEthernet3/0
+O        10.255.10.4/31
+           [110/110] via 10.255.10.19, 00:10:57, GigabitEthernet2/3
+           [110/110] via 10.255.10.17, 00:10:57, GigabitEthernet2/2
+           [110/110] via 10.255.10.15, 00:10:57, GigabitEthernet2/1
+           [110/110] via 10.255.10.3, 00:10:57, GigabitEthernet2/0
+O        10.255.10.8/31
+           [110/110] via 10.255.10.7, 00:10:57, GigabitEthernet3/0
+O        10.255.10.10/31
+           [110/110] via 10.255.10.7, 00:10:57, GigabitEthernet3/0
+O        10.255.10.12/31
+           [110/110] via 10.255.10.7, 00:10:57, GigabitEthernet3/0
+O        10.255.10.129/32
+           [110/101] via 10.255.10.7, 00:10:57, GigabitEthernet3/0
+O        10.255.10.130/32
+           [110/11] via 10.255.10.19, 00:10:57, GigabitEthernet2/3
+           [110/11] via 10.255.10.17, 00:10:57, GigabitEthernet2/2
+           [110/11] via 10.255.10.15, 00:10:57, GigabitEthernet2/1
+           [110/11] via 10.255.10.3, 00:10:57, GigabitEthernet2/0
+O        10.255.10.131/32
+           [110/111] via 10.255.10.17, 00:10:57, GigabitEthernet2/2
+           [110/111] via 10.255.10.15, 00:10:57, GigabitEthernet2/1
+           [110/111] via 10.255.10.7, 00:10:57, GigabitEthernet3/0
+           [110/111] via 10.255.10.3, 00:10:57, GigabitEthernet2/0

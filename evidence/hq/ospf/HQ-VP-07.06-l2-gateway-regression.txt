@@ -1,0 +1,185 @@
+HQ-VP-07.06 — Layer 2 and Gateway Regression
+============================================
+
+Capture date: 30-09-2026
+Source: Device console capture, 30-09-2026, from the Phase 07 build state.
+Editorial note: Selected command/output excerpts; blank prompts and repeated
+pastes are omitted. Section labels are editorial. No omitted output has been
+reconstructed.
+
+hq-a1
+-----
+hq-a1#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0     unassigned      YES unset  up                    up
+GigabitEthernet0/1     unassigned      YES unset  up                    up
+GigabitEthernet0/2     unassigned      YES unset  administratively down down
+GigabitEthernet0/3     unassigned      YES unset  administratively down down
+GigabitEthernet1/0     unassigned      YES unset  up                    up
+GigabitEthernet1/1     unassigned      YES unset  up                    up
+GigabitEthernet1/2     unassigned      YES unset  administratively down down
+GigabitEthernet1/3     unassigned      YES unset  administratively down down
+GigabitEthernet2/0     unassigned      YES unset  down                  down
+GigabitEthernet2/1     unassigned      YES unset  down                  down
+GigabitEthernet2/2     unassigned      YES unset  down                  down
+GigabitEthernet2/3     unassigned      YES unset  down                  down
+GigabitEthernet3/0     unassigned      YES unset  down                  down
+GigabitEthernet3/1     unassigned      YES unset  down                  down
+GigabitEthernet3/2     unassigned      YES unset  down                  down
+GigabitEthernet3/3     unassigned      YES unset  down                  down
+Port-channel10         unassigned      YES unset  up                    up
+Port-channel20         unassigned      YES unset  up                    up
+Vlan199                10.10.99.4      YES manual up                    up
+
+hq-a1#show etherchannel summary
+Flags:  D - down        P - bundled in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        U - in use      N - not in use, no aggregation
+        f - failed to allocate aggregator
+
+        M - not in use, minimum links not met
+        m - not in use, port not aggregated due to minimum links not met
+        u - unsuitable for bundling
+        w - waiting to be aggregated
+        d - default port
+
+        A - formed by Auto LAG
+
+Number of channel-groups in use: 2
+Number of aggregators:           2
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+10     Po10(SU)        LACP      Gi0/0(P)    Gi0/1(P)
+20     Po20(SU)        LACP      Gi1/0(P)    Gi1/1(P)
+
+hq-a1#show spanning-tree root
+
+                                        Root    Hello Max Fwd
+Vlan                   Root ID          Cost    Time  Age Dly  Root Port
+---------------- -------------------- --------- ----- --- ---  ------------
+VLAN0112         24688 5254.0044.1293         3    2   20  15  Po10
+VLAN0120         24696 5254.006a.22f2         3    2   20  15  Po20
+VLAN0130         24706 5254.0044.1293         3    2   20  15  Po10
+VLAN0140         24716 5254.006a.22f2         3    2   20  15  Po20
+VLAN0152         24728 5254.0044.1293         3    2   20  15  Po10
+VLAN0160         24736 5254.006a.22f2         3    2   20  15  Po20
+VLAN0170         24746 5254.0044.1293         3    2   20  15  Po10
+VLAN0190         24766 5254.0044.1293         3    2   20  15  Po10
+VLAN0199         24775 5254.006a.22f2         3    2   20  15  Po20
+
+hq-d1
+-----
+hq-d1#show etherchannel summary
+Flags:  D - down        P - bundled in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        U - in use      N - not in use, no aggregation
+        f - failed to allocate aggregator
+
+        M - not in use, minimum links not met
+        m - not in use, port not aggregated due to minimum links not met
+        u - unsuitable for bundling
+        w - waiting to be aggregated
+        d - default port
+
+        A - formed by Auto LAG
+
+
+Number of channel-groups in use: 2
+Number of aggregators:           2
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+10     Po10(SU)        LACP      Gi0/0(P)    Gi0/1(P)
+30     Po30(SU)        LACP      Gi1/0(P)    Gi1/1(P)    Gi1/2(P)
+                                 Gi1/3(P)
+
+hq-d1#show spanning-tree root
+
+                                        Root    Hello Max Fwd
+Vlan                   Root ID          Cost    Time  Age Dly  Root Port
+---------------- -------------------- --------- ----- --- ---  ------------
+VLAN0001         32769 5254.0044.1293         0    2   20  15
+VLAN0112         24688 5254.0044.1293         0    2   20  15
+VLAN0120         24696 5254.006a.22f2         3    2   20  15  Po30
+VLAN0130         24706 5254.0044.1293         0    2   20  15
+VLAN0140         24716 5254.006a.22f2         3    2   20  15  Po30
+VLAN0152         24728 5254.0044.1293         0    2   20  15
+VLAN0160         24736 5254.006a.22f2         3    2   20  15  Po30
+VLAN0170         24746 5254.0044.1293         0    2   20  15
+VLAN0190         24766 5254.0044.1293         0    2   20  15
+VLAN0199         24775 5254.006a.22f2         3    2   20  15  Po30
+
+hq-d1#show standby brief
+                     P indicates configured to preempt.
+                     |
+Interface   Grp  Pri P State   Active          Standby         Virtual IP
+Vl112       112  110 P Active  local           10.10.12.3      10.10.12.1
+Vl120       120  100   Standby 10.10.20.3      local           10.10.20.1
+Vl130       130  110 P Active  local           10.10.30.3      10.10.30.1
+Vl140       140  100   Standby 10.10.40.3      local           10.10.40.1
+Vl152       152  110 P Active  local           10.10.52.3      10.10.52.1
+Vl160       160  100   Standby 10.10.60.3      local           10.10.60.1
+Vl170       170  110 P Active  local           10.10.70.3      10.10.70.1
+Vl199       199  100   Standby 10.10.99.3      local           10.10.99.1
+
+hq-d2
+-----
+hq-d2#show etherchannel summary
+Flags:  D - down        P - bundled in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        U - in use      N - not in use, no aggregation
+        f - failed to allocate aggregator
+
+        M - not in use, minimum links not met
+        m - not in use, port not aggregated due to minimum links not met
+        u - unsuitable for bundling
+        w - waiting to be aggregated
+        d - default port
+
+        A - formed by Auto LAG
+
+
+Number of channel-groups in use: 2
+Number of aggregators:           2
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+20     Po20(SU)        LACP      Gi0/0(P)    Gi0/1(P)
+30     Po30(SU)        LACP      Gi1/0(P)    Gi1/1(P)    Gi1/2(P)
+                                 Gi1/3(P)
+
+hq-d2#show spanning-tree root
+
+                                        Root    Hello Max Fwd
+Vlan                   Root ID          Cost    Time  Age Dly  Root Port
+---------------- -------------------- --------- ----- --- ---  ------------
+VLAN0001         32769 5254.006a.22f2         0    2   20  15
+VLAN0112         24688 5254.0044.1293         3    2   20  15  Po30
+VLAN0120         24696 5254.006a.22f2         0    2   20  15
+VLAN0130         24706 5254.0044.1293         3    2   20  15  Po30
+VLAN0140         24716 5254.006a.22f2         0    2   20  15
+VLAN0152         24728 5254.0044.1293         3    2   20  15  Po30
+VLAN0160         24736 5254.006a.22f2         0    2   20  15
+VLAN0170         24746 5254.0044.1293         3    2   20  15  Po30
+VLAN0190         24766 5254.0044.1293         3    2   20  15  Po30
+VLAN0199         24775 5254.006a.22f2         0    2   20  15
+
+hq-d2#show standby brief
+                     P indicates configured to preempt.
+                     |
+Interface   Grp  Pri P State   Active          Standby         Virtual IP
+Vl112       112  100   Standby 10.10.12.2      local           10.10.12.1
+Vl120       120  110 P Active  local           10.10.20.2      10.10.20.1
+Vl130       130  100   Standby 10.10.30.2      local           10.10.30.1
+Vl140       140  110 P Active  local           10.10.40.2      10.10.40.1
+Vl152       152  100   Standby 10.10.52.2      local           10.10.52.1
+Vl160       160  110 P Active  local           10.10.60.2      10.10.60.1
+Vl170       170  100   Standby 10.10.70.2      local           10.10.70.1
+Vl199       199  110 P Active  local           10.10.99.2      10.10.99.1

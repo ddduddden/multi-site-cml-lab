@@ -1,0 +1,418 @@
+HQ-VP-07.02 — OSPF Interface Participation, Network Type and Cost
+=================================================================
+
+Capture date: 30-09-2026
+Source: Device console capture, 30-09-2026, from the Phase 07 build state.
+Editorial note: Selected command/output excerpts; blank prompts and repeated
+pastes are omitted. Section labels are editorial. No omitted output has been
+reconstructed.
+
+hq-r1
+-----
+hq-r1#show ip ospf interface brief
+Interface    PID   Area            IP Address/Mask    Cost  State Nbrs F/C
+Lo0          10    10              10.255.10.129/32   1     LOOP  0/0
+Gi0/4        10    10              10.255.10.7/31     100   P2P   1/1
+Gi0/3        10    10              10.255.10.13/31    10    P2P   1/1
+Gi0/2        10    10              10.255.10.11/31    10    P2P   1/1
+Gi0/1        10    10              10.255.10.9/31     10    P2P   1/1
+Gi0/0        10    10              10.255.10.1/31     10    P2P   1/1
+
+hq-r1#show running-config | section ^router ospf
+router ospf 10
+ router-id 10.255.10.129
+ passive-interface default
+ no passive-interface GigabitEthernet0/0
+ no passive-interface GigabitEthernet0/1
+ no passive-interface GigabitEthernet0/2
+ no passive-interface GigabitEthernet0/3
+ no passive-interface GigabitEthernet0/4
+
+hq-r1#show running-config interface GigabitEthernet0/0
+Building configuration...
+
+Current configuration : 245 bytes
+!
+interface GigabitEthernet0/0
+ description P2P to hq-d1 Gi2/0 | 10.255.10.0/31 | direct
+ ip address 10.255.10.1 255.255.255.254
+ ip ospf network point-to-point
+ ip ospf 10 area 10
+ ip ospf cost 10
+ duplex auto
+ speed auto
+ media-type rj45
+end
+
+hq-r1#show running-config interface GigabitEthernet0/1
+Building configuration...
+
+Current configuration : 245 bytes
+!
+interface GigabitEthernet0/1
+ description P2P to hq-d1 Gi2/1 | 10.255.10.8/31 | direct
+ ip address 10.255.10.9 255.255.255.254
+ ip ospf network point-to-point
+ ip ospf 10 area 10
+ ip ospf cost 10
+ duplex auto
+ speed auto
+ media-type rj45
+end
+
+hq-r1#show running-config interface GigabitEthernet0/2
+Building configuration...
+
+Current configuration : 247 bytes
+!
+interface GigabitEthernet0/2
+ description P2P to hq-d1 Gi2/2 | 10.255.10.10/31 | direct
+ ip address 10.255.10.11 255.255.255.254
+ ip ospf network point-to-point
+ ip ospf 10 area 10
+ ip ospf cost 10
+ duplex auto
+ speed auto
+ media-type rj45
+end
+
+hq-r1#show running-config interface GigabitEthernet0/3
+Building configuration...
+
+Current configuration : 247 bytes
+!
+interface GigabitEthernet0/3
+ description P2P to hq-d1 Gi2/3 | 10.255.10.12/31 | direct
+ ip address 10.255.10.13 255.255.255.254
+ ip ospf network point-to-point
+ ip ospf 10 area 10
+ ip ospf cost 10
+ duplex auto
+ speed auto
+ media-type rj45
+end
+
+hq-r1#show running-config interface GigabitEthernet0/4
+Building configuration...
+
+Current configuration : 250 bytes
+!
+interface GigabitEthernet0/4
+ description P2P to hq-d2 Gi3/0 | 10.255.10.6/31 | cross-link
+ ip address 10.255.10.7 255.255.255.254
+ ip ospf network point-to-point
+ ip ospf 10 area 10
+ ip ospf cost 100
+ duplex auto
+ speed auto
+ media-type rj45
+end
+
+hq-r2
+-----
+hq-r2#show ip ospf interface brief
+Interface    PID   Area            IP Address/Mask    Cost  State Nbrs F/C
+Lo0          10    10              10.255.10.130/32   1     LOOP  0/0
+Gi0/4        10    10              10.255.10.5/31     100   P2P   1/1
+Gi0/3        10    10              10.255.10.19/31    10    P2P   1/1
+Gi0/2        10    10              10.255.10.17/31    10    P2P   1/1
+Gi0/1        10    10              10.255.10.15/31    10    P2P   1/1
+Gi0/0        10    10              10.255.10.3/31     10    P2P   1/1
+
+hq-r2#show running-config | section ^router ospf
+router ospf 10
+ router-id 10.255.10.130
+ passive-interface default
+ no passive-interface GigabitEthernet0/0
+ no passive-interface GigabitEthernet0/1
+ no passive-interface GigabitEthernet0/2
+ no passive-interface GigabitEthernet0/3
+ no passive-interface GigabitEthernet0/4
+
+hq-r2#show running-config interface GigabitEthernet0/0
+Building configuration...
+
+Current configuration : 245 bytes
+!
+interface GigabitEthernet0/0
+ description P2P to hq-d2 Gi2/0 | 10.255.10.2/31 | direct
+ ip address 10.255.10.3 255.255.255.254
+ ip ospf network point-to-point
+ ip ospf 10 area 10
+ ip ospf cost 10
+ duplex auto
+ speed auto
+ media-type rj45
+end
+
+hq-r2#show running-config interface GigabitEthernet0/1
+Building configuration...
+
+Current configuration : 247 bytes
+!
+interface GigabitEthernet0/1
+ description P2P to hq-d2 Gi2/1 | 10.255.10.14/31 | direct
+ ip address 10.255.10.15 255.255.255.254
+ ip ospf network point-to-point
+ ip ospf 10 area 10
+ ip ospf cost 10
+ duplex auto
+ speed auto
+ media-type rj45
+end
+
+hq-r2#show running-config interface GigabitEthernet0/2
+Building configuration...
+
+Current configuration : 247 bytes
+!
+interface GigabitEthernet0/2
+ description P2P to hq-d2 Gi2/2 | 10.255.10.16/31 | direct
+ ip address 10.255.10.17 255.255.255.254
+ ip ospf network point-to-point
+ ip ospf 10 area 10
+ ip ospf cost 10
+ duplex auto
+ speed auto
+ media-type rj45
+end
+
+hq-r2#show running-config interface GigabitEthernet0/3
+Building configuration...
+
+Current configuration : 247 bytes
+!
+interface GigabitEthernet0/3
+ description P2P to hq-d2 Gi2/3 | 10.255.10.18/31 | direct
+ ip address 10.255.10.19 255.255.255.254
+ ip ospf network point-to-point
+ ip ospf 10 area 10
+ ip ospf cost 10
+ duplex auto
+ speed auto
+ media-type rj45
+end
+
+hq-r2#show running-config interface GigabitEthernet0/4
+Building configuration...
+
+Current configuration : 250 bytes
+!
+interface GigabitEthernet0/4
+ description P2P to hq-d1 Gi3/0 | 10.255.10.4/31 | cross-link
+ ip address 10.255.10.5 255.255.255.254
+ ip ospf network point-to-point
+ ip ospf 10 area 10
+ ip ospf cost 100
+ duplex auto
+ speed auto
+ media-type rj45
+end
+
+hq-d1
+-----
+hq-d1#show ip ospf interface brief
+Interface    PID   Area            IP Address/Mask    Cost  State Nbrs F/C
+Lo0          10    10              10.255.10.131/32   1     LOOP  0/0
+Gi3/0        10    10              10.255.10.4/31     100   P2P   1/1
+Gi2/3        10    10              10.255.10.12/31    10    P2P   1/1
+Gi2/2        10    10              10.255.10.10/31    10    P2P   1/1
+Gi2/1        10    10              10.255.10.8/31     10    P2P   1/1
+Gi2/0        10    10              10.255.10.0/31     10    P2P   1/1
+Vl199        10    10              10.10.99.2/26      1     DR    0/0
+Vl170        10    10              10.10.70.2/23      1     DR    0/0
+Vl160        10    10              10.10.60.2/26      1     DR    0/0
+Vl152        10    10              10.10.52.2/22      1     DR    0/0
+Vl140        10    10              10.10.40.2/23      1     DR    0/0
+Vl130        10    10              10.10.30.2/25      1     DR    0/0
+Vl120        10    10              10.10.20.2/23      1     DR    0/0
+Vl112        10    10              10.10.12.2/22      1     DR    0/0
+
+hq-d1#show running-config | section ^router ospf
+router ospf 10
+ router-id 10.255.10.131
+ passive-interface default
+ no passive-interface GigabitEthernet2/0
+ no passive-interface GigabitEthernet2/1
+ no passive-interface GigabitEthernet2/2
+ no passive-interface GigabitEthernet2/3
+ no passive-interface GigabitEthernet3/0
+
+hq-d1#show running-config interface GigabitEthernet2/0
+Building configuration...
+
+Current configuration : 236 bytes
+!
+interface GigabitEthernet2/0
+ description P2P to hq-r1 Gi0/0 | 10.255.10.0/31 | direct
+ no switchport
+ ip address 10.255.10.0 255.255.255.254
+ ip ospf network point-to-point
+ ip ospf 10 area 10
+ ip ospf cost 10
+ negotiation auto
+end
+
+hq-d1#show running-config interface GigabitEthernet2/1
+Building configuration...
+
+Current configuration : 236 bytes
+!
+interface GigabitEthernet2/1
+ description P2P to hq-r1 Gi0/1 | 10.255.10.8/31 | direct
+ no switchport
+ ip address 10.255.10.8 255.255.255.254
+ ip ospf network point-to-point
+ ip ospf 10 area 10
+ ip ospf cost 10
+ negotiation auto
+end
+
+hq-d1#show running-config interface GigabitEthernet2/2
+Building configuration...
+
+Current configuration : 238 bytes
+!
+interface GigabitEthernet2/2
+ description P2P to hq-r1 Gi0/2 | 10.255.10.10/31 | direct
+ no switchport
+ ip address 10.255.10.10 255.255.255.254
+ ip ospf network point-to-point
+ ip ospf 10 area 10
+ ip ospf cost 10
+ negotiation auto
+end
+
+hq-d1#show running-config interface GigabitEthernet2/3
+Building configuration...
+
+Current configuration : 238 bytes
+!
+interface GigabitEthernet2/3
+ description P2P to hq-r1 Gi0/3 | 10.255.10.12/31 | direct
+ no switchport
+ ip address 10.255.10.12 255.255.255.254
+ ip ospf network point-to-point
+ ip ospf 10 area 10
+ ip ospf cost 10
+ negotiation auto
+end
+
+hq-d1#show running-config interface GigabitEthernet3/0
+Building configuration...
+
+Current configuration : 241 bytes
+!
+interface GigabitEthernet3/0
+ description P2P to hq-r2 Gi0/4 | 10.255.10.4/31 | cross-link
+ no switchport
+ ip address 10.255.10.4 255.255.255.254
+ ip ospf network point-to-point
+ ip ospf 10 area 10
+ ip ospf cost 100
+ negotiation auto
+end
+
+hq-d2
+-----
+hq-d2#show ip ospf interface brief
+Interface    PID   Area            IP Address/Mask    Cost  State Nbrs F/C
+Lo0          10    10              10.255.10.132/32   1     LOOP  0/0
+Gi3/0        10    10              10.255.10.6/31     100   P2P   1/1
+Gi2/3        10    10              10.255.10.18/31    10    P2P   1/1
+Gi2/2        10    10              10.255.10.16/31    10    P2P   1/1
+Gi2/1        10    10              10.255.10.14/31    10    P2P   1/1
+Gi2/0        10    10              10.255.10.2/31     10    P2P   1/1
+Vl199        10    10              10.10.99.3/26      1     DR    0/0
+Vl170        10    10              10.10.70.3/23      1     DR    0/0
+Vl160        10    10              10.10.60.3/26      1     DR    0/0
+Vl152        10    10              10.10.52.3/22      1     DR    0/0
+Vl140        10    10              10.10.40.3/23      1     DR    0/0
+Vl130        10    10              10.10.30.3/25      1     DR    0/0
+Vl120        10    10              10.10.20.3/23      1     DR    0/0
+Vl112        10    10              10.10.12.3/22      1     DR    0/0
+
+hq-d2#show running-config | section ^router ospf
+router ospf 10
+ router-id 10.255.10.132
+ passive-interface default
+ no passive-interface GigabitEthernet2/0
+ no passive-interface GigabitEthernet2/1
+ no passive-interface GigabitEthernet2/2
+ no passive-interface GigabitEthernet2/3
+ no passive-interface GigabitEthernet3/0
+
+hq-d2#show running-config interface GigabitEthernet2/0
+Building configuration...
+
+Current configuration : 236 bytes
+!
+interface GigabitEthernet2/0
+ description P2P to hq-r2 Gi0/0 | 10.255.10.2/31 | direct
+ no switchport
+ ip address 10.255.10.2 255.255.255.254
+ ip ospf network point-to-point
+ ip ospf 10 area 10
+ ip ospf cost 10
+ negotiation auto
+end
+
+hq-d2#show running-config interface GigabitEthernet2/1
+Building configuration...
+
+Current configuration : 238 bytes
+!
+interface GigabitEthernet2/1
+ description P2P to hq-r2 Gi0/1 | 10.255.10.14/31 | direct
+ no switchport
+ ip address 10.255.10.14 255.255.255.254
+ ip ospf network point-to-point
+ ip ospf 10 area 10
+ ip ospf cost 10
+ negotiation auto
+end
+
+hq-d2#show running-config interface GigabitEthernet2/2
+Building configuration...
+
+Current configuration : 238 bytes
+!
+interface GigabitEthernet2/2
+ description P2P to hq-r2 Gi0/2 | 10.255.10.16/31 | direct
+ no switchport
+ ip address 10.255.10.16 255.255.255.254
+ ip ospf network point-to-point
+ ip ospf 10 area 10
+ ip ospf cost 10
+ negotiation auto
+end
+
+hq-d2#show running-config interface GigabitEthernet2/3
+Building configuration...
+
+Current configuration : 238 bytes
+!
+interface GigabitEthernet2/3
+ description P2P to hq-r2 Gi0/3 | 10.255.10.18/31 | direct
+ no switchport
+ ip address 10.255.10.18 255.255.255.254
+ ip ospf network point-to-point
+ ip ospf 10 area 10
+ ip ospf cost 10
+ negotiation auto
+end
+
+hq-d2#show running-config interface GigabitEthernet3/0
+Building configuration...
+
+Current configuration : 241 bytes
+!
+interface GigabitEthernet3/0
+ description P2P to hq-r1 Gi0/4 | 10.255.10.6/31 | cross-link
+ no switchport
+ ip address 10.255.10.6 255.255.255.254
+ ip ospf network point-to-point
+ ip ospf 10 area 10
+ ip ospf cost 100
+ negotiation auto
+end

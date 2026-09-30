@@ -1,0 +1,142 @@
+HQ-VP-07.05 — Routed and End-to-End Reachability
+================================================
+
+Capture date: 30-09-2026
+Source: Device console capture, 30-09-2026, from the Phase 07 build state.
+Editorial note: Selected command/output excerpts; blank prompts and repeated
+pastes are omitted. Section labels are editorial. No omitted output has been
+reconstructed. The mistyped 10.10.10.x pings and the pre-correction hq-a1
+remote-routing attempts (HQ-TS-001) are omitted.
+
+hq-r1
+-----
+hq-r1#ping 10.255.10.130 source Loopback0
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.255.10.130, timeout is 2 seconds:
+Packet sent with a source address of 10.255.10.129
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 6/7/8 ms
+
+hq-r1#ping 10.255.10.131 source Loopback0
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.255.10.131, timeout is 2 seconds:
+Packet sent with a source address of 10.255.10.129
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 4/5/11 ms
+
+hq-r1#ping 10.255.10.132 source Loopback0
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.255.10.132, timeout is 2 seconds:
+Packet sent with a source address of 10.255.10.129
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 4/4/6 ms
+
+hq-r2
+-----
+hq-r2#ping 10.255.10.129 source Loopback0
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.255.10.129, timeout is 2 seconds:
+Packet sent with a source address of 10.255.10.130
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 4/6/8 ms
+
+hq-r2#ping 10.255.10.131 source Loopback0
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.255.10.131, timeout is 2 seconds:
+Packet sent with a source address of 10.255.10.130
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 4/5/7 ms
+
+hq-r2#ping 10.255.10.132 source Loopback0
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.255.10.132, timeout is 2 seconds:
+Packet sent with a source address of 10.255.10.130
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 4/4/5 ms
+
+hq-d1
+-----
+hq-d1#ping 10.255.10.129 source Loopback0
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.255.10.129, timeout is 2 seconds:
+Packet sent with a source address of 10.255.10.131
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 2/3/7 ms
+
+hq-d1#ping 10.255.10.130 source Loopback0
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.255.10.130, timeout is 2 seconds:
+Packet sent with a source address of 10.255.10.131
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 2/2/5 ms
+
+hq-d1#ping 10.255.10.132 source Loopback0
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.255.10.132, timeout is 2 seconds:
+Packet sent with a source address of 10.255.10.131
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 4/5/6 ms
+
+hq-d2
+-----
+hq-d2#ping 10.255.10.129 source Loopback0
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.255.10.129, timeout is 2 seconds:
+Packet sent with a source address of 10.255.10.132
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/2/4 ms
+
+hq-d2#ping 10.255.10.130 source Loopback0
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.255.10.130, timeout is 2 seconds:
+Packet sent with a source address of 10.255.10.132
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 2/3/5 ms
+
+hq-d2#ping 10.255.10.131 source Loopback0
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.255.10.131, timeout is 2 seconds:
+Packet sent with a source address of 10.255.10.132
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 4/4/6 ms
+
+hq-a1
+-----
+hq-a1#show ip route
+Default gateway is 10.10.99.1
+
+Host               Gateway           Last Use    Total Uses  Interface
+ICMP redirect cache is empty
+
+hq-a1#show running-config | include ^ip routing|^ip default-gateway
+ip default-gateway 10.10.99.1
+
+hq-a1#ping 10.10.99.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.10.99.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 4/205/1008 ms
+
+hq-a1#ping 10.255.10.129
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.255.10.129, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 5/8/12 ms
+
+hq-a1#ping 10.255.10.130
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.255.10.130, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 4/6/8 ms
+
+hq-a1#ping 10.255.10.131
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.255.10.131, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 6/8/13 ms
+
+hq-a1#ping 10.255.10.132
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.255.10.132, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 3/4/5 ms

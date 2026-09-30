@@ -1,0 +1,31 @@
+HQ-VP-06.03 — Pre-OSPF Underlay Baseline
+========================================
+
+Capture date: 30-09-2026
+Source: Device console capture, 30-09-2026, taken from the restored
+end-of-Phase-06 CML export (retained privately; not committed).
+Editorial note: Section labels are editorial. The retained IOS CLI below is
+unchanged.
+
+The command below returned no matching configuration on all four Layer 3 devices.
+This confirms the routed /31 underlay was captured before the OSPF process was introduced.
+
+hq-r1
+-----
+hq-r1#show running-config | section ^router ospf
+hq-r1#
+
+hq-r2
+-----
+hq-r2#show running-config | section ^router ospf
+hq-r2#
+
+hq-d1
+-----
+hq-d1#show running-config | section ^router ospf
+hq-d1#
+
+hq-d2
+-----
+hq-d2#show running-config | section ^router ospf
+hq-d2#
