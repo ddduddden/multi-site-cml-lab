@@ -46,9 +46,9 @@ The full HQ design is documented in:
 
 ## Current Status
 
-The HQ campus build has progressed through the complete Layer 2 and first-hop redundancy stages.
+The HQ campus has progressed through the routed underlay and initial OSPF Area 10 build.
 
-Phases **01–05 are verified as-built**. The current development work combines **Phase 06 — Routed `/31`s and Loopbacks** with **Phase 07 — OSPF Area 10**, so the Layer 3 underlay and dynamic routing can be built and verified together.
+Phases **01–07 are verified as-built**. Phase 06 proves the routed `/31` underlay before dynamic routing, while Phase 07 introduces the loopback identities and the complete Area 10 OSPF policy. The next work is deliberate ECMP and cost-engineering verification rather than further baseline routing configuration.
 
 | Phase | Scope | Status |
 |---:|---|---|
@@ -57,8 +57,8 @@ Phases **01–05 are verified as-built**. The current development work combines 
 | 03 | LACP EtherChannel | **Verified** |
 | 04 | Rapid PVST+ | **Verified** |
 | 05 | SVIs and HSRP | **Verified** |
-| 06 | Routed `/31`s and loopbacks | **Current** |
-| 07 | OSPF Area 10 | **Current** |
+| 06 | Routed `/31` underlay | **Verified** |
+| 07 | Loopbacks and OSPF Area 10 | **Verified** |
 | 08 | ECMP | Planned |
 | 09 | OSPF cost engineering | Planned |
 | 10 | Failure testing | Planned |
@@ -73,14 +73,19 @@ Completed verification now includes:
 - SVI addressing and management reachability
 - HSRP Active/Standby ownership, gateway failover, and preferred-state restoration
 - HSRP/STP role alignment across the distribution layer
+- Ten routed `/31` Distribution-to-Edge links with direct peer reachability before OSPF
+- Four `/32` loopback identities used as explicit OSPF router IDs
+- Passive-by-default OSPF Area 10 participation with point-to-point routed links
+- Five `FULL` OSPF neighbours per Layer 3 device across ten unique adjacencies
+- Consistent Area 10 link-state databases and learned HQ routes
+- End-to-end reachability from the access-switch management network to all four routing loopbacks
+- Regression confirmation that EtherChannel, Rapid PVST+, HSRP, and VLAN 199 management state remained intact
 
 Current verification focus:
 
-- Routed `/31` Distribution-to-Edge links
-- `/32` loopback identities
-- OSPF router IDs and passive-interface policy
-- OSPF Area 10 adjacency formation
-- Route advertisement and initial Layer 3 reachability
+- Installation and use of the intended four-path OSPF ECMP sets
+- Cost-driven preferred and alternate routing behaviour
+- Defined routed-interface, device, and combined failure scenarios
 
 Detailed implementation status and verification records are maintained in:
 
@@ -110,6 +115,14 @@ multi-site-cml-lab/
 ├── README.md
 ├── .gitignore
 │
+├── configs/
+│   └── hq/
+│       ├── hq-r1-running-config.txt
+│       ├── hq-r2-running-config.txt
+│       ├── hq-d1-running-config.txt
+│       ├── hq-d2-running-config.txt
+│       └── hq-a1-running-config.txt
+│
 ├── diagrams/
 │   └── hq-campus-area10-topology.svg
 │
@@ -132,20 +145,24 @@ multi-site-cml-lab/
 │       ├── layer2-vlan-baseline/
 │       ├── etherchannel/
 │       ├── spanning-tree/
-│       └── hsrp/
+│       ├── hsrp/
+│       ├── layer3-underlay/
+│       └── ospf/
 │
 └── lab/
     └── cml-lab-exports/
         ├── README.md
         └── hq/
             ├── hq-phase-01-platform-baseline-2026-09-20.yaml
-            └── hq-phase-05-svi-hsrp-2026-09-29.yaml
+            ├── hq-phase-05-svi-hsrp-2026-09-29.yaml
+            └── hq-phase-07-ospf-area10-2026-09-30.yaml
 ```
 
 Repository areas have distinct roles:
 
 - `docs/` — design intent, environment information, implementation records, verification plans, troubleshooting, and accepted deviations.
 - `evidence/` — retained CLI and test evidence supporting verification results.
+- `configs/` — readable sanitised per-device running configurations at meaningful as-built milestones.
 - `diagrams/` — topology and architecture visuals.
 - `lab/cml-lab-exports/` — sanitised milestone CML exports used for restoration and version tracking.
 
@@ -153,16 +170,15 @@ Repository areas have distinct roles:
 
 The project will continue through the following major stages:
 
-1. Complete the HQ Layer 3 underlay and OSPF Area 10.
-2. Verify ECMP, OSPF cost engineering, and defined failure scenarios.
-3. Complete HQ final acceptance and as-built validation.
-4. Introduce monitoring, SNMP, syslog, metrics, and NTP using the Raspberry Pi.
-5. Build the Branch Campus as OSPF Area 20.
-6. Connect HQ and Branch through the Area 0 inter-site backbone.
-7. Add GRE inter-site connectivity.
-8. Evolve GRE to GRE over IPsec and later dual-tunnel resilience.
-9. Add Layer 2 security and ACL policy.
-10. Introduce Python, Ansible, APIs, and network automation against the completed lab.
+1. Verify HQ ECMP, OSPF cost engineering, and defined failure scenarios.
+2. Complete HQ final acceptance and as-built validation.
+3. Introduce monitoring, SNMP, syslog, metrics, and NTP using the Raspberry Pi.
+4. Build the Branch Campus as OSPF Area 20.
+5. Connect HQ and Branch through the Area 0 inter-site backbone.
+6. Add GRE inter-site connectivity.
+7. Evolve GRE to GRE over IPsec and later dual-tunnel resilience.
+8. Add Layer 2 security and ACL policy.
+9. Introduce Python, Ansible, APIs, and network automation against the completed lab.
 
 ## Project Approach
 

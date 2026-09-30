@@ -22,7 +22,7 @@ At a selected architectural milestone:
 3. Retitle the CML lab so the exported topology name reflects the current milestone.
 4. Create a new YAML lab export rather than overwriting an earlier milestone.
 5. Retain the unsanitised export privately.
-6. Create a public copy and replace authentication credential values with `<sanitised>`, including line passwords and local/enable secrets, while preserving the surrounding configuration and valid YAML structure.
+6. Create a public copy and replace authentication credential values with `<sanitised>`, including local usernames, line passwords, and local/enable secrets, while preserving the surrounding configuration and valid YAML structure. The IOS password-type digit (for example `5`, `7`, or `9`) is retained because it identifies the hash or encoding type without revealing the value. The same sanitisation applies to the per-device files in `configs/`. The Phase 01 and Phase 05 exports predate the username and type-digit convention.
 7. Review the public copy for remaining credential material before committing it.
 8. Record the CML version used for the export in the accompanying commit/build documentation or `docs/environment.md`.
 9. Commit only meaningful milestone exports; incidental working backups remain outside the repository.
@@ -37,7 +37,8 @@ lab/
     ├── README.md
     └── hq/
         ├── hq-phase-01-platform-baseline-2026-09-20.yaml
-        └── hq-phase-05-svi-hsrp-2026-09-29.yaml
+        ├── hq-phase-05-svi-hsrp-2026-09-29.yaml
+        └── hq-phase-07-ospf-area10-2026-09-30.yaml
 ```
 
 Future site directories are created only when a real export exists.
