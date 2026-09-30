@@ -1,0 +1,310 @@
+HQ-VP-06.01 — Routed /31 Interface Addressing and State
+=======================================================
+
+Capture date: 30-09-2026
+Source: Device console capture, 30-09-2026, taken from the restored
+end-of-Phase-06 CML export (retained privately; not committed). Interfaces
+configured from the stored configuration report Method TFTP.
+Editorial note: Selected command/output excerpts. On hq-d1 and hq-d2, show ip
+interface brief rows other than the five routed interfaces are omitted, and the
+SVI connected routes and the route-table summary line are omitted from show ip
+route connected. The "Building configuration..." and "Current configuration"
+preamble is omitted from show running-config interface output. Blank prompts and
+repeated pastes are omitted. Section labels are editorial. No omitted output has
+been reconstructed.
+
+hq-r1
+-----
+hq-r1#show ip interface brief
+Interface                  IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0         10.255.10.1     YES TFTP   up                    up
+GigabitEthernet0/1         10.255.10.9     YES TFTP   up                    up
+GigabitEthernet0/2         10.255.10.11    YES TFTP   up                    up
+GigabitEthernet0/3         10.255.10.13    YES TFTP   up                    up
+GigabitEthernet0/4         10.255.10.7     YES TFTP   up                    up
+GigabitEthernet0/5         unassigned      YES TFTP   administratively down down
+GigabitEthernet0/6         unassigned      YES TFTP   administratively down down
+GigabitEthernet0/7         unassigned      YES TFTP   administratively down down
+
+hq-r1#show interfaces description
+Interface                      Status         Protocol Description
+Gi0/0                          up             up       P2P to hq-d1 Gi2/0 | 10.255.10.0/31 | direct
+Gi0/1                          up             up       P2P to hq-d1 Gi2/1 | 10.255.10.8/31 | direct
+Gi0/2                          up             up       P2P to hq-d1 Gi2/2 | 10.255.10.10/31 | direct
+Gi0/3                          up             up       P2P to hq-d1 Gi2/3 | 10.255.10.12/31 | direct
+Gi0/4                          up             up       P2P to hq-d2 Gi3/0 | 10.255.10.6/31 | cross-link
+Gi0/5                          admin down     down
+Gi0/6                          admin down     down
+Gi0/7                          admin down     down
+
+hq-r1#show ip route connected
+Gateway of last resort is not set
+
+      10.0.0.0/8 is variably subnetted, 10 subnets, 2 masks
+C        10.255.10.0/31 is directly connected, GigabitEthernet0/0
+L        10.255.10.1/32 is directly connected, GigabitEthernet0/0
+C        10.255.10.6/31 is directly connected, GigabitEthernet0/4
+L        10.255.10.7/32 is directly connected, GigabitEthernet0/4
+C        10.255.10.8/31 is directly connected, GigabitEthernet0/1
+L        10.255.10.9/32 is directly connected, GigabitEthernet0/1
+C        10.255.10.10/31 is directly connected, GigabitEthernet0/2
+L        10.255.10.11/32 is directly connected, GigabitEthernet0/2
+C        10.255.10.12/31 is directly connected, GigabitEthernet0/3
+L        10.255.10.13/32 is directly connected, GigabitEthernet0/3
+
+hq-r1#show running-config interface GigabitEthernet0/0
+interface GigabitEthernet0/0
+ description P2P to hq-d1 Gi2/0 | 10.255.10.0/31 | direct
+ ip address 10.255.10.1 255.255.255.254
+ duplex auto
+ speed auto
+ media-type rj45
+end
+hq-r1#show running-config interface GigabitEthernet0/1
+interface GigabitEthernet0/1
+ description P2P to hq-d1 Gi2/1 | 10.255.10.8/31 | direct
+ ip address 10.255.10.9 255.255.255.254
+ duplex auto
+ speed auto
+ media-type rj45
+end
+hq-r1#show running-config interface GigabitEthernet0/2
+interface GigabitEthernet0/2
+ description P2P to hq-d1 Gi2/2 | 10.255.10.10/31 | direct
+ ip address 10.255.10.11 255.255.255.254
+ duplex auto
+ speed auto
+ media-type rj45
+end
+hq-r1#show running-config interface GigabitEthernet0/3
+interface GigabitEthernet0/3
+ description P2P to hq-d1 Gi2/3 | 10.255.10.12/31 | direct
+ ip address 10.255.10.13 255.255.255.254
+ duplex auto
+ speed auto
+ media-type rj45
+end
+hq-r1#show running-config interface GigabitEthernet0/4
+interface GigabitEthernet0/4
+ description P2P to hq-d2 Gi3/0 | 10.255.10.6/31 | cross-link
+ ip address 10.255.10.7 255.255.255.254
+ duplex auto
+ speed auto
+ media-type rj45
+end
+
+hq-r2
+-----
+hq-r2#show ip interface brief
+Interface                  IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0         10.255.10.3     YES TFTP   up                    up
+GigabitEthernet0/1         10.255.10.15    YES TFTP   up                    up
+GigabitEthernet0/2         10.255.10.17    YES TFTP   up                    up
+GigabitEthernet0/3         10.255.10.19    YES TFTP   up                    up
+GigabitEthernet0/4         10.255.10.5     YES TFTP   up                    up
+GigabitEthernet0/5         unassigned      YES TFTP   administratively down down
+GigabitEthernet0/6         unassigned      YES TFTP   administratively down down
+GigabitEthernet0/7         unassigned      YES TFTP   administratively down down
+
+hq-r2#show interfaces description
+Interface                      Status         Protocol Description
+Gi0/0                          up             up       P2P to hq-d2 Gi2/0 | 10.255.10.2/31 | direct
+Gi0/1                          up             up       P2P to hq-d2 Gi2/1 | 10.255.10.14/31 | direct
+Gi0/2                          up             up       P2P to hq-d2 Gi2/2 | 10.255.10.16/31 | direct
+Gi0/3                          up             up       P2P to hq-d2 Gi2/3 | 10.255.10.18/31 | direct
+Gi0/4                          up             up       P2P to hq-d1 Gi3/0 | 10.255.10.4/31 | cross-link
+Gi0/5                          admin down     down
+Gi0/6                          admin down     down
+Gi0/7                          admin down     down
+
+hq-r2#show ip route connected
+Gateway of last resort is not set
+
+      10.0.0.0/8 is variably subnetted, 10 subnets, 2 masks
+C        10.255.10.2/31 is directly connected, GigabitEthernet0/0
+L        10.255.10.3/32 is directly connected, GigabitEthernet0/0
+C        10.255.10.4/31 is directly connected, GigabitEthernet0/4
+L        10.255.10.5/32 is directly connected, GigabitEthernet0/4
+C        10.255.10.14/31 is directly connected, GigabitEthernet0/1
+L        10.255.10.15/32 is directly connected, GigabitEthernet0/1
+C        10.255.10.16/31 is directly connected, GigabitEthernet0/2
+L        10.255.10.17/32 is directly connected, GigabitEthernet0/2
+C        10.255.10.18/31 is directly connected, GigabitEthernet0/3
+L        10.255.10.19/32 is directly connected, GigabitEthernet0/3
+
+hq-r2#show running-config interface GigabitEthernet0/0
+interface GigabitEthernet0/0
+ description P2P to hq-d2 Gi2/0 | 10.255.10.2/31 | direct
+ ip address 10.255.10.3 255.255.255.254
+ duplex auto
+ speed auto
+ media-type rj45
+end
+hq-r2#show running-config interface GigabitEthernet0/1
+interface GigabitEthernet0/1
+ description P2P to hq-d2 Gi2/1 | 10.255.10.14/31 | direct
+ ip address 10.255.10.15 255.255.255.254
+ duplex auto
+ speed auto
+ media-type rj45
+end
+hq-r2#show running-config interface GigabitEthernet0/2
+interface GigabitEthernet0/2
+ description P2P to hq-d2 Gi2/2 | 10.255.10.16/31 | direct
+ ip address 10.255.10.17 255.255.255.254
+ duplex auto
+ speed auto
+ media-type rj45
+end
+hq-r2#show running-config interface GigabitEthernet0/3
+interface GigabitEthernet0/3
+ description P2P to hq-d2 Gi2/3 | 10.255.10.18/31 | direct
+ ip address 10.255.10.19 255.255.255.254
+ duplex auto
+ speed auto
+ media-type rj45
+end
+hq-r2#show running-config interface GigabitEthernet0/4
+interface GigabitEthernet0/4
+ description P2P to hq-d1 Gi3/0 | 10.255.10.4/31 | cross-link
+ ip address 10.255.10.5 255.255.255.254
+ duplex auto
+ speed auto
+ media-type rj45
+end
+
+hq-d1
+-----
+hq-d1#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet2/0     10.255.10.0     YES TFTP   up                    up
+GigabitEthernet2/1     10.255.10.8     YES TFTP   up                    up
+GigabitEthernet2/2     10.255.10.10    YES TFTP   up                    up
+GigabitEthernet2/3     10.255.10.12    YES TFTP   up                    up
+GigabitEthernet3/0     10.255.10.4     YES TFTP   up                    up
+
+hq-d1#show interfaces description
+Interface                      Status         Protocol Description
+Gi2/0                          up             up       P2P to hq-r1 Gi0/0 | 10.255.10.0/31 | direct
+Gi2/1                          up             up       P2P to hq-r1 Gi0/1 | 10.255.10.8/31 | direct
+Gi2/2                          up             up       P2P to hq-r1 Gi0/2 | 10.255.10.10/31 | direct
+Gi2/3                          up             up       P2P to hq-r1 Gi0/3 | 10.255.10.12/31 | direct
+Gi3/0                          up             up       P2P to hq-r2 Gi0/4 | 10.255.10.4/31 | cross-link
+
+hq-d1#show ip route connected
+Gateway of last resort is not set
+
+C        10.255.10.0/31 is directly connected, GigabitEthernet2/0
+L        10.255.10.0/32 is directly connected, GigabitEthernet2/0
+C        10.255.10.4/31 is directly connected, GigabitEthernet3/0
+L        10.255.10.4/32 is directly connected, GigabitEthernet3/0
+C        10.255.10.8/31 is directly connected, GigabitEthernet2/1
+L        10.255.10.8/32 is directly connected, GigabitEthernet2/1
+C        10.255.10.10/31 is directly connected, GigabitEthernet2/2
+L        10.255.10.10/32 is directly connected, GigabitEthernet2/2
+C        10.255.10.12/31 is directly connected, GigabitEthernet2/3
+L        10.255.10.12/32 is directly connected, GigabitEthernet2/3
+
+hq-d1#show running-config interface GigabitEthernet2/0
+interface GigabitEthernet2/0
+ description P2P to hq-r1 Gi0/0 | 10.255.10.0/31 | direct
+ no switchport
+ ip address 10.255.10.0 255.255.255.254
+ negotiation auto
+end
+hq-d1#show running-config interface GigabitEthernet2/1
+interface GigabitEthernet2/1
+ description P2P to hq-r1 Gi0/1 | 10.255.10.8/31 | direct
+ no switchport
+ ip address 10.255.10.8 255.255.255.254
+ negotiation auto
+end
+hq-d1#show running-config interface GigabitEthernet2/2
+interface GigabitEthernet2/2
+ description P2P to hq-r1 Gi0/2 | 10.255.10.10/31 | direct
+ no switchport
+ ip address 10.255.10.10 255.255.255.254
+ negotiation auto
+end
+hq-d1#show running-config interface GigabitEthernet2/3
+interface GigabitEthernet2/3
+ description P2P to hq-r1 Gi0/3 | 10.255.10.12/31 | direct
+ no switchport
+ ip address 10.255.10.12 255.255.255.254
+ negotiation auto
+end
+hq-d1#show running-config interface GigabitEthernet3/0
+interface GigabitEthernet3/0
+ description P2P to hq-r2 Gi0/4 | 10.255.10.4/31 | cross-link
+ no switchport
+ ip address 10.255.10.4 255.255.255.254
+ negotiation auto
+end
+
+hq-d2
+-----
+hq-d2#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet2/0     10.255.10.2     YES TFTP   up                    up
+GigabitEthernet2/1     10.255.10.14    YES TFTP   up                    up
+GigabitEthernet2/2     10.255.10.16    YES TFTP   up                    up
+GigabitEthernet2/3     10.255.10.18    YES TFTP   up                    up
+GigabitEthernet3/0     10.255.10.6     YES TFTP   up                    up
+
+hq-d2#show interfaces description
+Interface                      Status         Protocol Description
+Gi2/0                          up             up       P2P to hq-r2 Gi0/0 | 10.255.10.2/31 | direct
+Gi2/1                          up             up       P2P to hq-r2 Gi0/1 | 10.255.10.14/31 | direct
+Gi2/2                          up             up       P2P to hq-r2 Gi0/2 | 10.255.10.16/31 | direct
+Gi2/3                          up             up       P2P to hq-r2 Gi0/3 | 10.255.10.18/31 | direct
+Gi3/0                          up             up       P2P to hq-r1 Gi0/4 | 10.255.10.6/31 | cross-link
+
+hq-d2#show ip route connected
+Gateway of last resort is not set
+
+C        10.255.10.2/31 is directly connected, GigabitEthernet2/0
+L        10.255.10.2/32 is directly connected, GigabitEthernet2/0
+C        10.255.10.6/31 is directly connected, GigabitEthernet3/0
+L        10.255.10.6/32 is directly connected, GigabitEthernet3/0
+C        10.255.10.14/31 is directly connected, GigabitEthernet2/1
+L        10.255.10.14/32 is directly connected, GigabitEthernet2/1
+C        10.255.10.16/31 is directly connected, GigabitEthernet2/2
+L        10.255.10.16/32 is directly connected, GigabitEthernet2/2
+C        10.255.10.18/31 is directly connected, GigabitEthernet2/3
+L        10.255.10.18/32 is directly connected, GigabitEthernet2/3
+
+hq-d2#show running-config interface GigabitEthernet2/0
+interface GigabitEthernet2/0
+ description P2P to hq-r2 Gi0/0 | 10.255.10.2/31 | direct
+ no switchport
+ ip address 10.255.10.2 255.255.255.254
+ negotiation auto
+end
+hq-d2#show running-config interface GigabitEthernet2/1
+interface GigabitEthernet2/1
+ description P2P to hq-r2 Gi0/1 | 10.255.10.14/31 | direct
+ no switchport
+ ip address 10.255.10.14 255.255.255.254
+ negotiation auto
+end
+hq-d2#show running-config interface GigabitEthernet2/2
+interface GigabitEthernet2/2
+ description P2P to hq-r2 Gi0/2 | 10.255.10.16/31 | direct
+ no switchport
+ ip address 10.255.10.16 255.255.255.254
+ negotiation auto
+end
+hq-d2#show running-config interface GigabitEthernet2/3
+interface GigabitEthernet2/3
+ description P2P to hq-r2 Gi0/3 | 10.255.10.18/31 | direct
+ no switchport
+ ip address 10.255.10.18 255.255.255.254
+ negotiation auto
+end
+hq-d2#show running-config interface GigabitEthernet3/0
+interface GigabitEthernet3/0
+ description P2P to hq-r1 Gi0/4 | 10.255.10.6/31 | cross-link
+ no switchport
+ ip address 10.255.10.6 255.255.255.254
+ negotiation auto
+end

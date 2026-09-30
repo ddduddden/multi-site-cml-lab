@@ -1,0 +1,52 @@
+HQ-VP-07.03 — OSPF Area 10 Adjacencies
+======================================
+
+Capture date: 30-09-2026
+Source: Device console capture, 30-09-2026, from the Phase 07 build state.
+Editorial note: Selected command/output excerpts; blank prompts and repeated
+pastes are omitted. Section labels are editorial. No omitted output has been
+reconstructed.
+
+hq-r1
+-----
+hq-r1#show ip ospf neighbor
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+10.255.10.132     0   FULL/  -        00:00:33    10.255.10.6     GigabitEthernet0/4
+10.255.10.131     0   FULL/  -        00:00:34    10.255.10.12    GigabitEthernet0/3
+10.255.10.131     0   FULL/  -        00:00:36    10.255.10.10    GigabitEthernet0/2
+10.255.10.131     0   FULL/  -        00:00:35    10.255.10.8     GigabitEthernet0/1
+10.255.10.131     0   FULL/  -        00:00:34    10.255.10.0     GigabitEthernet0/0
+
+hq-r2
+-----
+hq-r2#show ip ospf neighbor
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+10.255.10.131     0   FULL/  -        00:00:32    10.255.10.4     GigabitEthernet0/4
+10.255.10.132     0   FULL/  -        00:00:39    10.255.10.18    GigabitEthernet0/3
+10.255.10.132     0   FULL/  -        00:00:34    10.255.10.16    GigabitEthernet0/2
+10.255.10.132     0   FULL/  -        00:00:32    10.255.10.14    GigabitEthernet0/1
+10.255.10.132     0   FULL/  -        00:00:32    10.255.10.2     GigabitEthernet0/0
+
+hq-d1
+-----
+hq-d1#show ip ospf neighbor
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+10.255.10.130     0   FULL/  -        00:00:33    10.255.10.5     GigabitEthernet3/0
+10.255.10.129     0   FULL/  -        00:00:33    10.255.10.13    GigabitEthernet2/3
+10.255.10.129     0   FULL/  -        00:00:38    10.255.10.11    GigabitEthernet2/2
+10.255.10.129     0   FULL/  -        00:00:30    10.255.10.9     GigabitEthernet2/1
+10.255.10.129     0   FULL/  -        00:00:39    10.255.10.1     GigabitEthernet2/0
+
+hq-d2
+-----
+hq-d2#show ip ospf neighbor
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+10.255.10.129     0   FULL/  -        00:00:38    10.255.10.7     GigabitEthernet3/0
+10.255.10.130     0   FULL/  -        00:00:34    10.255.10.19    GigabitEthernet2/3
+10.255.10.130     0   FULL/  -        00:00:36    10.255.10.17    GigabitEthernet2/2
+10.255.10.130     0   FULL/  -        00:00:31    10.255.10.15    GigabitEthernet2/1
+10.255.10.130     0   FULL/  -        00:00:34    10.255.10.3     GigabitEthernet2/0

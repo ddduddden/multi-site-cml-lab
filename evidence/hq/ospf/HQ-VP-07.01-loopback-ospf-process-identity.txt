@@ -1,0 +1,380 @@
+HQ-VP-07.01 — Loopback and OSPF Process Identity
+================================================
+
+Capture date: 30-09-2026
+Source: Device console capture, 30-09-2026, from the Phase 07 build state.
+Editorial note: Selected command/output excerpts; blank prompts and repeated
+pastes are omitted. Section labels are editorial. No omitted output has been
+reconstructed. The hq-a1 section shows the state after the HQ-TS-001 correction
+(no ip routing).
+
+hq-r1
+-----
+hq-r1#show ip interface brief
+Interface                  IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0         10.255.10.1     YES manual up                    up
+GigabitEthernet0/1         10.255.10.9     YES manual up                    up
+GigabitEthernet0/2         10.255.10.11    YES manual up                    up
+GigabitEthernet0/3         10.255.10.13    YES manual up                    up
+GigabitEthernet0/4         10.255.10.7     YES manual up                    up
+GigabitEthernet0/5         unassigned      YES TFTP   administratively down down
+GigabitEthernet0/6         unassigned      YES TFTP   administratively down down
+GigabitEthernet0/7         unassigned      YES TFTP   administratively down down
+Loopback0                  10.255.10.129   YES manual up                    up
+
+hq-r1#show ip protocols
+*** IP Routing is NSF aware ***
+
+Routing Protocol is "application"
+  Sending updates every 0 seconds
+  Invalid after 0 seconds, hold down 0, flushed after 0
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Maximum path: 32
+  Routing for Networks:
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 4)
+
+Routing Protocol is "ospf 10"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 10.255.10.129
+  Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+  Routing on Interfaces Configured Explicitly (Area 10):
+    Loopback0
+    GigabitEthernet0/4
+    GigabitEthernet0/3
+    GigabitEthernet0/2
+    GigabitEthernet0/1
+    GigabitEthernet0/0
+  Passive Interface(s):
+    GigabitEthernet0/5
+    GigabitEthernet0/6
+    GigabitEthernet0/7
+    Loopback0
+    RG-AR-IF-INPUT1
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+    10.255.10.132        110      00:04:32
+    10.255.10.131        110      00:14:25
+    10.255.10.130        110      00:01:14
+  Distance: (default is 110)
+
+hq-r1#show running-config | section ^router ospf
+router ospf 10
+ router-id 10.255.10.129
+ passive-interface default
+ no passive-interface GigabitEthernet0/0
+ no passive-interface GigabitEthernet0/1
+ no passive-interface GigabitEthernet0/2
+ no passive-interface GigabitEthernet0/3
+ no passive-interface GigabitEthernet0/4
+
+hq-r1#show running-config interface Loopback0
+Building configuration...
+
+Current configuration : 89 bytes
+!
+interface Loopback0
+ ip address 10.255.10.129 255.255.255.255
+ ip ospf 10 area 10
+end
+
+hq-r2
+-----
+hq-r2#show ip interface brief
+Interface                  IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0         10.255.10.3     YES manual up                    up
+GigabitEthernet0/1         10.255.10.15    YES manual up                    up
+GigabitEthernet0/2         10.255.10.17    YES manual up                    up
+GigabitEthernet0/3         10.255.10.19    YES manual up                    up
+GigabitEthernet0/4         10.255.10.5     YES manual up                    up
+GigabitEthernet0/5         unassigned      YES unset  administratively down down
+GigabitEthernet0/6         unassigned      YES unset  administratively down down
+GigabitEthernet0/7         unassigned      YES unset  administratively down down
+Loopback0                  10.255.10.130   YES manual up                    up
+
+hq-r2#show ip protocols
+*** IP Routing is NSF aware ***
+
+Routing Protocol is "application"
+  Sending updates every 0 seconds
+  Invalid after 0 seconds, hold down 0, flushed after 0
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Maximum path: 32
+  Routing for Networks:
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 4)
+
+Routing Protocol is "ospf 10"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 10.255.10.130
+  Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+  Routing on Interfaces Configured Explicitly (Area 10):
+    Loopback0
+    GigabitEthernet0/4
+    GigabitEthernet0/3
+    GigabitEthernet0/2
+    GigabitEthernet0/1
+    GigabitEthernet0/0
+  Passive Interface(s):
+    GigabitEthernet0/5
+    GigabitEthernet0/6
+    GigabitEthernet0/7
+    Loopback0
+    RG-AR-IF-INPUT1
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+    10.255.10.132        110      00:07:20
+    10.255.10.131        110      00:15:47
+    10.255.10.129        110      00:03:42
+  Distance: (default is 110)
+
+hq-r2#show running-config | section ^router ospf
+router ospf 10
+ router-id 10.255.10.130
+ passive-interface default
+ no passive-interface GigabitEthernet0/0
+ no passive-interface GigabitEthernet0/1
+ no passive-interface GigabitEthernet0/2
+ no passive-interface GigabitEthernet0/3
+ no passive-interface GigabitEthernet0/4
+
+hq-r2#show running-config interface Loopback0
+Building configuration...
+
+Current configuration : 89 bytes
+!
+interface Loopback0
+ ip address 10.255.10.130 255.255.255.255
+ ip ospf 10 area 10
+end
+
+hq-d1
+-----
+hq-d1#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0     unassigned      YES unset  up                    up
+GigabitEthernet0/1     unassigned      YES unset  up                    up
+GigabitEthernet0/2     unassigned      YES unset  down                  down
+GigabitEthernet0/3     unassigned      YES unset  down                  down
+GigabitEthernet1/0     unassigned      YES unset  up                    up
+GigabitEthernet1/1     unassigned      YES unset  up                    up
+GigabitEthernet1/2     unassigned      YES unset  up                    up
+GigabitEthernet1/3     unassigned      YES unset  up                    up
+GigabitEthernet2/0     10.255.10.0     YES manual up                    up
+GigabitEthernet2/1     10.255.10.8     YES manual up                    up
+GigabitEthernet2/2     10.255.10.10    YES manual up                    up
+GigabitEthernet2/3     10.255.10.12    YES manual up                    up
+GigabitEthernet3/0     10.255.10.4     YES manual up                    up
+GigabitEthernet3/1     unassigned      YES unset  down                  down
+GigabitEthernet3/2     unassigned      YES unset  down                  down
+GigabitEthernet3/3     unassigned      YES unset  down                  down
+Loopback0              10.255.10.131   YES manual up                    up
+Port-channel10         unassigned      YES unset  up                    up
+Port-channel30         unassigned      YES unset  up                    up
+Vlan112                10.10.12.2      YES manual up                    up
+Vlan120                10.10.20.2      YES manual up                    up
+Vlan130                10.10.30.2      YES manual up                    up
+Vlan140                10.10.40.2      YES manual up                    up
+Vlan152                10.10.52.2      YES manual up                    up
+Vlan160                10.10.60.2      YES manual up                    up
+Vlan170                10.10.70.2      YES manual up                    up
+Vlan199                10.10.99.2      YES manual up                    up
+
+hq-d1#show ip protocols
+*** IP Routing is NSF aware ***
+
+Routing Protocol is "application"
+  Sending updates every 0 seconds
+  Invalid after 0 seconds, hold down 0, flushed after 0
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Maximum path: 32
+  Routing for Networks:
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 4)
+
+Routing Protocol is "ospf 10"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 10.255.10.131
+  Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+  Routing on Interfaces Configured Explicitly (Area 10):
+    Loopback0
+    GigabitEthernet3/0
+    GigabitEthernet2/3
+    GigabitEthernet2/2
+    GigabitEthernet2/1
+    GigabitEthernet2/0
+    Vlan199
+    Vlan170
+    Vlan160
+    Vlan152
+    Vlan140
+    Vlan130
+    Vlan120
+    Vlan112
+  Passive Interface(s):
+    Loopback0
+    Vlan112
+    Vlan120
+    Vlan130
+    Vlan140
+    Vlan152
+    Vlan160
+    Vlan170
+    Vlan199
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+    10.255.10.132        110      00:05:10
+    10.255.10.130        110      00:17:13
+    10.255.10.129        110      00:17:57
+  Distance: (default is 110)
+
+hq-d1#show running-config | section ^router ospf
+router ospf 10
+ router-id 10.255.10.131
+ passive-interface default
+ no passive-interface GigabitEthernet2/0
+ no passive-interface GigabitEthernet2/1
+ no passive-interface GigabitEthernet2/2
+ no passive-interface GigabitEthernet2/3
+ no passive-interface GigabitEthernet3/0
+
+hq-d1#show running-config interface Loopback0
+Building configuration...
+
+Current configuration : 89 bytes
+!
+interface Loopback0
+ ip address 10.255.10.131 255.255.255.255
+ ip ospf 10 area 10
+end
+
+hq-d2
+-----
+hq-d2#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0     unassigned      YES unset  up                    up
+GigabitEthernet0/1     unassigned      YES unset  up                    up
+GigabitEthernet0/2     unassigned      YES unset  down                  down
+GigabitEthernet0/3     unassigned      YES unset  down                  down
+GigabitEthernet1/0     unassigned      YES unset  up                    up
+GigabitEthernet1/1     unassigned      YES unset  up                    up
+GigabitEthernet1/2     unassigned      YES unset  up                    up
+GigabitEthernet1/3     unassigned      YES unset  up                    up
+GigabitEthernet2/0     10.255.10.2     YES manual up                    up
+GigabitEthernet2/1     10.255.10.14    YES manual up                    up
+GigabitEthernet2/2     10.255.10.16    YES manual up                    up
+GigabitEthernet2/3     10.255.10.18    YES manual up                    up
+GigabitEthernet3/0     10.255.10.6     YES manual up                    up
+GigabitEthernet3/1     unassigned      YES unset  down                  down
+GigabitEthernet3/2     unassigned      YES unset  down                  down
+GigabitEthernet3/3     unassigned      YES unset  down                  down
+Loopback0              10.255.10.132   YES manual up                    up
+Port-channel20         unassigned      YES unset  up                    up
+Port-channel30         unassigned      YES unset  up                    up
+Vlan112                10.10.12.3      YES manual up                    up
+Vlan120                10.10.20.3      YES manual up                    up
+Vlan130                10.10.30.3      YES manual up                    up
+Vlan140                10.10.40.3      YES manual up                    up
+Vlan152                10.10.52.3      YES manual up                    up
+Vlan160                10.10.60.3      YES manual up                    up
+Vlan170                10.10.70.3      YES manual up                    up
+Vlan199                10.10.99.3      YES manual up                    up
+
+hq-d2#show ip protocols
+*** IP Routing is NSF aware ***
+
+Routing Protocol is "application"
+  Sending updates every 0 seconds
+  Invalid after 0 seconds, hold down 0, flushed after 0
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Maximum path: 32
+  Routing for Networks:
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 4)
+
+Routing Protocol is "ospf 10"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 10.255.10.132
+  Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+  Routing on Interfaces Configured Explicitly (Area 10):
+    Loopback0
+    GigabitEthernet3/0
+    GigabitEthernet2/3
+    GigabitEthernet2/2
+    GigabitEthernet2/1
+    GigabitEthernet2/0
+    Vlan199
+    Vlan170
+    Vlan160
+    Vlan152
+    Vlan140
+    Vlan130
+    Vlan120
+    Vlan112
+  Passive Interface(s):
+    Loopback0
+    Vlan112
+    Vlan120
+    Vlan130
+    Vlan140
+    Vlan152
+    Vlan160
+    Vlan170
+    Vlan199
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+    10.255.10.131        110      00:07:17
+    10.255.10.130        110      00:10:50
+    10.255.10.129        110      00:10:50
+  Distance: (default is 110)
+
+hq-d2#show running-config | section ^router ospf
+router ospf 10
+ router-id 10.255.10.132
+ passive-interface default
+ no passive-interface GigabitEthernet2/0
+ no passive-interface GigabitEthernet2/1
+ no passive-interface GigabitEthernet2/2
+ no passive-interface GigabitEthernet2/3
+ no passive-interface GigabitEthernet3/0
+
+hq-d2#show running-config interface Loopback0
+Building configuration...
+
+Current configuration : 89 bytes
+!
+interface Loopback0
+ ip address 10.255.10.132 255.255.255.255
+ ip ospf 10 area 10
+end
+
+hq-a1
+-----
+hq-a1#show ip route
+Default gateway is 10.10.99.1
+
+Host               Gateway           Last Use    Total Uses  Interface
+ICMP redirect cache is empty
+
+hq-a1#show running-config | include ^ip routing|^ip default-gateway
+ip default-gateway 10.10.99.1

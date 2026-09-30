@@ -73,14 +73,14 @@ The phase numbers are a project-specific indexing convention. They are not a Cis
 | 03 | LACP EtherChannel | Build and verify Po10, Po20, and Po30, including trunking and member-link behaviour |
 | 04 | Rapid PVST+ | Verify root placement, port state, and spanning-tree failure behaviour |
 | 05 | SVIs and HSRP | Verify SVI addressing, HSRP roles, preemption, and gateway failover |
-| 06 | Routed `/31`s and loopbacks | Build and verify routed point-to-point links and loopback identities |
-| 07 | OSPF Area 10 | Verify router IDs, passive-interface policy, adjacencies, and route advertisement |
+| 06 | Routed `/31` underlay | Build and verify the ten routed point-to-point links before dynamic routing |
+| 07 | Loopbacks and OSPF Area 10 | Add stable loopback identities and verify the Area 10 routing domain |
 | 08 | ECMP | Prove the intended equal-cost routes are actually installed and usable |
 | 09 | OSPF cost engineering | Prove preferred and higher-cost alternate path selection behaves as designed |
 | 10 | Failure testing | Exercise defined device, interface, Port-Channel, and routing failures and recovery |
 | 11 | Final acceptance | Confirm the evidence required to describe HQ as verified as-built |
 
-Phases 01–05 are detailed in `verification-plan.md`. Phases 06–11 remain objective-only until the project reaches them.
+Phases 01–07 are detailed in `verification-plan.md`. Phases 06 and 07 were built and verified in one combined build window but keep separate test IDs, phase status, and build-log entries. Phases 08–11 remain objective-only until the project reaches them.
 
 ## Working rules
 
@@ -127,8 +127,8 @@ A phase does not show as `Deviated` just because one test in it has an accepted 
 | 03 | LACP EtherChannel | **Verified** |
 | 04 | Rapid PVST+ | **Verified** |
 | 05 | SVIs and HSRP | **Verified** |
-| 06 | Routed `/31`s and loopbacks | Not started |
-| 07 | OSPF Area 10 | Not started |
+| 06 | Routed `/31` underlay | **Verified** |
+| 07 | Loopbacks and OSPF Area 10 | **Verified** |
 | 08 | ECMP | Not started |
 | 09 | OSPF cost engineering | Not started |
 | 10 | Failure testing | Not started |
@@ -145,9 +145,10 @@ Evidence folders are created only when genuine artifacts exist.
 | 03 | `evidence/hq/etherchannel/` |
 | 04 | `evidence/hq/spanning-tree/` |
 | 05 | `evidence/hq/hsrp/` |
+| 06 | `evidence/hq/layer3-underlay/` |
 | 07–09 | `evidence/hq/ospf/` |
 | 10 | `evidence/hq/failure-tests/` |
-| 06, 11 | No dedicated folder unless useful artifacts warrant one |
+| 11 | No dedicated folder unless useful artifacts warrant one |
 
 Smaller evidence sets can use files directly inside the relevant phase folder:
 
@@ -163,7 +164,7 @@ evidence/hq/etherchannel/HQ-VP-03.04-member-link-failure/
 
 ## Configs and Git traceability
 
-`configs/hq/` is created when meaningful as-built device configurations exist:
+`configs/hq/` contains the readable sanitised as-built device configurations from the latest milestone (currently Phase 07):
 
 ```text
 configs/hq/
@@ -174,7 +175,7 @@ configs/hq/
 └── hq-a1-running-config.txt
 ```
 
-Once configs exist, relevant build-log and verification entries should record the config filename **and** the Git commit hash representing the device state at the time of the test.
+Relevant build-log and verification entries record the config filename and the Git commit hash representing the retained milestone state. Phases 01–05 predate `configs/hq/`, so their phase-level completion commits provide the historical Git traceability instead.
 
 Per-device files in `configs/hq/` are the readable as-built configuration reference. Selected CML YAML files under `lab/cml-lab-exports/` are milestone lab-restoration artifacts; they complement the per-device configs and do not replace them.
 
@@ -206,5 +207,5 @@ Check that:
 - Each verification test uses the `Status` field to record its result.
 - Meaningful faults use `HQ-TS-NNN`, not routine typing mistakes.
 - `Deviated` is backed by an accepted `HQ-DEV-NNN`, and every test in the phase is resolved before the phase itself reads as `Deviated`.
-- Phases 06–11 have not been given premature command-level test detail.
+- Phases 08–11 have not been given premature command-level test detail.
 - Config/evidence directories contain real content rather than placeholders.

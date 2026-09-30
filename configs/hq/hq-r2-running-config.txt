@@ -1,0 +1,204 @@
+Building configuration...
+
+Current configuration : 4209 bytes
+!
+! Last configuration change at 07:26:42 UTC Sun Sep 27 2026 by <sanitised>
+!
+version 15.9
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+service compress-config
+!
+hostname hq-r2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no logging console
+enable secret 9 <sanitised>
+!
+no aaa new-model
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+username <sanitised> secret 9 <sanitised>
+!
+redundancy
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.255.10.130 255.255.255.255
+ ip ospf 10 area 10
+!
+interface GigabitEthernet0/0
+ description P2P to hq-d2 Gi2/0 | 10.255.10.2/31 | direct
+ ip address 10.255.10.3 255.255.255.254
+ ip ospf network point-to-point
+ ip ospf 10 area 10
+ ip ospf cost 10
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/1
+ description P2P to hq-d2 Gi2/1 | 10.255.10.14/31 | direct
+ ip address 10.255.10.15 255.255.255.254
+ ip ospf network point-to-point
+ ip ospf 10 area 10
+ ip ospf cost 10
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/2
+ description P2P to hq-d2 Gi2/2 | 10.255.10.16/31 | direct
+ ip address 10.255.10.17 255.255.255.254
+ ip ospf network point-to-point
+ ip ospf 10 area 10
+ ip ospf cost 10
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/3
+ description P2P to hq-d2 Gi2/3 | 10.255.10.18/31 | direct
+ ip address 10.255.10.19 255.255.255.254
+ ip ospf network point-to-point
+ ip ospf 10 area 10
+ ip ospf cost 10
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/4
+ description P2P to hq-d1 Gi3/0 | 10.255.10.4/31 | cross-link
+ ip address 10.255.10.5 255.255.255.254
+ ip ospf network point-to-point
+ ip ospf 10 area 10
+ ip ospf cost 100
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/5
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/6
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/7
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+router ospf 10
+ router-id 10.255.10.130
+ passive-interface default
+ no passive-interface GigabitEthernet0/0
+ no passive-interface GigabitEthernet0/1
+ no passive-interface GigabitEthernet0/2
+ no passive-interface GigabitEthernet0/3
+ no passive-interface GigabitEthernet0/4
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+!
+ipv6 ioam timestamp
+!
+!
+!
+control-plane
+!
+banner motd ^C
+
+####################################################################
+#                                                                  #
+#               NETWORK OPERATIONS / SECURITY NOTICE               #
+#                        MULTI-SITE CML LAB                        #
+#                     HQ CAMPUS - OSPF AREA 10                     #
+#                                                                  #
+#------------------------------------------------------------------#
+#                                                                  #
+#           *** WARNING - AUTHORIZED PERSONNEL ONLY ***            #
+#                                                                  #
+#       This system is restricted to authorized users only.        #
+#        Access to this device is restricted and monitored.        #
+#         Activity may be logged and reviewed as required.         #
+#                                                                  #
+#        Disconnect immediately if you are not authorized.         #
+#                                                                  #
+####################################################################
+
+^C
+!
+line con 0
+ exec-timeout 0 0
+ password 7 <sanitised>
+ logging synchronous
+ login local
+line aux 0
+line vty 0 4
+ exec-timeout 0 0
+ password 7 <sanitised>
+ login local
+ transport input ssh
+line vty 5 15
+ password 7 <sanitised>
+ login local
+ transport input ssh
+!
+no scheduler allocate
+!
+end

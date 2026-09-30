@@ -46,6 +46,10 @@ Production VLAN, EtherChannel, Rapid PVST+, HSRP, routed-link, and OSPF configur
 
 [`evidence/hq/platform-baseline/`](../../../evidence/hq/platform-baseline/)
 
+### Git traceability
+
+Phase completion commit: [`9d99722`](https://github.com/ddduddden/multi-site-cml-lab/commit/9d9972296d28a4456f54e4ed38fdb70b45f2060f) (PR #5).
+
 ### Next
 
 **Phase 02 — Layer 2 / VLAN Baseline**
@@ -78,6 +82,10 @@ EtherChannel/trunking and later Layer 2 and Layer 3 features remain for subseque
 ### Evidence
 
 [`evidence/hq/layer2-vlan-baseline/`](../../../evidence/hq/layer2-vlan-baseline/)
+
+### Git traceability
+
+Phase completion commit: [`e6f7201`](https://github.com/ddduddden/multi-site-cml-lab/commit/e6f7201131b7bef53612278bd5cdf2d98b3fbf5f) (PR #6).
 
 ### Next
 
@@ -114,6 +122,10 @@ Deterministic Rapid PVST+ root placement and forwarding behaviour remain for Pha
 ### Evidence
 
 [`evidence/hq/etherchannel/`](../../../evidence/hq/etherchannel/)
+
+### Git traceability
+
+Phase completion commit: [`7db4f05`](https://github.com/ddduddden/multi-site-cml-lab/commit/7db4f05124b244752e461084b1eeb7aaf7dcd132) (PR #7).
 
 ### Next
 
@@ -152,10 +164,13 @@ SVI addressing and HSRP gateway redundancy remain for Phase 05.
 
 [`evidence/hq/spanning-tree/`](../../../evidence/hq/spanning-tree/)
 
+### Git traceability
+
+Phase completion commit: [`2094b28`](https://github.com/ddduddden/multi-site-cml-lab/commit/2094b28d5f8a4b38719723c927ad3232ea69f09e) (PR #8).
+
 ### Next
 
 **Phase 05 — SVIs and HSRP**
-
 
 ---
 
@@ -195,6 +210,115 @@ Routed `/31` Distribution-to-Edge links and loopbacks remain for Phase 06.
 
 [`evidence/hq/hsrp/`](../../../evidence/hq/hsrp/)
 
+### Git traceability
+
+Phase completion commit: [`9e17f45`](https://github.com/ddduddden/multi-site-cml-lab/commit/9e17f4594ca03d354264e553a7f0109f12685366) (PR #9).
+
 ### Next
 
 **Phase 06 — Routed `/31`s and Loopbacks**
+
+---
+
+## Phase 06 — Routed `/31` Underlay
+
+**Completed:** `30-09-2026`
+
+**Build window:** Combined with Phase 07.
+
+### Implemented
+
+- Converted `hq-d1` and `hq-d2` `Gi2/0`–`Gi2/3` and `Gi3/0` to routed ports.
+- Addressed the ten Distribution-to-Edge links as `/31` point-to-point networks from the approved `10.255.10.0/24` infrastructure range.
+- Used four direct routed links from `hq-d1` to `hq-r1`, four from `hq-d2` to `hq-r2`, and one cross-link from each distribution switch to the opposite edge router.
+- Applied operational descriptions containing peer interface, subnet, and direct/cross-link role.
+- Verified connected routes and direct peer reachability before any OSPF process existed.
+- Preserved the historical phase boundary shown by the saved CML state: `Loopback0` identities were not yet configured at the end of Phase 06 and were introduced with Phase 07.
+
+### Verification
+
+- `HQ-VP-06.01` — Routed `/31` Interface Addressing and State
+- `HQ-VP-06.02` — Direct `/31` Point-to-Point Reachability
+- `HQ-VP-06.03` — Pre-OSPF Underlay Baseline
+
+### Result
+
+**Phase 06 verified.** All ten routed links were `up/up`, used the approved `/31` addressing, and provided bidirectional directly connected reachability. The pre-OSPF capture confirmed no OSPF router process existed on any of the four Layer 3 devices.
+
+The original phase index placed the loopbacks in Phase 06, but the retained milestone state shows that they were actually introduced at the start of Phase 07. The phase was therefore renamed *Routed `/31` Underlay*, and the implementation record follows the observed build history rather than reconstructing a state that did not exist.
+
+### Evidence
+
+[`evidence/hq/layer3-underlay/`](../../../evidence/hq/layer3-underlay/)
+
+### Milestone artifacts
+
+The end-of-Phase-06 CML export is retained privately as the pre-OSPF rollback point and is not committed. The Phase 06 evidence was captured from that restored state. The committed `configs/hq/` files represent the Phase 07 milestone.
+
+### Git traceability
+
+Phase 06 verification evidence is included in the combined Phase 06–07 evidence snapshot: commit [`6608742`](https://github.com/ddduddden/multi-site-cml-lab/commit/66087426a6aa619e0177abca1238fad7c3213d70).
+
+### Next
+
+**Phase 07 — Loopbacks and OSPF Area 10**
+
+---
+
+## Phase 07 — Loopbacks and OSPF Area 10
+
+**Completed:** `30-09-2026`
+
+**Build window:** Combined with Phase 06.
+
+### Implemented
+
+- Added `Loopback0` identities `10.255.10.129/32`–`10.255.10.132/32` to `hq-r1`, `hq-r2`, `hq-d1`, and `hq-d2`.
+- Configured OSPFv2 process `10` with explicit router IDs matching those loopbacks.
+- Enabled OSPF through interface-level `ip ospf 10 area 10` configuration rather than broad network statements.
+- Applied `passive-interface default` and made only the five routed Distribution-to-Edge interfaces per Layer 3 device non-passive.
+- Kept the eight distribution SVIs and all four loopbacks passive while advertising their prefixes into Area `10`.
+- Configured all ten routed Ethernet links as OSPF point-to-point.
+- Applied cost `10` to the eight direct links and cost `100` to the two cross-links at both ends.
+- Confirmed with `show ip protocols` that the operational OSPF maximum-path value on this image was `4`; no explicit `maximum-paths 4` line was present in the running configuration.
+- Corrected an early Area `0` interface assignment on `hq-d2` so all five routed interfaces participated in Area `10` before final verification.
+- Disabled IP routing on `hq-a1` with `no ip routing`, retaining `ip default-gateway 10.10.99.1`. The initial management reachability check showed that `hq-a1` could reach its HSRP gateway but not the four remote routing identities while IOSvL2 routing was active; `HQ-TS-001` records the investigation and correction.
+- Captured a sanitised Phase 07 CML milestone export and readable per-device running configurations for the public repository.
+
+### Verification
+
+- `HQ-VP-07.01` — Loopback and OSPF Process Identity
+- `HQ-VP-07.02` — OSPF Interface Participation, Network Type and Cost
+- `HQ-VP-07.03` — OSPF Area 10 Adjacencies
+- `HQ-VP-07.04` — OSPF Link-State Database and Learned Routing
+- `HQ-VP-07.05` — Routed and End-to-End Reachability
+- `HQ-VP-07.06` — Layer 2 and Gateway Regression
+
+### Result
+
+**Phase 07 verified.** Each Layer 3 device formed exactly five `FULL` point-to-point OSPF neighbours, giving ten unique routed-link adjacencies across Area `10`. All four Router LSAs were present, the expected HQ prefixes were learned, and all twelve sourced inter-device reachability checks succeeded.
+
+`hq-a1` successfully reached the HSRP gateway and all four loopbacks while operating with `no ip routing` and `ip default-gateway 10.10.99.1`. Final regression captures confirmed the existing EtherChannel, Rapid PVST+, HSRP, and management-SVI state remained intact.
+
+Route tables already expose multiple next hops and cost-driven path differences, but those behaviours remain deliberately reserved for the dedicated Phase 08 ECMP and Phase 09 cost-engineering verification.
+
+### Evidence
+
+[`evidence/hq/ospf/`](../../../evidence/hq/ospf/)
+
+### Milestone artifacts
+
+- `configs/hq/hq-r1-running-config.txt`
+- `configs/hq/hq-r2-running-config.txt`
+- `configs/hq/hq-d1-running-config.txt`
+- `configs/hq/hq-d2-running-config.txt`
+- `configs/hq/hq-a1-running-config.txt`
+- `lab/cml-lab-exports/hq/hq-phase-07-ospf-area10-2026-09-30.yaml`
+
+### Git traceability
+
+Phase 07 as-built configs, verification evidence, and milestone CML export: commit [`6608742`](https://github.com/ddduddden/multi-site-cml-lab/commit/66087426a6aa619e0177abca1238fad7c3213d70).
+
+### Next
+
+**Phase 08 — ECMP**
