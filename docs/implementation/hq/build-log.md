@@ -322,3 +322,93 @@ Phase 07 as-built configs, verification evidence, and milestone CML export: comm
 ### Next
 
 **Phase 08 — ECMP**
+
+---
+
+## Phase 08 — ECMP
+
+**Completed:** `30-09-2026`
+
+### Implemented
+
+- Made no permanent configuration change.
+- Verified the four-route ECMP behaviour exposed by the Phase 07 OSPF design.
+- Confirmed selected metric-`11` four-route sets in the routing table.
+- Verified CEF-selected forwarding with interface counters.
+- Confirmed that more than one installed ECMP member carried the test traffic.
+- Contracted and restored a selected ECMP route set from four routes to one and back to four.
+- Verified the lab-observed four-path OSPF installation limit with a fifth equal-cost route available.
+
+### Verification
+
+- `HQ-VP-08.01` — ECMP Route Installation
+- `HQ-VP-08.02` — CEF Path Selection
+- `HQ-VP-08.03` — Aggregate ECMP Forwarding
+- `HQ-VP-08.04` — ECMP Contraction and Restoration
+- `HQ-VP-08.05` — Four-Path Maximum
+
+### Result
+
+**Phase 08 verified.** The intended four-route OSPF ECMP sets were present in the routing table, and the forwarding tests showed that more than one installed path was actually used. Controlled link removal contracted the selected route set from four routes to one, and restoration rebuilt it to four.
+
+The test also showed five equal-cost paths from `hq-r1` to `hq-r2 Loopback0` (`10.255.10.130/32`). With the lab-observed maximum-path value of four, OSPF kept four next hops installed, and the previously omitted route entered the routing table when one installed path was removed.
+
+### Evidence
+
+[`evidence/hq/ospf/`](../../../evidence/hq/ospf/)
+
+### Milestone artifacts
+
+No new milestone artifact. Phase 08 changed no intended device configuration; the Phase 07 configs and CML export remain current.
+
+### Git traceability
+
+Phase 08/09 verification evidence commit: `79d27bf`.
+
+### Next
+
+**Phase 09 — OSPF Cost Engineering**
+
+---
+
+## Phase 09 — OSPF Cost Engineering
+
+**Completed:** `30-09-2026`
+
+### Implemented
+
+- Made no permanent configuration change.
+- Verified that normal OSPF route selection follows the approved cost policy.
+- Confirmed that selected campus and infrastructure routes followed the expected OSPF costs: metric `11` on the direct paths and metrics `101` and `110` on the higher-cost cross-link paths.
+- Removed each four-link direct edge/distribution set in turn and verified the surviving higher-cost routes.
+- Confirmed alternate reachability with sourced pings and traceroutes.
+- Restored all direct links and verified return to the normal ECMP and OSPF state.
+- Compared the post-test CML export with the committed Phase 07 configuration files and found no unexpected configuration changes.
+
+### Verification
+
+- `HQ-VP-09.01` — Normal Cost-Driven Selection
+- `HQ-VP-09.02` — Higher-Cost Alternate Activation
+- `HQ-VP-09.03` — Preferred-Route Restoration
+
+### Result
+
+**Phase 09 verified.** Normal routing followed the configured OSPF cost policy. When a complete four-link direct set was removed, OSPF moved the affected routes onto the surviving higher-cost routes through the opposite edge/distribution pair, and reachability remained available.
+
+Restoring the direct links returned the selected campus routes to metric `11`, rebuilt the four-route ECMP sets, and returned all four Layer 3 devices to five `FULL` OSPF neighbours. The final health check matched the Phase 07 operating baseline.
+
+### Evidence
+
+[`evidence/hq/ospf/`](../../../evidence/hq/ospf/)
+
+### Milestone artifacts
+
+No new milestone artifact. Phase 09 changed no intended device configuration; the Phase 07 configs and CML export remain current.
+
+### Git traceability
+
+Phase 08/09 verification evidence commit: `79d27bf`.
+
+### Next
+
+**Phase 10 — Failure Testing**
