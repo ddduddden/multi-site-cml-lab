@@ -4,7 +4,7 @@ This document defines what the HQ implementation must prove before a feature is 
 
 It is a **controlled living document**. Once a verification ID is assigned it remains permanent. Expected results and exact verification commands may be refined when the actual CML platform behaviour is confirmed.
 
-Phases 01–07 are detailed below. Phases 06 and 07 were built and verified in one combined build window but keep separate test IDs and phase status. Phases 08–11 contain only their agreed objective until the project reaches them.
+Phases 01–09 are detailed below. Phases 06 and 07 were built and verified in one combined build window, and Phases 08 and 09 were verified in one combined test window; each phase keeps separate test IDs and phase status. Phases 10–11 contain only their agreed objective until the project reaches them.
 
 ## Project reference key
 
@@ -52,8 +52,8 @@ There is no separate Pass/Fail field. `Blocked` means the test cannot currently 
 | 05 | SVIs and HSRP | Detailed below |
 | 06 | Routed `/31` underlay | Detailed below |
 | 07 | Loopbacks and OSPF Area 10 | Detailed below |
-| 08 | ECMP | Objective only |
-| 09 | OSPF cost engineering | Objective only |
+| 08 | ECMP | Detailed below |
+| 09 | OSPF cost engineering | Detailed below |
 | 10 | Failure testing | Objective only |
 | 11 | Final acceptance | Objective only |
 
@@ -977,17 +977,265 @@ This is a state regression check only. The earlier Phase 03–05 failure tests a
 
 ## Phase 08 — ECMP
 
-**Objective:** Prove that the intended equal-cost OSPF paths are actually installed and usable; do not infer ECMP merely from topology.
+**Completed:** `30-09-2026`
 
-_No individual verification IDs assigned yet._
+**Objective:** Prove that the intended equal-cost OSPF routes are installed and usable; do not infer ECMP merely from topology.
+
+Phase 08 verifies the ECMP behaviour already exposed by the Phase 07 OSPF configuration. No permanent configuration change was made.
+
+**As-built configuration reference:** The Phase 07 files in `configs/hq/` remain the current as-built configuration reference.
+
+**Git traceability:** Phase 08/09 verification evidence commit: `79d27bf`.
+
+---
+
+### ECMP Route Installation — HQ-VP-08.01
+
+**Objective:**
+Confirm that the intended four-route OSPF ECMP sets are installed in the routing table.
+
+**Expected result:**
+Selected campus and directly paired edge/distribution loopback routes install four equal-cost next hops at metric `11`. OSPF retains an operational maximum-path value of `4`.
+
+**Configuration involved:**
+No Phase 08 configuration change. The test uses the Phase 07 OSPF interface costs and process state.
+
+**Verification command(s):**
+`show ip ospf neighbor`; selected `show ip route <prefix>` checks; Phase 07 `show ip protocols` evidence.
+
+**Observed result:**
+`hq-r1` and `hq-r2` each installed four metric-`11` routes to `10.10.12.0/22`. `hq-d2` installed four metric-`11` routes to `hq-r2 Loopback0`, while the equivalent `hq-d1` to `hq-r1 Loopback0` state is retained in Phase 07 evidence. The metric matches direct-link cost `10` plus destination SVI or loopback cost `1`. Phase 07 evidence records `Maximum path: 4`.
+
+**Status:**
+Verified
+
+**Evidence:**
+`evidence/hq/ospf/HQ-VP-08.01-ecmp-route-installation.txt`; `evidence/hq/ospf/HQ-VP-07.04-ospf-database-learned-routing.txt`; `evidence/hq/ospf/HQ-VP-07.01-loopback-ospf-process-identity.txt`.
+
+**Notes / Troubleshooting:**
+Per-flow forwarding is verified separately in `HQ-VP-08.02` and `HQ-VP-08.03`.
+
+---
+
+### CEF Path Selection — HQ-VP-08.02
+
+**Objective:**
+Confirm that CEF `exact-route` prediction matches the interface actually used to forward the test traffic.
+
+**Expected result:**
+For each tested flow, the interface predicted by `show ip cef exact-route` carries the dominant output increase during the associated 100-ping test.
+
+**Configuration involved:**
+No configuration change. Interface counters were cleared only for measurement.
+
+**Verification command(s):**
+`show ip cef exact-route 10.10.99.4 <destination>` on `hq-d2`; clear and inspect `Gi2/0`–`Gi2/3` counters; 100-ping tests from `hq-a1`.
+
+**Observed result:**
+Three test flows were run from `10.10.99.4`. CEF selected `hq-d2 Gi2/2` for `10.255.10.130`, `Gi2/3` for `10.255.10.5`, and `Gi2/2` for `10.255.10.4`. In every case the selected interface carried the dominant output increase during the test. Exact counter values are retained in the evidence file.
+
+**Status:**
+Verified
+
+**Evidence:**
+`evidence/hq/ospf/HQ-VP-08.02-cef-path-selection.txt`
+
+**Notes / Troubleshooting:**
+A separate router-generated reply observation did not affect the forwarding result and is retained in the evidence file. Phase 10 will not use `exact-route` as proof of the forwarding interface for router-generated test traffic.
+
+---
+
+### Aggregate ECMP Forwarding — HQ-VP-08.03
+
+**Objective:**
+Confirm that more than one installed ECMP route is used by the test traffic.
+
+**Expected result:**
+More than one installed ECMP member carries the test traffic. Equal distribution across all four members is not required.
+
+**Configuration involved:**
+No configuration change.
+
+**Verification command(s):**
+Reuse the flow tests, CEF, and counter checks from `HQ-VP-08.02`.
+
+**Observed result:**
+The three tested flows used two members of the four-route ECMP set. `hq-d2 Gi2/2` carried the flows to `10.255.10.130` and `10.255.10.4`, while `Gi2/3` carried the flow to `10.255.10.5`. No tested flow selected `Gi2/0` or `Gi2/1`.
+
+**Status:**
+Verified
+
+**Evidence:**
+`evidence/hq/ospf/HQ-VP-08.03-aggregate-ecmp-forwarding.txt`; supporting CEF and interface-counter captures remain in `evidence/hq/ospf/HQ-VP-08.02-cef-path-selection.txt`.
+
+**Notes / Troubleshooting:**
+The same three flow captures are used for both checks. `HQ-VP-08.03` keeps the forwarding summary, while the detailed CEF and counter output is kept in `HQ-VP-08.02`.
+
+---
+
+### ECMP Contraction and Restoration — HQ-VP-08.04
+
+**Objective:**
+Confirm that removal and restoration of equal-cost direct links causes the installed ECMP route set to contract and rebuild cleanly.
+
+**Expected result:**
+A selected four-route campus prefix contracts `4→3→2→1` as direct links are removed, remains metric `11` while at least one cost-`10` direct link survives, and restores `1→2→3→4` as the links return.
+
+**Configuration involved:**
+Temporary shutdown and restoration of `hq-r1 Gi0/3`, `Gi0/2`, `Gi0/1`, and `Gi0/0`. No permanent configuration change.
+
+**Verification command(s):**
+`show ip ospf neighbor`; `show ip route 10.10.12.0`; controlled `shutdown` and `no shutdown`.
+
+**Observed result:**
+`hq-r1`'s route to `10.10.12.0/22` contracted from four metric-`11` next hops to three, two, and one as the direct links were removed. Restoring the links rebuilt the route set from one to four.
+
+**Status:**
+Verified
+
+**Evidence:**
+`evidence/hq/ospf/HQ-VP-08.04-ecmp-contraction-restoration.txt`
+
+**Notes / Troubleshooting:**
+A brief one-sided OSPF neighbour state was seen during one shutdown and is kept in the evidence file. Stable route checks were taken after both sides had converged.
+
+---
+
+### Four-Path Maximum — HQ-VP-08.05
+
+**Objective:**
+Confirm the lab-observed four-path OSPF installation behaviour when five equal-cost paths are available.
+
+**Expected result:**
+Only four next hops are installed. If one installed next hop is removed, the route still installs four equal-cost next hops and a previously omitted equal-cost route can enter.
+
+**Configuration involved:**
+No `maximum-paths` command was added. Phase 07 established the operational maximum-path value as `4`.
+
+**Verification command(s):**
+`show ip route 10.255.10.130`; remove one installed next hop; repeat the route check after convergence.
+
+**Observed result:**
+`hq-r1` initially installed four metric-`111` next hops to `10.255.10.130/32` over `Gi0/0`–`Gi0/3`. `Gi0/4` provided a fifth equal-cost path at metric `111`. After `Gi0/3` was shut and OSPF converged, the route still installed four metric-`111` next hops and `Gi0/4` entered the routing table.
+
+The omitted route was not fixed. Phase 07 showed `hq-r2` omitting `Gi0/3` for `10.255.10.129/32`; after the mirrored recovery in this test window it omitted `Gi0/0`. Final `hq-r1` state again omitted `Gi0/4` for `10.255.10.130/32`.
+
+**Status:**
+Verified
+
+**Evidence:**
+`evidence/hq/ospf/HQ-VP-08.05-four-path-maximum.txt`; `evidence/hq/ospf/HQ-VP-07.04-ospf-database-learned-routing.txt`.
+
+**Notes / Troubleshooting:**
+For this far-side loopback, `Gi0/4` had the same total OSPF cost as the other paths, so it could join the ECMP route set.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ## Phase 09 — OSPF Cost Engineering
 
-**Objective:** Prove that preferred direct paths and higher-cost cross-connected alternatives are selected according to the approved design and become usable during the intended failures.
+**Completed:** `30-09-2026`
 
-_No individual verification IDs assigned yet._
+**Objective:** Prove that preferred direct routes and higher-cost alternate routes are selected according to the approved OSPF cost design and become usable when the preferred direct set is unavailable.
+
+Phase 09 verifies the cost policy already configured in Phase 07. No permanent configuration change was made.
+
+**As-built configuration reference:** The Phase 07 files in `configs/hq/` remain the current as-built configuration reference.
+
+**Git traceability:** Phase 08/09 verification evidence commit: `79d27bf`.
+
+---
+
+### Normal Cost-Driven Selection — HQ-VP-09.01
+
+**Objective:**
+Confirm that normal OSPF route selection follows the configured total path cost.
+
+**Expected result:**
+The routing table installs the lowest-cost route or equal-cost route set for each selected destination.
+
+**Configuration involved:**
+No configuration change. Phase 07 direct-link cost `10`, cross-link cost `100`, SVI cost `1`, and loopback cost `1` remain in use.
+
+**Verification command(s):**
+Selected `show ip route` checks on `hq-r1`, cross-referenced with the Phase 07 interface-cost evidence.
+
+**Observed result:**
+`10.10.12.0/22` used four direct metric-`11` routes rather than the metric-`101` cross-link alternative. `hq-d2 Loopback0` used the cross-link at metric `101`, which was lower than the metric-`121` route through `hq-d1`. The far-side `hq-d2`–`hq-r2` `/31` prefixes used the cross-link at metric `110`, lower than the metric-`120` alternative through `hq-d1`.
+
+The final `hq-r1` routing table showed five far-side infrastructure prefixes using only `Gi0/4`: `10.255.10.2/31`, `10.255.10.14/31`, `10.255.10.16/31`, `10.255.10.18/31`, and `10.255.10.132/32`.
+
+**Status:**
+Verified
+
+**Evidence:**
+`evidence/hq/ospf/HQ-VP-09.01-normal-cost-driven-selection.txt`; `evidence/hq/ospf/HQ-VP-07.02-ospf-interface-policy.txt`.
+
+**Notes / Troubleshooting:**
+The five-way metric-`111` loopback case is verified separately in `HQ-VP-08.05`.
+
+---
+
+### Higher-Cost Alternate Activation — HQ-VP-09.02
+
+**Objective:**
+Confirm that removing a complete four-link direct set causes OSPF to use the surviving higher-cost alternate route, while traffic remains reachable through the opposite edge/distribution pair.
+
+**Expected result:**
+The affected edge router reaches a selected campus prefix at metric `101`. The distribution switch that loses its direct links reaches the affected edge loopback at metric `211` through the opposite edge/distribution pair. End-to-end reachability remains available.
+
+**Configuration involved:**
+Temporary shutdown of the four direct links on each tested edge/distribution pair. No permanent configuration change.
+
+**Verification command(s):**
+`show ip ospf neighbor`; selected `show ip route` checks; sourced ping and traceroute tests; `show standby brief` during the R1/D1 test.
+
+**Observed result:**
+With all four `hq-r1`↔`hq-d1` direct links down, `hq-r1` reached `10.10.12.0/22` at metric `101` through `hq-d2`. `hq-d1` reached `hq-r1 Loopback0` at metric `211` through `hq-r2→hq-d2→hq-r1`; the sourced ping succeeded `10/10` and traceroute followed that path.
+
+`hq-d1` remained HSRP Active for VLANs `112`, `130`, `152`, and `170` because interface tracking is not configured. Its cross-link to `hq-r2` remained available, so routed traffic for those VLANs could continue.
+
+The mirrored R2/D2 test produced the same metric pattern. `hq-r2` used a metric-`101` campus route through `hq-d1`, while `hq-d2` reached `hq-r2 Loopback0` at metric `211` through `hq-r1→hq-d1→hq-r2`. `hq-a1` reached `10.255.10.130` at `10/10`, and the traceroute from `hq-d2` followed the expected alternate path.
+
+**Status:**
+Verified
+
+**Evidence:**
+`evidence/hq/ospf/HQ-VP-09.02-higher-cost-alternate-activation.txt`
+
+**Notes / Troubleshooting:**
+HSRP state was captured during the R1/D1 test. During the mirrored R2/D2 test, one traceroute probe showed `*`; the same alternate hops remained visible and the selected route and `10/10` reachability were stable. Complete loss of every routed uplink from an Active HSRP distribution switch remains a Phase 10 failure scenario.
+
+---
+
+### Preferred-Route Restoration — HQ-VP-09.03
+
+**Objective:**
+Confirm that restoration of lower-cost direct connectivity removes the higher-cost alternate route and returns the routing state to the Phase 07 baseline.
+
+**Expected result:**
+Restoring a cost-`10` direct link replaces the metric-`101` alternate route. Full restoration returns the normal four-route ECMP state, five OSPF neighbours per Layer 3 device, the expected OSPF route counts, and the Phase 07 configuration baseline.
+
+**Configuration involved:**
+Restoration of the interfaces temporarily shut during Phase 08/09 testing. No permanent configuration change.
+
+**Verification command(s):**
+`no shutdown`; `show ip ospf neighbor`; selected `show ip route` checks; final `show ip route ospf`; final `show ip interface brief | exclude unassigned`; comparison with the committed Phase 07 configuration files.
+
+**Observed result:**
+Restoring `hq-r1 Gi0/0` replaced the metric-`101` route to `10.10.12.0/22` with a direct metric-`11` route. Restoring the remaining direct links rebuilt the four-route ECMP state. The mirrored R2/D2 restoration returned both devices to five `FULL` neighbours and restored the four metric-`11` routes.
+
+The final health check showed five OSPF neighbours on all four Layer 3 devices, 16 learned OSPF routes on each edge router, and 8 on each distribution switch. All intended routed interfaces, SVIs, and loopbacks were `up/up`.
+
+The post-test CML export was compared with the committed Phase 07 device configurations, and no unexpected configuration changes were found.
+
+**Status:**
+Verified
+
+**Evidence:**
+`evidence/hq/ospf/HQ-VP-09.03-preferred-route-restoration.txt`
+
+**Notes / Troubleshooting:**
+No troubleshooting was required during final restoration.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 

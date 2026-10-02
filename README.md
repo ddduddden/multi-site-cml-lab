@@ -46,9 +46,9 @@ The full HQ design is documented in:
 
 ## Current Status
 
-The HQ campus has progressed through the routed underlay and initial OSPF Area 10 build.
+The HQ campus has progressed through ECMP and OSPF cost-engineering verification.
 
-Phases **01–07 are verified as-built**. Phase 06 proves the routed `/31` underlay before dynamic routing, while Phase 07 introduces the loopback identities and the complete Area 10 OSPF policy. The next work is deliberate ECMP and cost-engineering verification rather than further baseline routing configuration.
+Phases **01–09 are verified as-built**. Phase 08 proves that the intended four-route OSPF ECMP sets are installed and usable, while Phase 09 confirms the configured cost policy, higher-cost alternate routing, and restoration to the preferred state. Phases 08 and 09 were verification-only and introduced no new configuration milestone.
 
 | Phase | Scope | Status |
 |---:|---|---|
@@ -59,8 +59,8 @@ Phases **01–07 are verified as-built**. Phase 06 proves the routed `/31` under
 | 05 | SVIs and HSRP | **Verified** |
 | 06 | Routed `/31` underlay | **Verified** |
 | 07 | Loopbacks and OSPF Area 10 | **Verified** |
-| 08 | ECMP | Planned |
-| 09 | OSPF cost engineering | Planned |
+| 08 | ECMP | **Verified** |
+| 09 | OSPF cost engineering | **Verified** |
 | 10 | Failure testing | Planned |
 | 11 | Final acceptance | Planned |
 
@@ -80,12 +80,17 @@ Completed verification now includes:
 - Consistent Area 10 link-state databases and learned HQ routes
 - End-to-end reachability from the access-switch management network to all four routing loopbacks
 - Regression confirmation that EtherChannel, Rapid PVST+, HSRP, and VLAN 199 management state remained intact
+- Four-route OSPF ECMP installation with test traffic using more than one installed path
+- Controlled ECMP contraction and restoration
+- Lab-observed four-path OSPF installation limit with a fifth equal-cost route available
+- Cost-driven direct and cross-link route selection
+- Higher-cost alternate routing during complete direct-set loss
+- Preferred-route restoration and final routing-state regression check
 
 Current verification focus:
 
-- Installation and use of the intended four-path OSPF ECMP sets
-- Cost-driven preferred and alternate routing behaviour
 - Defined routed-interface, device, and combined failure scenarios
+- HQ final acceptance and as-built close-out
 
 Detailed implementation status and verification records are maintained in:
 
@@ -170,7 +175,7 @@ Repository areas have distinct roles:
 
 The project will continue through the following major stages:
 
-1. Verify HQ ECMP, OSPF cost engineering, and defined failure scenarios.
+1. Complete HQ failure testing.
 2. Complete HQ final acceptance and as-built validation.
 3. Introduce monitoring, SNMP, syslog, metrics, and NTP using the Raspberry Pi.
 4. Build the Branch Campus as OSPF Area 20.

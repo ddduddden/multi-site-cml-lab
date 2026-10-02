@@ -80,7 +80,7 @@ The phase numbers are a project-specific indexing convention. They are not a Cis
 | 10 | Failure testing | Exercise defined device, interface, Port-Channel, and routing failures and recovery |
 | 11 | Final acceptance | Confirm the evidence required to describe HQ as verified as-built |
 
-Phases 01–07 are detailed in `verification-plan.md`. Phases 06 and 07 were built and verified in one combined build window but keep separate test IDs, phase status, and build-log entries. Phases 08–11 remain objective-only until the project reaches them.
+Phases 01–09 are detailed in `verification-plan.md`. Phases 06 and 07 were built and verified in one combined build window, and Phases 08 and 09 were verified in one combined test window; each phase keeps separate test IDs, phase status, and build-log entries. Phases 10–11 remain objective-only until the project reaches them.
 
 ## Working rules
 
@@ -129,8 +129,8 @@ A phase does not show as `Deviated` just because one test in it has an accepted 
 | 05 | SVIs and HSRP | **Verified** |
 | 06 | Routed `/31` underlay | **Verified** |
 | 07 | Loopbacks and OSPF Area 10 | **Verified** |
-| 08 | ECMP | Not started |
-| 09 | OSPF cost engineering | Not started |
+| 08 | ECMP | **Verified** |
+| 09 | OSPF cost engineering | **Verified** |
 | 10 | Failure testing | Not started |
 | 11 | Final acceptance | Not started |
 
@@ -207,5 +207,5 @@ Check that:
 - Each verification test uses the `Status` field to record its result.
 - Meaningful faults use `HQ-TS-NNN`, not routine typing mistakes.
 - `Deviated` is backed by an accepted `HQ-DEV-NNN`, and every test in the phase is resolved before the phase itself reads as `Deviated`.
-- Phases 08–11 have not been given premature command-level test detail.
+- Phases 10–11 have not been given premature command-level test detail.
 - Config/evidence directories contain real content rather than placeholders.

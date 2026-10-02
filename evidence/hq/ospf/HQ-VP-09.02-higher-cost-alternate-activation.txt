@@ -1,0 +1,117 @@
+HQ-VP-09.02 — Higher-Cost Alternate Activation
+==============================================
+
+Capture date: 30-09-2026
+Source: Phase 08/09 console-session evidence, 30-09-2026.
+Editorial note: Verbatim CLI is retained where available. Sections marked
+"RECORDED SESSION RESULT" summarise observations recorded during the live
+session where the complete terminal transcript was not retained. Blank prompts
+and repeated pastes are omitted. Section labels are editorial. No missing Cisco
+output has been reconstructed.
+
+R1 / D1 FULL DIRECT-SET LOSS
+----------------------------
+
+Temporary state:
+hq-r1 Gi0/0–Gi0/3 shut
+hq-r1 retained only hq-d2 neighbour through Gi0/4
+hq-d1 retained only hq-r2 neighbour through Gi3/0
+
+RECORDED SESSION RESULT
+=======================
+hq-r1 route:
+10.10.12.0/22
+metric 101
+via 10.255.10.6
+GigabitEthernet0/4
+
+hq-d1 route:
+10.255.10.129/32
+metric 211
+via 10.255.10.5
+GigabitEthernet3/0
+
+Metric 211 arithmetic:
+100 + 10 + 100 + 1 = 211
+
+hq-d1 extended traceroute
+Source: 10.255.10.131
+Destination: 10.255.10.129
+
+Recorded hops:
+1  10.255.10.5
+2  10.255.10.16
+3  10.255.10.7
+
+Path:
+hq-d1 -> hq-r2 -> hq-d2 -> hq-r1
+
+Ping:
+10.255.10.129 source 10.255.10.131 repeat 10
+
+Recorded result:
+10/10 successful
+
+HSRP observation from hq-d1:
+Active local:
+VLAN 112
+VLAN 130
+VLAN 152
+VLAN 170
+
+Standby:
+VLAN 120
+VLAN 140
+VLAN 160
+VLAN 199
+
+No interface tracking is configured.
+The hq-d1 -> hq-r2 cross-link remained available during this test.
+
+
+R2 / D2 MIRRORED FULL DIRECT-SET LOSS
+-------------------------------------
+
+Temporary state:
+hq-r2 Gi0/0–Gi0/3 shut
+
+Stable OSPF state:
+hq-r2 retained only hq-d1 via Gi0/4
+hq-d2 retained only hq-r1 via Gi3/0
+
+RECORDED SESSION RESULT
+=======================
+hq-r2 route:
+10.10.12.0/22
+metric 101
+via 10.255.10.4
+GigabitEthernet0/4
+
+hq-d2 route:
+10.255.10.130/32
+metric 211
+via 10.255.10.7
+GigabitEthernet3/0
+
+hq-a1 command:
+ping 10.255.10.130 repeat 10
+
+Recorded result:
+Success rate is 100 percent (10/10)
+RTT recorded: 6/10/17 ms
+
+hq-d2 extended traceroute
+Source: 10.10.99.3
+Destination: 10.255.10.130
+
+Recorded hops:
+1  10.255.10.7
+2  10.255.10.10
+3  10.255.10.5
+
+Path:
+hq-d2 -> hq-r1 -> hq-d1 -> hq-r2
+
+Some traceroute probes displayed "*", while other probes on the same hop
+returned the expected address. The route itself and successful ping remained
+stable.

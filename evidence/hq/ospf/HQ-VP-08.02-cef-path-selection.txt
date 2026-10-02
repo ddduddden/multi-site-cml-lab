@@ -1,0 +1,106 @@
+HQ-VP-08.02 — CEF Path Selection
+================================
+
+Capture date: 30-09-2026
+Source: Phase 08/09 console-session evidence, 30-09-2026.
+Editorial note: Verbatim CLI is retained where available. Sections marked
+"RECORDED SESSION RESULT" summarise observations recorded during the live
+session where the complete terminal transcript was not retained. Blank prompts
+and repeated pastes are omitted. Section labels are editorial. No missing Cisco
+output has been reconstructed.
+
+FLOW 1
+Source:      10.10.99.4
+Destination: 10.255.10.130
+
+Command used:
+show ip cef exact-route 10.10.99.4 10.255.10.130
+
+Captured result:
+IP adj out of GigabitEthernet2/2, addr 10.255.10.17
+
+After clearing hq-d2 Gi2/0–Gi2/3 counters and sending 100 pings:
+
+Interface   Input packets   Output packets
+Gi2/0       5               6
+Gi2/1       5               7
+Gi2/2       103             106
+Gi2/3       5               6
+
+Result:
+Predicted Gi2/2 carried the dominant forward test traffic.
+
+
+FLOW 2
+Source:      10.10.99.4
+Destination: 10.255.10.5
+
+Command used:
+show ip cef exact-route 10.10.99.4 10.255.10.5
+
+Captured result:
+Predicted egress Gi2/3
+Next hop 10.255.10.19
+
+After clearing counters and sending 100 pings:
+
+Interface   Input packets   Output packets
+Gi2/0       3               5
+Gi2/1       104             4
+Gi2/2       3               4
+Gi2/3       2               103
+
+Result:
+Predicted Gi2/3 carried the dominant forward test traffic.
+Return traffic arrived predominantly on Gi2/1.
+
+
+FLOW 3
+Source:      10.10.99.4
+Destination: 10.255.10.4
+
+Command used:
+show ip cef exact-route 10.10.99.4 10.255.10.4
+
+Captured result:
+Predicted egress Gi2/2
+Next hop 10.255.10.17
+
+After clearing counters and sending 100 pings:
+
+Interface   Input packets   Output packets
+Gi2/0       5               9
+Gi2/1       5               7
+Gi2/2       5               107
+Gi2/3       4               8
+
+Result:
+Predicted Gi2/2 carried the dominant forward test traffic.
+
+
+ROUTER-GENERATED REPLY OBSERVATION
+----------------------------------
+On hq-r2 during Flow 1:
+
+Command:
+show ip cef exact-route 10.255.10.130 10.10.99.4
+
+Captured prediction:
+Gi0/3
+next hop 10.255.10.18
+
+Observed on hq-d2 during the same test:
+Gi2/0 input 5
+Gi2/1 input 5
+Gi2/2 input 103
+Gi2/3 input 5
+
+hq-d2 Gi2/2 connects to hq-r2 Gi0/2, so the locally generated ICMP reply
+traffic did not follow the interface predicted by that exact-route query.
+
+No cause was established and none is asserted.
+
+For the .5 test flow, hq-d2 Gi2/1 recorded 104 input packets, showing those
+router-generated replies also arrived predominantly on one link. No matching
+hq-r2 exact-route query using source 10.255.10.5 was captured, so no
+prediction-versus-forwarding comparison is made for that flow.
