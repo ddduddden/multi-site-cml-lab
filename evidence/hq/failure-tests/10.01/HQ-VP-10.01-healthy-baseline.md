@@ -4,8 +4,7 @@
 
 ---
 
-HQ-VP-10.01 — Healthy Baseline
-==============================
+# HQ-VP-10.01 — Healthy Baseline [→](../10.02-10.03/HQ-VP-10.02-10.03-routed-link-ecmp.md "Next VP")
 
 Phase 10 — Failure and Resilience Testing
 

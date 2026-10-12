@@ -10,10 +10,10 @@
 
 | Capture / record | Device / purpose |
 |---|---|
-| [Config excerpts](10.14-config-excerpts.md) | Configuration excerpts |
+| [Config excerpts and final 12 October checks](10.14-config-excerpts.md) | Original capture and five-device configuration reconciliation |
 | [Session record](10.14-session-record.md) | Test session notes and measurements |
 
-Test date: 6 October 2026. The retained evidence comprises config excerpts and a session record.
+Test date: 6 October 2026. Configuration close-out: 12 October 2026. The original captures and later sign-off checks are kept separately.
 
 ---
 

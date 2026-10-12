@@ -4,8 +4,7 @@
 
 ---
 
-HQ-VP-10.09 — hq-d2 Routed Isolation
-====================================
+# [←](../10.08/HQ-VP-10.08-d2-layer2-isolation.md "Previous VP") HQ-VP-10.09 — hq-d2 Routed Isolation [→](../10.10/HQ-VP-10.10-d1-device-failure.md "Next VP")
 
 Phase 10 — Failure and Resilience Testing
 

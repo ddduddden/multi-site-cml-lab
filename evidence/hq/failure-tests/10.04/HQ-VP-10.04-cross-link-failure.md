@@ -4,8 +4,7 @@
 
 ---
 
-HQ-VP-10.04 — Cross-Link Failure
-================================
+# [←](../10.02-10.03/HQ-VP-10.02-10.03-routed-link-ecmp.md "Previous VP") HQ-VP-10.04 — Cross-Link Failure [→](../10.05/HQ-VP-10.05-etherchannel-member-failure.md "Next VP")
 
 Phase 10 — Failure and Resilience Testing
 

@@ -4,8 +4,7 @@
 
 ---
 
-HQ-VP-10.08 — hq-d2 Layer-2 Isolation
-=====================================
+# [←](../10.07/HQ-VP-10.07-po30-progressive-failure.md "Previous VP") HQ-VP-10.08 — hq-d2 Layer-2 Isolation [→](../10.09/HQ-VP-10.09-d2-routed-isolation.md "Next VP")
 
 Phase 10 — Failure and Resilience Testing
 
@@ -163,8 +162,9 @@ One reply to the hq-d2 SVI was much slower than the others
 
 Result
 ------
-FINDING. The VLAN160 gateway failed over to hq-d1, but traffic to hq-r2 was
-blackholed on the return path.
+FAIL. The VLAN160 gateway failed over to hq-d1, but traffic to hq-r2 was
+blackholed on the return path. The expected SVI withdrawal and working return
+path were not demonstrated.
 
 hq-d2's VLAN160 SVI and connected route stayed up, so the subnet continued to
 be advertised into OSPF even though hq-d2 no longer had a usable Layer-2 path

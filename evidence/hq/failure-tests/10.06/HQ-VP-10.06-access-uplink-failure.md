@@ -4,8 +4,7 @@
 
 ---
 
-HQ-VP-10.06 — Access Uplink Failure
-===================================
+# [←](../10.05/HQ-VP-10.05-etherchannel-member-failure.md "Previous VP") HQ-VP-10.06 — Access Uplink Failure [→](../10.07/HQ-VP-10.07-po30-progressive-failure.md "Next VP")
 
 Phase 10 — Failure and Resilience Testing
 

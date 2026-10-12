@@ -4,8 +4,7 @@
 
 ---
 
-HQ-VP-10.14 — Final Restoration
-===============================
+# [←](../10.13/HQ-VP-10.13-diagonal-double-failure.md "Previous VP") HQ-VP-10.14 — Final Restoration
 
 Phase 10 — Failure and Resilience Testing
 
@@ -59,7 +58,7 @@ hq-a1 finished with:
 - No temporary source SVI.
 - No IP SLA test configuration.
 
-The final running/startup comparison is retained for hq-a1:
+The 6 October running/startup comparison was retained for hq-a1:
 
 - hq-a1: `logging buffered 65536 informational` remained from Phase 10.
 
@@ -67,20 +66,36 @@ The session notes record the hq-d1 comparison result, but its CLI output was not
 retained: only IOSv banner differences remained, with no VLAN120 or
 default-gateway test residue present.
 
-Not retained: final post-change running/startup comparisons for hq-d2, hq-r1 and
-hq-r2.
+At the close of the 6 October session, final post-change running/startup
+comparisons for hq-d2, hq-r1 and hq-r2 had not been retained.
 
-The close-out record reports no failure-test interface shutdowns or temporary
+The original 6 October close-out record reports no failure-test interface shutdowns or temporary
 addressing left in the forwarding design. Management-only changes, including
 SSH access controls, management host routes and the hq-r1 Gi0/5 external
 management connection, are outside the public HQ design configs and were
 not treated as failure-test residue.
 
+Follow-up configuration verification — 12 October 2026
+---------------------------------------------------
+The outstanding five-device comparisons were completed and retained in the
+[final configuration captures](10.14-config-excerpts.md). All four Layer 3
+devices showed default buffered logging. On hq-a1, the original 8192/debugging
+buffer setting was restored and saved; the startup configuration no longer
+contained the custom logging setting.
+
+Each comparison showed only the known CML configuration-fetch VTY timeout
+artefact (plus hq-a1's logging change before its final save). No unexplained
+failure-test configuration differences appeared. The hq-a1 interface, STP,
+EtherChannel and IP SLA checks also matched the intended final state.
+A fresh CML export was retained privately after cleanup.
+
 Result
 ------
-PASS. The forwarding and redundancy state returned to baseline and temporary
-failure-test configuration was removed. The remaining hq-a1 logging change and
-the three uncaptured final running/startup comparisons are recorded above.
+PASS. The original session confirmed restored forwarding and redundancy.
+The 12 October follow-up reconciled the remaining configuration differences,
+restored the logging baseline, and retained the previously missing comparisons.
+The CML VTY timeout difference is a known export artefact, not a leftover
+failure-test change.
 
 ---
 

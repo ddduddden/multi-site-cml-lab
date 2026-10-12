@@ -4,8 +4,7 @@
 
 ---
 
-HQ-VP-10.13 — Diagonal Double Failure: hq-d1 + hq-r2
-====================================================
+# [←](../10.12/HQ-VP-10.12-r1-device-failure.md "Previous VP") HQ-VP-10.13 — Diagonal Double Failure: hq-d1 + hq-r2 [→](../10.14/HQ-VP-10.14-final-restoration.md "Next VP")
 
 Phase 10 — Failure and Resilience Testing
 

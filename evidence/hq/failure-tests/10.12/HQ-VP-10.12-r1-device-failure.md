@@ -4,8 +4,7 @@
 
 ---
 
-HQ-VP-10.12 — hq-r1 Device Failure
-==================================
+# [←](../10.11/HQ-VP-10.11-d2-device-failure.md "Previous VP") HQ-VP-10.12 — hq-r1 Device Failure [→](../10.13/HQ-VP-10.13-diagonal-double-failure.md "Next VP")
 
 Phase 10 — Failure and Resilience Testing
 
@@ -48,12 +47,12 @@ Once hq-r1 had finished booting and OSPF had converged:
 
 Result
 ------
-PASS. Stopping hq-r1 made its Loopback0 interface unreachable, while hq-r2
-remained reachable and hq-d1 kept its surviving OSPF neighbour to hq-r2 over
-the cross-link.
+INCONCLUSIVE. `hq-r2` remained reachable while `hq-r1` was stopped, and
+`hq-d1` kept its OSPF neighbour to `hq-r2` over the cross-link. These
+surviving-path checks passed. Normal connectivity returned after restoration.
 
-After hq-r1 restarted, hq-r1 rebuilt its five OSPF neighbours and normal
-connectivity returned.
+However, the tested traffic was not confirmed to use `hq-r1` before the
+failure, so live-flow failover through `hq-r2` was not demonstrated.
 
 ---
 

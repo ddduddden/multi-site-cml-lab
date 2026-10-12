@@ -4,8 +4,7 @@
 
 ---
 
-HQ-VP-10.07 — Po30 Progressive Failure
-======================================
+# [←](../10.06/HQ-VP-10.06-access-uplink-failure.md "Previous VP") HQ-VP-10.07 — Po30 Progressive Failure [→](../10.08/HQ-VP-10.08-d2-layer2-isolation.md "Next VP")
 
 Phase 10 — Failure and Resilience Testing
 

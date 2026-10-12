@@ -4,8 +4,7 @@
 
 ---
 
-HQ-VP-10.10 — hq-d1 Device Failure
-==================================
+# [←](../10.09/HQ-VP-10.09-d2-routed-isolation.md "Previous VP") HQ-VP-10.10 — hq-d1 Device Failure [→](../10.11/HQ-VP-10.11-d2-device-failure.md "Next VP")
 
 Phase 10 — Failure and Resilience Testing
 

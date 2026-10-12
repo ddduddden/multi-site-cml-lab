@@ -4,8 +4,7 @@
 
 ---
 
-HQ-VP-10.05 — EtherChannel Member Failure
-=========================================
+# [←](../10.04/HQ-VP-10.04-cross-link-failure.md "Previous VP") HQ-VP-10.05 — EtherChannel Member Failure [→](../10.06/HQ-VP-10.06-access-uplink-failure.md "Next VP")
 
 Phase 10 — Failure and Resilience Testing
 

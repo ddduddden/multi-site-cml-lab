@@ -4,8 +4,7 @@
 
 ---
 
-HQ-VP-10.02 / 10.03 — Routed Link Failure and ECMP Reduction
-============================================================
+# [←](../10.01/HQ-VP-10.01-healthy-baseline.md "Previous VP") HQ-VP-10.02 / 10.03 — Routed Link Failure and ECMP Reduction [→](../10.04/HQ-VP-10.04-cross-link-failure.md "Next VP")
 
 Phase 10 — Failure and Resilience Testing
 
