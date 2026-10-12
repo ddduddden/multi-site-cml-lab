@@ -16,6 +16,8 @@ The five documents have distinct primary responsibilities, with deliberate cross
 | `troubleshooting.md` | Meaningful diagnostic investigations |
 | `deviations.md` | Accepted differences between design intent and as-built implementation |
 
+Phase 10 has its own [Test Plan](phase-10-test-plan.md), [Testing Methodology](phase-10-testing-methodology.md), [Engineering Review](phase-10-engineering-review.md), and [test reports and evidence](../../../evidence/hq/failure-tests/README.md).
+
 ## Reference ID key
 
 The reference IDs below are a project-specific indexing convention created for this lab. They are not a Cisco or industry-standard reference system.
@@ -80,7 +82,7 @@ The phase numbers are a project-specific indexing convention. They are not a Cis
 | 10 | Failure testing | Exercise defined device, interface, Port-Channel, and routing failures and recovery |
 | 11 | Final acceptance | Confirm the evidence required to describe HQ as verified as-built |
 
-Phases 01–09 are detailed in `verification-plan.md`. Phases 06 and 07 were built and verified in one combined build window, and Phases 08 and 09 were verified in one combined test window; each phase keeps separate test IDs, phase status, and build-log entries. Phases 10–11 remain objective-only until the project reaches them.
+Phases 01–09 are detailed in `verification-plan.md`. Phases 06 and 07 were built and verified in one combined build window, and Phases 08 and 09 were verified in one combined test window; each phase keeps separate test IDs, phase status, and build-log entries. Phase 10 has a standalone test plan and recorded outcomes; Phase 11 remains objective-only.
 
 ## Working rules
 
@@ -131,8 +133,10 @@ A phase does not show as `Deviated` just because one test in it has an accepted 
 | 07 | Loopbacks and OSPF Area 10 | **Verified** |
 | 08 | ECMP | **Verified** |
 | 09 | OSPF cost engineering | **Verified** |
-| 10 | Failure testing | Not started |
+| 10 | Failure testing | **Completed** |
 | 11 | Final acceptance | Not started |
+
+Phase 10 uses PASS, FAIL and INCONCLUSIVE for individual test outcomes. **Completed** means the planned execution and final reconciliation have finished; it does not mean every test passed. See the [Phase 10 results](../../../evidence/hq/failure-tests/README.md).
 
 ## Evidence folders
 
@@ -207,5 +211,5 @@ Check that:
 - Each verification test uses the `Status` field to record its result.
 - Meaningful faults use `HQ-TS-NNN`, not routine typing mistakes.
 - `Deviated` is backed by an accepted `HQ-DEV-NNN`, and every test in the phase is resolved before the phase itself reads as `Deviated`.
-- Phases 10–11 have not been given premature command-level test detail.
+- Phase 10 documentation links to the executed tests; Phase 11 remains objective-only.
 - Config/evidence directories contain real content rather than placeholders.

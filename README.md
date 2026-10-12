@@ -46,9 +46,11 @@ The full HQ design is documented in:
 
 ## Current Status
 
-The HQ campus has progressed through ECMP and OSPF cost-engineering verification.
+The HQ campus has completed Phase 10 failure testing, following ECMP and OSPF cost-engineering verification.
 
 Phases **01–09 are verified as-built**. Phase 08 proves that the intended four-route OSPF ECMP sets are installed and usable, while Phase 09 confirms the configured cost policy, higher-cost alternate routing, and restoration to the preferred state. Phases 08 and 09 were verification-only and introduced no new configuration milestone.
+
+Phase 10 testing is complete, with individual outcomes recorded as PASS, FAIL or INCONCLUSIVE against the original criteria. The [Test Plan](docs/implementation/hq/phase-10-test-plan.md), [Testing Methodology](docs/implementation/hq/phase-10-testing-methodology.md), [Engineering Review](docs/implementation/hq/phase-10-engineering-review.md) and [test reports and evidence](evidence/hq/failure-tests/README.md) contain the full record.
 
 | Phase | Scope | Status |
 |---:|---|---|
@@ -61,7 +63,7 @@ Phases **01–09 are verified as-built**. Phase 08 proves that the intended four
 | 07 | Loopbacks and OSPF Area 10 | **Verified** |
 | 08 | ECMP | **Verified** |
 | 09 | OSPF cost engineering | **Verified** |
-| 10 | Failure testing | Planned |
+| 10 | Failure testing | **Completed** |
 | 11 | Final acceptance | Planned |
 
 Completed verification now includes:
@@ -89,8 +91,7 @@ Completed verification now includes:
 
 Current verification focus:
 
-- Defined routed-interface, device, and combined failure scenarios
-- HQ final acceptance and as-built close-out
+- HQ Phase 11 final acceptance and as-built close-out
 
 Detailed implementation status and verification records are maintained in:
 
@@ -142,7 +143,10 @@ multi-site-cml-lab/
 │           ├── build-log.md
 │           ├── verification-plan.md
 │           ├── troubleshooting.md
-│           └── deviations.md
+│           ├── deviations.md
+│           ├── phase-10-test-plan.md
+│           ├── phase-10-testing-methodology.md
+│           └── phase-10-engineering-review.md
 │
 ├── evidence/
 │   └── hq/
@@ -152,7 +156,8 @@ multi-site-cml-lab/
 │       ├── spanning-tree/
 │       ├── hsrp/
 │       ├── layer3-underlay/
-│       └── ospf/
+│       ├── ospf/
+│       └── failure-tests/
 │
 └── lab/
     └── cml-lab-exports/
@@ -175,15 +180,14 @@ Repository areas have distinct roles:
 
 The project will continue through the following major stages:
 
-1. Complete HQ failure testing.
-2. Complete HQ final acceptance and as-built validation.
-3. Introduce monitoring, SNMP, syslog, metrics, and NTP using the Raspberry Pi.
-4. Build the Branch Campus as OSPF Area 20.
-5. Connect HQ and Branch through the Area 0 inter-site backbone.
-6. Add GRE inter-site connectivity.
-7. Evolve GRE to GRE over IPsec and later dual-tunnel resilience.
-8. Add Layer 2 security and ACL policy.
-9. Introduce Python, Ansible, APIs, and network automation against the completed lab.
+1. Complete HQ final acceptance and as-built validation, including review of Phase 10 findings.
+2. Introduce monitoring, SNMP, syslog, metrics, and NTP using the Raspberry Pi.
+3. Build the Branch Campus as OSPF Area 20.
+4. Connect HQ and Branch through the Area 0 inter-site backbone.
+5. Add GRE inter-site connectivity.
+6. Evolve GRE to GRE over IPsec and later dual-tunnel resilience.
+7. Add Layer 2 security and ACL policy.
+8. Introduce Python, Ansible, APIs, and network automation against the completed lab.
 
 ## Project Approach
 
