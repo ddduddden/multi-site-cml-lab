@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration : 5310 bytes
+Current configuration : 6010 bytes
 !
-! Last configuration change at 07:05:01 UTC Sun Sep 27 2026 by <sanitised>
+! Last configuration change at 14:33:16 UTC Sun Oct 4 2026 by <sanitised>
 !
 version 15.2
 service timestamps debug datetime msec
@@ -17,9 +17,9 @@ boot-end-marker
 !
 !
 no logging console
-enable secret 5 <sanitised>
+enable secret 9 <sanitised>
 !
-username <sanitised> secret 5 <sanitised>
+username <sanitised> secret 9 <sanitised>
 no aaa new-model
 !
 !
@@ -32,6 +32,7 @@ no ip routing
 !
 !
 no ip domain-lookup
+ip domain-name example.com
 no ip cef
 no ipv6 cef
 !
@@ -157,41 +158,57 @@ interface GigabitEthernet2/0
  switchport mode access
  switchport voice vlan 120
  negotiation auto
+ spanning-tree portfast edge
+ spanning-tree bpduguard enable
 !
 interface GigabitEthernet2/1
  switchport access vlan 112
  switchport mode access
  negotiation auto
+ spanning-tree portfast edge
+ spanning-tree bpduguard enable
 !
 interface GigabitEthernet2/2
  switchport access vlan 130
  switchport mode access
  negotiation auto
+ spanning-tree portfast edge
+ spanning-tree bpduguard enable
 !
 interface GigabitEthernet2/3
  switchport access vlan 140
  switchport mode access
  negotiation auto
+ spanning-tree portfast edge
+ spanning-tree bpduguard enable
 !
 interface GigabitEthernet3/0
  switchport access vlan 152
  switchport mode access
  negotiation auto
+ spanning-tree portfast edge
+ spanning-tree bpduguard enable
 !
 interface GigabitEthernet3/1
  switchport access vlan 160
  switchport mode access
  negotiation auto
+ spanning-tree portfast edge
+ spanning-tree bpduguard enable
 !
 interface GigabitEthernet3/2
  switchport access vlan 170
  switchport mode access
  negotiation auto
+ spanning-tree portfast edge
+ spanning-tree bpduguard enable
 !
 interface GigabitEthernet3/3
  switchport access vlan 199
  switchport mode access
  negotiation auto
+ spanning-tree portfast edge
+ spanning-tree bpduguard enable
 !
 interface Vlan199
  ip address 10.10.99.4 255.255.255.192
@@ -203,8 +220,13 @@ ip forward-protocol nd
 no ip http server
 no ip http secure-server
 !
+ip ssh version 2
+ip ssh dh min size 2048
 ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
 ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+!
+ip access-list standard SSH-ACCESS
+ permit 192.0.2.10
 !
 !
 !
@@ -237,17 +259,19 @@ banner motd ^C
 !
 line con 0
  exec-timeout 0 0
- password 7 <sanitised>
  logging synchronous
  login local
 line aux 0
 line vty 0 4
+ access-class SSH-ACCESS in
  exec-timeout 0 0
- password 7 <sanitised>
+ logging synchronous
  login local
  transport input ssh
 line vty 5 15
- password 7 <sanitised>
+ access-class SSH-ACCESS in
+ exec-timeout 5 0
+ logging synchronous
  login local
  transport input ssh
 !

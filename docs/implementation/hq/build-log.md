@@ -412,3 +412,31 @@ Phase 08/09 verification evidence commit: `79d27bf`.
 ### Next
 
 **Phase 10 — Failure Testing**
+
+
+
+---
+
+## Phase 11 — Final configuration milestone
+
+**Prepared:** `15-10-2026`  
+**Source:** Private final export associated with the configuration close-out on `12-10-2026`
+
+The final export was prepared as a sanitised public milestone, and the five running-configuration files in `configs/hq/` were refreshed from that same copy. The original Phase 07 YAML and Phase 10 evidence remain unchanged.
+
+The final configuration includes standardised SSH access, management-host access lists and return routes, and type 9 local-user and enable secrets on all five devices. The three switches had used type 5 secrets in the Phase 07 milestone. The external-management connector and `hq-r1 Gi0/5` DHCP connection are retained, alongside the access-port PortFast/BPDU Guard settings and parked, shut-down spare distribution ports.
+
+Credentials and username references were sanitised. The management host address was replaced consistently with `192.0.2.10` in the SSH access lists and three host routes. The remaining device configuration and all 19 topology links were preserved from the supplied export. Its five Cisco devices form the HQ campus; the additional object provides external management.
+
+YAML parsing and link-endpoint checks passed. Each published device file matches its configuration in the YAML. Comparison with the Phase 07 export confirmed that HQ routed-interface, OSPF, SVI and Port-Channel configuration is unchanged. No temporary IP SLA operations, temporary hq-a1 source SVIs or custom buffered-logging setting remain. These are file checks, not a new CML execution test; import and boot behaviour have not been retested.
+
+### Milestone artifacts
+
+- [Final CML export](../../../lab/cml-lab-exports/hq/hq-phase-11-final-acceptance-2026-10-15.yaml)
+- [hq-r1 configuration](../../../configs/hq/hq-r1-running-config.txt)
+- [hq-r2 configuration](../../../configs/hq/hq-r2-running-config.txt)
+- [hq-d1 configuration](../../../configs/hq/hq-d1-running-config.txt)
+- [hq-d2 configuration](../../../configs/hq/hq-d2-running-config.txt)
+- [hq-a1 configuration](../../../configs/hq/hq-a1-running-config.txt)
+
+The filename records preparation of the public copy on 15 October. It does not move the original tests or configuration close-out to that date. Final documentation review, link QA and Phase 11 acceptance remain outstanding.
