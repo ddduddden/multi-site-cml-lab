@@ -14,17 +14,19 @@ Detailed verification results are recorded in [verification-plan.md](verificatio
 
 ## Phase index
 
-- **[01](#phase-01--hq-platform-baseline) — HQ Platform Baseline** · Verified
-- **[02](#phase-02--layer-2--vlan-baseline) — Layer 2 / VLAN Baseline** · Verified
-- **[03](#phase-03--lacp-etherchannel) — LACP EtherChannel** · Verified
-- **[04](#phase-04--rapid-pvst) — Rapid PVST+** · Verified
-- **[05](#phase-05--svis-and-hsrp) — SVIs and HSRP** · Verified
-- **[06](#phase-06--routed-31-underlay) — Routed /31 Underlay** · Verified
-- **[07](#phase-07--loopbacks-and-ospf-area-10) — Loopbacks and OSPF Area 10** · Verified
-- **[08](#phase-08--ecmp) — ECMP** · Verified
-- **[09](#phase-09--ospf-cost-engineering) — OSPF Cost Engineering** · Verified
-- **[10](#phase-10--failure-and-resilience-testing) — Failure and Resilience Testing** · Completed — mixed outcomes
-- **[11](#phase-11--final-configuration-milestone) — Final configuration milestone** · Published; acceptance pending
+| Phase | Build record | Status |
+|---:|---|---|
+| 01 | [HQ Platform Baseline](#phase-01--hq-platform-baseline) | Verified |
+| 02 | [Layer 2 / VLAN Baseline](#phase-02--layer-2--vlan-baseline) | Verified |
+| 03 | [LACP EtherChannel](#phase-03--lacp-etherchannel) | Verified |
+| 04 | [Rapid PVST+](#phase-04--rapid-pvst) | Verified |
+| 05 | [SVIs and HSRP](#phase-05--svis-and-hsrp) | Verified |
+| 06 | [Routed /31 Underlay](#phase-06--routed-31-underlay) | Verified |
+| 07 | [Loopbacks and OSPF Area 10](#phase-07--loopbacks-and-ospf-area-10) | Verified |
+| 08 | [ECMP](#phase-08--ecmp) | Verified |
+| 09 | [OSPF Cost Engineering](#phase-09--ospf-cost-engineering) | Verified |
+| 10 | [Failure and Resilience Testing](#phase-10--failure-and-resilience-testing) | Completed — mixed outcomes |
+| 11 | [Final configuration milestone](#phase-11--final-configuration-milestone) | Published; acceptance pending |
 
 ## Phase 01 — HQ Platform Baseline
 
@@ -43,10 +45,10 @@ Detailed verification results are recorded in [verification-plan.md](verificatio
 
 ### Verification
 
-- HQ-VP-01.01 — HQ Device Inventory
-- HQ-VP-01.02 — Image and Software Version Inventory
-- HQ-VP-01.03 — Interface Inventory and Topology Fit
-- HQ-VP-01.04 — Platform Capability Review
+- [HQ-VP-01.01](verification-plan.md#hq-device-inventory--hq-vp-0101) — HQ Device Inventory
+- [HQ-VP-01.02](verification-plan.md#image-and-software-version-inventory--hq-vp-0102) — Image and Software Version Inventory
+- [HQ-VP-01.03](verification-plan.md#interface-inventory-and-topology-fit--hq-vp-0103) — Interface Inventory and Topology Fit
+- [HQ-VP-01.04](verification-plan.md#platform-capability-review--hq-vp-0104) — Platform Capability Review
 
 ### Result
 
@@ -62,9 +64,9 @@ Production VLAN, EtherChannel, Rapid PVST+, HSRP, routed-link, and OSPF configur
 
 Phase completion commit: [9d99722](https://github.com/ddduddden/multi-site-cml-lab/commit/9d9972296d28a4456f54e4ed38fdb70b45f2060f) (PR \#5).
 
-### Next
+[↑ Back to phase index](#phase-index)
 
-**Phase 02 — Layer 2 / VLAN Baseline**
+---
 
 ## Phase 02 — Layer 2 / VLAN Baseline
 
@@ -79,9 +81,9 @@ Phase completion commit: [9d99722](https://github.com/ddduddden/multi-site-cml-l
 
 ### Verification
 
-- HQ-VP-02.01 — VLAN Database
-- HQ-VP-02.02 — Access-Port Assignments
-- HQ-VP-02.03 — Parking-VLAN Policy
+- [HQ-VP-02.01](verification-plan.md#vlan-database--hq-vp-0201) — VLAN Database
+- [HQ-VP-02.02](verification-plan.md#access-port-assignments--hq-vp-0202) — Access-Port Assignments
+- [HQ-VP-02.03](verification-plan.md#parking-vlan-policy--hq-vp-0203) — Parking-VLAN Policy
 
 ### Result
 
@@ -97,9 +99,9 @@ EtherChannel/trunking and later Layer 2 and Layer 3 features remain for subseque
 
 Phase completion commit: [e6f7201](https://github.com/ddduddden/multi-site-cml-lab/commit/e6f7201131b7bef53612278bd5cdf2d98b3fbf5f) (PR \#6).
 
-### Next
+[↑ Back to phase index](#phase-index)
 
-**Phase 03 — LACP EtherChannel**
+---
 
 ## Phase 03 — LACP EtherChannel
 
@@ -116,10 +118,10 @@ Phase completion commit: [e6f7201](https://github.com/ddduddden/multi-site-cml-l
 
 ### Verification
 
-- HQ-VP-03.01 — EtherChannel Formation and LACP State
-- HQ-VP-03.02 — Port-Channel Trunk Policy
-- HQ-VP-03.03 — Operational Trunk and VLAN State
-- HQ-VP-03.04 — EtherChannel Member-Link Failure and Recovery
+- [HQ-VP-03.01](verification-plan.md#etherchannel-formation-and-lacp-state--hq-vp-0301) — EtherChannel Formation and LACP State
+- [HQ-VP-03.02](verification-plan.md#port-channel-trunk-policy--hq-vp-0302) — Port-Channel Trunk Policy
+- [HQ-VP-03.03](verification-plan.md#operational-trunk-and-vlan-state--hq-vp-0303) — Operational Trunk and VLAN State
+- [HQ-VP-03.04](verification-plan.md#etherchannel-member-link-failure-and-recovery--hq-vp-0304) — EtherChannel Member-Link Failure and Recovery
 
 ### Result
 
@@ -135,9 +137,9 @@ Deterministic Rapid PVST+ root placement and forwarding behaviour remain for Pha
 
 Phase completion commit: [7db4f05](https://github.com/ddduddden/multi-site-cml-lab/commit/7db4f05124b244752e461084b1eeb7aaf7dcd132) (PR \#7).
 
-### Next
+[↑ Back to phase index](#phase-index)
 
-**Phase 04 — Rapid PVST+**
+---
 
 ## Phase 04 — Rapid PVST+
 
@@ -156,9 +158,9 @@ Phase completion commit: [7db4f05](https://github.com/ddduddden/multi-site-cml-l
 
 ### Verification
 
-- HQ-VP-04.01 — Rapid PVST+ Mode and Root Placement
-- HQ-VP-04.02 — Access-Layer Forwarding and Alternate Paths
-- HQ-VP-04.03 — STP Path Failure and Recovery
+- [HQ-VP-04.01](verification-plan.md#rapid-pvst-mode-and-root-placement--hq-vp-0401) — Rapid PVST+ Mode and Root Placement
+- [HQ-VP-04.02](verification-plan.md#access-layer-forwarding-and-alternate-paths--hq-vp-0402) — Access-Layer Forwarding and Alternate Paths
+- [HQ-VP-04.03](verification-plan.md#stp-path-failure-and-recovery--hq-vp-0403) — STP Path Failure and Recovery
 
 ### Result
 
@@ -174,9 +176,9 @@ SVI addressing and HSRP gateway redundancy remain for Phase 05.
 
 Phase completion commit: [2094b28](https://github.com/ddduddden/multi-site-cml-lab/commit/2094b28d5f8a4b38719723c927ad3232ea69f09e) (PR \#8).
 
-### Next
+[↑ Back to phase index](#phase-index)
 
-**Phase 05 — SVIs and HSRP**
+---
 
 ## Phase 05 — SVIs and HSRP
 
@@ -196,11 +198,11 @@ Phase completion commit: [2094b28](https://github.com/ddduddden/multi-site-cml-l
 
 ### Verification
 
-- HQ-VP-05.01 — SVI Addressing and Layer 3 Baseline
-- HQ-VP-05.02 — HSRP Configuration and Normal Operating State
-- HQ-VP-05.03 — HSRP/STP Alignment and Gateway Reachability
-- HQ-VP-05.04 — HSRP Gateway Failover
-- HQ-VP-05.05 — HSRP Preemption and Preferred-State Restoration
+- [HQ-VP-05.01](verification-plan.md#svi-addressing-and-layer-3-baseline--hq-vp-0501) — SVI Addressing and Layer 3 Baseline
+- [HQ-VP-05.02](verification-plan.md#hsrp-configuration-and-normal-operating-state--hq-vp-0502) — HSRP Configuration and Normal Operating State
+- [HQ-VP-05.03](verification-plan.md#hsrpstp-alignment-and-gateway-reachability--hq-vp-0503) — HSRP/STP Alignment and Gateway Reachability
+- [HQ-VP-05.04](verification-plan.md#hsrp-gateway-failover--hq-vp-0504) — HSRP Gateway Failover
+- [HQ-VP-05.05](verification-plan.md#hsrp-preemption-and-preferred-state-restoration--hq-vp-0505) — HSRP Preemption and Preferred-State Restoration
 
 ### Result
 
@@ -218,9 +220,9 @@ Routed /31 Distribution-to-Edge links and loopbacks remain for Phase 06.
 
 Phase completion commit: [9e17f45](https://github.com/ddduddden/multi-site-cml-lab/commit/9e17f4594ca03d354264e553a7f0109f12685366) (PR \#9).
 
-### Next
+[↑ Back to phase index](#phase-index)
 
-**Phase 06 — Routed /31s and Loopbacks**
+---
 
 ## Phase 06 — Routed /31 Underlay
 
@@ -239,9 +241,9 @@ Phase completion commit: [9e17f45](https://github.com/ddduddden/multi-site-cml-l
 
 ### Verification
 
-- HQ-VP-06.01 — Routed /31 Interface Addressing and State
-- HQ-VP-06.02 — Direct /31 Point-to-Point Reachability
-- HQ-VP-06.03 — Pre-OSPF Underlay Baseline
+- [HQ-VP-06.01](verification-plan.md#routed-31-interface-addressing-and-state--hq-vp-0601) — Routed /31 Interface Addressing and State
+- [HQ-VP-06.02](verification-plan.md#direct-31-point-to-point-reachability--hq-vp-0602) — Direct /31 Point-to-Point Reachability
+- [HQ-VP-06.03](verification-plan.md#pre-ospf-underlay-baseline--hq-vp-0603) — Pre-OSPF Underlay Baseline
 
 ### Result
 
@@ -261,9 +263,9 @@ The end-of-Phase-06 CML export is retained privately as the pre-OSPF rollback po
 
 Phase 06 verification evidence is included in the combined Phase 06–07 evidence snapshot: commit [6608742](https://github.com/ddduddden/multi-site-cml-lab/commit/66087426a6aa619e0177abca1238fad7c3213d70).
 
-### Next
+[↑ Back to phase index](#phase-index)
 
-**Phase 07 — Loopbacks and OSPF Area 10**
+---
 
 ## Phase 07 — Loopbacks and OSPF Area 10
 
@@ -287,12 +289,12 @@ Phase 06 verification evidence is included in the combined Phase 06–07 evidenc
 
 ### Verification
 
-- HQ-VP-07.01 — Loopback and OSPF Process Identity
-- HQ-VP-07.02 — OSPF Interface Participation, Network Type and Cost
-- HQ-VP-07.03 — OSPF Area 10 Adjacencies
-- HQ-VP-07.04 — OSPF Link-State Database and Learned Routing
-- HQ-VP-07.05 — Routed and End-to-End Reachability
-- HQ-VP-07.06 — Layer 2 and Gateway Regression
+- [HQ-VP-07.01](verification-plan.md#loopback-and-ospf-process-identity--hq-vp-0701) — Loopback and OSPF Process Identity
+- [HQ-VP-07.02](verification-plan.md#ospf-interface-participation-network-type-and-cost--hq-vp-0702) — OSPF Interface Participation, Network Type and Cost
+- [HQ-VP-07.03](verification-plan.md#ospf-area-10-adjacencies--hq-vp-0703) — OSPF Area 10 Adjacencies
+- [HQ-VP-07.04](verification-plan.md#ospf-link-state-database-and-learned-routing--hq-vp-0704) — OSPF Link-State Database and Learned Routing
+- [HQ-VP-07.05](verification-plan.md#routed-and-end-to-end-reachability--hq-vp-0705) — Routed and End-to-End Reachability
+- [HQ-VP-07.06](verification-plan.md#layer-2-and-gateway-regression--hq-vp-0706) — Layer 2 and Gateway Regression
 
 ### Result
 
@@ -319,9 +321,9 @@ Route tables already expose multiple next hops and cost-driven path differences,
 
 Phase 07 as-built configs, verification evidence, and milestone CML export: commit [6608742](https://github.com/ddduddden/multi-site-cml-lab/commit/66087426a6aa619e0177abca1238fad7c3213d70).
 
-### Next
+[↑ Back to phase index](#phase-index)
 
-**Phase 08 — ECMP**
+---
 
 ## Phase 08 — ECMP
 
@@ -339,11 +341,11 @@ Phase 07 as-built configs, verification evidence, and milestone CML export: comm
 
 ### Verification
 
-- HQ-VP-08.01 — ECMP Route Installation
-- HQ-VP-08.02 — CEF Path Selection
-- HQ-VP-08.03 — Aggregate ECMP Forwarding
-- HQ-VP-08.04 — ECMP Contraction and Restoration
-- HQ-VP-08.05 — Four-Path Maximum
+- [HQ-VP-08.01](verification-plan.md#ecmp-route-installation--hq-vp-0801) — ECMP Route Installation
+- [HQ-VP-08.02](verification-plan.md#cef-path-selection--hq-vp-0802) — CEF Path Selection
+- [HQ-VP-08.03](verification-plan.md#aggregate-ecmp-forwarding--hq-vp-0803) — Aggregate ECMP Forwarding
+- [HQ-VP-08.04](verification-plan.md#ecmp-contraction-and-restoration--hq-vp-0804) — ECMP Contraction and Restoration
+- [HQ-VP-08.05](verification-plan.md#four-path-maximum--hq-vp-0805) — Four-Path Maximum
 
 ### Result
 
@@ -363,9 +365,9 @@ No new milestone artifact. Phase 08 changed no intended device configuration; th
 
 Phase 08/09 verification evidence commit: [79d27bf](https://github.com/ddduddden/multi-site-cml-lab/commit/79d27bfa3351bb6ffbf9363ee66675251e9aa1a2).
 
-### Next
+[↑ Back to phase index](#phase-index)
 
-**Phase 09 — OSPF Cost Engineering**
+---
 
 ## Phase 09 — OSPF Cost Engineering
 
@@ -383,9 +385,9 @@ Phase 08/09 verification evidence commit: [79d27bf](https://github.com/ddduddden
 
 ### Verification
 
-- HQ-VP-09.01 — Normal Cost-Driven Selection
-- HQ-VP-09.02 — Higher-Cost Alternate Activation
-- HQ-VP-09.03 — Preferred-Route Restoration
+- [HQ-VP-09.01](verification-plan.md#normal-cost-driven-selection--hq-vp-0901) — Normal Cost-Driven Selection
+- [HQ-VP-09.02](verification-plan.md#higher-cost-alternate-activation--hq-vp-0902) — Higher-Cost Alternate Activation
+- [HQ-VP-09.03](verification-plan.md#preferred-route-restoration--hq-vp-0903) — Preferred-Route Restoration
 
 ### Result
 
@@ -405,9 +407,9 @@ No new milestone artifact. Phase 09 changed no intended device configuration; th
 
 Phase 08/09 verification evidence commit: [79d27bf](https://github.com/ddduddden/multi-site-cml-lab/commit/79d27bfa3351bb6ffbf9363ee66675251e9aa1a2).
 
-### Next
+[↑ Back to phase index](#phase-index)
 
-**Phase 10 — Failure Testing**
+---
 
 ## Phase 10 — Failure and Resilience Testing
 
@@ -426,7 +428,7 @@ Phase 08/09 verification evidence commit: [79d27bf](https://github.com/ddduddden
 
 **Phase 10 completed.** The planned failure-testing sequence was executed, and the original acceptance criteria were retained when assessing the results.
 
-Most scenarios demonstrated the intended recovery behaviour, but not every test passed. HQ-VP-10.08 recorded a failure following Layer 2 isolation, while HQ-VP-10.12 remained inconclusive because the planned live-flow failover check was not completed.
+Most scenarios demonstrated the intended recovery behaviour, but not every test passed. [HQ-VP-10.08](../../../evidence/hq/failure-tests/10.08/HQ-VP-10.08-d2-layer2-isolation.md) recorded a failure following Layer 2 isolation, while [HQ-VP-10.12](../../../evidence/hq/failure-tests/10.12/HQ-VP-10.12-r1-device-failure.md) remained inconclusive because the planned live-flow failover check was not completed.
 
 The tests also identified limitations involving the single logical Po30 connection, IOSvL2 SVI behaviour and HSRP upstream tracking. These findings remain documented rather than being treated as successful resilience tests.
 
@@ -444,9 +446,9 @@ Final restoration was confirmed on 06-10-2026, with outstanding configuration re
 - [Retained CLI evidence — a8624b1](https://github.com/ddduddden/multi-site-cml-lab/commit/a8624b176298e3b0132daedf082c2aae0c704ebd)
 - [Phase 10 completion merge — 0ba7114](https://github.com/ddduddden/multi-site-cml-lab/commit/0ba7114f25acf8793a04800b9381412ed7c55d28) (PR #13)
 
-### Next
+[↑ Back to phase index](#phase-index)
 
-**Phase 11 — Final Acceptance**
+---
 
 ## Phase 11 — Final configuration milestone
 
@@ -491,3 +493,9 @@ Post-recovery checks recorded operational HSRP roles and EtherChannels. On `hq-r
 **Git traceability:** [`39b68a7` — Add Phase 11 boot evidence and HQ troubleshooting records](https://github.com/ddduddden/multi-site-cml-lab/commit/39b68a790a3b9ed0de55071fdf7f9b004d0638b2).
 
 The [Phase 11 engineering close-out](phase-11-final-acceptance.md) retains the completed Phase 10 findings alongside this operational check. Final acceptance is pending documentation, evidence and navigation review.
+
+[↑ Back to phase index](#phase-index)
+
+---
+
+[← HQ Campus Design](../../hq-campus-design.md) · [↑ Phase index](#phase-index) · [HQ Verification Plan →](verification-plan.md)

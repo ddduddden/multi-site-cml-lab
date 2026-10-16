@@ -2,27 +2,20 @@
 
 [Portfolio](../README.md) / [HQ Implementation](implementation/hq/README.md) / HQ Campus Design
 
-## Document sections
+## Contents
 
-[1. Overview](#1-overview)
-
-[2. High-Level Topology](#2-high-level-topology)
-
-[3. VLAN and Gateway Design](#3-vlan-and-gateway-design)
-
-[4. Layer 3 Infrastructure Addressing](#4-layer-3-infrastructure-addressing)
-
-[5. Layer 2 Design](#5-layer-2-design)
-
-[6. HSRP and Rapid PVST+ Design](#6-hsrp-and-rapid-pvst-design)
-
-[7. OSPF Area 10 and ECMP Design](#7-ospf-area-10-and-ecmp-design)
-
-[8. Design Rationale](#8-design-rationale)
-
-[9. Current Design Status](#9-current-design-status)
-
-[10. Next Design Phase](#10-next-design-phase)
+| No. | Section |
+|---:|---|
+| 1 | [Overview](#1-overview) |
+| 2 | [High-Level Topology](#2-high-level-topology) |
+| 3 | [VLAN and Gateway Design](#3-vlan-and-gateway-design) |
+| 4 | [Layer 3 Infrastructure Addressing](#4-layer-3-infrastructure-addressing) |
+| 5 | [Layer 2 Design](#5-layer-2-design) |
+| 6 | [HSRP and Rapid PVST+ Design](#6-hsrp-and-rapid-pvst-design) |
+| 7 | [OSPF Area 10 and ECMP Design](#7-ospf-area-10-and-ecmp-design) |
+| 8 | [Design Rationale](#8-design-rationale) |
+| 9 | [Current Design Status](#9-current-design-status) |
+| 10 | [Next Design Phase](#10-next-design-phase) |
 
 **Project:** Multi-Site Cisco CML Lab
 
@@ -61,6 +54,10 @@ I kept Layer 2 and Layer 3 redundancy separate. LACP combines physical links int
 
 Monitoring, security controls, inter-site connectivity and automation will be introduced as the wider project develops.
 
+[↑ Back to Contents](#contents)
+
+---
+
 ## 2. High-Level Topology
 
 The diagram below shows the HQ campus and its connections.
@@ -86,6 +83,10 @@ I also included two cross-connected routed links:
 The cross-links use higher OSPF costs, so they provide alternate routed paths when the preferred direct paths are unavailable. Their role is different from Po30, which carries Layer 2 traffic between the distribution switches.
 
 The selected CML switch images provide 16 GigabitEthernet interfaces, while each edge router image provides eight GigabitEthernet interfaces. The interface allocations are documented in Sections 4 and 5.
+
+[↑ Back to Contents](#contents)
+
+---
 
 ## 3. VLAN and Gateway Design
 
@@ -232,6 +233,10 @@ This requirement will be revisited during the Branch Campus design rather than c
 
 VLAN 1 carries no production traffic, no infrastructure management traffic, and is not used as the native VLAN.
 
+[↑ Back to Contents](#contents)
+
+---
+
 ## 4. Layer 3 Infrastructure Addressing
 
 HQ Layer 3 infrastructure addressing is allocated from 10.255.10.0/24, which forms part of the wider 10.255.0.0/16 infrastructure and transit address space.
@@ -302,6 +307,10 @@ The /27 is the transit summary intended for advertisement toward Area 0. The /29
 Other unused addresses within 10.255.10.0/24 remain reserved for future HQ infrastructure requirements rather than being allocated before a defined purpose exists.
 
 Future tunnel-source and Area 0/WAN addressing will be designed during the corresponding project phase rather than being pre-allocated here.
+
+[↑ Back to Contents](#contents)
+
+---
 
 ## 5. Layer 2 Design
 
@@ -387,6 +396,10 @@ The final HQ node layout deliberately retains unused GigabitEthernet interfaces 
 
 Unused interfaces remain unconfigured or are administratively disabled until a defined requirement exists.
 
+[↑ Back to Contents](#contents)
+
+---
+
 ## 6. HSRP and Rapid PVST+ Design
 
 Section 3 defines the HSRP addressing, priorities and preemption policy. I have aligned the Rapid PVST+ root placement with the preferred HSRP Active gateway for each VLAN to provide a more direct Layer 2 forwarding path and reduce unnecessary traffic across Po30 during normal operation.
@@ -450,6 +463,10 @@ The design provides alternative access-to-distribution connections, but continue
 The design aims to maintain predictable forwarding during normal operation while providing alternative paths following a link or device failure, where the remaining topology permits.
 
 The actual response to failures is addressed separately in the verification and engineering-review documentation.
+
+[↑ Back to Contents](#contents)
+
+---
 
 ## 7. OSPF Area 10 and ECMP Design
 
@@ -555,6 +572,10 @@ The timing of these routing changes, the number of installed next hops and the f
 
 The objective of this routing design is to provide predictable path preference, multiple equal-cost direct connections and higher-cost alternatives without depending on individual physical links for all Layer 3 connectivity.
 
+[↑ Back to Contents](#contents)
+
+---
+
 ## 8. Design Rationale
 
 The following table summarises the main design decisions and the reasoning behind them. The technical details and addressing policies are covered in the preceding sections.
@@ -572,6 +593,10 @@ The following table summarises the main design decisions and the reasoning behin
 | Explicit OSPF configuration                   | Uses fixed router IDs, point-to-point network types, manually assigned interface costs and a four-path ECMP limit to maintain consistent routing behaviour without relying on platform defaults.                 |
 | Functional inter-area summarisation           | Provides summarised HQ user and transit routes towards Area 0, while retaining individual loopback advertisements for stable device reachability.                                                                |
 | Separate implementation evidence              | Maintains a distinction between the original architectural design, device configurations and the findings of subsequent verification.                                                                            |
+
+[↑ Back to Contents](#contents)
+
+---
 
 ## 9. Current Design Status
 
@@ -595,6 +620,10 @@ The current HQ design covers OSPF Area 10 and the five-device campus topology. I
 The future Area 0 backbone and Branch Campus Area 20 have not yet been implemented. The planned HQ summarisation policy, individual loopback advertisements and future ABR roles remain architectural decisions rather than verified operational features.
 
 Any changes required as a result of implementation or failure testing are documented separately. The original design is retained so that the reasoning behind the architecture can be understood alongside the later engineering findings.
+
+[↑ Back to Contents](#contents)
+
+---
 
 ## 10. Next Design Phase
 
@@ -624,3 +653,9 @@ The wider project roadmap includes:
 During the GRE phase, tunnel-endpoint reachability will be provided by the underlay rather than learned through the tunnel itself. This keeps the transport path independent of the overlay routes carried across GRE and avoids recursive-routing behaviour.
 
 The HQ design will remain the established baseline for the next stages. Any architectural changes will be documented and justified separately rather than retrospectively altering the original design.
+
+[↑ Back to Contents](#contents)
+
+---
+
+[← HQ Implementation](implementation/hq/README.md) · [↑ Contents](#contents) · [HQ Build Log →](implementation/hq/build-log.md)

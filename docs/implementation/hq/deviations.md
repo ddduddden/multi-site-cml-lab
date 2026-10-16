@@ -1,5 +1,7 @@
 # HQ Design Deviations
 
+[Portfolio](../../../README.md) / [HQ Implementation](README.md) / Design Deviations
+
 This file records **accepted differences** between the HQ design baseline and the verified implementation.
 
 A failed test does not automatically create a deviation. Unexpected behaviour is investigated first. A verification test may be marked `Deviated` only when an accepted `HQ-DEV-NNN` record exists for that test.
@@ -59,3 +61,7 @@ Accepted / Superseded
 
 - **Accepted** — the implementation intentionally differs from the current design baseline. Related verification tests may use the `Deviated` status.
 - **Superseded** — the deviation no longer describes the current relationship between design and implementation, for example because the design baseline was formally revised or the implementation later changed.
+
+---
+
+[← HQ Troubleshooting](troubleshooting.md) | [↑ HQ Implementation](README.md) | [HQ Verification Plan →](verification-plan.md)

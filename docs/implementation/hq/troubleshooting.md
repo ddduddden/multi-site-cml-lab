@@ -230,4 +230,4 @@ None. The unexpected result is being recorded as platform-specific behaviour rat
 **Status:**
 Open — investigation complete; the observed SVI behaviour has not been corrected.
 
-[← Previous: HQ-TS-001](#hq-ts-001--iosvl2-routing-mode-on-hq-a1) | [↑ Troubleshooting Contents](#troubleshooting-contents) | [HQ Verification Plan](verification-plan.md)
+[← Previous: HQ-TS-001](#hq-ts-001--iosvl2-routing-mode-on-hq-a1) | [↑ Troubleshooting Contents](#troubleshooting-contents) | [HQ Verification Plan →](verification-plan.md)
