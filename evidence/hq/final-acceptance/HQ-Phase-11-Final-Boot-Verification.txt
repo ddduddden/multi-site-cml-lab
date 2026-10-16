@@ -1,0 +1,100 @@
+hq-a1#
+hq-a1#
+hq-a1#
+hq-a1#terminal length 0
+hq-a1#show ip interface brief | include Vlan199
+Vlan199                10.10.99.4      YES TFTP   up                    up      
+hq-a1#ping 10.255.10.129
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.255.10.129, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 6/8/10 ms
+hq-a1#ping 10.255.10.130
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.255.10.130, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 5/6/8 ms
+hq-a1#traceroute 10.255.10.130
+Type escape sequence to abort.
+Tracing the route to 10.255.10.130
+VRF info: (vrf in name/id, vrf out name/id)
+  1 10.10.99.3 6 msec 4 msec 5 msec
+  2 10.255.10.3 6 msec *  6 msec
+hq-a1#
+hq-a1#
+hq-a1#
+
+hq-r1>
+hq-r1>
+hq-r1>terminal length 0
+hq-r1>show ip ospf neighbor
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+10.255.10.132     0   FULL/  -        00:00:31    10.255.10.6     GigabitEthernet0/4
+10.255.10.131     0   FULL/  -        00:00:31    10.255.10.12    GigabitEthernet0/3
+10.255.10.131     0   FULL/  -        00:00:36    10.255.10.10    GigabitEthernet0/2
+10.255.10.131     0   FULL/  -        00:00:38    10.255.10.8     GigabitEthernet0/1
+10.255.10.131     0   FULL/  -        00:00:32    10.255.10.0     GigabitEthernet0/0
+hq-r1>show ip route 10.10.12.0
+Routing entry for 10.10.12.0/22
+  Known via "ospf 10", distance 110, metric 11, type intra area
+  Last update from 10.255.10.12 on GigabitEthernet0/3, 00:18:50 ago
+  Routing Descriptor Blocks:
+    10.255.10.12, from 10.255.10.131, 00:18:50 ago, via GigabitEthernet0/3
+      Route metric is 11, traffic share count is 1
+    10.255.10.10, from 10.255.10.131, 00:18:50 ago, via GigabitEthernet0/2
+      Route metric is 11, traffic share count is 1
+    10.255.10.8, from 10.255.10.131, 00:18:50 ago, via GigabitEthernet0/1
+      Route metric is 11, traffic share count is 1
+  * 10.255.10.0, from 10.255.10.131, 00:18:50 ago, via GigabitEthernet0/0
+      Route metric is 11, traffic share count is 1
+hq-r1>
+hq-r1>
+hq-r1>
+hq-r1>
+
+
+hq-d1>
+hq-d1>
+hq-d1>terminal length 0
+hq-d1>show standby brief
+                     P indicates configured to preempt.
+                     |
+Interface   Grp  Pri P State   Active          Standby         Virtual IP
+Vl112       112  110 P Active  local           10.10.12.3      10.10.12.1
+Vl120       120  100   Standby 10.10.20.3      local           10.10.20.1
+Vl130       130  110 P Active  local           10.10.30.3      10.10.30.1
+Vl140       140  100   Standby 10.10.40.3      local           10.10.40.1
+Vl152       152  110 P Active  local           10.10.52.3      10.10.52.1
+Vl160       160  100   Standby 10.10.60.3      local           10.10.60.1
+Vl170       170  110 P Active  local           10.10.70.3      10.10.70.1
+Vl199       199  100   Standby 10.10.99.3      local           10.10.99.1
+hq-d1>show etherchannel summary
+Flags:  D - down        P - bundled in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        U - in use      N - not in use, no aggregation
+        f - failed to allocate aggregator
+
+        M - not in use, minimum links not met
+        m - not in use, port not aggregated due to minimum links not met
+        u - unsuitable for bundling
+        w - waiting to be aggregated
+        d - default port
+
+        A - formed by Auto LAG
+
+
+Number of channel-groups in use: 2
+Number of aggregators:           2
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+10     Po10(SU)        LACP      Gi0/0(P)    Gi0/1(P)    
+30     Po30(SU)        LACP      Gi1/0(P)    Gi1/1(P)    Gi1/2(P)    
+                                 Gi1/3(P)    
+
+hq-d1>
+hq-d1>
+hq-d1>

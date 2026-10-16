@@ -1,8 +1,16 @@
 # HQ Troubleshooting
 
+[Portfolio](../../../README.md) / [HQ Implementation](README.md) / Troubleshooting
+
 This file records **meaningful diagnostic investigations**.
 
 It is not a diary of every mistake. The build log remains the chronology; a build-log or verification entry links here only when the observed behaviour requires real investigation.
+
+## Troubleshooting Contents
+
+[HQ-TS-001 — IOSvL2 Routing Mode](#hq-ts-001--iosvl2-routing-mode-on-hq-a1) | [HQ-TS-002 — IOSvL2 SVI State](#hq-ts-002--iosvl2-svi-state-during-layer-2-isolation)
+
+---
 
 ## Project reference key
 
@@ -82,7 +90,9 @@ After the correction, the verification test must be run or re-run and its own `O
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-## HQ-TS-001 — IOSvL2 Routing Mode on `hq-a1`
+<a name="hq-ts-001--iosvl2-routing-mode-on-hq-a1"></a>
+
+## HQ-TS-001 — IOSvL2 Routing Mode on `hq-a1` [→](#hq-ts-002--iosvl2-svi-state-during-layer-2-isolation)
 
 **Opened:**  
 `30-09-2026`
@@ -131,3 +141,93 @@ None. The correction brings `hq-a1` into line with the design.
 
 **Status:**  
 Resolved
+
+[↑ Troubleshooting Contents](#troubleshooting-contents) | [Next: HQ-TS-002 →](#hq-ts-002--iosvl2-svi-state-during-layer-2-isolation)
+
+---
+
+<a name="hq-ts-002--iosvl2-svi-state-during-layer-2-isolation"></a>
+
+## [←](#hq-ts-001--iosvl2-routing-mode-on-hq-a1) HQ-TS-002 — IOSvL2 SVI State During Layer-2 Isolation
+
+**Opened:**
+`04-10-2026`
+
+**Related verification:**
+- [`HQ-VP-10.07`](../../../evidence/hq/failure-tests/10.07/HQ-VP-10.07-po30-progressive-failure.md) — progressive `Po30` member loss and complete inter-distribution failure
+- [`HQ-VP-10.08`](../../../evidence/hq/failure-tests/10.08/HQ-VP-10.08-d2-layer2-isolation.md) — `hq-d2` Layer-2 isolation with routed uplinks left operational
+
+**Related engineering review:**
+- [Phase 10 — Engineering Review and Conclusions](phase-10-engineering-review.md) — discussion of the SVI state, HSRP and return-path findings
+
+**Symptom:**
+During `HQ-VP-10.07` and `HQ-VP-10.08`, routed SVIs remained `up/up` on an IOSvL2 distribution switch even after the affected VLAN no longer had a usable Layer-2 forwarding path.
+
+In `HQ-VP-10.08`, `hq-d2 Po20` and `Po30` were administratively shut while all five routed OSPF uplinks remained operational. `show interfaces trunk` returned no active trunks and `show spanning-tree vlan 160` showed no spanning-tree instance, but `Vlan160` remained `up/up`.
+
+The same behaviour was then recognised in the complete `Po30` failure from `HQ-VP-10.07`, where stranded SVIs remained operational despite the Layer-2 partition.
+
+**Expected behaviour:**
+I expected an SVI to lose line protocol when its VLAN no longer had a usable Layer-2 forwarding port.
+
+If the stranded SVI had gone down, its connected route would also have been removed. HSRP on that interface would no longer have remained Active, and OSPF would not have continued advertising the affected connected subnet from that switch.
+
+**Scope / impact:**
+- The behaviour was observed on the IOSvL2 distribution switches used in the CML lab.
+- During complete `Po30` loss, both distribution switches retained SVIs for VLANs that were isolated from the opposite side of the Layer-2 topology.
+- This allowed both HSRP peers to become Active independently when the Layer-2 partition separated them.
+- During `HQ-VP-10.08`, `hq-d2` retained `10.10.60.0/26` as a connected route and continued advertising it into OSPF even though it no longer had a Layer-2 path to the test host.
+- `hq-r2` therefore continued selecting `hq-d2` for the return path, producing a data-plane blackhole.
+- The behaviour affects the interpretation of both `HQ-VP-10.07` and `HQ-VP-10.08`.
+
+**Investigation:**
+1. I first confirmed that the failure was genuinely Layer 2. On `hq-d2`, both `Po20` and `Po30` were down, `show interfaces trunk` returned no active trunks, and `show spanning-tree vlan 160` showed no active instance.
+2. I then checked the Layer-3 state. `Vlan160` remained `up/up` and `10.10.60.0/26` remained installed as a connected route.
+3. All five routed OSPF adjacencies on `hq-d2` remained `FULL`, so the switch continued advertising the connected VLAN160 subnet.
+4. The routing and CEF checks showed that `hq-r2` selected a return path through `hq-d2`. Together with the failed traffic tests, this supports the return-path blackhole identified in `HQ-VP-10.08`. No packet-level capture of the drop was retained.
+5. Traffic testing showed the consequence directly: the local HSRP gateway remained reachable from `hq-a1`, while the monitored path through `hq-r2` failed.
+6. Reviewing `HQ-VP-10.07` showed the same underlying SVI behaviour during complete loss of `Po30`. The Layer-2 partition separated the HSRP peers, but the stranded SVIs remained operational instead of dropping.
+7. Recovery of the Layer-2 paths restored end-to-end connectivity without changing the routing decision on `hq-r2`, supporting the conclusion that the missing downstream Layer-2 path caused the failure.
+
+`HQ-VP-10.07` exposed the same SVI behaviour, but `HQ-VP-10.08` established the return-path failure.
+
+**Root cause:**
+The IOSvL2 image used in this lab retained SVI line protocol in situations where the affected VLAN had no usable Layer-2 forwarding path.
+
+Because the SVI remained `up/up`, IOS also retained the directly connected subnet. That allowed HSRP to remain operational locally and allowed OSPF to continue advertising a subnet that the switch could no longer reach through the Layer-2 topology.
+
+The resulting blackhole was therefore produced by an interaction between:
+
+1. the intentional Layer-2 topology and Root Guard policy;
+2. the failure that removed the usable Layer-2 path; and
+3. the observed IOSvL2 SVI state behaviour.
+
+This is recorded as an **IOSvL2 platform observation**. It is not being claimed as general Cisco Catalyst behaviour or as a confirmed Cisco software defect.
+
+**Correction:**
+No corrective network configuration was applied during Phase 10.
+
+The purpose of the failure tests is to measure the behaviour of the as-built HQ design before introducing remediation. The platform behaviour is documented so that it is not mistaken for a general physical-switch characteristic.
+
+The finding will also be considered when the Branch campus is designed and when equivalent failure behaviour is tested on later platforms.
+
+**Re-verification:**
+- Restoring `Po20` and `Po30` returned the normal Layer-2 topology.
+- `hq-d2` returned to its intended HSRP Active role for VLAN160 and `hq-d1` returned to Standby.
+- `hq-a1` again selected `Po20` as the VLAN160 root path.
+- All five `hq-d2` OSPF adjacencies remained `FULL`.
+- Gateway, `hq-r1` and `hq-r2` reachability returned to `5/5`.
+- The `hq-r2` route and CEF selection toward VLAN160 remained unchanged, but became usable again once the downstream Layer-2 path was restored.
+
+**Evidence:**
+- [HQ-VP-10.07 — Progressive Po30 failure](../../../evidence/hq/failure-tests/10.07/HQ-VP-10.07-po30-progressive-failure.md) and [retained CLI/session evidence](../../../evidence/hq/failure-tests/10.07/po30-progressive-failure-evidence.md)
+- [HQ-VP-10.08 — Layer 2 isolation and return-path blackhole](../../../evidence/hq/failure-tests/10.08/HQ-VP-10.08-d2-layer2-isolation.md) and [retained CLI/session evidence](../../../evidence/hq/failure-tests/10.08/d2-layer2-isolation-evidence.md)
+- [10.08 original event buffer](../../../evidence/hq/failure-tests/10.08/10.08-original-event-buffer.md) and [original recovery CLI](../../../evidence/hq/failure-tests/10.08/10.08-original-recovery-cli.md)
+
+**Related deviation:**
+None. The unexpected result is being recorded as platform-specific behaviour rather than an accepted change to the HQ design.
+
+**Status:**
+Open — investigation complete; the observed SVI behaviour has not been corrected.
+
+[← Previous: HQ-TS-001](#hq-ts-001--iosvl2-routing-mode-on-hq-a1) | [↑ Troubleshooting Contents](#troubleshooting-contents) | [HQ Verification Plan](verification-plan.md)

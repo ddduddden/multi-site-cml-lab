@@ -10,7 +10,7 @@ Phase 10 — Failure and Resilience Testing
 
 **Evidence commit:** [`a8624b1`](https://github.com/ddduddden/multi-site-cml-lab/commit/a8624b176298e3b0132daedf082c2aae0c704ebd)
 Evidence: [captured CLI and session records](po30-progressive-failure-evidence.md)
-Related troubleshooting: HQ-TS-002
+Related troubleshooting: [HQ-TS-002](../../../../docs/implementation/hq/troubleshooting.md#hq-ts-002--iosvl2-svi-state-during-layer-2-isolation)
 
 Starting state
 --------------
