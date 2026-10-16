@@ -82,7 +82,7 @@ The phase numbers are a project-specific indexing convention. They are not a Cis
 | 10 | Failure testing | Exercise defined device, interface, Port-Channel, and routing failures and recovery |
 | 11 | Final acceptance | Confirm the evidence required to describe HQ as verified as-built |
 
-Phases 01–09 are detailed in `verification-plan.md`. Phases 06 and 07 were built and verified in one combined build window, and Phases 08 and 09 were verified in one combined test window; each phase keeps separate test IDs, phase status, and build-log entries. Phase 10 has a standalone test plan and recorded outcomes; Phase 11 remains objective-only.
+Phases 01–09 are detailed in `verification-plan.md`. Phases 06 and 07 were built and verified in one combined build window, and Phases 08 and 09 were verified in one combined test window; each phase keeps separate test IDs, phase status, and build-log entries. Phase 10 has a standalone test plan and recorded outcomes; Phase 11 has a [narrative engineering close-out](phase-11-final-acceptance.md), with acceptance still in review.
 
 ## Working rules
 
@@ -134,7 +134,7 @@ A phase does not show as `Deviated` just because one test in it has an accepted 
 | 08 | ECMP | **Verified** |
 | 09 | OSPF cost engineering | **Verified** |
 | 10 | Failure testing | **Completed** |
-| 11 | Final acceptance | Not started |
+| 11 | [Final acceptance](phase-11-final-acceptance.md) | In progress |
 
 Phase 10 uses PASS, FAIL and INCONCLUSIVE for individual test outcomes. **Completed** means the planned execution and final reconciliation have finished; it does not mean every test passed. See the [Phase 10 results](../../../evidence/hq/failure-tests/README.md).
 
@@ -168,7 +168,7 @@ evidence/hq/etherchannel/HQ-VP-03.04-member-link-failure/
 
 ## Configs and Git traceability
 
-`configs/hq/` contains the readable sanitised as-built device configurations from the latest milestone (currently Phase 07):
+`configs/hq/` contains the readable sanitised as-built device configurations from the latest milestone (currently the sanitised Phase 11 milestone):
 
 ```text
 configs/hq/
@@ -211,5 +211,5 @@ Check that:
 - Each verification test uses the `Status` field to record its result.
 - Meaningful faults use `HQ-TS-NNN`, not routine typing mistakes.
 - `Deviated` is backed by an accepted `HQ-DEV-NNN`, and every test in the phase is resolved before the phase itself reads as `Deviated`.
-- Phase 10 documentation links to the executed tests; Phase 11 remains objective-only.
+- Phase 10 documentation links to the executed tests; Phase 11 links to its final operational captures and narrative engineering close-out. Acceptance is still pending.
 - Config/evidence directories contain real content rather than placeholders.

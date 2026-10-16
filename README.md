@@ -52,6 +52,8 @@ Phases **01–09 are verified as-built**. Phase 08 proves that the intended four
 
 Phase 10 testing is complete, with individual outcomes recorded as PASS, FAIL or INCONCLUSIVE against the original criteria. The [Test Plan](docs/implementation/hq/phase-10-test-plan.md), [Testing Methodology](docs/implementation/hq/phase-10-testing-methodology.md), [Engineering Review](docs/implementation/hq/phase-10-engineering-review.md) and [test reports and evidence](evidence/hq/failure-tests/README.md) contain the full record.
 
+The final HQ [CML configuration milestone](lab/cml-lab-exports/hq/hq-phase-11-final-acceptance-2026-10-15.yaml) was published in [`1ee631b`](https://github.com/ddduddden/multi-site-cml-lab/commit/1ee631be011985dac4a1c6a7f97de1ff95d22c1c). A later [boot recovery capture](evidence/hq/final-acceptance/HQ-Phase-11-Boot-Recovery-CLI.md) and [operational checks](evidence/hq/final-acceptance/HQ-Phase-11-Final-Boot-Verification.txt) were retained in [`39b68a7`](https://github.com/ddduddden/multi-site-cml-lab/commit/39b68a790a3b9ed0de55071fdf7f9b004d0638b2). The [Phase 11 engineering close-out](docs/implementation/hq/phase-11-final-acceptance.md) remains in review; the public export is sanitised, and successful runtime checks followed manual intervention on `hq-a1`.
+
 | Phase | Scope | Status |
 |---:|---|---|
 | 01 | Platform baseline | **Verified** |
@@ -64,7 +66,7 @@ Phase 10 testing is complete, with individual outcomes recorded as PASS, FAIL or
 | 08 | ECMP | **Verified** |
 | 09 | OSPF cost engineering | **Verified** |
 | 10 | Failure testing | **Completed** |
-| 11 | Final acceptance | Planned |
+| 11 | Final acceptance | In progress |
 
 Completed verification now includes:
 
@@ -146,7 +148,8 @@ multi-site-cml-lab/
 │           ├── deviations.md
 │           ├── phase-10-test-plan.md
 │           ├── phase-10-testing-methodology.md
-│           └── phase-10-engineering-review.md
+│           ├── phase-10-engineering-review.md
+│           └── phase-11-final-acceptance.md
 │
 ├── evidence/
 │   └── hq/
