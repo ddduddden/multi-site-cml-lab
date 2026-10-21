@@ -66,23 +66,19 @@ The diagram below shows the HQ campus and its connections.
 
 *HQ Campus topology — OSPF Area 10*
 
-The access switch, hq-a1, connects to hq-d1 through Po10 and to hq-d2 through Po20. Both distribution switches provide Layer 3 gateway and routing functions for the campus VLANs. Po30 connects the two distribution switches at Layer 2.
+I designed the five-node HQ topology to retain redundancy at both the campus gateway and the routed edge. Combining the core and distribution functions on two multilayer switches kept the gateways and campus routing on separate devices without requiring another tier. Retaining two edge routers also allowed me to investigate routed-path and device failures, with both routers available for the later Area 0 backbone. The interface allocation accommodates these connections while leaving spare ports for future phases.
 
-For the Layer 3 network, I have designed four point-to-point links between each distribution switch and its directly paired edge router:
+The trade-off was a single access switch. I could provide hq-a1 with redundant uplinks, but the topology would not protect its connected endpoints against failure of hq-a1 itself. With five nodes available, I kept the distribution and edge pairs and accepted that access-layer limitation.
 
-- hq-d1 ↔ hq-r1
-- hq-d2 ↔ hq-r2
+I connected hq-a1 independently to hq-d1 through Po10 and to hq-d2 through Po20 so that access connectivity did not depend on one distribution switch. Po30 provides the direct Layer 2 connection between the distribution switches, carrying the campus VLANs and supporting communication between the gateway peers. Together, these connections allow an alternative access path without necessarily requiring the gateway role to move.
 
-These links form the direct OSPF ECMP paths. Each pair has four independent routed interfaces rather than one EtherChannel.
+I divided the preferred HSRP Active roles between the distribution switches so that both participate in normal forwarding. Aligning the preferred spanning-tree root with gateway ownership directs each VLAN towards its intended gateway and reduces unnecessary forwarding across Po30. The detailed role assignments and recovery policies remain in Sections 3 and 6.
 
-I also included two cross-connected routed links:
+My [14 September proposal](https://github.com/ddduddden/multi-site-cml-lab/blob/1a6c994ed/docs/hq-campus-design.md#layer-3-etherchannel-design) used routed EtherChannels Po101 and Po201 between the primary distribution and edge pairs. On [15 September](https://github.com/ddduddden/multi-site-cml-lab/blob/0547b4648/docs/hq-campus-design.md#7-ospf-area-10-and-ecmp-design), I revised this to four independent routed /31 interfaces between hq-d1 and hq-r1, and another four between hq-d2 and hq-r2. These replaced the proposed routed Port-Channels. Each routed interface can form its own OSPF adjacency. Where the total OSPF path costs are equal, multiple direct links can be installed as ECMP next hops. LACP remains on the switched campus connections. This separation lets me investigate EtherChannel member resilience and routed-link reconvergence as distinct behaviours.
 
-- hq-d1 ↔ hq-r2
-- hq-d2 ↔ hq-r1
+The diagonal links from hq-d1 to hq-r2 and hq-d2 to hq-r1 give each distribution switch a routed connection beyond its directly paired router. They retain alternative paths through the remaining topology when preferred connectivity is lost. I chose explicit OSPF costs to make path preference deliberate and consistent across equivalent links, with the higher-cost connections available where the complete route calculation selects them. Section 7 defines that policy.
 
-The cross-links use higher OSPF costs, so they provide alternate routed paths when the preferred direct paths are unavailable. Their role is different from Po30, which carries Layer 2 traffic between the distribution switches.
-
-The selected CML switch images provide 16 GigabitEthernet interfaces, while each edge router image provides eight GigabitEthernet interfaces. The interface allocations are documented in Sections 4 and 5.
+I included these choices before the phased implementation because I wanted to test different failures independently and then examine their combined effects. Losing one bundle member, a complete access uplink, a gateway, an individual routed link or an entire direct path set should ask different questions of the network. Restoring each failed device or connection also allows the return to the preferred arrangement to be checked. The detailed test procedures developed during the build; the intention to make those failures meaningful was already part of the architecture.
 
 [↑ Back to Contents](#contents)
 
