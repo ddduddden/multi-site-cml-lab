@@ -4,6 +4,14 @@
 
 Use this index to find a check, open its evidence and return to the verification record. Phase 10 has separate test reports and planned acceptance criteria.
 
+## Browse by Area
+
+[Platform](platform-baseline/README.md) · [VLANs](layer2-vlan-baseline/README.md) · [EtherChannel](etherchannel/README.md) · [Spanning Tree](spanning-tree/README.md) · [HSRP](hsrp/README.md)
+
+[Routed Underlay](layer3-underlay/README.md) · [OSPF / ECMP / Cost Engineering](ospf/README.md) · [Failure Testing](failure-tests/README.md) · [Final Acceptance](final-acceptance/README.md)
+
+## Verification Records
+
 Phases 01–09 use the recorded status **Verified**. Phase 10 uses **PASS**, **FAIL** and **INCONCLUSIVE**.
 
 | Phase | Test | Check | Recorded status / result | Evidence | Verification record / planned check |

@@ -79,11 +79,11 @@ A date is retained even when the phase number is unique because a milestone may 
 
 ## Relationship to other repository content
 
-- `docs/` explains design intent, implementation history and verification outcomes.
-- `evidence/` contains targeted proof for verification tests.
-- `configs/hq/` contains readable per-device as-built running configurations.
-- `diagrams/` contains architecture visuals.
-- `lab/cml-lab-exports/` contains selected milestone CML restoration/reconstruction artifacts.
+- [`docs/`](../../docs/README.md) explains design intent, implementation history and verification outcomes.
+- [`evidence/`](../../evidence/README.md) contains targeted proof for verification tests.
+- [`configs/hq/`](../../configs/hq/README.md) contains readable per-device as-built running configurations.
+- [`diagrams/`](../../diagrams/README.md) contains architecture visuals.
+- [`lab/cml-lab-exports/`](README.md) contains selected milestone CML restoration/reconstruction artifacts.
 
 The per-device files in `configs/hq/` remain the readable as-built configuration reference. CML YAML exports package the wider lab state and topology for milestone restoration; they do not replace verification evidence or the per-device configuration records.
 

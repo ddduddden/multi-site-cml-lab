@@ -1,6 +1,6 @@
 [Portfolio](../../../../README.md) / [Evidence Map](../../README.md) / [Phase 10](../README.md) / [10.06](README.md) / Capture / record
 
-# Mode A Po10 no impact control
+# HQ-VP-10.06 — Mode A Po10 no impact control
 
 <details>
 <summary><strong>Original retained CLI / source capture</strong></summary>

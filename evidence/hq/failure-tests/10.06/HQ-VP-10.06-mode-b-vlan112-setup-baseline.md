@@ -1,6 +1,6 @@
 [Portfolio](../../../../README.md) / [Evidence Map](../../README.md) / [Phase 10](../README.md) / [10.06](README.md) / Capture / record
 
-# Mode B VLAN112 setup baseline
+# HQ-VP-10.06 — Mode B VLAN112 setup baseline
 
 HQ-VP-10.06 — Access Uplink Failure
 ===================================

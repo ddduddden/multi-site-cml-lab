@@ -1,6 +1,6 @@
 # HQ Campus Design
 
-[Portfolio](../README.md) / [HQ Implementation](implementation/hq/README.md) / HQ Campus Design
+[Portfolio](../README.md) / [Documentation](README.md) / HQ Campus Design
 
 ## Contents
 

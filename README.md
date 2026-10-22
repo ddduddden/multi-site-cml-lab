@@ -82,7 +82,7 @@ The documentation follows the HQ network from its original design through implem
    through failure testing to the         │  and selected failure scenarios.
    results and what they revealed.        │
                                           │
-   <a href="evidence/hq/README.md">INVESTIGATE ↗</a>                          │  INTERACTIVE EXPLORER · LINK PENDING
+   <a href="evidence/hq/README.md">INVESTIGATE ↗</a>                          │  <a href="https://dominicdudden.co.uk">EXPLORE THE INTERACTIVE PORTFOLIO ↗</a>
                                           │
 ╠═════════════════════════════════════════╧═════════════════════════════════════════╣
 &#8203;
@@ -148,11 +148,11 @@ The repository separates design documents, implementation records, verification 
 | Location | Contents |
 |---|---|
 | [`docs/`](docs/README.md) | Network design, environment and planning documents |
-| [`docs/implementation/hq/`](docs/implementation/hq/) | Build, verification, troubleshooting and engineering records |
+| [`docs/implementation/hq/`](docs/implementation/hq/README.md) | Build, verification, troubleshooting and engineering records |
 | [`evidence/hq/`](evidence/hq/README.md) | Retained CLI output, test records and supporting evidence |
 | [`configs/hq/`](configs/hq/README.md) | Sanitised device configurations |
 | [`diagrams/`](diagrams/README.md) | HQ network topology |
-| [`lab/cml-lab-exports/`](lab/cml-lab-exports/) | Sanitised CML restoration milestones and export guidance |
+| [`lab/cml-lab-exports/`](lab/cml-lab-exports/README.md) | Sanitised CML restoration milestones and export guidance |
 
 ## Future Development
 

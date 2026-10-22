@@ -148,15 +148,15 @@ Evidence folders are created only when genuine artifacts exist.
 
 | Phase | Folder |
 |---:|---|
-| 01 | [evidence/hq/platform-baseline/](../../../evidence/hq/platform-baseline/) |
-| 02 | [evidence/hq/layer2-vlan-baseline/](../../../evidence/hq/layer2-vlan-baseline/) |
-| 03 | [evidence/hq/etherchannel/](../../../evidence/hq/etherchannel/) |
-| 04 | [evidence/hq/spanning-tree/](../../../evidence/hq/spanning-tree/) |
-| 05 | [evidence/hq/hsrp/](../../../evidence/hq/hsrp/) |
-| 06 | [evidence/hq/layer3-underlay/](../../../evidence/hq/layer3-underlay/) |
-| 07–09 | [evidence/hq/ospf/](../../../evidence/hq/ospf/) |
-| 10 | [evidence/hq/failure-tests/](../../../evidence/hq/failure-tests/) |
-| 11 | [evidence/hq/final-acceptance/](../../../evidence/hq/final-acceptance/) |
+| 01 | [evidence/hq/platform-baseline/](../../../evidence/hq/platform-baseline/README.md) |
+| 02 | [evidence/hq/layer2-vlan-baseline/](../../../evidence/hq/layer2-vlan-baseline/README.md) |
+| 03 | [evidence/hq/etherchannel/](../../../evidence/hq/etherchannel/README.md) |
+| 04 | [evidence/hq/spanning-tree/](../../../evidence/hq/spanning-tree/README.md) |
+| 05 | [evidence/hq/hsrp/](../../../evidence/hq/hsrp/README.md) |
+| 06 | [evidence/hq/layer3-underlay/](../../../evidence/hq/layer3-underlay/README.md) |
+| 07–09 | [evidence/hq/ospf/](../../../evidence/hq/ospf/README.md) |
+| 10 | [evidence/hq/failure-tests/](../../../evidence/hq/failure-tests/README.md) |
+| 11 | [evidence/hq/final-acceptance/](../../../evidence/hq/final-acceptance/README.md) |
 
 Smaller evidence sets can use files directly inside the relevant phase folder:
 

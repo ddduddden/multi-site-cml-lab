@@ -6,6 +6,10 @@ Start with the [test report](HQ-VP-10.06-access-uplink-failure.md), then follow 
 
 **Planned checks:** [HQ-VP-10.06](../../../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1006-access-port-channel-outage)
 
+**Mode A:** Po20 failure on VLAN199 tests failover to Po10, with `hq-d2` staying HSRP Active.
+
+**Mode B:** Po10 failure on VLAN112 tests failover to Po20, with `hq-d1` staying HSRP Active.
+
 ## Captures and session records
 
 | Order | Capture / record | Purpose |

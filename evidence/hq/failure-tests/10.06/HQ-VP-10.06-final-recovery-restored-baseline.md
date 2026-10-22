@@ -1,6 +1,6 @@
 [Portfolio](../../../../README.md) / [Evidence Map](../../README.md) / [Phase 10](../README.md) / [10.06](README.md) / Capture / record
 
-# Final recovery restored baseline
+# HQ-VP-10.06 — Final recovery restored baseline
 
 <details>
 <summary><strong>Original retained CLI / source capture</strong></summary>

@@ -1,6 +1,6 @@
 [Portfolio](../../../../README.md) / [Evidence Map](../../README.md) / [Phase 10](../README.md) / [10.06](README.md) / Capture / record
 
-# hq-a1 interface event log
+# HQ-VP-10.06 — hq-a1 interface event log
 
 <details>
 <summary><strong>Original retained CLI / source capture</strong></summary>

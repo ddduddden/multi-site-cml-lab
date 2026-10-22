@@ -28,7 +28,7 @@ Direct `/31` Point-to-Point Reachability
 
 | Capture | File |
 |---|---|
-| p2p link reachability | [View capture](HQ-VP-06.02-p2p-link-reachability.txt) |
+| P2P link reachability | [View capture](HQ-VP-06.02-p2p-link-reachability.txt) |
 
 [Verification record](../../../docs/implementation/hq/verification-plan.md#direct-31-point-to-point-reachability--hq-vp-0602) · [↑ Test index](#phase-06--routed-31-underlay)
 

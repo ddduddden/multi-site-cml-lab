@@ -1,6 +1,6 @@
 [Portfolio](../../../../README.md) / [Evidence Map](../../README.md) / [Phase 10](../README.md) / [10.06](README.md) / Capture / record
 
-# Mode B Po10 failure state
+# HQ-VP-10.06 — Mode B Po10 failure state
 
 <details>
 <summary><strong>Original retained CLI / source capture</strong></summary>

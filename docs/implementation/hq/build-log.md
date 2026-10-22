@@ -58,7 +58,7 @@ Production VLAN, EtherChannel, Rapid PVST+, HSRP, routed-link, and OSPF configur
 
 ### Evidence
 
-[evidence/hq/platform-baseline/](../../../evidence/hq/platform-baseline/)
+[evidence/hq/platform-baseline/](../../../evidence/hq/platform-baseline/README.md)
 
 ### Git traceability
 
@@ -93,7 +93,7 @@ EtherChannel/trunking and later Layer 2 and Layer 3 features remain for subseque
 
 ### Evidence
 
-[evidence/hq/layer2-vlan-baseline/](../../../evidence/hq/layer2-vlan-baseline/)
+[evidence/hq/layer2-vlan-baseline/](../../../evidence/hq/layer2-vlan-baseline/README.md)
 
 ### Git traceability
 
@@ -131,7 +131,7 @@ Deterministic Rapid PVST+ root placement and forwarding behaviour remain for Pha
 
 ### Evidence
 
-[evidence/hq/etherchannel/](../../../evidence/hq/etherchannel/)
+[evidence/hq/etherchannel/](../../../evidence/hq/etherchannel/README.md)
 
 ### Git traceability
 
@@ -170,7 +170,7 @@ SVI addressing and HSRP gateway redundancy remain for Phase 05.
 
 ### Evidence
 
-[evidence/hq/spanning-tree/](../../../evidence/hq/spanning-tree/)
+[evidence/hq/spanning-tree/](../../../evidence/hq/spanning-tree/README.md)
 
 ### Git traceability
 
@@ -214,7 +214,7 @@ Routed /31 Distribution-to-Edge links and loopbacks remain for Phase 06.
 
 ### Evidence
 
-[evidence/hq/hsrp/](../../../evidence/hq/hsrp/)
+[evidence/hq/hsrp/](../../../evidence/hq/hsrp/README.md)
 
 ### Git traceability
 
@@ -253,7 +253,7 @@ The original phase index placed the loopbacks in Phase 06, but the retained mile
 
 ### Evidence
 
-[evidence/hq/layer3-underlay/](../../../evidence/hq/layer3-underlay/)
+[evidence/hq/layer3-underlay/](../../../evidence/hq/layer3-underlay/README.md)
 
 ### Milestone artifacts
 
@@ -306,7 +306,7 @@ Route tables already expose multiple next hops and cost-driven path differences,
 
 ### Evidence
 
-[evidence/hq/ospf/](../../../evidence/hq/ospf/)
+[evidence/hq/ospf/](../../../evidence/hq/ospf/README.md)
 
 ### Milestone artifacts
 
@@ -355,7 +355,7 @@ The test also showed five equal-cost paths from hq-r1 to hq-r2 Loopback0 (10.255
 
 ### Evidence
 
-[evidence/hq/ospf/](../../../evidence/hq/ospf/)
+[evidence/hq/ospf/](../../../evidence/hq/ospf/README.md)
 
 ### Milestone artifacts
 
@@ -397,7 +397,7 @@ Restoring the direct links returned the selected campus routes to metric 11, reb
 
 ### Evidence
 
-[evidence/hq/ospf/](../../../evidence/hq/ospf/)
+[evidence/hq/ospf/](../../../evidence/hq/ospf/README.md)
 
 ### Milestone artifacts
 
