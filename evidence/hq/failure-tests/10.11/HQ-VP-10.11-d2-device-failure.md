@@ -1,10 +1,6 @@
-[Phase 10](../README.md) / [10.11](d2-device-failure-evidence.md)
+[Portfolio](../../../../README.md) / [Evidence Map](../../README.md) / [Phase 10](../README.md) / [10.11](README.md) / Test report
 
-[← Previous](d2-device-failure-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](d2-device-failure-evidence.md) · [Next →](10.11-retained-cli-excerpt.md)
-
----
-
-# [←](../10.10/HQ-VP-10.10-d1-device-failure.md "Previous VP") HQ-VP-10.11 — hq-d2 Device Failure [→](../10.12/HQ-VP-10.12-r1-device-failure.md "Next VP")
+# HQ-VP-10.11 — hq-d2 Device Failure
 
 Phase 10 — Failure and Resilience Testing
 
@@ -63,4 +59,4 @@ The preferred HSRP/STP state returned after restart.
 
 ---
 
-[← Previous](d2-device-failure-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](d2-device-failure-evidence.md) · [Next →](10.11-retained-cli-excerpt.md)
+[◀ Evidence index](README.md) · [↑ Test evidence](README.md) · [Next record ▶](10.11-retained-cli-excerpt.md)

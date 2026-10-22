@@ -1,6 +1,6 @@
 # HQ Engineering Review and Conclusions
 
-[HQ implementation](README.md) / [Phase 10 Test Plan](phase-10-test-plan.md) / [Testing Methodology](phase-10-testing-methodology.md) / [Phase 10 Evidence Index](../../../evidence/hq/failure-tests/README.md)
+[Portfolio](../../../README.md) / [HQ Implementation](README.md) / Engineering Review
 
 > **Scope:** HQ Campus · Test window: 3–6 October 2026 · HQ-VP-10.01–10.14  
 > **Status:** Fault tests completed 3–6 October; final configuration reconciliation completed 12 October 2026

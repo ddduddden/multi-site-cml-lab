@@ -1,15 +1,11 @@
-[Phase 10](../README.md) / [10.09](d2-routed-isolation-evidence.md)
+[Portfolio](../../../../README.md) / [Evidence Map](../../README.md) / [Phase 10](../README.md) / [10.09](README.md) / Test report
 
-[← Previous](d2-routed-isolation-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](d2-routed-isolation-evidence.md) · [Next →](10.09-session-record.md)
-
----
-
-# [←](../10.08/HQ-VP-10.08-d2-layer2-isolation.md "Previous VP") HQ-VP-10.09 — hq-d2 Routed Isolation [→](../10.10/HQ-VP-10.10-d1-device-failure.md "Next VP")
+# HQ-VP-10.09 — hq-d2 Routed Isolation
 
 Phase 10 — Failure and Resilience Testing
 
 **Evidence commit:** [`a8624b1`](https://github.com/ddduddden/multi-site-cml-lab/commit/a8624b176298e3b0132daedf082c2aae0c704ebd)
-Evidence: [captured CLI and session records](d2-routed-isolation-evidence.md)
+Evidence: [captured CLI and session records](README.md)
 
 Failure
 -------
@@ -54,4 +50,4 @@ need preempt enabled for that priority change to trigger takeover.
 
 ---
 
-[← Previous](d2-routed-isolation-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](d2-routed-isolation-evidence.md) · [Next →](10.09-session-record.md)
+[◀ Evidence index](README.md) · [↑ Test evidence](README.md) · [Next record ▶](10.09-session-record.md)

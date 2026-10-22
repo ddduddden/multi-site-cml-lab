@@ -1,15 +1,11 @@
-[Phase 10](../README.md) / [10.14](final-restoration-evidence.md)
+[Portfolio](../../../../README.md) / [Evidence Map](../../README.md) / [Phase 10](../README.md) / [10.14](README.md) / Test report
 
-[← Previous](final-restoration-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](final-restoration-evidence.md) · [Next →](10.14-config-excerpts.md)
-
----
-
-# [←](../10.13/HQ-VP-10.13-diagonal-double-failure.md "Previous VP") HQ-VP-10.14 — Final Restoration
+# HQ-VP-10.14 — Final Restoration
 
 Phase 10 — Failure and Resilience Testing
 
 **Evidence commit:** [`a8624b1`](https://github.com/ddduddden/multi-site-cml-lab/commit/a8624b176298e3b0132daedf082c2aae0c704ebd)
-Evidence: [captured CLI and session records](final-restoration-evidence.md)
+Evidence: [captured CLI and session records](README.md)
 
 Final baseline
 --------------
@@ -99,4 +95,4 @@ failure-test change.
 
 ---
 
-[← Previous](final-restoration-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](final-restoration-evidence.md) · [Next →](10.14-config-excerpts.md)
+[◀ Evidence index](README.md) · [↑ Test evidence](README.md) · [Next record ▶](10.14-session-record.md)

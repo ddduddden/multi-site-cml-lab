@@ -1,6 +1,6 @@
 # HQ Phase 11 — Access-Switch Boot Recovery
 
-[HQ Implementation](../../../docs/implementation/hq/README.md) / [Verification Plan — Phase 11](../../../docs/implementation/hq/verification-plan.md#phase-11--final-acceptance) / Boot Recovery Evidence
+[Portfolio](../../../README.md) / [Evidence Map](../README.md) / [Phase 11](README.md) / Boot Recovery
 
 **Device:** `hq-a1` (IOSvL2)  
 **Session:** 16 October 2026  
@@ -281,4 +281,4 @@ hq-a1#
 
 ---
 
-[← Final operational checks](HQ-Phase-11-Final-Boot-Verification.txt) · [↑ Phase 11 Final Acceptance](../../../docs/implementation/hq/verification-plan.md#phase-11--final-acceptance) · [↑ HQ Implementation](../../../docs/implementation/hq/README.md)
+[◀ Evidence index](README.md) · [↑ Phase 11 evidence](README.md) · [Final operational checks ▶](HQ-Phase-11-Final-Boot-Verification.txt)

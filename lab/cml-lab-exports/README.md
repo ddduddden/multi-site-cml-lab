@@ -1,5 +1,7 @@
 # CML Lab Exports
 
+[Portfolio](../../README.md) / CML Lab Exports
+
 This subtree holds selected, versioned Cisco Modeling Labs YAML exports that represent meaningful architectural milestones. It is not a general backup directory and does not contain every intermediate working copy.
 
 ## Purpose
@@ -24,6 +26,15 @@ Credential values and local usernames are replaced with `<sanitised>`. The permi
 The public copy was checked for valid YAML, valid link endpoints, matching per-device configurations and preserved HQ routing, SVI and Port-Channel configuration. It has not been imported or boot-tested in CML. The `lab.version` value is the YAML format version, not the CML software version. Device timestamps are retained as exported and do not establish the capture date.
 
 This milestone records the final configuration; it does not change the Phase 10 test outcomes or imply that Phase 11 sign-off is complete.
+
+## HQ Exports
+
+| Phase | Export |
+|---|---|
+| 01 | [hq-phase-01-platform-baseline-2026-09-20.yaml](hq/hq-phase-01-platform-baseline-2026-09-20.yaml) |
+| 05 | [hq-phase-05-svi-hsrp-2026-09-29.yaml](hq/hq-phase-05-svi-hsrp-2026-09-29.yaml) |
+| 07 | [hq-phase-07-ospf-area10-2026-09-30.yaml](hq/hq-phase-07-ospf-area10-2026-09-30.yaml) |
+| 11 | [hq-phase-11-final-acceptance-2026-10-15.yaml](hq/hq-phase-11-final-acceptance-2026-10-15.yaml) |
 
 ## Export workflow
 
@@ -80,3 +91,8 @@ The per-device files in `configs/hq/` remain the readable as-built configuration
 
 CML interface MAC addresses are not assumed to remain identical across imports or node recreation unless they are explicitly pinned. Evidence that depends on bridge IDs or interface MAC addresses should therefore be interpreted alongside the configured STP priorities and topology roles rather than assuming a particular dynamically allocated MAC is permanent.
 
+
+
+---
+
+[↑ Portfolio](../../README.md) · [HQ Device Configurations](../../configs/hq/README.md) · [Phase 11 Evidence](../../evidence/hq/final-acceptance/README.md)

@@ -1,15 +1,11 @@
-[Phase 10](../README.md) / [10.04](cross-link-failure-evidence.md)
+[Portfolio](../../../../README.md) / [Evidence Map](../../README.md) / [Phase 10](../README.md) / [10.04](README.md) / Test report
 
-[← Previous](cross-link-failure-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](cross-link-failure-evidence.md) · [Next →](10.04-failure.md)
-
----
-
-# [←](../10.02-10.03/HQ-VP-10.02-10.03-routed-link-ecmp.md "Previous VP") HQ-VP-10.04 — Cross-Link Failure [→](../10.05/HQ-VP-10.05-etherchannel-member-failure.md "Next VP")
+# HQ-VP-10.04 — Cross-Link Failure
 
 Phase 10 — Failure and Resilience Testing
 
 **Evidence commit:** [`a8624b1`](https://github.com/ddduddden/multi-site-cml-lab/commit/a8624b176298e3b0132daedf082c2aae0c704ebd)
-Evidence: [captured CLI and session records](cross-link-failure-evidence.md)
+Evidence: [captured CLI and session records](README.md)
 
 Failure
 -------
@@ -51,4 +47,4 @@ was lost, then returned to the lower-cost route after recovery.
 
 ---
 
-[← Previous](cross-link-failure-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](cross-link-failure-evidence.md) · [Next →](10.04-failure.md)
+[◀ Evidence index](README.md) · [↑ Test evidence](README.md) · [Next record ▶](10.04-failure.md)

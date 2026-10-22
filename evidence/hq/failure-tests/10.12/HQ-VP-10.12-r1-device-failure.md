@@ -1,10 +1,6 @@
-[Phase 10](../README.md) / [10.12](r1-device-failure-evidence.md)
+[Portfolio](../../../../README.md) / [Evidence Map](../../README.md) / [Phase 10](../README.md) / [10.12](README.md) / Test report
 
-[← Previous](r1-device-failure-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](r1-device-failure-evidence.md) · [Next →](10.12-retained-cli-excerpt.md)
-
----
-
-# [←](../10.11/HQ-VP-10.11-d2-device-failure.md "Previous VP") HQ-VP-10.12 — hq-r1 Device Failure [→](../10.13/HQ-VP-10.13-diagonal-double-failure.md "Next VP")
+# HQ-VP-10.12 — hq-r1 Device Failure
 
 Phase 10 — Failure and Resilience Testing
 
@@ -56,4 +52,4 @@ failure, so live-flow failover through `hq-r2` was not demonstrated.
 
 ---
 
-[← Previous](r1-device-failure-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](r1-device-failure-evidence.md) · [Next →](10.12-retained-cli-excerpt.md)
+[◀ Evidence index](README.md) · [↑ Test evidence](README.md) · [Next record ▶](10.12-retained-cli-excerpt.md)

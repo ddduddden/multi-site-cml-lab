@@ -1,15 +1,11 @@
-[Phase 10](../README.md) / [10.08](d2-layer2-isolation-evidence.md)
+[Portfolio](../../../../README.md) / [Evidence Map](../../README.md) / [Phase 10](../README.md) / [10.08](README.md) / Test report
 
-[← Previous](d2-layer2-isolation-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](d2-layer2-isolation-evidence.md) · [Next →](10.08-original-event-buffer.md)
-
----
-
-# [←](../10.07/HQ-VP-10.07-po30-progressive-failure.md "Previous VP") HQ-VP-10.08 — hq-d2 Layer-2 Isolation [→](../10.09/HQ-VP-10.09-d2-routed-isolation.md "Next VP")
+# HQ-VP-10.08 — hq-d2 Layer-2 Isolation
 
 Phase 10 — Failure and Resilience Testing
 
 **Evidence commit:** [`a8624b1`](https://github.com/ddduddden/multi-site-cml-lab/commit/a8624b176298e3b0132daedf082c2aae0c704ebd)
-Evidence: [captured CLI and session records](d2-layer2-isolation-evidence.md)
+Evidence: [captured CLI and session records](README.md)
 Related troubleshooting: [HQ-TS-002](../../../../docs/implementation/hq/troubleshooting.md#hq-ts-002--iosvl2-svi-state-during-layer-2-isolation)
 
 Test setup
@@ -178,4 +174,4 @@ IOSvL2/CML behaviour observed in this lab, not a general Catalyst expectation.
 
 ---
 
-[← Previous](d2-layer2-isolation-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](d2-layer2-isolation-evidence.md) · [Next →](10.08-original-event-buffer.md)
+[◀ Evidence index](README.md) · [↑ Test evidence](README.md) · [Next record ▶](10.08-session-record.md)

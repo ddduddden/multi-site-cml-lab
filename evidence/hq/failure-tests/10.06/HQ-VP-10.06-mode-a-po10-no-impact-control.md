@@ -1,8 +1,6 @@
-[Phase 10](../README.md) / [10.06](access-uplink-failure-evidence.md)
+[Portfolio](../../../../README.md) / [Evidence Map](../../README.md) / [Phase 10](../README.md) / [10.06](README.md) / Capture / record
 
-[← Previous](HQ-VP-10.06-hq-a1-interface-event-log.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](access-uplink-failure-evidence.md) · [Next →](HQ-VP-10.06-mode-a-po20-access-uplink-failure.md)
-
----
+# Mode A Po10 no impact control
 
 <details>
 <summary><strong>Original retained CLI / source capture</strong></summary>
@@ -220,4 +218,4 @@ hq-a1#
 
 ---
 
-[← Previous](HQ-VP-10.06-hq-a1-interface-event-log.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](access-uplink-failure-evidence.md) · [Next →](HQ-VP-10.06-mode-a-po20-access-uplink-failure.md)
+[◀ Previous record](HQ-VP-10.06-access-uplink-failure.md) · [↑ Test evidence](README.md) · [Next record ▶](HQ-VP-10.06-mode-a-po20-access-uplink-failure.md)

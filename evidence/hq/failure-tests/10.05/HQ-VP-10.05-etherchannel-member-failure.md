@@ -1,15 +1,11 @@
-[Phase 10](../README.md) / [10.05](etherchannel-member-failure-evidence.md)
+[Portfolio](../../../../README.md) / [Evidence Map](../../README.md) / [Phase 10](../README.md) / [10.05](README.md) / Test report
 
-[← Previous](etherchannel-member-failure-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](etherchannel-member-failure-evidence.md) · [Next →](10.05-hq-a1-event-log-recovered-from-later-buffer.md)
-
----
-
-# [←](../10.04/HQ-VP-10.04-cross-link-failure.md "Previous VP") HQ-VP-10.05 — EtherChannel Member Failure [→](../10.06/HQ-VP-10.06-access-uplink-failure.md "Next VP")
+# HQ-VP-10.05 — EtherChannel Member Failure
 
 Phase 10 — Failure and Resilience Testing
 
 **Evidence commit:** [`a8624b1`](https://github.com/ddduddden/multi-site-cml-lab/commit/a8624b176298e3b0132daedf082c2aae0c704ebd)
-Evidence: [captured CLI and session records](etherchannel-member-failure-evidence.md)
+Evidence: [captured CLI and session records](README.md)
 
 Member selection
 ----------------
@@ -68,4 +64,4 @@ failure-detection behaviour.
 
 ---
 
-[← Previous](etherchannel-member-failure-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](etherchannel-member-failure-evidence.md) · [Next →](10.05-hq-a1-event-log-recovered-from-later-buffer.md)
+[◀ Evidence index](README.md) · [↑ Test evidence](README.md) · [Next record ▶](10.05-session-record.md)

@@ -1,5 +1,9 @@
 # HQ Implementation
 
+[Portfolio](../../../README.md) / HQ Implementation
+
+[HQ Evidence Map](../../../evidence/hq/README.md) — find the captures and reports for each phase.
+
 > The HQ design document (`docs/hq-campus-design.md`) records architectural intent. This implementation area records what was actually configured, tested, observed, troubleshot, and accepted. A surprising result does not rewrite the design baseline. Any accepted difference is recorded as a design deviation first.
 
 ## Purpose

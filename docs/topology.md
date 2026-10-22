@@ -1,5 +1,7 @@
 # Physical Network Topology
 
+[Portfolio](../README.md) / [Documentation](README.md) / Physical Network Topology
+
 This diagram represents the current physical infrastructure supporting the multi-site Cisco Modeling Labs environment.
 
 ```text
@@ -56,3 +58,7 @@ This diagram represents the current physical infrastructure supporting the multi
 - The 2.4 GHz radio on the AiMesh node is disabled.
 - CML Server 2 connects to the AiMesh node using a 2.5 GbE link.
 - CML Server 2 has a 5 GbE-capable network adapter, with the physical link limited by the AiMesh node's 2.5 GbE LAN interface.
+
+---
+
+[↑ Documentation](README.md) · [Lab Environment](environment.md) · [Network Plan](network-plan.md) · [Physical Topology](topology.md)

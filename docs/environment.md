@@ -1,5 +1,7 @@
 # Lab Environment
 
+[Portfolio](../README.md) / [Documentation](README.md) / Lab Environment
+
 ## CML Server 1
 
 - Platform: Cisco Modeling Labs
@@ -42,3 +44,7 @@
 CML Server 1 is reachable from other devices on the home LAN through its bridged VMware network interface.
 
 The CML Server 1 management IP address is assigned using DHCP with a reservation on the local router.
+
+---
+
+[↑ Documentation](README.md) · [Lab Environment](environment.md) · [Network Plan](network-plan.md) · [Physical Topology](topology.md)

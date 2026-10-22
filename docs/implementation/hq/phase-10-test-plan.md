@@ -1,6 +1,6 @@
 # Phase 10: Failure and Resilience Test Plan
 
-[HQ implementation](README.md) / [HQ verification plan](verification-plan.md) / [Phase 10 evidence index](../../../evidence/hq/failure-tests/README.md)
+[Portfolio](../../../README.md) / [HQ Implementation](README.md) / Phase 10 Test Plan
 
 **Site:** HQ campus · **Coverage:** `HQ-VP-10.01`–`HQ-VP-10.14`  
 **Pre-test requirements:** 3 October 2026 · **Baseline:** [`1aa65c5`](https://github.com/ddduddden/multi-site-cml-lab/commit/1aa65c52ead4f23f09e9dbe7450b8f358acb0f0e)  

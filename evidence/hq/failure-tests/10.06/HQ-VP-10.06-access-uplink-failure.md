@@ -1,15 +1,11 @@
-[Phase 10](../README.md) / [10.06](access-uplink-failure-evidence.md)
+[Portfolio](../../../../README.md) / [Evidence Map](../../README.md) / [Phase 10](../README.md) / [10.06](README.md) / Test report
 
-[← Previous](HQ-VP-10.06-mode-b-vlan112-setup-baseline.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](access-uplink-failure-evidence.md) · [Next →](HQ-VP-10.06-final-recovery-restored-baseline.md)
-
----
-
-# [←](../10.05/HQ-VP-10.05-etherchannel-member-failure.md "Previous VP") HQ-VP-10.06 — Access Uplink Failure [→](../10.07/HQ-VP-10.07-po30-progressive-failure.md "Next VP")
+# HQ-VP-10.06 — Access Uplink Failure
 
 Phase 10 — Failure and Resilience Testing
 
 **Evidence commit:** [`a8624b1`](https://github.com/ddduddden/multi-site-cml-lab/commit/a8624b176298e3b0132daedf082c2aae0c704ebd)
-Evidence: [captured CLI and source files](access-uplink-failure-evidence.md)
+Evidence: [captured CLI and source files](README.md)
 
 Po20 failure — VLAN199 (NET-MGMT)
 --------------------------------
@@ -56,4 +52,4 @@ the tested traffic while the intended HSRP gateway stayed Active.
 
 ---
 
-[← Previous](HQ-VP-10.06-mode-b-vlan112-setup-baseline.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](access-uplink-failure-evidence.md) · [Next →](HQ-VP-10.06-final-recovery-restored-baseline.md)
+[◀ Evidence index](README.md) · [↑ Test evidence](README.md) · [Next record ▶](HQ-VP-10.06-mode-a-po10-no-impact-control.md)

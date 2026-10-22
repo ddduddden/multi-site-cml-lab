@@ -1,10 +1,6 @@
-[Phase 10](../README.md) / [10.01](healthy-baseline-evidence.md)
+[Portfolio](../../../../README.md) / [Evidence Map](../../README.md) / [Phase 10](../README.md) / [10.01](README.md) / Test report
 
-[← Previous](healthy-baseline-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](healthy-baseline-evidence.md) · [Next →](10.01-hq-a1-baseline-cli.md)
-
----
-
-# HQ-VP-10.01 — Healthy Baseline [→](../10.02-10.03/HQ-VP-10.02-10.03-routed-link-ecmp.md "Next VP")
+# HQ-VP-10.01 — Healthy Baseline
 
 Phase 10 — Failure and Resilience Testing
 
@@ -43,4 +39,4 @@ BASELINE ESTABLISHED. Phase 10 started from the intended healthy HQ state.
 
 ---
 
-[← Previous](healthy-baseline-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](healthy-baseline-evidence.md) · [Next →](10.01-hq-a1-baseline-cli.md)
+[◀ Evidence index](README.md) · [↑ Test evidence](README.md) · [Next record ▶](10.01-hq-a1-baseline-cli.md)

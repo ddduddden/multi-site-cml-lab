@@ -220,8 +220,8 @@ The finding will also be considered when the Branch campus is designed and when 
 - The `hq-r2` route and CEF selection toward VLAN160 remained unchanged, but became usable again once the downstream Layer-2 path was restored.
 
 **Evidence:**
-- [HQ-VP-10.07 — Progressive Po30 failure](../../../evidence/hq/failure-tests/10.07/HQ-VP-10.07-po30-progressive-failure.md) and [retained CLI/session evidence](../../../evidence/hq/failure-tests/10.07/po30-progressive-failure-evidence.md)
-- [HQ-VP-10.08 — Layer 2 isolation and return-path blackhole](../../../evidence/hq/failure-tests/10.08/HQ-VP-10.08-d2-layer2-isolation.md) and [retained CLI/session evidence](../../../evidence/hq/failure-tests/10.08/d2-layer2-isolation-evidence.md)
+- [HQ-VP-10.07 — Progressive Po30 failure](../../../evidence/hq/failure-tests/10.07/HQ-VP-10.07-po30-progressive-failure.md) and [retained CLI/session evidence](../../../evidence/hq/failure-tests/10.07/README.md)
+- [HQ-VP-10.08 — Layer 2 isolation and return-path blackhole](../../../evidence/hq/failure-tests/10.08/HQ-VP-10.08-d2-layer2-isolation.md) and [retained CLI/session evidence](../../../evidence/hq/failure-tests/10.08/README.md)
 - [10.08 original event buffer](../../../evidence/hq/failure-tests/10.08/10.08-original-event-buffer.md) and [original recovery CLI](../../../evidence/hq/failure-tests/10.08/10.08-original-recovery-cli.md)
 
 **Related deviation:**

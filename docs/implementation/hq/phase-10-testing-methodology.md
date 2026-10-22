@@ -1,6 +1,6 @@
 # Testing Methodology
 
-[HQ implementation](README.md) / [Phase 10 Test Plan](phase-10-test-plan.md) / [Engineering Review](phase-10-engineering-review.md) / [Phase 10 Evidence Index](../../../evidence/hq/failure-tests/README.md)
+[Portfolio](../../../README.md) / [HQ Implementation](README.md) / Testing Methodology
 
 > **Scope:** HQ Campus · Test window: 03-10-2026 to 06-10-2026 · HQ-VP-10.01–10.14  
 > **Status:** Fault tests completed 03-10-2026 to 06-10-2026; final configuration reconciliation completed 12-10-2026

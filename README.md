@@ -82,7 +82,7 @@ The documentation follows the HQ network from its original design through implem
    through failure testing to the         │  and selected failure scenarios.
    results and what they revealed.        │
                                           │
-   <a href="docs/implementation/hq/README.md">INVESTIGATE ↗</a>                          │  INTERACTIVE EXPLORER · LINK PENDING
+   <a href="evidence/hq/README.md">INVESTIGATE ↗</a>                          │  INTERACTIVE EXPLORER · LINK PENDING
                                           │
 ╠═════════════════════════════════════════╧═════════════════════════════════════════╣
 &#8203;
@@ -103,6 +103,7 @@ The documentation follows the HQ network from its original design through implem
 | [HQ Implementation](docs/implementation/hq/README.md) | Phased implementation, progress and navigation to engineering records |
 | [Build Log](docs/implementation/hq/build-log.md) | Configuration milestones, implementation notes and Git commit history |
 | [Verification Plan](docs/implementation/hq/verification-plan.md) | Test procedures, results and supporting evidence |
+| [HQ Evidence Map](evidence/hq/README.md) | Evidence for every phase, with links back to the verification records |
 | [Failure Testing](evidence/hq/failure-tests/README.md) | Phase 10 test reports, observations and supporting evidence |
 | [Engineering Review](docs/implementation/hq/phase-10-engineering-review.md) | Investigations, unexpected findings and design limitations |
 | [Troubleshooting](docs/implementation/hq/troubleshooting.md) | Technical problems, investigations and corrective actions |
@@ -146,11 +147,11 @@ The repository separates design documents, implementation records, verification 
 
 | Location | Contents |
 |---|---|
-| [`docs/`](docs/) | Network design, environment and planning documents |
+| [`docs/`](docs/README.md) | Network design, environment and planning documents |
 | [`docs/implementation/hq/`](docs/implementation/hq/) | Build, verification, troubleshooting and engineering records |
-| [`evidence/hq/`](evidence/hq/) | Retained CLI output, test records and supporting evidence |
-| [`configs/hq/`](configs/hq/) | Sanitised device configurations |
-| [`diagrams/`](diagrams/) | HQ network topology |
+| [`evidence/hq/`](evidence/hq/README.md) | Retained CLI output, test records and supporting evidence |
+| [`configs/hq/`](configs/hq/README.md) | Sanitised device configurations |
+| [`diagrams/`](diagrams/README.md) | HQ network topology |
 | [`lab/cml-lab-exports/`](lab/cml-lab-exports/) | Sanitised CML restoration milestones and export guidance |
 
 ## Future Development

@@ -1,15 +1,11 @@
-[Phase 10](../README.md) / [10.07](po30-progressive-failure-evidence.md)
+[Portfolio](../../../../README.md) / [Evidence Map](../../README.md) / [Phase 10](../README.md) / [10.07](README.md) / Test report
 
-[← Previous](po30-progressive-failure-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](po30-progressive-failure-evidence.md) · [Next →](10.07-event-log-verbatim-extract.md)
-
----
-
-# [←](../10.06/HQ-VP-10.06-access-uplink-failure.md "Previous VP") HQ-VP-10.07 — Po30 Progressive Failure [→](../10.08/HQ-VP-10.08-d2-layer2-isolation.md "Next VP")
+# HQ-VP-10.07 — Po30 Progressive Failure
 
 Phase 10 — Failure and Resilience Testing
 
 **Evidence commit:** [`a8624b1`](https://github.com/ddduddden/multi-site-cml-lab/commit/a8624b176298e3b0132daedf082c2aae0c704ebd)
-Evidence: [captured CLI and session records](po30-progressive-failure-evidence.md)
+Evidence: [captured CLI and session records](README.md)
 Related troubleshooting: [HQ-TS-002](../../../../docs/implementation/hq/troubleshooting.md#hq-ts-002--iosvl2-svi-state-during-layer-2-isolation)
 
 Starting state
@@ -171,4 +167,4 @@ remove the only direct Layer-2 connection between the distribution switches.
 
 ---
 
-[← Previous](po30-progressive-failure-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](po30-progressive-failure-evidence.md) · [Next →](10.07-event-log-verbatim-extract.md)
+[◀ Evidence index](README.md) · [↑ Test evidence](README.md) · [Next record ▶](10.07-session-record.md)

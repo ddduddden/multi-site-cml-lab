@@ -1,8 +1,6 @@
-[Phase 10](../README.md) / [10.06](access-uplink-failure-evidence.md)
+[Portfolio](../../../../README.md) / [Evidence Map](../../README.md) / [Phase 10](../README.md) / [10.06](README.md) / Capture / record
 
-[← Previous](HQ-VP-10.06-mode-b-po10-failure-state.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](access-uplink-failure-evidence.md) · [Next →](10.06-source-final-recovery.md)
-
----
+# Mode B Po10 traffic continuity
 
 <details>
 <summary><strong>Original retained CLI / source capture</strong></summary>
@@ -68,4 +66,4 @@ hq-a1#
 
 ---
 
-[← Previous](HQ-VP-10.06-mode-b-po10-failure-state.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](access-uplink-failure-evidence.md) · [Next →](10.06-source-final-recovery.md)
+[◀ Previous record](HQ-VP-10.06-mode-b-po10-failure-state.md) · [↑ Test evidence](README.md) · [Next record ▶](HQ-VP-10.06-final-recovery-restored-baseline.md)

@@ -1,15 +1,11 @@
-[Phase 10](../README.md) / [10.13](diagonal-double-failure-evidence.md)
+[Portfolio](../../../../README.md) / [Evidence Map](../../README.md) / [Phase 10](../README.md) / [10.13](README.md) / Test report
 
-[← Previous](diagonal-double-failure-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](diagonal-double-failure-evidence.md) · [Next →](10.13-session-record.md)
-
----
-
-# [←](../10.12/HQ-VP-10.12-r1-device-failure.md "Previous VP") HQ-VP-10.13 — Diagonal Double Failure: hq-d1 + hq-r2 [→](../10.14/HQ-VP-10.14-final-restoration.md "Next VP")
+# HQ-VP-10.13 — Diagonal Double Failure: hq-d1 + hq-r2
 
 Phase 10 — Failure and Resilience Testing
 
 **Evidence commit:** [`a8624b1`](https://github.com/ddduddden/multi-site-cml-lab/commit/a8624b176298e3b0132daedf082c2aae0c704ebd)
-Evidence: [captured CLI and session records](diagonal-double-failure-evidence.md)
+Evidence: [captured CLI and session records](README.md)
 
 VLAN170 (BYOD-WLAN) setup
 -------------------------
@@ -108,4 +104,4 @@ topology.
 
 ---
 
-[← Previous](diagonal-double-failure-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](diagonal-double-failure-evidence.md) · [Next →](10.13-session-record.md)
+[◀ Evidence index](README.md) · [↑ Test evidence](README.md) · [Next record ▶](10.13-session-record.md)

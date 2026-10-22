@@ -1,10 +1,6 @@
-[Phase 10](../README.md) / [10.10](d1-device-failure-evidence.md)
+[Portfolio](../../../../README.md) / [Evidence Map](../../README.md) / [Phase 10](../README.md) / [10.10](README.md) / Test report
 
-[← Previous](d1-device-failure-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](d1-device-failure-evidence.md) · [Next →](10.10-retained-cli-excerpt.md)
-
----
-
-# [←](../10.09/HQ-VP-10.09-d2-routed-isolation.md "Previous VP") HQ-VP-10.10 — hq-d1 Device Failure [→](../10.11/HQ-VP-10.11-d2-device-failure.md "Next VP")
+# HQ-VP-10.10 — hq-d1 Device Failure
 
 Phase 10 — Failure and Resilience Testing
 
@@ -65,4 +61,4 @@ to normal.
 
 ---
 
-[← Previous](d1-device-failure-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](d1-device-failure-evidence.md) · [Next →](10.10-retained-cli-excerpt.md)
+[◀ Evidence index](README.md) · [↑ Test evidence](README.md) · [Next record ▶](10.10-retained-cli-excerpt.md)

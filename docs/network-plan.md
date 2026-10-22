@@ -1,5 +1,7 @@
 # Network Plan
 
+[Portfolio](../README.md) / [Documentation](README.md) / Network Plan
+
 ## Overview
 
 This project uses two Cisco Modeling Labs servers connected through the physical home network to create a multi-site networking and automation lab.
@@ -100,3 +102,7 @@ The lab will progressively introduce:
 - Ansible
 - Git-based configuration and documentation
 
+
+---
+
+[↑ Documentation](README.md) · [Lab Environment](environment.md) · [Network Plan](network-plan.md) · [Physical Topology](topology.md)

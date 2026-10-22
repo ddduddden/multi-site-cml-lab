@@ -1,8 +1,6 @@
-[Phase 10](../README.md) / [10.06](access-uplink-failure-evidence.md)
+[Portfolio](../../../../README.md) / [Evidence Map](../../README.md) / [Phase 10](../README.md) / [10.06](README.md) / Capture / record
 
-[← Previous](HQ-VP-10.06-mode-a-po10-no-impact-control.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](access-uplink-failure-evidence.md) · [Next →](HQ-VP-10.06-mode-b-po10-failure-state.md)
-
----
+# Mode A Po20 access uplink failure
 
 <details>
 <summary><strong>Original retained CLI / source capture</strong></summary>
@@ -189,4 +187,4 @@ hq-a1#
 
 ---
 
-[← Previous](HQ-VP-10.06-mode-a-po10-no-impact-control.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](access-uplink-failure-evidence.md) · [Next →](HQ-VP-10.06-mode-b-po10-failure-state.md)
+[◀ Previous record](HQ-VP-10.06-mode-a-po10-no-impact-control.md) · [↑ Test evidence](README.md) · [Next record ▶](HQ-VP-10.06-mode-b-vlan112-setup-baseline.md)

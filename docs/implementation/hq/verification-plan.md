@@ -47,6 +47,8 @@ There is no separate Pass/Fail field for Phases 01–09. `Blocked` means the tes
 
 Git commit references are included throughout the verification plan to provide a record of each implementation milestone. They allow changes to be traced back to the corresponding configuration, documentation and verification evidence, rather than presenting only the finished network.
 
+Browse the [HQ Evidence Map](../../../evidence/hq/README.md) for the complete evidence index.
+
 ## Contents
 
 | Phase | Scope | Detail |
@@ -97,8 +99,7 @@ All five intended HQ devices were present in the CML topology with the expected 
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/platform-baseline/HQ-VP-01.01-base-node-topology.png](../../../evidence/hq/platform-baseline/HQ-VP-01.01-base-node-topology.png); five console captures ([hq-r1](../../../evidence/hq/platform-baseline/HQ-VP-01.02-hq-r1-show-version.png), [hq-r2](../../../evidence/hq/platform-baseline/HQ-VP-01.02-hq-r2-show-version.png), [hq-d1](../../../evidence/hq/platform-baseline/HQ-VP-01.02-hq-d1-show-version.png), [hq-d2](../../../evidence/hq/platform-baseline/HQ-VP-01.02-hq-d2-show-version.png), [hq-a1](../../../evidence/hq/platform-baseline/HQ-VP-01.02-hq-a1-show-version.png)).
+**Evidence:** [HQ-VP-01.01 — captures](../../../evidence/hq/platform-baseline/README.md#hq-vp-0101)
 
 **Notes / Troubleshooting:**\
 No troubleshooting record required.
@@ -125,8 +126,7 @@ None.
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/platform-baseline/HQ-VP-01.02-hq-r1-show-version.png](../../../evidence/hq/platform-baseline/HQ-VP-01.02-hq-r1-show-version.png); [HQ-VP-01.02-hq-r2-show-version.png](../../../evidence/hq/platform-baseline/HQ-VP-01.02-hq-r2-show-version.png); [HQ-VP-01.02-hq-d1-show-version.png](../../../evidence/hq/platform-baseline/HQ-VP-01.02-hq-d1-show-version.png); [HQ-VP-01.02-hq-d2-show-version.png](../../../evidence/hq/platform-baseline/HQ-VP-01.02-hq-d2-show-version.png); [HQ-VP-01.02-hq-a1-show-version.png](../../../evidence/hq/platform-baseline/HQ-VP-01.02-hq-a1-show-version.png).
+**Evidence:** [HQ-VP-01.02 — captures](../../../evidence/hq/platform-baseline/README.md#hq-vp-0102)
 
 **Notes / Troubleshooting:**\
 No troubleshooting record required.
@@ -153,8 +153,7 @@ Physical CML links were added only after the interface inventory was verified; n
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/platform-baseline/HQ-VP-01.03-hq-r1-interface-inventory.png](../../../evidence/hq/platform-baseline/HQ-VP-01.03-hq-r1-interface-inventory.png); [HQ-VP-01.03-hq-r2-interface-inventory.png](../../../evidence/hq/platform-baseline/HQ-VP-01.03-hq-r2-interface-inventory.png); [HQ-VP-01.03-hq-d1-interface-inventory.png](../../../evidence/hq/platform-baseline/HQ-VP-01.03-hq-d1-interface-inventory.png); [HQ-VP-01.03-hq-d2-interface-inventory.png](../../../evidence/hq/platform-baseline/HQ-VP-01.03-hq-d2-interface-inventory.png); [HQ-VP-01.03-hq-a1-interface-inventory.png](../../../evidence/hq/platform-baseline/HQ-VP-01.03-hq-a1-interface-inventory.png); [HQ-VP-01.03-cabled-topology.png](../../../evidence/hq/platform-baseline/HQ-VP-01.03-cabled-topology.png).
+**Evidence:** [HQ-VP-01.03 — captures](../../../evidence/hq/platform-baseline/README.md#hq-vp-0103)
 
 **Notes / Troubleshooting:**\
 No troubleshooting record required.
@@ -181,8 +180,7 @@ Testing on `hq-d1` and `hq-r1` confirmed that the IOSvL2 and IOSv images support
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/platform-baseline/HQ-VP-01.04-platform-capability-review.txt](../../../evidence/hq/platform-baseline/HQ-VP-01.04-platform-capability-review.txt)
+**Evidence:** [HQ-VP-01.04 — captures](../../../evidence/hq/platform-baseline/README.md#hq-vp-0104)
 
 **Notes / Troubleshooting:**\
 These checks confirm platform support only. Operational protocol behaviour, failover, convergence, path selection, and summarisation will be tested during the later implementation phases. No troubleshooting record required.
@@ -227,8 +225,7 @@ VLAN `1` remained present as the platform default but was not used for productio
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/layer2-vlan-baseline/HQ-VP-02.01-hq-d1-show-vlan-brief.txt](../../../evidence/hq/layer2-vlan-baseline/HQ-VP-02.01-hq-d1-show-vlan-brief.txt); [HQ-VP-02.01-hq-d2-show-vlan-brief.txt](../../../evidence/hq/layer2-vlan-baseline/HQ-VP-02.01-hq-d2-show-vlan-brief.txt); [HQ-VP-02.01-hq-a1-show-vlan-brief.txt](../../../evidence/hq/layer2-vlan-baseline/HQ-VP-02.01-hq-a1-show-vlan-brief.txt).
+**Evidence:** [HQ-VP-02.01 — captures](../../../evidence/hq/layer2-vlan-baseline/README.md#hq-vp-0201)
 
 **Notes / Troubleshooting:**\
 No troubleshooting record required.
@@ -257,8 +254,7 @@ All endpoint-facing interfaces were administratively enabled and remained operat
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/layer2-vlan-baseline/HQ-VP-02.02-hq-a1-show-interfaces-switchport.txt](../../../evidence/hq/layer2-vlan-baseline/HQ-VP-02.02-hq-a1-show-interfaces-switchport.txt); [HQ-VP-02.03-hq-a1-parking-vlan-state.txt](../../../evidence/hq/layer2-vlan-baseline/HQ-VP-02.03-hq-a1-parking-vlan-state.txt).
+**Evidence:** [HQ-VP-02.02 — captures](../../../evidence/hq/layer2-vlan-baseline/README.md#hq-vp-0202)
 
 **Notes / Troubleshooting:**\
 No troubleshooting record required.
@@ -287,8 +283,7 @@ The future `Po10` and `Po20` member interfaces remain parked until Phase 03, whe
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/layer2-vlan-baseline/HQ-VP-02.03-hq-a1-parking-vlan-state.txt](../../../evidence/hq/layer2-vlan-baseline/HQ-VP-02.03-hq-a1-parking-vlan-state.txt); [HQ-VP-02.02-hq-a1-show-interfaces-switchport.txt](../../../evidence/hq/layer2-vlan-baseline/HQ-VP-02.02-hq-a1-show-interfaces-switchport.txt).
+**Evidence:** [HQ-VP-02.03 — captures](../../../evidence/hq/layer2-vlan-baseline/README.md#hq-vp-0203)
 
 **Notes / Troubleshooting:**\
 No troubleshooting record required.
@@ -333,8 +328,7 @@ LACP `active` mode on the intended physical members and creation of `Po10`, `Po2
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/etherchannel/HQ-VP-03.01-hq-a1-etherchannel-lacp-state.txt](../../../evidence/hq/etherchannel/HQ-VP-03.01-hq-a1-etherchannel-lacp-state.txt); [HQ-VP-03.01-hq-d1-etherchannel-lacp-state.txt](../../../evidence/hq/etherchannel/HQ-VP-03.01-hq-d1-etherchannel-lacp-state.txt); [HQ-VP-03.01-hq-d2-etherchannel-lacp-state.txt](../../../evidence/hq/etherchannel/HQ-VP-03.01-hq-d2-etherchannel-lacp-state.txt).
+**Evidence:** [HQ-VP-03.01 — captures](../../../evidence/hq/etherchannel/README.md#hq-vp-0301)
 
 **Notes / Troubleshooting:**\
 No troubleshooting record required.
@@ -361,8 +355,7 @@ Trunk configuration on `Po10`, `Po20`, and `Po30`, including the explicit native
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/etherchannel/HQ-VP-03.02-hq-a1-show-interfaces-trunk.txt](../../../evidence/hq/etherchannel/HQ-VP-03.02-hq-a1-show-interfaces-trunk.txt); [HQ-VP-03.02-hq-d1-show-interfaces-trunk.txt](../../../evidence/hq/etherchannel/HQ-VP-03.02-hq-d1-show-interfaces-trunk.txt); [HQ-VP-03.02-hq-d2-show-interfaces-trunk.txt](../../../evidence/hq/etherchannel/HQ-VP-03.02-hq-d2-show-interfaces-trunk.txt).
+**Evidence:** [HQ-VP-03.02 — captures](../../../evidence/hq/etherchannel/README.md#hq-vp-0302)
 
 **Notes / Troubleshooting:**\
 The effective Port-Channel and trunk behaviour was confirmed from observed IOSvL2 output. No troubleshooting record required.
@@ -389,8 +382,7 @@ All three Port-Channels were operational trunks and the complete approved VLAN s
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/etherchannel/HQ-VP-03.02-hq-a1-show-interfaces-trunk.txt](../../../evidence/hq/etherchannel/HQ-VP-03.02-hq-a1-show-interfaces-trunk.txt); [HQ-VP-03.02-hq-d1-show-interfaces-trunk.txt](../../../evidence/hq/etherchannel/HQ-VP-03.02-hq-d1-show-interfaces-trunk.txt); [HQ-VP-03.02-hq-d2-show-interfaces-trunk.txt](../../../evidence/hq/etherchannel/HQ-VP-03.02-hq-d2-show-interfaces-trunk.txt).
+**Evidence:** [HQ-VP-03.03 — captures](../../../evidence/hq/etherchannel/README.md#hq-vp-0303)
 
 **Notes / Troubleshooting:**\
 Per-VLAN gateway reachability remains deferred until Phase 05. No troubleshooting record required.
@@ -417,8 +409,7 @@ A single physical member was administratively removed and restored on each of `P
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/etherchannel/HQ-VP-03.04-member-link-failure-recovery.txt](../../../evidence/hq/etherchannel/HQ-VP-03.04-member-link-failure-recovery.txt)
+**Evidence:** [HQ-VP-03.04 — captures](../../../evidence/hq/etherchannel/README.md#hq-vp-0304)
 
 **Notes / Troubleshooting:**\
 No troubleshooting record required. The complete Port-Channel, device and combined failure scenarios are recorded in the [Phase 10 results](../../../evidence/hq/failure-tests/README.md).
@@ -460,8 +451,7 @@ Rapid PVST+ mode and the approved root-primary/root-secondary assignments on `hq
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/spanning-tree/HQ-VP-04.01-hq-a1-spanning-tree-state.txt](../../../evidence/hq/spanning-tree/HQ-VP-04.01-hq-a1-spanning-tree-state.txt); [HQ-VP-04.01-hq-d1-spanning-tree-state.txt](../../../evidence/hq/spanning-tree/HQ-VP-04.01-hq-d1-spanning-tree-state.txt); [HQ-VP-04.01-hq-d2-spanning-tree-state.txt](../../../evidence/hq/spanning-tree/HQ-VP-04.01-hq-d2-spanning-tree-state.txt).
+**Evidence:** [HQ-VP-04.01 — captures](../../../evidence/hq/spanning-tree/README.md#hq-vp-0401)
 
 **Notes / Troubleshooting:**\
 VLAN `1` remains locally present on the multilayer distribution switches because unused ports remain assigned to it. It is not carried on the production trunks and is outside the Phase 04 root-placement policy.
@@ -492,8 +482,7 @@ Representative VLANs confirmed the expected forwarding paths. VLAN `112` used `P
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/spanning-tree/HQ-VP-04.02-representative-vlan-forwarding-state.txt](../../../evidence/hq/spanning-tree/HQ-VP-04.02-representative-vlan-forwarding-state.txt)
+**Evidence:** [HQ-VP-04.02 — captures](../../../evidence/hq/spanning-tree/README.md#hq-vp-0402)
 
 **Notes / Troubleshooting:**\
 VLANs `112` and `120` were used as representative examples for the two root-placement groups. The blocked path was located at `hq-a1`; during Phase 03, before deterministic root placement was configured, `hq-d2 Po20` showed no VLANs in the spanning-tree forwarding state.
@@ -522,8 +511,7 @@ Failure of `Po10` for VLAN `112` and `Po20` for VLAN `120` caused the alternate 
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/spanning-tree/HQ-VP-04.03-path-failure-recovery.txt](../../../evidence/hq/spanning-tree/HQ-VP-04.03-path-failure-recovery.txt)
+**Evidence:** [HQ-VP-04.03 — captures](../../../evidence/hq/spanning-tree/README.md#hq-vp-0403)
 
 **Notes / Troubleshooting:**\
 The logical Port-Channels were shut down so the tests exercised complete EtherChannel failure rather than repeating the member-link resilience already verified in Phase 03.
@@ -570,8 +558,7 @@ All eight SVIs on `hq-d1` and `hq-d2` were up/up with the approved addresses and
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/hsrp/HQ-VP-05.01-hq-d1-svi-addressing.txt](../../../evidence/hq/hsrp/HQ-VP-05.01-hq-d1-svi-addressing.txt); [HQ-VP-05.01-hq-d2-svi-addressing.txt](../../../evidence/hq/hsrp/HQ-VP-05.01-hq-d2-svi-addressing.txt); [HQ-VP-05.01-hq-a1-management-svi.txt](../../../evidence/hq/hsrp/HQ-VP-05.01-hq-a1-management-svi.txt).
+**Evidence:** [HQ-VP-05.01 — captures](../../../evidence/hq/hsrp/README.md#hq-vp-0501)
 
 **Notes / Troubleshooting:**\
 The final baseline was captured on `27-09-2026`. Temporary `hq-a1 Vlan112` removal is also referenced by `HQ-VP-05.05`.
@@ -600,8 +587,7 @@ Final captures confirmed the approved virtual IPs and group numbers, priority `1
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/hsrp/HQ-VP-05.02-hq-d1-hsrp-normal-state.txt](../../../evidence/hq/hsrp/HQ-VP-05.02-hq-d1-hsrp-normal-state.txt); [HQ-VP-05.02-hq-d2-hsrp-normal-state.txt](../../../evidence/hq/hsrp/HQ-VP-05.02-hq-d2-hsrp-normal-state.txt).
+**Evidence:** [HQ-VP-05.02 — captures](../../../evidence/hq/hsrp/README.md#hq-vp-0502)
 
 **Notes / Troubleshooting:**\
 An unintended HSRP group `0` on `hq-d2` and redundant preemption on the non-preferred peers were removed before the final state was recaptured. No troubleshooting or deviation record required.
@@ -628,8 +614,7 @@ HSRP Active ownership matched the recorded STP root placement. All six gateway t
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/hsrp/HQ-VP-05.03-hq-a1-gateway-reachability.txt](../../../evidence/hq/hsrp/HQ-VP-05.03-hq-a1-gateway-reachability.txt); [HQ-VP-05.02-hq-d1-hsrp-normal-state.txt](../../../evidence/hq/hsrp/HQ-VP-05.02-hq-d1-hsrp-normal-state.txt); [HQ-VP-05.02-hq-d2-hsrp-normal-state.txt](../../../evidence/hq/hsrp/HQ-VP-05.02-hq-d2-hsrp-normal-state.txt); [evidence/hq/spanning-tree/HQ-VP-04.01-hq-a1-spanning-tree-state.txt](../../../evidence/hq/spanning-tree/HQ-VP-04.01-hq-a1-spanning-tree-state.txt).
+**Evidence:** [HQ-VP-05.03 — captures](../../../evidence/hq/hsrp/README.md#hq-vp-0503)
 
 **Notes / Troubleshooting:**\
 STP state comes from the earlier Phase 04 capture, rather than a simultaneous ping capture. The temporary `Vlan112` SVI remained through failover testing; final removal is recorded in `HQ-VP-05.05`.
@@ -656,8 +641,7 @@ Shutting down `hq-d1 Vlan112` caused `hq-d2` to become Active for group `112`; a
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/hsrp/HQ-VP-05.04-hsrp-failover-vlan112.txt](../../../evidence/hq/hsrp/HQ-VP-05.04-hsrp-failover-vlan112.txt); [HQ-VP-05.04-hsrp-failover-vlan199.txt](../../../evidence/hq/hsrp/HQ-VP-05.04-hsrp-failover-vlan199.txt).
+**Evidence:** [HQ-VP-05.04 — captures](../../../evidence/hq/hsrp/README.md#hq-vp-0504)
 
 **Notes / Troubleshooting:**\
 The VLAN `199` sequence includes an early capture taken before convergence; later evidence confirms `hq-d2 Vlan199` down and `hq-d1` Active. The tests were completed before redundant non-preferred preemption was removed; that cleanup does not change the recorded failover results. Final HSRP state is recorded in `HQ-VP-05.02`. Whole-device and combined STP/HSRP failures are documented in the [Phase 10 results](../../../evidence/hq/failure-tests/README.md).
@@ -684,8 +668,7 @@ VLAN `112` returned to `hq-d1` Active / `hq-d2` Standby, and VLAN `199` returned
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/hsrp/HQ-VP-05.05-hsrp-preemption-recovery-vlan112.txt](../../../evidence/hq/hsrp/HQ-VP-05.05-hsrp-preemption-recovery-vlan112.txt); [HQ-VP-05.05-hsrp-preemption-recovery-vlan199.txt](../../../evidence/hq/hsrp/HQ-VP-05.05-hsrp-preemption-recovery-vlan199.txt); [HQ-VP-05.05-hq-a1-final-stp-alignment.txt](../../../evidence/hq/hsrp/HQ-VP-05.05-hq-a1-final-stp-alignment.txt); [HQ-VP-05.01-hq-a1-management-svi.txt](../../../evidence/hq/hsrp/HQ-VP-05.01-hq-a1-management-svi.txt).
+**Evidence:** [HQ-VP-05.05 — captures](../../../evidence/hq/hsrp/README.md#hq-vp-0505)
 
 **Notes / Troubleshooting:**\
 One earlier VLAN `112` recovery ping could not be reliably linked to the final test run, so it was excluded from the evidence. The bridge MAC addresses differed from the Phase 04 capture after the CML environment was restored. CML assigns MAC addresses automatically, and recreated or wiped nodes can receive new addresses; however, the configured STP priorities and intended `Po10`/`Po20` roles were unchanged, so the planned root and forwarding design remained the same. Final as-built preemption policy is recorded in `HQ-VP-05.02`.
@@ -732,8 +715,7 @@ All ten routed links were `up/up` and matched the documented `/31` address owner
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/layer3-underlay/HQ-VP-06.01-routed-underlay-state.txt](../../../evidence/hq/layer3-underlay/HQ-VP-06.01-routed-underlay-state.txt)
+**Evidence:** [HQ-VP-06.01 — captures](../../../evidence/hq/layer3-underlay/README.md#hq-vp-0601)
 
 **Notes / Troubleshooting:**\
 The IOSvL2 switches routed correctly even though no explicit `ip routing` line was present in the running configuration; the operational routing table was used as the authoritative check. This observed IOSvL2 routing behaviour is recorded in [`HQ-TS-001`](troubleshooting.md#hq-ts-001--iosvl2-routing-mode-on-hq-a1), where it affected `hq-a1`. On the multilayer distribution switches it is the intended behaviour and needed no correction.
@@ -760,8 +742,7 @@ All twenty directional pings succeeded. Several first router-side attempts retur
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/layer3-underlay/HQ-VP-06.02-p2p-link-reachability.txt](../../../evidence/hq/layer3-underlay/HQ-VP-06.02-p2p-link-reachability.txt)
+**Evidence:** [HQ-VP-06.02 — captures](../../../evidence/hq/layer3-underlay/README.md#hq-vp-0602)
 
 **Notes / Troubleshooting:**\
 The initial ARP misses were expected first-packet behaviour and did not require a troubleshooting record.
@@ -788,8 +769,7 @@ The command returned no OSPF router section on all four Layer 3 devices. This es
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/layer3-underlay/HQ-VP-06.03-pre-ospf-baseline.txt](../../../evidence/hq/layer3-underlay/HQ-VP-06.03-pre-ospf-baseline.txt)
+**Evidence:** [HQ-VP-06.03 — captures](../../../evidence/hq/layer3-underlay/README.md#hq-vp-0603)
 
 **Notes / Troubleshooting:**\
 The saved Phase 06 state predates the four `Loopback0` identities. Rather than recreating an intermediate state that was not actually built, the loopbacks are recorded as part of Phase 07.
@@ -844,8 +824,7 @@ All four loopbacks were `up/up` with the documented `/32` addresses. OSPF proces
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/ospf/HQ-VP-07.01-loopback-ospf-process-identity.txt](../../../evidence/hq/ospf/HQ-VP-07.01-loopback-ospf-process-identity.txt)
+**Evidence:** [HQ-VP-07.01 — captures](../../../evidence/hq/ospf/README.md#hq-vp-0701)
 
 **Notes / Troubleshooting:**\
 No deviation is required for the omitted `maximum-paths 4` line because the captured operational value matches the design.
@@ -872,8 +851,7 @@ Both routers showed six Area 10 interfaces and both distribution switches fourte
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/ospf/HQ-VP-07.02-ospf-interface-policy.txt](../../../evidence/hq/ospf/HQ-VP-07.02-ospf-interface-policy.txt); [HQ-VP-07.01-loopback-ospf-process-identity.txt](../../../evidence/hq/ospf/HQ-VP-07.01-loopback-ospf-process-identity.txt) (`show ip protocols` passive-interface lists).
+**Evidence:** [HQ-VP-07.02 — captures](../../../evidence/hq/ospf/README.md#hq-vp-0702)
 
 **Notes / Troubleshooting:**\
 An initial implementation typo placed the five `hq-d2` routed interfaces in Area `0`. They were corrected to Area `10` before the final evidence capture. This was an immediately identified implementation correction, not an accepted design deviation or a separate troubleshooting investigation.
@@ -900,8 +878,7 @@ Each of `hq-r1`, `hq-r2`, `hq-d1`, and `hq-d2` showed exactly five neighbours in
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/ospf/HQ-VP-07.03-ospf-area10-adjacencies.txt](../../../evidence/hq/ospf/HQ-VP-07.03-ospf-area10-adjacencies.txt)
+**Evidence:** [HQ-VP-07.03 — captures](../../../evidence/hq/ospf/README.md#hq-vp-0703)
 
 **Notes / Troubleshooting:**\
 No deliberate adjacency-failure test was included in Phase 07. Routing and device failures were examined separately in the [Phase 10 tests](../../../evidence/hq/failure-tests/README.md).
@@ -934,8 +911,7 @@ Several routes already displayed multiple equal-cost next hops; those observatio
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/ospf/HQ-VP-07.04-ospf-database-learned-routing.txt](../../../evidence/hq/ospf/HQ-VP-07.04-ospf-database-learned-routing.txt)
+**Evidence:** [HQ-VP-07.04 — captures](../../../evidence/hq/ospf/README.md#hq-vp-0704)
 
 **Notes / Troubleshooting:**\
 The observed link counts are consistent with standard OSPFv2 Router-LSA construction: on each numbered point-to-point link, the router-to-router relationship and the attached IP subnet are represented separately. `Loopback0` contributes one stub-network entry. Five numbered point-to-point links therefore account for ten entries; adding `Loopback0` gives each edge router a link count of `11`, while the eight additional passive SVI prefixes give each distribution switch a link count of `19`.
@@ -971,8 +947,7 @@ All twelve loopback-sourced pings between the four Layer 3 devices returned `5/5
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/ospf/HQ-VP-07.05-end-to-end-reachability.txt](../../../evidence/hq/ospf/HQ-VP-07.05-end-to-end-reachability.txt)
+**Evidence:** [HQ-VP-07.05 — captures](../../../evidence/hq/ospf/README.md#hq-vp-0705)
 
 **Notes / Troubleshooting:**\
 The earlier mistyped `10.10.10.x` ping destinations were discarded as irrelevant operator input. The investigation and correction of the `hq-a1` routing mode are recorded in [`HQ-TS-001`](troubleshooting.md#hq-ts-001--iosvl2-routing-mode-on-hq-a1).
@@ -999,8 +974,7 @@ All EtherChannels remained operational with their intended members bundled. STP 
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/ospf/HQ-VP-07.06-l2-gateway-regression.txt](../../../evidence/hq/ospf/HQ-VP-07.06-l2-gateway-regression.txt)
+**Evidence:** [HQ-VP-07.06 — captures](../../../evidence/hq/ospf/README.md#hq-vp-0706)
 
 **Notes / Troubleshooting:**\
 This is a state regression check only. The earlier Phase 03–05 failure tests are not repeated.
@@ -1045,8 +1019,7 @@ No Phase 08 configuration change. The test uses the Phase 07 OSPF interface cost
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/ospf/HQ-VP-08.01-ecmp-route-installation.txt](../../../evidence/hq/ospf/HQ-VP-08.01-ecmp-route-installation.txt); [evidence/hq/ospf/HQ-VP-07.04-ospf-database-learned-routing.txt](../../../evidence/hq/ospf/HQ-VP-07.04-ospf-database-learned-routing.txt); [evidence/hq/ospf/HQ-VP-07.01-loopback-ospf-process-identity.txt](../../../evidence/hq/ospf/HQ-VP-07.01-loopback-ospf-process-identity.txt).
+**Evidence:** [HQ-VP-08.01 — captures](../../../evidence/hq/ospf/README.md#hq-vp-0801)
 
 **Notes / Troubleshooting:**\
 Per-flow forwarding is verified separately in `HQ-VP-08.02` and `HQ-VP-08.03`.
@@ -1073,8 +1046,7 @@ Three test flows were run from `10.10.99.4`. CEF selected `hq-d2 Gi2/2` for `10.
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/ospf/HQ-VP-08.02-cef-path-selection.txt](../../../evidence/hq/ospf/HQ-VP-08.02-cef-path-selection.txt)
+**Evidence:** [HQ-VP-08.02 — captures](../../../evidence/hq/ospf/README.md#hq-vp-0802)
 
 **Notes / Troubleshooting:**\
 A separate router-generated reply observation did not affect the forwarding result and is retained in the evidence file. In Phase 10, `exact-route` predictions were treated as routing-path evidence, not standalone proof of the interface used by router-generated traffic.
@@ -1101,8 +1073,7 @@ The three tested flows used two members of the four-route ECMP set. `hq-d2 Gi2/2
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/ospf/HQ-VP-08.03-aggregate-ecmp-forwarding.txt](../../../evidence/hq/ospf/HQ-VP-08.03-aggregate-ecmp-forwarding.txt); supporting CEF and interface-counter captures remain in [evidence/hq/ospf/HQ-VP-08.02-cef-path-selection.txt](../../../evidence/hq/ospf/HQ-VP-08.02-cef-path-selection.txt).
+**Evidence:** [HQ-VP-08.03 — captures](../../../evidence/hq/ospf/README.md#hq-vp-0803)
 
 **Notes / Troubleshooting:**\
 The same three flow captures are used for both checks. `HQ-VP-08.03` keeps the forwarding summary, while the detailed CEF and counter output is kept in `HQ-VP-08.02`.
@@ -1129,8 +1100,7 @@ Temporary shutdown and restoration of `hq-r1 Gi0/3`, `Gi0/2`, `Gi0/1`, and `Gi0/
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/ospf/HQ-VP-08.04-ecmp-contraction-restoration.txt](../../../evidence/hq/ospf/HQ-VP-08.04-ecmp-contraction-restoration.txt)
+**Evidence:** [HQ-VP-08.04 — captures](../../../evidence/hq/ospf/README.md#hq-vp-0804)
 
 **Notes / Troubleshooting:**\
 A brief one-sided OSPF neighbour state was seen during one shutdown and is kept in the evidence file. Stable route checks were taken after both sides had converged.
@@ -1159,8 +1129,7 @@ The omitted route was not fixed. Phase 07 showed `hq-r2` omitting `Gi0/3` for `1
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/ospf/HQ-VP-08.05-four-path-maximum.txt](../../../evidence/hq/ospf/HQ-VP-08.05-four-path-maximum.txt); [evidence/hq/ospf/HQ-VP-07.04-ospf-database-learned-routing.txt](../../../evidence/hq/ospf/HQ-VP-07.04-ospf-database-learned-routing.txt).
+**Evidence:** [HQ-VP-08.05 — captures](../../../evidence/hq/ospf/README.md#hq-vp-0805)
 
 **Notes / Troubleshooting:**\
 For this far-side loopback, `Gi0/4` had the same total OSPF cost as the other paths, so it could join the ECMP route set.
@@ -1207,8 +1176,7 @@ The final `hq-r1` routing table showed five far-side infrastructure prefixes usi
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/ospf/HQ-VP-09.01-normal-cost-driven-selection.txt](../../../evidence/hq/ospf/HQ-VP-09.01-normal-cost-driven-selection.txt); [evidence/hq/ospf/HQ-VP-07.02-ospf-interface-policy.txt](../../../evidence/hq/ospf/HQ-VP-07.02-ospf-interface-policy.txt).
+**Evidence:** [HQ-VP-09.01 — captures](../../../evidence/hq/ospf/README.md#hq-vp-0901)
 
 **Notes / Troubleshooting:**\
 The five-way metric-`111` loopback case is verified separately in `HQ-VP-08.05`.
@@ -1239,8 +1207,7 @@ The mirrored `hq-r2`↔`hq-d2` test produced the same metric pattern. `hq-r2` us
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/ospf/HQ-VP-09.02-higher-cost-alternate-activation.txt](../../../evidence/hq/ospf/HQ-VP-09.02-higher-cost-alternate-activation.txt)
+**Evidence:** [HQ-VP-09.02 — captures](../../../evidence/hq/ospf/README.md#hq-vp-0902)
 
 **Notes / Troubleshooting:**\
 HSRP state was captured during the `hq-r1`↔`hq-d1` test. During the mirrored `hq-r2`↔`hq-d2` test, one traceroute probe showed `*`; the same alternate hops remained visible and the selected route and `10/10` reachability were stable. Complete routed-uplink isolation of an Active HSRP distribution switch was tested in [HQ-VP-10.09](../../../evidence/hq/failure-tests/10.09/HQ-VP-10.09-d2-routed-isolation.md).
@@ -1271,8 +1238,7 @@ The post-test CML export was compared with the committed Phase 07 device configu
 **Status:**\
 Verified
 
-**Evidence:**\
-[evidence/hq/ospf/HQ-VP-09.03-preferred-route-restoration.txt](../../../evidence/hq/ospf/HQ-VP-09.03-preferred-route-restoration.txt)
+**Evidence:** [HQ-VP-09.03 — captures](../../../evidence/hq/ospf/README.md#hq-vp-0903)
 
 **Notes / Troubleshooting:**\
 No troubleshooting was required during final restoration.
@@ -1317,6 +1283,8 @@ The private five-device CML export was booted and checked against the HQ design.
 **Startup finding:** After boot, `hq-a1`'s VLAN 199 SVI remained `down/down` despite the VLAN, trunk and spanning-tree configuration appearing correct. A manual `shutdown` / `no shutdown` brought the SVI `up/up`, after which the HSRP gateway at `10.10.99.1` responded `5/5`. The underlying cause was not established. The checks therefore passed **after intervention**, not as a completely clean startup.
 
 The outstanding Phase 10 findings remain documented. Final acceptance is pending completion of the documentation, evidence and navigation checks.
+
+**Evidence index:** [Phase 11 captures](../../../evidence/hq/final-acceptance/README.md).
 
 **Evidence:** [Phase 11 — Boot recovery CLI](../../../evidence/hq/final-acceptance/HQ-Phase-11-Boot-Recovery-CLI.md) documents the initial VLAN 199 failure, investigation and manual reset. [Phase 11 — Final operational checks](../../../evidence/hq/final-acceptance/HQ-Phase-11-Final-Boot-Verification.txt) retains the subsequent OSPF, HSRP, LACP and connectivity output. Both captures were made on 16-10-2026.
 
