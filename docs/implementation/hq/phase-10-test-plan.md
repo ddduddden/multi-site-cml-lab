@@ -43,6 +43,8 @@ This plan records the test objectives and acceptance expectations set before exe
 | [10.13](#hq-vp-1013-diagonal-double-device-failure) | Diagonal double-device failure | Settled-state traffic through diagonal pair | [HQ-VP-10.13 report](../../../evidence/hq/failure-tests/10.13/HQ-VP-10.13-diagonal-double-failure.md) |
 | [10.14](#hq-vp-1014-final-restoration-and-hygiene) | Final restoration and hygiene | Forwarding, control plane and config restored | [HQ-VP-10.14 report](../../../evidence/hq/failure-tests/10.14/HQ-VP-10.14-final-restoration.md) |
 
+**Continue the 10-minute route:** [Verification records](verification-plan.md#contents) → [Failure-test results and captures](../../../evidence/hq/failure-tests/README.md).
+
 ## Test method
 
 **Topology and rollback.** The campaign uses the existing five CML nodes: `hq-r1`, `hq-r2`, `hq-d1`, `hq-d2` and `hq-a1`. Confirm the working configuration, check running/startup differences, retain a private pre-test CML export and capture one complete baseline before injecting failures. Do not save shutdown states or use CML **Wipe** for a device failure.

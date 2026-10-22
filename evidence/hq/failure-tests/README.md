@@ -8,6 +8,8 @@ Failure testing took place from 03-10-2026 to 06-10-2026, with final configurati
 
 [Portfolio](../../../README.md) / [Evidence Map](../README.md) / Phase 10
 
+[Test plan](../../../docs/implementation/hq/phase-10-test-plan.md#test-matrix) · [Testing methodology](../../../docs/implementation/hq/phase-10-testing-methodology.md) · [Verification record](../../../docs/implementation/hq/verification-plan.md#phase-10--failure-testing)
+
 ## Test Results
 
 | Test | Scenario | Result | Evidence |
@@ -51,6 +53,8 @@ Failure testing took place from 03-10-2026 to 06-10-2026, with final configurati
 **HQ-VP-10.13 — Combined failures:** Results describe connectivity after the network had settled. They do not establish a precise convergence time.
 
 **HQ-VP-10.14 — Final restoration:** The forwarding baseline recovered on 06-10-2026. Final five-device configuration comparisons, the hq-a1 logging reset and a private CML export were completed on 12-10-2026. See the retained [configuration close-out evidence](10.14/10.14-config-excerpts.md).
+
+**Continue the evidence route:** [Engineering findings](../../../docs/implementation/hq/phase-10-engineering-review.md#overall-assessment) → [Final acceptance](../../../docs/implementation/hq/phase-11-final-acceptance.md#overall-assessment) · [Choose another route](../../../README.md#explore-the-hq-project).
 
 ---
 

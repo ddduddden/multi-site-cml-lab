@@ -1,8 +1,10 @@
 # HQ Evidence Map
 
-[Portfolio](../../README.md) / HQ Evidence Map
+[Portfolio](../../README.md) / [Verification Evidence](../README.md) / HQ Evidence Map
 
 Use this index to find a check, open its evidence and return to the verification record. Phase 10 has separate test reports and planned acceptance criteria.
+
+**10-minute route:** [Test planning](../../docs/implementation/hq/phase-10-test-plan.md#test-matrix) → [Verification records](../../docs/implementation/hq/verification-plan.md#contents) → [Failure-test results and captures](failure-tests/README.md) → [Engineering findings](../../docs/implementation/hq/phase-10-engineering-review.md#overall-assessment) → [Final acceptance](../../docs/implementation/hq/phase-11-final-acceptance.md#overall-assessment).
 
 ## Browse by Area
 

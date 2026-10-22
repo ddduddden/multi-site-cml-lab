@@ -113,6 +113,8 @@ The HQ design provided useful resilience during the tested routed-link, EtherCha
 
 The most useful part of this phase for me was working out why traffic stopped during those failures. It showed what worked, where the lab image behaved differently from normal Catalyst SVI autostate and what I want to address in a later revision. The fault tests and final configuration close-out are complete; the 10.08 failure and 10.12 inconclusive coverage remain documented in their reports. Availability and precise convergence times were not measured.
 
+**Continue reading:** [Priorities for the next revision](#priorities-for-the-next-revision) · [Current acceptance status](phase-11-final-acceptance.md#overall-assessment) · [Choose another route](../../../README.md#explore-the-hq-project).
+
 ## Technical references
 
 [1] Cisco, “Enhance STP with Root Guard,” Document ID 10588, updated 15 June 2026. Available at: <https://www.cisco.com/c/en/us/support/docs/lan-switching/spanning-tree-protocol/10588-74.html> (Accessed during Phase 10 testing, 3–6 October 2026).

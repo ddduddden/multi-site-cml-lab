@@ -51,6 +51,8 @@ Browse the [HQ Evidence Map](../../../evidence/hq/README.md) for the complete ev
 
 ## Contents
 
+**Evidence route:** [← Test planning](phase-10-test-plan.md#test-matrix) · [Failure-test results and captures →](../../../evidence/hq/failure-tests/README.md).
+
 | Phase | Scope | Detail |
 |---:|---|---|
 | [01](#phase-01--platform-baseline) | Platform Baseline | [View phase](#phase-01--platform-baseline) |

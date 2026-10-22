@@ -17,4 +17,4 @@ Test date: 6 October 2026. Configuration close-out: 12 October 2026. The origina
 
 ---
 
-[◀ Previous test](../10.13/README.md) · [↑ Phase 10](../README.md)
+[◀ Previous test](../10.13/README.md) · [↑ Phase 10](../README.md) · [Phase 11 ▶](../../final-acceptance/README.md)

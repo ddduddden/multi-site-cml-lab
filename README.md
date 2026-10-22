@@ -48,6 +48,8 @@ The addressing hierarchy reserves `10.10.0.0/16` for HQ, `10.20.0.0/16` for Bran
 
 LACP provides redundancy within Layer 2 EtherChannels, while OSPF uses independent routed interfaces and deliberate cost engineering to control Layer 3 path selection.
 
+**2-minute route:** [Implementation progress](#implementation-progress) → [Engineering findings](#failure-testing-and-engineering-findings) → [Choose another route](#explore-the-hq-project).
+
 ## Explore the HQ Project
 
 The documentation follows the HQ network from its original design through implementation, verification, failure testing and final acceptance. Each stage links to the supporting engineering records and evidence.
@@ -139,7 +141,7 @@ Other tests demonstrated where the redundancy design worked as intended and wher
 
 Not every test passed, and some results remain inconclusive, so I've retained the original test criteria, troubleshooting records and supporting evidence for review. The testing also highlighted where the design worked as intended, what still needs investigating and the improvements I'd consider for the next revision.
 
-Explore: [Failure Test Results](evidence/hq/failure-tests/README.md) · [Engineering Review](docs/implementation/hq/phase-10-engineering-review.md)
+Explore: [Failure Test Results](evidence/hq/failure-tests/README.md) · [Engineering Review](docs/implementation/hq/phase-10-engineering-review.md) · [↑ Choose another route](#explore-the-hq-project)
 
 ## Repository Guide
 

@@ -1,6 +1,6 @@
 # CML Lab Exports
 
-[Portfolio](../../README.md) / CML Lab Exports
+[Portfolio](../../README.md) / [Lab Artifacts](../README.md) / CML Lab Exports
 
 This subtree holds selected, versioned Cisco Modeling Labs YAML exports that represent meaningful architectural milestones. It is not a general backup directory and does not contain every intermediate working copy.
 
@@ -28,6 +28,8 @@ The public copy was checked for valid YAML, valid link endpoints, matching per-d
 This milestone records the final configuration; it does not change the Phase 10 test outcomes or imply that Phase 11 sign-off is complete.
 
 ## HQ Exports
+
+Use your browser’s Back button to return to this index after viewing a YAML export.
 
 | Phase | Export |
 |---|---|

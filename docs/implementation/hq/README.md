@@ -1,6 +1,6 @@
 # HQ Implementation
 
-[Portfolio](../../../README.md) / HQ Implementation
+[Portfolio](../../../README.md) / [Documentation](../../README.md) / [Implementation Records](../README.md) / HQ Implementation
 
 [HQ Evidence Map](../../../evidence/hq/README.md) — find the captures and reports for each phase.
 
@@ -171,6 +171,8 @@ evidence/hq/etherchannel/HQ-VP-03.04-member-link-failure/
 ```
 
 ## Configs and Git traceability
+
+[HQ Device Configurations](../../../configs/hq/README.md) · [CML Lab Exports](../../../lab/cml-lab-exports/README.md)
 
 `configs/hq/` contains the readable sanitised as-built device configurations from the latest milestone (currently the sanitised Phase 11 milestone):
 

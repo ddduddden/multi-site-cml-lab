@@ -590,7 +590,9 @@ The following table summarises the main design decisions and the reasoning behin
 | Functional inter-area summarisation           | Provides summarised HQ user and transit routes towards Area 0, while retaining individual loopback advertisements for stable device reachability.                                                                |
 | Separate implementation evidence              | Maintains a distinction between the original architectural design, device configurations and the findings of subsequent verification.                                                                            |
 
-[↑ Back to Contents](#contents)
+**Continue the 5-minute route:** [Testing conclusions](implementation/hq/phase-10-engineering-review.md#overall-assessment) → [Priorities for the next revision](implementation/hq/phase-10-engineering-review.md#priorities-for-the-next-revision) → [Current acceptance status](implementation/hq/phase-11-final-acceptance.md#overall-assessment).
+
+[↑ Back to Contents](#contents) · [Choose another route](../README.md#explore-the-hq-project)
 
 ---
 

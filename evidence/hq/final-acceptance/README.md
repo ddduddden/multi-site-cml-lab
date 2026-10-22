@@ -9,6 +9,8 @@ These captures record the 16 October boot checks, the management SVI recovery on
 | 1 | [Access-switch boot recovery](HQ-Phase-11-Boot-Recovery-CLI.md) | Initial failure, investigation, manual reset and reachability checks |
 | 2 | [Final operational checks](HQ-Phase-11-Final-Boot-Verification.txt) | Retained OSPF, HSRP, LACP and connectivity output |
 
+Use your browser’s Back button to return to this index after viewing the TXT capture.
+
 [Final acceptance document](../../../docs/implementation/hq/phase-11-final-acceptance.md) · [Verification record](../../../docs/implementation/hq/verification-plan.md#phase-11--final-acceptance) · [Final device configurations](../../../configs/hq/README.md) · [CML exports](../../../lab/cml-lab-exports/README.md)
 
 ---

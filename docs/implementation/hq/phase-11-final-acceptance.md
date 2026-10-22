@@ -96,4 +96,4 @@ Status: Final documentation and evidence review is in progress. Acceptance remai
 
 ---
 
-[← HQ Verification Plan](verification-plan.md) · [↑ HQ Implementation](README.md) · [Phase 10 Engineering Review →](phase-10-engineering-review.md)
+[← HQ Verification Plan](verification-plan.md) · [↑ HQ Implementation](README.md) · [Phase 10 Engineering Review →](phase-10-engineering-review.md) · [Choose another route](../../../README.md#explore-the-hq-project)
