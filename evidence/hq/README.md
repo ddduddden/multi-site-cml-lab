@@ -4,11 +4,27 @@
 
 Use this index to find a check, open its evidence and return to the verification record. Phase 10 has separate test reports and planned acceptance criteria.
 
+The HQ build was verified in stages before Phase 10 brought the technologies together under controlled failure conditions. I retained the test reports, CLI captures and session records so the results could be examined alongside the original expectations.
+
+If you only have time for two tests, these are good places to start.
+
+**[HQ-VP-10.04 — Cross-Link Failure (PASS)](failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md)**
+
+See how OSPF selected an alternative higher-cost route after a cross-link failure, then returned to the preferred route when connectivity was restored.
+
+**[HQ-VP-10.08 — Layer 2 Isolation (FAIL)](failure-tests/10.08/HQ-VP-10.08-d2-layer2-isolation.md)**
+
+Follow the investigation into why healthy-looking HSRP and OSPF states did not guarantee a working return path, and how the routing and CEF evidence helped explain the traffic loss.
+
+You can also watch selected test scenarios play out on the [interactive HQ topology](https://dominicdudden.co.uk). The animated walkthroughs help explain the recorded behaviour, while the original reports and CLI captures remain here in GitHub.
+
+**Feel free to dig deeper.** The full evidence index covers every phase, with links to the verification records, retained captures and supporting notes. I've kept the unexpected results and evidence limitations alongside the successful tests so readers can examine the findings for themselves.
+
 **🟧 10-MINUTE ROUTE — FOLLOW THE EVIDENCE**
 
-[![Test Planning](https://img.shields.io/badge/Test%20Planning-bf6700?style=flat-square)](../../docs/implementation/hq/phase-10-test-plan.md#test-matrix) &emsp;<sup>➜</sup>&emsp; [![Verification Records](https://img.shields.io/badge/Verification%20Records-bf6700?style=flat-square)](../../docs/implementation/hq/verification-plan.md#contents) &emsp;<sup>➜</sup>&emsp; [![Failure-Test Results and Captures](https://img.shields.io/badge/Failure-Test%20Results%20and%20Captures-bf6700?style=flat-square)](failure-tests/README.md) &emsp;<sup>➜</sup>&emsp; [![Engineering Findings](https://img.shields.io/badge/Engineering%20Findings-bf6700?style=flat-square)](../../docs/implementation/hq/phase-10-engineering-review.md#overall-assessment) &emsp;<sup>➜</sup>&emsp; [![Final Acceptance](https://img.shields.io/badge/Final%20Acceptance-bf6700?style=flat-square)](../../docs/implementation/hq/phase-11-final-acceptance.md#overall-assessment)
+[![Test Planning](https://img.shields.io/badge/Test%20Planning-bf6700?style=flat-square)](../../docs/implementation/hq/phase-10-test-plan.md) &emsp;<sup>➜</sup>&emsp; [![Verification Records](https://img.shields.io/badge/Verification%20Records-bf6700?style=flat-square)](../../docs/implementation/hq/verification-plan.md) &emsp;<sup>➜</sup>&emsp; [![Test Results and Captures](https://img.shields.io/badge/Test%20Results%20and%20Captures-bf6700?style=flat-square)](failure-tests/README.md) &emsp;<sup>➜</sup>&emsp; [![Engineering Findings](https://img.shields.io/badge/Engineering%20Findings-bf6700?style=flat-square)](../../docs/implementation/hq/phase-10-engineering-review.md) &emsp;<sup>➜</sup>&emsp; [![Final Acceptance](https://img.shields.io/badge/Final%20Acceptance-bf6700?style=flat-square)](../../docs/implementation/hq/phase-11-final-acceptance.md)
 
-[↑ Choose another route](../../README.md#explore-the-hq-project)
+[![Choose Another Route ↗](https://img.shields.io/badge/CHOOSE%20ANOTHER%20ROUTE%20%E2%86%97-C2185B?style=flat-square)](../../README.md#explore-the-hq-project)
 
 ## Browse by Area
 

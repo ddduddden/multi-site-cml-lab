@@ -6,4 +6,4 @@
 
 ---
 
-[↑ Documentation](../README.md) · [HQ Implementation ▶](hq/README.md)
+[↑ Documentation](../README.md) · [HQ Implementation →](hq/README.md)

@@ -56,9 +56,9 @@ Failure testing took place from 03-10-2026 to 06-10-2026, with final configurati
 
 **🟧 10-MINUTE ROUTE — CONTINUE READING**
 
-[![Engineering Findings](https://img.shields.io/badge/Engineering%20Findings-bf6700?style=flat-square)](../../../docs/implementation/hq/phase-10-engineering-review.md#overall-assessment) &emsp;<sup>➜</sup>&emsp; [![Final Acceptance](https://img.shields.io/badge/Final%20Acceptance-bf6700?style=flat-square)](../../../docs/implementation/hq/phase-11-final-acceptance.md#overall-assessment)
+[![Engineering Findings](https://img.shields.io/badge/Engineering%20Findings-bf6700?style=flat-square)](../../../docs/implementation/hq/phase-10-engineering-review.md) &emsp;<sup>➜</sup>&emsp; [![Final Acceptance](https://img.shields.io/badge/Final%20Acceptance-bf6700?style=flat-square)](../../../docs/implementation/hq/phase-11-final-acceptance.md)
 
-[↑ Choose another route](../../../README.md#explore-the-hq-project)
+[![Choose Another Route ↗](https://img.shields.io/badge/CHOOSE%20ANOTHER%20ROUTE%20%E2%86%97-C2185B?style=flat-square)](../../../README.md#explore-the-hq-project)
 
 ---
 

@@ -96,4 +96,6 @@ Status: Final documentation and evidence review is in progress. Acceptance remai
 
 ---
 
-[← HQ Verification Plan](verification-plan.md) · [↑ HQ Implementation](README.md) · [Phase 10 Engineering Review →](phase-10-engineering-review.md) · [Choose another route](../../../README.md#explore-the-hq-project)
+[← HQ Verification Plan](verification-plan.md) · [↑ HQ Implementation](README.md) · [Phase 10 Engineering Review →](phase-10-engineering-review.md)
+
+[![Choose Another Route ↗](https://img.shields.io/badge/CHOOSE%20ANOTHER%20ROUTE%20%E2%86%97-C2185B?style=flat-square)](../../../README.md#explore-the-hq-project)

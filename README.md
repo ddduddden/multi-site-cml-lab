@@ -48,11 +48,13 @@ The addressing hierarchy reserves `10.10.0.0/16` for HQ, `10.20.0.0/16` for Bran
 
 LACP provides redundancy within Layer 2 EtherChannels, while OSPF uses independent routed interfaces and deliberate cost engineering to control Layer 3 path selection.
 
-**🟩 2-MINUTE ROUTE — CONTINUE READING**
+I developed HQ through eleven documented phases, progressing from VLANs and campus switching to gateway redundancy, OSPF routing, ECMP and deliberate cost engineering. Each stage has supporting verification records, with Phase 10 bringing the separate technologies together for controlled resilience testing.
 
-[![Implementation progress](https://img.shields.io/badge/Implementation%20progress-238636?style=flat-square)](#implementation-progress) &emsp;<sup>➜</sup>&emsp; [![Engineering findings](https://img.shields.io/badge/Engineering%20findings-238636?style=flat-square)](#failure-testing-and-engineering-findings)
+The tests demonstrated working alternative routes and access paths, while also exposing limitations in the inter-distribution connection, HSRP upstream tracking and Layer 2 isolation behaviour. The resulting findings are retained alongside the original evidence. Phase 11 configuration and operational checks are documented, with final acceptance still under review.
 
-[↑ Choose another route](#explore-the-hq-project)
+**🟩 2-MINUTE ROUTE — RETURN TO ROUTE SELECTOR**
+
+[![Choose Another Route ↗](https://img.shields.io/badge/CHOOSE%20ANOTHER%20ROUTE%20%E2%86%97-C2185B?style=flat-square)](#explore-the-hq-project)
 
 ## Explore the HQ Project
 
@@ -86,9 +88,9 @@ The network design and technologies<br>at a glance.
 <br><br>
 <b>Behind the design</b>
 <br>
-What the build and failure testing<br>showed, and what I would change next.
+The engineering decisions behind HQ V1,<br>from the initial design to future expansion.
 <br><br>
-<a href="docs/hq-campus-design.md#8-design-rationale"><img src="https://img.shields.io/badge/FOLLOW%20THE%20THINKING%20%E2%86%97-8250df?style=flat-square" alt="FOLLOW THE THINKING ↗"></a>
+<a href="docs/hq-behind-the-design.md"><img src="https://img.shields.io/badge/FOLLOW%20THE%20THINKING%20%E2%86%97-8250df?style=flat-square" alt="FOLLOW THE THINKING ↗"></a>
 <br><br>
 </td>
 </tr></tbody>
@@ -134,6 +136,7 @@ Explore the topology, routed paths<br>and selected failure scenarios.
 | Document | What you'll find |
 |---|---|
 | [HQ Campus Design](docs/hq-campus-design.md) | Network architecture, addressing, routing design and engineering decisions |
+| [Behind the Design — The Thinking Behind HQ V1](docs/hq-behind-the-design.md) | Five-minute narrative explaining the decisions and original multi-site planning |
 | [HQ Implementation](docs/implementation/hq/README.md) | Phased implementation, progress and navigation to engineering records |
 | [Build Log](docs/implementation/hq/build-log.md) | Configuration milestones, implementation notes and Git commit history |
 | [Verification Plan](docs/implementation/hq/verification-plan.md) | Test procedures, results and supporting evidence |
@@ -173,7 +176,9 @@ Other tests demonstrated where the redundancy design worked as intended and wher
 
 Not every test passed, and some results remain inconclusive, so I've retained the original test criteria, troubleshooting records and supporting evidence for review. The testing also highlighted where the design worked as intended, what still needs investigating and the improvements I'd consider for the next revision.
 
-Explore: [Failure Test Results](evidence/hq/failure-tests/README.md) · [Engineering Review](docs/implementation/hq/phase-10-engineering-review.md) · [↑ Choose another route](#explore-the-hq-project)
+Explore: [Failure Test Results](evidence/hq/failure-tests/README.md) · [Engineering Review](docs/implementation/hq/phase-10-engineering-review.md)
+
+[![Choose Another Route ↗](https://img.shields.io/badge/CHOOSE%20ANOTHER%20ROUTE%20%E2%86%97-C2185B?style=flat-square)](#explore-the-hq-project)
 
 ## Repository Guide
 

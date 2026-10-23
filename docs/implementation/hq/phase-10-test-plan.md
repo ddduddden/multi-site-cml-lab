@@ -45,9 +45,9 @@ This plan records the test objectives and acceptance expectations set before exe
 
 **🟧 10-MINUTE ROUTE — CONTINUE READING**
 
-[![Verification Records](https://img.shields.io/badge/Verification%20Records-bf6700?style=flat-square)](verification-plan.md#contents) &emsp;<sup>➜</sup>&emsp; [![Failure-Test Results and Captures](https://img.shields.io/badge/Failure-Test%20Results%20and%20Captures-bf6700?style=flat-square)](../../../evidence/hq/failure-tests/README.md)
+[![Verification Records](https://img.shields.io/badge/Verification%20Records-bf6700?style=flat-square)](verification-plan.md) &emsp;<sup>➜</sup>&emsp; [![Test Results and Captures](https://img.shields.io/badge/Test%20Results%20and%20Captures-bf6700?style=flat-square)](../../../evidence/hq/failure-tests/README.md)
 
-[↑ Choose another route](../../../README.md#explore-the-hq-project)
+[![Choose Another Route ↗](https://img.shields.io/badge/CHOOSE%20ANOTHER%20ROUTE%20%E2%86%97-C2185B?style=flat-square)](../../../README.md#explore-the-hq-project)
 
 ## Test method
 
