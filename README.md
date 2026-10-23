@@ -48,53 +48,85 @@ The addressing hierarchy reserves `10.10.0.0/16` for HQ, `10.20.0.0/16` for Bran
 
 LACP provides redundancy within Layer 2 EtherChannels, while OSPF uses independent routed interfaces and deliberate cost engineering to control Layer 3 path selection.
 
-**2-minute route:** [Implementation progress](#implementation-progress) → [Engineering findings](#failure-testing-and-engineering-findings) → [Choose another route](#explore-the-hq-project).
+**🟩 2-MINUTE ROUTE — CONTINUE READING**
+
+[![Implementation progress](https://img.shields.io/badge/Implementation%20progress-238636?style=flat-square)](#implementation-progress) &emsp;<sup>➜</sup>&emsp; [![Engineering findings](https://img.shields.io/badge/Engineering%20findings-238636?style=flat-square)](#failure-testing-and-engineering-findings)
+
+[↑ Choose another route](#explore-the-hq-project)
 
 ## Explore the HQ Project
 
 The documentation follows the HQ network from its original design through implementation, verification, failure testing and final acceptance. Each stage links to the supporting engineering records and evidence.
 
 <table align="center">
-<tr><td align="left"><pre>╔═══════════════════════════════════════════════════════════════════════════════════╗
-&#8203;
-                                Explore the HQ Project
-&#8203;
-                         FOUR ROUTES · ONE ENGINEERING STORY
-&#8203;
-            Design ─── Implementation ─── Verification ─── Failure Testing
-&#8203;
-╠═════════════════════════════════════════╤═════════════════════════════════════════╣
-                                          │
-   01                          2 MINUTES  │  02                         5 MINUTES
-                                          │
-   The HQ overview                        │  Behind the design
-                                          │
-   The network design and technologies    │  What the build and failure testing
-   at a glance.                           │  showed, and what I would change next.
-                                          │
-   <a href="#hq-campus-overview">START HERE ↗</a>                           │  <a href="docs/hq-campus-design.md#8-design-rationale">FOLLOW THE THINKING ↗</a>
-                                          │
-╠═════════════════════════════════════════╪═════════════════════════════════════════╣
-                                          │
-   03                         10 MINUTES  │  04                        INTERACTIVE
-                                          │
-   Follow the evidence                    │  Explore the network
-                                          │
-   From test planning and verification    │  Explore the topology, routed paths
-   through failure testing to the         │  and selected failure scenarios.
-   results and what they revealed.        │
-                                          │
-   <a href="evidence/hq/README.md">INVESTIGATE ↗</a>                          │  <a href="https://dominicdudden.co.uk">EXPLORE THE INTERACTIVE PORTFOLIO ↗</a>
-                                          │
-╠═════════════════════════════════════════╧═════════════════════════════════════════╣
-&#8203;
-                          Complete engineering documentation
-&#8203;
-            Design · Build Log · Verification · Evidence · Troubleshooting
-&#8203;
-                       <a href="#engineering-documents">↓ Browse the full document index below ↓</a>
-&#8203;
-╚═══════════════════════════════════════════════════════════════════════════════════╝</pre></td></tr>
+<tbody><tr>
+<td colspan="2" align="center">
+<h3>Explore the HQ Project</h3>
+<sub><b>FOUR ROUTES &nbsp;·&nbsp; ONE ENGINEERING STORY</b></sub>
+<br><br>
+<code>Design</code> → <code>Implementation</code> → <code>Verification</code> → <code>Failure Testing</code>
+<br>
+</td>
+</tr></tbody>
+<tbody><tr>
+<td width="50%" valign="top">
+<br>
+🟩 &nbsp;<b>01</b> &nbsp;·&nbsp; 2 MINUTES
+<br><br>
+<b>The HQ overview</b>
+<br>
+The network design and technologies<br>at a glance.
+<br><br><br>
+<a href="#hq-campus-overview"><img src="https://img.shields.io/badge/START%20HERE%20%E2%86%97-238636?style=flat-square" alt="START HERE ↗"></a>
+<br><br>
+</td>
+<td width="50%" valign="top">
+<br>
+🟪 &nbsp;<b>02</b> &nbsp;·&nbsp; 5 MINUTES
+<br><br>
+<b>Behind the design</b>
+<br>
+What the build and failure testing<br>showed, and what I would change next.
+<br><br>
+<a href="docs/hq-campus-design.md#8-design-rationale"><img src="https://img.shields.io/badge/FOLLOW%20THE%20THINKING%20%E2%86%97-8250df?style=flat-square" alt="FOLLOW THE THINKING ↗"></a>
+<br><br>
+</td>
+</tr></tbody>
+<tbody><tr>
+<td width="50%" valign="top">
+<br>
+🟧 &nbsp;<b>03</b> &nbsp;·&nbsp; 10 MINUTES
+<br><br>
+<b>Follow the evidence</b>
+<br>
+From test planning and verification<br>through failure testing to the<br>results and what they revealed.
+<br><br>
+<a href="evidence/hq/README.md"><img src="https://img.shields.io/badge/INVESTIGATE%20%E2%86%97-bf6700?style=flat-square" alt="INVESTIGATE ↗"></a>
+<br><br>
+</td>
+<td width="50%" valign="top">
+<br>
+🟦 &nbsp;<b>04</b> &nbsp;·&nbsp; INTERACTIVE
+<br><br>
+<b>Explore the network</b>
+<br>
+Explore the topology, routed paths<br>and selected failure scenarios.
+<br><br><br>
+<a href="https://dominicdudden.co.uk"><img src="https://img.shields.io/badge/EXPLORE%20THE%20INTERACTIVE%20PORTFOLIO%20%E2%86%97-0969da?style=flat-square" alt="EXPLORE THE INTERACTIVE PORTFOLIO ↗"></a>
+<br><br>
+</td>
+</tr></tbody>
+<tbody><tr>
+<td colspan="2" align="center">
+<br>
+<b>Complete engineering documentation</b>
+<br>
+<sub>Design &nbsp;·&nbsp; Build Log &nbsp;·&nbsp; Verification &nbsp;·&nbsp; Evidence &nbsp;·&nbsp; Troubleshooting</sub>
+<br><br>
+<a href="#engineering-documents">↓ Browse the full document index below ↓</a>
+<br><br>
+</td>
+</tr></tbody>
 </table>
 
 ### Engineering Documents

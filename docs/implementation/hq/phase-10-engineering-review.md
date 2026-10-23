@@ -113,7 +113,15 @@ The HQ design provided useful resilience during the tested routed-link, EtherCha
 
 The most useful part of this phase for me was working out why traffic stopped during those failures. It showed what worked, where the lab image behaved differently from normal Catalyst SVI autostate and what I want to address in a later revision. The fault tests and final configuration close-out are complete; the 10.08 failure and 10.12 inconclusive coverage remain documented in their reports. Availability and precise convergence times were not measured.
 
-**Continue reading:** [Priorities for the next revision](#priorities-for-the-next-revision) · [Current acceptance status](phase-11-final-acceptance.md#overall-assessment) · [Choose another route](../../../README.md#explore-the-hq-project).
+**🟪 5-MINUTE ROUTE — CONTINUE READING**
+
+[![Priorities for the Next Revision](https://img.shields.io/badge/Priorities%20for%20the%20Next%20Revision-8250df?style=flat-square)](#priorities-for-the-next-revision) &emsp;<sup>➜</sup>&emsp; [![Current Acceptance Status](https://img.shields.io/badge/Current%20Acceptance%20Status-8250df?style=flat-square)](phase-11-final-acceptance.md#overall-assessment)
+
+**🟧 10-MINUTE ROUTE — CONTINUE READING**
+
+[![Final Acceptance](https://img.shields.io/badge/Final%20Acceptance-bf6700?style=flat-square)](phase-11-final-acceptance.md#overall-assessment)
+
+[↑ Choose another route](../../../README.md#explore-the-hq-project)
 
 ## Technical references
 

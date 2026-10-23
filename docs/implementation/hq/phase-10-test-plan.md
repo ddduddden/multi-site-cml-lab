@@ -43,7 +43,11 @@ This plan records the test objectives and acceptance expectations set before exe
 | [10.13](#hq-vp-1013-diagonal-double-device-failure) | Diagonal double-device failure | Settled-state traffic through diagonal pair | [HQ-VP-10.13 report](../../../evidence/hq/failure-tests/10.13/HQ-VP-10.13-diagonal-double-failure.md) |
 | [10.14](#hq-vp-1014-final-restoration-and-hygiene) | Final restoration and hygiene | Forwarding, control plane and config restored | [HQ-VP-10.14 report](../../../evidence/hq/failure-tests/10.14/HQ-VP-10.14-final-restoration.md) |
 
-**Continue the 10-minute route:** [Verification records](verification-plan.md#contents) → [Failure-test results and captures](../../../evidence/hq/failure-tests/README.md).
+**🟧 10-MINUTE ROUTE — CONTINUE READING**
+
+[![Verification Records](https://img.shields.io/badge/Verification%20Records-bf6700?style=flat-square)](verification-plan.md#contents) &emsp;<sup>➜</sup>&emsp; [![Failure-Test Results and Captures](https://img.shields.io/badge/Failure-Test%20Results%20and%20Captures-bf6700?style=flat-square)](../../../evidence/hq/failure-tests/README.md)
+
+[↑ Choose another route](../../../README.md#explore-the-hq-project)
 
 ## Test method
 

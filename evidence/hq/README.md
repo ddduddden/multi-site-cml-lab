@@ -4,7 +4,11 @@
 
 Use this index to find a check, open its evidence and return to the verification record. Phase 10 has separate test reports and planned acceptance criteria.
 
-**10-minute route:** [Test planning](../../docs/implementation/hq/phase-10-test-plan.md#test-matrix) → [Verification records](../../docs/implementation/hq/verification-plan.md#contents) → [Failure-test results and captures](failure-tests/README.md) → [Engineering findings](../../docs/implementation/hq/phase-10-engineering-review.md#overall-assessment) → [Final acceptance](../../docs/implementation/hq/phase-11-final-acceptance.md#overall-assessment).
+**🟧 10-MINUTE ROUTE — FOLLOW THE EVIDENCE**
+
+[![Test Planning](https://img.shields.io/badge/Test%20Planning-bf6700?style=flat-square)](../../docs/implementation/hq/phase-10-test-plan.md#test-matrix) &emsp;<sup>➜</sup>&emsp; [![Verification Records](https://img.shields.io/badge/Verification%20Records-bf6700?style=flat-square)](../../docs/implementation/hq/verification-plan.md#contents) &emsp;<sup>➜</sup>&emsp; [![Failure-Test Results and Captures](https://img.shields.io/badge/Failure-Test%20Results%20and%20Captures-bf6700?style=flat-square)](failure-tests/README.md) &emsp;<sup>➜</sup>&emsp; [![Engineering Findings](https://img.shields.io/badge/Engineering%20Findings-bf6700?style=flat-square)](../../docs/implementation/hq/phase-10-engineering-review.md#overall-assessment) &emsp;<sup>➜</sup>&emsp; [![Final Acceptance](https://img.shields.io/badge/Final%20Acceptance-bf6700?style=flat-square)](../../docs/implementation/hq/phase-11-final-acceptance.md#overall-assessment)
+
+[↑ Choose another route](../../README.md#explore-the-hq-project)
 
 ## Browse by Area
 

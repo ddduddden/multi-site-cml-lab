@@ -51,7 +51,11 @@ Browse the [HQ Evidence Map](../../../evidence/hq/README.md) for the complete ev
 
 ## Contents
 
-**Evidence route:** [← Test planning](phase-10-test-plan.md#test-matrix) · [Failure-test results and captures →](../../../evidence/hq/failure-tests/README.md).
+**🟧 10-MINUTE ROUTE — CONTINUE READING**
+
+[![Failure-Test Results and Captures](https://img.shields.io/badge/Failure-Test%20Results%20and%20Captures-bf6700?style=flat-square)](../../../evidence/hq/failure-tests/README.md)
+
+[← Test planning](phase-10-test-plan.md#test-matrix) · [↑ Choose another route](../../../README.md#explore-the-hq-project)
 
 | Phase | Scope | Detail |
 |---:|---|---|

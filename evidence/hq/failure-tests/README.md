@@ -54,7 +54,11 @@ Failure testing took place from 03-10-2026 to 06-10-2026, with final configurati
 
 **HQ-VP-10.14 — Final restoration:** The forwarding baseline recovered on 06-10-2026. Final five-device configuration comparisons, the hq-a1 logging reset and a private CML export were completed on 12-10-2026. See the retained [configuration close-out evidence](10.14/10.14-config-excerpts.md).
 
-**Continue the evidence route:** [Engineering findings](../../../docs/implementation/hq/phase-10-engineering-review.md#overall-assessment) → [Final acceptance](../../../docs/implementation/hq/phase-11-final-acceptance.md#overall-assessment) · [Choose another route](../../../README.md#explore-the-hq-project).
+**🟧 10-MINUTE ROUTE — CONTINUE READING**
+
+[![Engineering Findings](https://img.shields.io/badge/Engineering%20Findings-bf6700?style=flat-square)](../../../docs/implementation/hq/phase-10-engineering-review.md#overall-assessment) &emsp;<sup>➜</sup>&emsp; [![Final Acceptance](https://img.shields.io/badge/Final%20Acceptance-bf6700?style=flat-square)](../../../docs/implementation/hq/phase-11-final-acceptance.md#overall-assessment)
+
+[↑ Choose another route](../../../README.md#explore-the-hq-project)
 
 ---
 
