@@ -96,4 +96,4 @@ HSRP tracking and preemption remain future design improvements requiring their o
 
 ---
 
-[◀ Test evidence](README.md) · [Session record ▶](10.09-session-record.md) · [Engineering Review](../../../../docs/implementation/hq/phase-10-engineering-review.md#upstream-isolation-and-hsrp--hq-vp-1009)
+[◀ Test evidence](README.md) · [Session record ▶](10.09-session-record.md) · [Engineering Review](../../../../docs/implementation/hq/phase-10-engineering-review.md#upstream-isolation-and-hsrp--hq-vp-1009) · [↑ Phase 10 Test Index](../README.md)

@@ -67,4 +67,4 @@ I kept the 6 and 12 October checks separate so it's clear what was completed dur
 
 ---
 
-[◀ Test evidence](README.md) · [Session record ▶](10.14-session-record.md) · [Configuration captures](10.14-config-excerpts.md)
+[◀ Test evidence](README.md) · [Session record ▶](10.14-session-record.md) · [Configuration captures](10.14-config-excerpts.md) · [↑ Phase 10 Test Index](../README.md)

@@ -28,6 +28,8 @@ Removing one routed ECMP link reduced the number of equal-cost paths, but the de
 
 This supported my cost design from Phase 09: the planned alternate links were there when needed, but did not become the preferred paths during normal operation. IP SLA recorded some failed samples while the route changed, so the switchover was not loss-free. The alternate route worked, and the original route returned after recovery.
 
+[![Orange route step 05 of 12 — next: 10.08 ORIGINAL TEST PLAN](https://img.shields.io/badge/ORANGE%20ROUTE-05%2F12%20%20NEXT%3A%2010.08%20ORIGINAL%20TEST%20PLAN-bf6700?style=flat-square)](phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation)
+
 ## Access member and uplink failures | HQ-VP-10.05–10.06
 
 *Evidence: [HQ-VP-10.05](../../../evidence/hq/failure-tests/10.05/HQ-VP-10.05-etherchannel-member-failure.md) · [HQ-VP-10.06](../../../evidence/hq/failure-tests/10.06/HQ-VP-10.06-access-uplink-failure.md)*
@@ -65,6 +67,10 @@ I went away and read Cisco's documentation on Catalyst SVI autostate to understa
 This was one of the main learning points for me. It went beyond the straightforward failover examples from my CCNA study. The two locally Active HSRP states showed the split-brain condition, but they did not explain the different traffic results. Understanding that meant checking the SVI state, OSPF advertisement and hq-r2’s selected return route.
 
 The network recovered once the links were restored, but the test had exposed a gap in traffic continuity despite the gateway remaining reachable.
+
+[![Orange route step 12 of 12 — next: RETURN TO INTERACTIVE PORTFOLIO](https://img.shields.io/badge/ORANGE%20ROUTE-12%2F12%20%20NEXT%3A%20RETURN%20TO%20INTERACTIVE%20PORTFOLIO-bf6700?style=flat-square)](https://dominicdudden.co.uk/)
+
+[↑ Phase 10 Test Index](../../../evidence/hq/failure-tests/README.md) · [← HQ-TS-002 investigation](troubleshooting.md#hq-ts-002--iosvl2-svi-state-during-layer-2-isolation)
 
 ## Upstream isolation and HSRP | HQ-VP-10.09
 

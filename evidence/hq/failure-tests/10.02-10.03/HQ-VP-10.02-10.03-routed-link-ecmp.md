@@ -59,4 +59,4 @@ Both tests met their recorded routing and neighbour-state acceptance criteria wi
 
 ---
 
-[◀ Test evidence](README.md) · [Failure CLI ▶](10.02-10.03-failure.md) · [Recovery CLI](10.02-10.03-recovery.md)
+[◀ Test evidence](README.md) · [Failure CLI ▶](10.02-10.03-failure.md) · [Recovery CLI](10.02-10.03-recovery.md) · [↑ Phase 10 Test Index](../README.md)

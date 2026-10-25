@@ -4,18 +4,26 @@
 
 <table align="center">
   <tr>
+    <td align="center" width="128">
+      <a href="https://www.credly.com/badges/877c5523-1160-4fca-9dfb-0efba8a15a60/public_url"><img src="https://images.credly.com/images/683783d8-eaac-4c37-a14d-11bd8a36321d/twitter_thumb_201604_ccna_600.png" alt="Official Cisco CCNA badge" width="112"></a>
+    </td>
     <td align="center">
       <strong>Dominic Dudden</strong><br>
       <strong>Cisco Certified Network Associate (CCNA)</strong><br>
-      Issued by Cisco · <a href="https://www.credly.com/badges/877c5523-1160-4fca-9dfb-0efba8a15a60/public_url">Verify certification on Credly</a>
+      <a href="https://www.credly.com/badges/877c5523-1160-4fca-9dfb-0efba8a15a60/public_url">Verify certification on Credly</a>
     </td>
   </tr>
 </table>
 
-<!-- Final official Cisco CCNA badge artwork is to be integrated without changing the approved wording. -->
-<!-- The SVG below is the existing GitHub topology placeholder. Replace it only after the saved interactive design's GitHub compatibility has been checked. -->
 
-![HQ Campus — OSPF Area 10](diagrams/hq-campus-area10-topology.svg)
+<a href="diagrams/README.md#high-level-topology">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="diagrams/hq-campus-area10-topology-dark.svg">
+    <img src="diagrams/hq-campus-area10-topology.svg" alt="HQ Campus — OSPF Area 10 high-level topology. Click to explore both diagrams.">
+  </picture>
+</a>
+
+[View the topology full size and explore the detailed VLAN diagram](diagrams/README.md#high-level-topology)
 
 ## Project Approach
 
@@ -24,37 +32,6 @@ I'm developing this as a practical network engineering portfolio, following a st
 Each phase is supported by implementation records, verification results and retained evidence. Git and GitHub provide version control and traceability, allowing the network's development, configuration changes and engineering decisions to be followed and reviewed through the relevant commits.
 
 **Design → Implement → Verify → Failure Test → Troubleshoot → Document**
-
-## HQ Campus Overview
-
-The HQ campus forms the foundation of a planned multi-site enterprise network, built around a five-device, two-tier collapsed-core topology consisting of two edge routers (`hq-r1`, `hq-r2`), two Multilayer Distribution Switches (`hq-d1`, `hq-d2`) and one access switch (`hq-a1`). HQ operates in OSPF Area 10, with its routing and addressing architecture designed from the outset to support a future Branch Campus in Area 20, connected through an Area 0 backbone.
-
-Built in Cisco Modeling Labs using VMware Workstation on Windows 11, HQ operates within the CML Free five-node limit. The wider home lab includes a second CML-capable computer, physical network infrastructure and Raspberry Pis planned for supporting services. Both CML hosts will eventually support separate campuses connected through the home network.
-
-[View the lab environment and hardware](docs/environment.md)
-
-### Network Design and Technologies
-
-| Area | Implementation |
-|---|---|
-| Campus switching | VLAN segmentation, 802.1Q trunking, LACP EtherChannels and Rapid PVST+ |
-| IP addressing & subnet design | Hierarchical, site-based VLSM addressing, with a consistent VLAN-to-subnet convention, capacity-based allocations and a planned inter-area summarisation strategy |
-| First-hop redundancy | HSRP with preferred Active/Standby distribution roles and spanning-tree alignment |
-| OSPF routing & path engineering | Four-path ECMP, deliberate OSPF cost design, preferred forwarding paths and higher-cost alternate routes for failure conditions |
-| Network management | Dedicated management addressing, SSH access restrictions and retained configuration records |
-| Resilience & fault testing | Controlled link, EtherChannel and device failures, including traffic verification, recovery testing and investigation of unexpected behaviour |
-
-The addressing hierarchy reserves `10.10.0.0/16` for HQ, `10.20.0.0/16` for Branch and `10.255.0.0/16` for infrastructure. Inter-area summarisation is planned for the future backbone, while individual `/32` loopbacks are used as OSPF router IDs and will remain advertised separately.
-
-LACP provides redundancy within Layer 2 EtherChannels, while OSPF uses independent routed interfaces and deliberate cost engineering to control Layer 3 path selection.
-
-I developed HQ through eleven documented phases, progressing from VLANs and campus switching to gateway redundancy, OSPF routing, ECMP and deliberate cost engineering. Each stage has supporting verification records, with Phase 10 bringing the separate technologies together for controlled resilience testing.
-
-The tests demonstrated working alternative routes and access paths, while also exposing limitations in the inter-distribution connection, HSRP upstream tracking and Layer 2 isolation behaviour. The resulting findings are retained alongside the original evidence. Phase 11 configuration and operational checks are documented, with final acceptance still under review.
-
-**🟩 2-MINUTE ROUTE — RETURN TO ROUTE SELECTOR**
-
-[![Choose Another Route ↗](https://img.shields.io/badge/CHOOSE%20ANOTHER%20ROUTE%20%E2%86%97-C2185B?style=flat-square)](#explore-the-hq-project)
 
 ## Explore the HQ Project
 
@@ -145,6 +122,37 @@ Explore the topology, routed paths<br>and selected failure scenarios.
 | [Engineering Review](docs/implementation/hq/phase-10-engineering-review.md) | Investigations, unexpected findings and design limitations |
 | [Troubleshooting](docs/implementation/hq/troubleshooting.md) | Technical problems, investigations and corrective actions |
 | [Final Acceptance](docs/implementation/hq/phase-11-final-acceptance.md) | Operational verification and final engineering close-out |
+
+## HQ Campus Overview
+
+The HQ campus forms the foundation of a planned multi-site enterprise network, built around a five-device, two-tier collapsed-core topology consisting of two edge routers (`hq-r1`, `hq-r2`), two Multilayer Distribution Switches (`hq-d1`, `hq-d2`) and one access switch (`hq-a1`). HQ operates in OSPF Area 10, with its routing and addressing architecture designed from the outset to support a future Branch Campus in Area 20, connected through an Area 0 backbone.
+
+Built in Cisco Modeling Labs using VMware Workstation on Windows 11, HQ operates within the CML Free five-node limit. The wider home lab includes a second CML-capable computer, physical network infrastructure and Raspberry Pis planned for supporting services. Both CML hosts will eventually support separate campuses connected through the home network.
+
+[View the lab environment and hardware](docs/environment.md)
+
+### Network Design and Technologies
+
+| Area | Implementation |
+|---|---|
+| Campus switching | VLAN segmentation, 802.1Q trunking, LACP EtherChannels and Rapid PVST+ |
+| IP addressing & subnet design | Hierarchical, site-based VLSM addressing, with a consistent VLAN-to-subnet convention, capacity-based allocations and a planned inter-area summarisation strategy |
+| First-hop redundancy | HSRP with preferred Active/Standby distribution roles and spanning-tree alignment |
+| OSPF routing & path engineering | Four-path ECMP, deliberate OSPF cost design, preferred forwarding paths and higher-cost alternate routes for failure conditions |
+| Network management | Dedicated management addressing, SSH access restrictions and retained configuration records |
+| Resilience & fault testing | Controlled link, EtherChannel and device failures, including traffic verification, recovery testing and investigation of unexpected behaviour |
+
+The addressing hierarchy reserves `10.10.0.0/16` for HQ, `10.20.0.0/16` for Branch and `10.255.0.0/16` for infrastructure. Inter-area summarisation is planned for the future backbone, while individual `/32` loopbacks are used as OSPF router IDs and will remain advertised separately.
+
+LACP provides redundancy within Layer 2 EtherChannels, while OSPF uses independent routed interfaces and deliberate cost engineering to control Layer 3 path selection.
+
+I developed HQ through eleven documented phases, progressing from VLANs and campus switching to gateway redundancy, OSPF routing, ECMP and deliberate cost engineering. Each stage has supporting verification records, with Phase 10 bringing the separate technologies together for controlled resilience testing.
+
+The tests demonstrated working alternative routes and access paths, while also exposing limitations in the inter-distribution connection, HSRP upstream tracking and Layer 2 isolation behaviour. The resulting findings are retained alongside the original evidence. Phase 11 configuration and operational checks are documented, with final acceptance still under review.
+
+**🟩 2-MINUTE ROUTE — RETURN TO ROUTE SELECTOR**
+
+[![Choose Another Route ↗](https://img.shields.io/badge/CHOOSE%20ANOTHER%20ROUTE%20%E2%86%97-C2185B?style=flat-square)](#explore-the-hq-project)
 
 ## Implementation Progress
 

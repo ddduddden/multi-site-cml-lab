@@ -10,6 +10,8 @@ Phase 10 — Failure and Resilience Testing
 **Evidence:** [Failure CLI](10.04-failure.md) · [Recovery CLI](10.04-recovery.md)\
 **Evidence commit:** [a8624b1](https://github.com/ddduddden/multi-site-cml-lab/commit/a8624b176298e3b0132daedf082c2aae0c704ebd)
 
+[![Start the featured orange route with the original test plan](https://img.shields.io/badge/FEATURED%20ORANGE%20ROUTE-START%20WITH%20THE%20TEST%20PLAN-bf6700?style=flat-square)](../../../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1004-cross-link-loss-and-higher-cost-alternate)
+
 ## Test objective
 
 Verify that the OSPF cost design provides a working alternative if the direct cross-link between hq-d2 and hq-r1 fails.
@@ -85,12 +87,10 @@ CEF confirmed the same direct next hop, replacing the four metric-121 alternativ
 
 **PASS.** The failure produced the expected higher-cost OSPF alternative, with four equal-cost next hops through hq-r2 and a surviving continuation through hq-d1. The retained probes showed successful reachability after the routing change, and restoring the cross-link returned the preferred metric-101 route and FULL adjacency.
 
-This supported the cost engineering introduced in Phase 09 and the ECMP behaviour verified in Phase 08. The higher-cost route was available when needed without becoming the preferred route under normal conditions.
-
-There are limits to the evidence. The preferred metric-101 route was captured after restoration, not in a separate pre-shutdown routing-table capture. No traceroute or per-flow forwarding capture proves which individual ECMP next hop carried a particular probe, and the IP SLA counters do not establish an exact outage duration.
-
-Within those limits, the test demonstrates the intended OSPF route selection, alternate-path availability and preferred-route recovery.
+The routing and CEF captures confirmed that the Phase 09 cost engineering worked as intended. The higher-cost alternatives were available when the direct cross-link failed, and the preferred route returned after restoration.
 
 ---
 
-[◀ Test evidence](README.md) · [Failure CLI ▶](10.04-failure.md) · [Recovery CLI](10.04-recovery.md) · [Engineering Review](../../../../docs/implementation/hq/phase-10-engineering-review.md#routed-paths--hq-vp-10021004)
+[![Orange route step 02 of 12 — next: FAILURE CLI](https://img.shields.io/badge/ORANGE%20ROUTE-02%2F12%20%20NEXT%3A%20FAILURE%20CLI-bf6700?style=flat-square)](10.04-failure.md)
+
+[◀ Test evidence](README.md) · [Failure CLI ▶](10.04-failure.md) · [Recovery CLI](10.04-recovery.md) · [Engineering Review](../../../../docs/implementation/hq/phase-10-engineering-review.md#routed-paths--hq-vp-10021004) · [↑ Phase 10 Test Index](../README.md)

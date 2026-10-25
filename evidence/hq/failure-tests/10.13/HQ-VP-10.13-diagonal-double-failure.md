@@ -88,4 +88,4 @@ Staged recovery restored the preferred HSRP, STP and OSPF state. The initial 4/5
 
 ---
 
-[◀ Test evidence](README.md) · [Session record ▶](10.13-session-record.md)
+[◀ Test evidence](README.md) · [Session record ▶](10.13-session-record.md) · [↑ Phase 10 Test Index](../README.md)

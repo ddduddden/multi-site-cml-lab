@@ -63,4 +63,4 @@ VLAN140 prefers hq-d2, so the one device stop/start cycle exercised both HSRP an
 
 ---
 
-[◀ Test evidence](README.md) · [Retained CLI ▶](10.11-retained-cli-excerpt.md)
+[◀ Test evidence](README.md) · [Retained CLI ▶](10.11-retained-cli-excerpt.md) · [↑ Phase 10 Test Index](../README.md)

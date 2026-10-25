@@ -10,6 +10,12 @@ Failure testing took place from 03-10-2026 to 06-10-2026, with final configurati
 
 [Test plan](../../../docs/implementation/hq/phase-10-test-plan.md#test-matrix) · [Testing methodology](../../../docs/implementation/hq/phase-10-testing-methodology.md) · [Verification record](../../../docs/implementation/hq/verification-plan.md#phase-10--failure-testing)
 
+**Featured orange showcase — follow two complete engineering investigations**
+
+[![Start 10.04 — Routing redundancy](https://img.shields.io/badge/ORANGE%20ROUTE-10.04%20SUCCESSFUL%20ROUTING-bf6700?style=flat-square)](../../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1004-cross-link-loss-and-higher-cost-alternate) [![Start 10.08 — Layer 2 investigation](https://img.shields.io/badge/ORANGE%20ROUTE-10.08%20RETURN--PATH%20BLACKHOLE-bf6700?style=flat-square)](../../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation)
+
+Both investigations follow the plan, report, retained captures and relevant engineering conclusions. The end of 10.04 leads directly into 10.08.
+
 ## Test Results
 
 | Test | Scenario | Result | Evidence |

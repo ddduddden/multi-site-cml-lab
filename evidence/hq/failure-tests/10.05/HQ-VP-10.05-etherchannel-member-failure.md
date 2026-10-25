@@ -64,4 +64,4 @@ The first, one-sided attempt produced unresolved sustained connectivity loss. Th
 
 ---
 
-[◀ Test evidence](README.md) · [Session record ▶](10.05-session-record.md)
+[◀ Test evidence](README.md) · [Session record ▶](10.05-session-record.md) · [↑ Phase 10 Test Index](../README.md)

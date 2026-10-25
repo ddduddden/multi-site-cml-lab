@@ -109,4 +109,4 @@ Within those limits, the test demonstrated that either access Port-Channel could
 
 ---
 
-[◀ Test evidence](README.md) · [Mode A Po20 failure ▶](HQ-VP-10.06-mode-a-po20-access-uplink-failure.md) · [Po10 control](HQ-VP-10.06-mode-a-po10-no-impact-control.md) · [Mode B evidence](HQ-VP-10.06-mode-b-vlan112-setup-baseline.md) · [Recovery](HQ-VP-10.06-final-recovery-restored-baseline.md)
+[◀ Test evidence](README.md) · [Mode A Po20 failure ▶](HQ-VP-10.06-mode-a-po20-access-uplink-failure.md) · [Po10 control](HQ-VP-10.06-mode-a-po10-no-impact-control.md) · [Mode B evidence](HQ-VP-10.06-mode-b-vlan112-setup-baseline.md) · [Recovery](HQ-VP-10.06-final-recovery-restored-baseline.md) · [↑ Phase 10 Test Index](../README.md)

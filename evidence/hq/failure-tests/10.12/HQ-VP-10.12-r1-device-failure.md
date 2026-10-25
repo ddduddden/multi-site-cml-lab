@@ -55,4 +55,4 @@ The retained evidence supports surviving-router reachability and successful rest
 
 ---
 
-[◀ Test evidence](README.md) · [Retained CLI ▶](10.12-retained-cli-excerpt.md)
+[◀ Test evidence](README.md) · [Retained CLI ▶](10.12-retained-cli-excerpt.md) · [↑ Phase 10 Test Index](../README.md)

@@ -11,6 +11,8 @@ Phase 10 — Failure and Resilience Testing
 **Evidence commit:** [a8624b1](https://github.com/ddduddden/multi-site-cml-lab/commit/a8624b176298e3b0132daedf082c2aae0c704ebd)\
 **Related troubleshooting:** [HQ-TS-002 — IOSvL2 SVI state](../../../../docs/implementation/hq/troubleshooting.md#hq-ts-002--iosvl2-svi-state-during-layer-2-isolation)
 
+[![Start the featured orange route with the original test plan](https://img.shields.io/badge/FEATURED%20ORANGE%20ROUTE-START%20WITH%20THE%20TEST%20PLAN-bf6700?style=flat-square)](../../../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation)
+
 ## Test objective
 
 Verify how hq-d2 behaves when it loses both campus Layer 2 connections but keeps its routed uplinks. The test checks whether the VLAN gateway, SVI and OSPF routing state reflect the isolation, and whether traffic still has a working return path.
@@ -111,4 +113,6 @@ The hq-d2 VLAN160 SVI and connected route remained up, so hq-d2 continued advert
 
 ---
 
-[◀ Test evidence](README.md) · [Session record ▶](10.08-session-record.md) · [Recovery CLI](10.08-original-recovery-cli.md) · [Original event buffer](10.08-original-event-buffer.md)
+[![Orange route step 07 of 12 — next: SESSION RECORD](https://img.shields.io/badge/ORANGE%20ROUTE-07%2F12%20%20NEXT%3A%20SESSION%20RECORD-bf6700?style=flat-square)](10.08-session-record.md)
+
+[◀ Test evidence](README.md) · [Session record ▶](10.08-session-record.md) · [Recovery CLI](10.08-original-recovery-cli.md) · [Original event buffer](10.08-original-event-buffer.md) · [↑ Phase 10 Test Index](../README.md)

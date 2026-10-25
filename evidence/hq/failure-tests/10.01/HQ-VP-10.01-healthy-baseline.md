@@ -39,4 +39,4 @@ The hq-r2 Loopback0 baseline ping was also performed, but its result was not ret
 
 ---
 
-[◀ Test evidence](README.md) · [Baseline CLI ▶](10.01-hq-a1-baseline-cli.md)
+[◀ Test evidence](README.md) · [Baseline CLI ▶](10.01-hq-a1-baseline-cli.md) · [↑ Phase 10 Test Index](../README.md)

@@ -63,4 +63,4 @@ VLAN152 exercised the HSRP and STP failover for the VLAN group that prefers hq-d
 
 ---
 
-[◀ Test evidence](README.md) · [Retained CLI ▶](10.10-retained-cli-excerpt.md)
+[◀ Test evidence](README.md) · [Retained CLI ▶](10.10-retained-cli-excerpt.md) · [↑ Phase 10 Test Index](../README.md)

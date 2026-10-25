@@ -150,6 +150,8 @@ Resolved
 
 ## [←](#hq-ts-001--iosvl2-routing-mode-on-hq-a1) HQ-TS-002 — IOSvL2 SVI State During Layer-2 Isolation
 
+**Featured orange route — 10.08 investigation.** Continue through this troubleshooting record to the linked engineering conclusion below.
+
 **Opened:**
 `04-10-2026`
 
@@ -231,3 +233,7 @@ None. The unexpected result is being recorded as platform-specific behaviour rat
 Open — investigation complete; the observed SVI behaviour has not been corrected.
 
 [← Previous: HQ-TS-001](#hq-ts-001--iosvl2-routing-mode-on-hq-a1) | [↑ Troubleshooting Contents](#troubleshooting-contents) | [HQ Verification Plan →](verification-plan.md)
+
+[![Orange route step 11 of 12 — next: 10.08 ENGINEERING REVIEW](https://img.shields.io/badge/ORANGE%20ROUTE-11%2F12%20%20NEXT%3A%2010.08%20ENGINEERING%20REVIEW-bf6700?style=flat-square)](phase-10-engineering-review.md#layer-2-isolation-and-split-brain--hq-vp-1008)
+
+[↑ Phase 10 Test Index](../../../evidence/hq/failure-tests/README.md) · [← Original event buffer](../../../evidence/hq/failure-tests/10.08/10.08-original-event-buffer.md)

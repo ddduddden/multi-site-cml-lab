@@ -140,6 +140,8 @@ Confirm that a temporary source address is unused first. Switch sources one at a
 
 **Evidence.** [HQ-VP-10.04 report](../../../evidence/hq/failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md) · [Phase 10 index](../../../evidence/hq/failure-tests/README.md).
 
+[![Orange route step 01 of 12 — next: 10.04 TEST REPORT](https://img.shields.io/badge/ORANGE%20ROUTE-01%2F12%20%20NEXT%3A%2010.04%20TEST%20REPORT-bf6700?style=flat-square)](../../../evidence/hq/failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md)
+
 [← 10.03](#hq-vp-1003-routed-link-failure-detection) · [↑ Test matrix](#test-matrix) · [Next 10.05 →](#hq-vp-1005-po20-member-link-failure)
 
 ---
@@ -211,6 +213,8 @@ Confirm that a temporary source address is unused first. Switch sources one at a
 **Verification commands.** On `hq-d2`: `show ip interface brief`, `show standby brief`, `show interfaces trunk`, `show spanning-tree vlan 199`, `show ip route connected`, `show ip ospf neighbor`; on `hq-r2`: `show ip route 10.10.99.0`, `show ip cef 10.10.99.4`; on `hq-a1`: STP, VIP and sourced edge-loopback pings/IP SLA. Use Mode A (VLAN199). Record any alternative test source in the evidence.
 
 **Evidence.** [HQ-VP-10.08 report](../../../evidence/hq/failure-tests/10.08/HQ-VP-10.08-d2-layer2-isolation.md) · [Phase 10 index](../../../evidence/hq/failure-tests/README.md).
+
+[![Orange route step 06 of 12 — next: 10.08 TEST REPORT](https://img.shields.io/badge/ORANGE%20ROUTE-06%2F12%20%20NEXT%3A%2010.08%20TEST%20REPORT-bf6700?style=flat-square)](../../../evidence/hq/failure-tests/10.08/HQ-VP-10.08-d2-layer2-isolation.md)
 
 [← 10.07](#hq-vp-1007-progressive-po30-degradation-and-complete-loss) · [↑ Test matrix](#test-matrix) · [Next 10.09 →](#hq-vp-1009-active-gateway-loses-routed-uplinks)
 
