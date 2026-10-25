@@ -4,167 +4,113 @@
 
 Phase 10 — Failure and Resilience Testing
 
-**Evidence commit:** [`a8624b1`](https://github.com/ddduddden/multi-site-cml-lab/commit/a8624b176298e3b0132daedf082c2aae0c704ebd)
-Evidence: [captured CLI and session records](README.md)
-Related troubleshooting: [HQ-TS-002](../../../../docs/implementation/hq/troubleshooting.md#hq-ts-002--iosvl2-svi-state-during-layer-2-isolation)
+**Result: PASS**
 
-Starting state
---------------
+**Original test plan:** [HQ-VP-10.07 — Progressive Po30 degradation and complete loss](../../../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1007-progressive-po30-degradation-and-complete-loss)\
+**Evidence:** [Session record](10.07-session-record.md) · [Event log](10.07-event-log-verbatim-extract.md)\
+**Evidence commit:** [a8624b1](https://github.com/ddduddden/multi-site-cml-lab/commit/a8624b176298e3b0132daedf082c2aae0c704ebd)\
+**Related troubleshooting:** [HQ-TS-002 — IOSvL2 SVI state](../../../../docs/implementation/hq/troubleshooting.md#hq-ts-002--iosvl2-svi-state-during-layer-2-isolation)
 
-Po30 is the four-link EtherChannel between hq-d1 and hq-d2.
+## Test objective
 
-VLAN130 (SERVERS) was used for the test with temporary hq-a1 address
-10.10.30.4/25.
+Verify how Po30 behaves as its four physical links are progressively removed, including the effects on STP, Root Guard, HSRP and connectivity. Confirm that the normal operating state returns when the links are restored.
 
-Temporary-address availability check
-------------------------------------
+Po30 is the four-link EtherChannel between hq-d1 and hq-d2. I removed its members in stages, from four links down to zero, before restoring them one at a time.
 
-Before assigning 10.10.30.4/25 to hq-a1:
+## Healthy baseline
 
-- 10.10.30.4: 0/3 replies.
-- No ARP entry was present.
+VLAN130 (SERVERS) was used for the test with a temporary address of 10.10.30.4/25 on hq-a1.
 
-Clean IP SLA baseline:
+Before assigning the address, I checked its availability. The ping returned 0/3 replies and there was no ARP entry.
+
+The initial IP SLA readings were:
 
 - SLA101: 30 successful probes / 0 failures.
 - SLA102: 35 successful probes / 0 failures.
 
-4 -> 3 links
-------------
+## Progressive Po30 failure
 
-The Gi1/3 link was removed at both ends.
+### Four to three links
 
-Po30 stayed up with three links bundled. STP showed no inconsistent ports and
-neither SLA probe recorded a failure.
+I shut Gi1/3 at both ends of Po30.
 
-3 -> 2 links
-------------
+Po30 stayed up with three members bundled. STP showed no inconsistent ports, and neither SLA probe recorded a failure.
 
-Gi1/2 was removed next.
+### Three to two links
 
-Po30 stayed up with two links bundled and STP still showed no inconsistent
-ports.
+I shut Gi1/2 next.
+
+Po30 remained up with two members bundled, and STP still showed no inconsistent ports.
 
 - SLA101: 4 failed samples.
 - SLA102: 0 failed samples.
 
-A return-path check from hq-r2 to 10.10.30.4 used Gi0/3 with next hop
-10.255.10.18, so that checked return flow was going through hq-d2 and Po30.
+A return-path check from hq-r2 to 10.10.30.4 selected Gi0/3, with next hop 10.255.10.18. This supported the checked return flow passing through hq-d2 and Po30.
 
-2 -> 1 link
------------
+### Two to one link
 
-Gi1/1 was removed next, leaving Gi1/0 as the only Po30 member.
+I shut Gi1/1, leaving Gi1/0 as the only Po30 member.
 
-Po30 stayed up, but its STP cost changed from 3 to 4.
+Po30 stayed up, but its STP cost increased from 3 to 4. For VLAN130, hq-d2 still reached the root through Po30 at cost 4. hq-a1 already had a cost of 3 through hq-d1, so hq-a1 Po20 became the designated port and sent hq-d2 a superior BPDU.
 
-For VLAN130, hq-d2 still reached the root through Po30 at cost 4. hq-a1 already
-had a cost of 3 through hq-d1, so hq-a1 Po20 became the designated port and sent
-hq-d2 a superior BPDU.
+Root Guard placed hq-d2 Po20 and hq-d1 Po10 into root-inconsistent state for the VLANs rooted on the opposite distribution switch.
 
-Root Guard then put hq-d2 Po20 into root-inconsistent state for the VLANs rooted
-on hq-d1. The same thing happened in the other direction on hq-d1 for the VLANs
-rooted on hq-d2.
+At this stage, SLA101 had 11 cumulative failed samples while SLA102 still had none.
 
-Root Guard was active on:
+The logs also showed a brief HSRP state change on Vlan160. The event is retained in the raw evidence, but its cause was not established.
 
-- hq-d2 Po20: VLANs 112, 130, 152, 170 and 190.
-- hq-d1 Po10: VLANs 120, 140, 160 and 199.
+### One to zero links
 
-At this stage:
+I removed the final Po30 member, Gi1/0.
 
-- SLA101: 11 cumulative failed samples.
-- SLA102: 0 failed samples.
+The resulting state showed:
 
-The logs also show a brief HSRP state change on Vlan160 during this part of the
-test. It is kept in the raw evidence, but no cause was proved.
+- Po30 down, with all four members down.
+- Root Guard still blocking the access-facing path between the distribution switches.
+- VLAN120 and VLAN130 SVIs still reporting up/up in IOSvL2.
+- HSRP peer communication lost, with both distribution switches locally Active for affected groups because they could no longer see each other.
 
-1 -> 0 links
-------------
-
-The final Po30 member was removed.
-
-At this point:
-
-- Po30 was down.
-- All four Po30 links were down.
-- Root Guard still blocked the access-facing path between the distribution
-  switches.
-- VLAN120 and VLAN130 SVIs still showed up/up in IOSvL2.
-- HSRP peer communication was lost.
-- Both distribution switches became locally Active for affected groups because
-  they could no longer see the peer.
-
-VLAN130 checks from hq-a1:
+VLAN130 checks from hq-a1 confirmed the split:
 
 - hq-d1 SVI 10.10.30.2: 5/5 replies.
 - hq-d2 SVI 10.10.30.3: 0/5 replies.
+- SLA101: latest result Timeout.
+- SLA102: latest result OK.
 
-SLA101 went into Timeout while SLA102 remained OK.
+Although hq-a1 still had links to both distribution switches, Root Guard prevented it from becoming an unintended Layer 2 transit path when Po30 was lost. The two sides therefore remained separated at Layer 2.
 
-The access switch still had links to both distribution switches. With Po30 gone,
-Root Guard correctly stopped hq-a1 becoming an unintended transit path between
-them, so the two sides were split at Layer 2.
+The SLA101 failure was consistent with the return-path blackhole demonstrated in [10.08](../10.08/HQ-VP-10.08-d2-layer2-isolation.md), although hq-r2's VLAN130 route was not captured at the zero-link checkpoint in 10.07.
 
-The SLA101 failure is consistent with the return-path blackhole proved in 10.08.
-Not captured: hq-r2's VLAN130 route at the zero-link checkpoint in 10.07.
+## Recovery
 
-Recovery
---------
+I restored the Po30 members one at a time.
 
-The Po30 links were restored one at a time.
+With the first link back, Po30 formed again and the HSRP peers could see each other. Root Guard remained active because the one-link Po30 cost was still 4. SLA101 added 55 failed samples between the last zero-link check and the first check after restoration began.
 
-With the first link back:
-
-- Po30 came back up.
-- The HSRP peers could see each other again.
-- Root Guard remained because the one-link Po30 cost was still 4.
-- SLA101 added 55 failed samples between the last zero-link check and the first
-  check after the link returned.
-
-With the second link back:
-
-- Po30 cost returned to 3.
-- Root Guard cleared.
-- Normal STP roles returned.
-- SLA101 added another 6 failed samples.
-
-The logs also show a brief HSRP state change on Vlan199 around this point. No
-cause was proved.
+The second link brought Po30's STP cost back to 3. Root Guard cleared and normal STP roles returned, although SLA101 had accumulated another 6 failed samples. The logs also recorded a brief HSRP state change on Vlan199 around this point; its cause was not established.
 
 Restoring the third link added another 6 failed SLA101 samples.
 
 With all four links restored:
 
-- Po30 was back to four bundled links.
+- Po30 had all four members bundled.
 - STP showed no inconsistent ports.
-- Normal VLAN120 and VLAN130 root paths were back.
+- Normal VLAN120 and VLAN130 root paths returned.
 - SLA101: 159 successful probes / 0 failures.
 - SLA102: 159 successful probes / 0 failures.
 
-The SLA counters appeared to reset during the long test. The session notes record
-this as an hourly statistics-bucket rollover rather than a device restart; the
-underlying rollover CLI was not retained.
+The SLA counters appeared to reset during the long test. The session notes attribute this to an hourly statistics-bucket rollover rather than a device restart, although the supporting rollover CLI was not retained.
 
-Result
-------
+## Result
 
-PASS. Po30 stayed usable with three, two and one physical link remaining.
+**PASS.** Po30 remained operational with three, two and one physical link bundled. As the bundle reduced to one member, the higher STP cost triggered Root Guard on the affected access-facing ports. When Po30 was completely lost, Root Guard prevented hq-a1 from becoming an unintended transit path between the distribution switches.
 
-With all Po30 members down, Root Guard correctly stopped hq-a1 becoming
-an unintended transit path between the distribution switches.
+The complete outage also separated the HSRP peers, left both distribution switches locally Active for affected groups and caused SLA101 to time out. The PASS confirms the observed EtherChannel and Root Guard behaviour, not uninterrupted routed connectivity throughout the test.
 
-Design notes
-------------
+Restoring Po30 brought back its four bundled links, the expected STP roles and successful SLA readings.
 
-Po30 gives member redundancy, but there is no second direct Layer-2 path
-between hq-d1 and hq-d2 in this topology. The two sides therefore stayed
-separated until Po30 was restored.
-
-A future campus revision could add a second direct
-inter-distribution Layer-2 path so the loss of one logical EtherChannel does not
-remove the only direct Layer-2 connection between the distribution switches.
+The test also confirmed that Po30 is the only direct Layer 2 connection between hq-d1 and hq-d2.
 
 ---
 
-[◀ Evidence index](README.md) · [↑ Test evidence](README.md) · [Next record ▶](10.07-session-record.md)
+[◀ Test evidence](README.md) · [Session record ▶](10.07-session-record.md) · [Event log](10.07-event-log-verbatim-extract.md)
