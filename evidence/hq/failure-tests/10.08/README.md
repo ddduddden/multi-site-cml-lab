@@ -6,6 +6,8 @@ Start with the [test report](HQ-VP-10.08-d2-layer2-isolation.md), then follow th
 
 **Planned checks:** [HQ-VP-10.08](../../../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation)
 
+[Follow the Evidence — guided investigation](../../README.md#follow-the-evidence)
+
 ## Captures and session records
 
 | Order | Capture / record | Purpose |

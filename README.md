@@ -125,6 +125,8 @@ Explore the topology, routed paths<br>and selected failure scenarios.
 
 ## HQ Campus Overview
 
+🟩 **2-MINUTE ROUTE · HQ OVERVIEW**
+
 The HQ campus forms the foundation of a planned multi-site enterprise network, built around a five-device, two-tier collapsed-core topology consisting of two edge routers (`hq-r1`, `hq-r2`), two Multilayer Distribution Switches (`hq-d1`, `hq-d2`) and one access switch (`hq-a1`). HQ operates in OSPF Area 10, with its routing and addressing architecture designed from the outset to support a future Branch Campus in Area 20, connected through an Area 0 backbone.
 
 Built in Cisco Modeling Labs using VMware Workstation on Windows 11, HQ operates within the CML Free five-node limit. The wider home lab includes a second CML-capable computer, physical network infrastructure and Raspberry Pis planned for supporting services. Both CML hosts will eventually support separate campuses connected through the home network.
@@ -149,10 +151,6 @@ LACP provides redundancy within Layer 2 EtherChannels, while OSPF uses independe
 I developed HQ through eleven documented phases, progressing from VLANs and campus switching to gateway redundancy, OSPF routing, ECMP and deliberate cost engineering. Each stage has supporting verification records, with Phase 10 bringing the separate technologies together for controlled resilience testing.
 
 The tests demonstrated working alternative routes and access paths, while also exposing limitations in the inter-distribution connection, HSRP upstream tracking and Layer 2 isolation behaviour. The resulting findings are retained alongside the original evidence. Phase 11 configuration and operational checks are documented, with final acceptance still under review.
-
-**🟩 2-MINUTE ROUTE — RETURN TO ROUTE SELECTOR**
-
-[![Choose Another Route ↗](https://img.shields.io/badge/CHOOSE%20ANOTHER%20ROUTE%20%E2%86%97-C2185B?style=flat-square)](#explore-the-hq-project)
 
 ## Implementation Progress
 

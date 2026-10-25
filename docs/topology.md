@@ -2,50 +2,14 @@
 
 [Portfolio](../README.md) / [Documentation](README.md) / Physical Network Topology
 
-This diagram represents the current physical infrastructure supporting the multi-site Cisco Modeling Labs environment.
+This diagram represents the current physical infrastructure supporting the multi-site Cisco Modeling Labs environment. The Raspberry Pi 5 is shown as installed hardware; its automation, monitoring and NAS services are planned work. The separate Raspberry Pi 3B+ DNS server is also planned and is not shown as an installed connection.
 
-```text
-                                              INTERNET
-                                                 |
-                                                 |
-                                                ISP
-                                                 |
-                                            Fibre / FTTP
-                                                 |
-                                                 |
-                                                ONT
-                                                 |
-                                             Ethernet WAN
-                                                 |
-                                                 |
-                                          ASUS RT-BE92U
-                                    Primary Router / Gateway
-                    _____________________________|_____________________________
-                   |                             |                             |
-                   |                             |                             |
-                 1 GbE                        1 GbE                    6 GHz Wi-Fi 7
-                   |                             |                      IEEE 802.11be
-                   |                             |                 AiMesh Wireless Backhaul
-                   |                             |                             |
-                   |                             |                             |
-            CML SERVER 1                 RASPBERRY PI 5                ASUS TUF BE9400
-            Laptop                       Automation Server              AiMesh Node
-            Intel Core i5-9300H          8 GB RAM                             |
-            16 GB RAM                    240 GB NVMe                          |
-            Windows 11                   2 TB SSD                             | 2.5 GbE
-            VMware Workstation           Network automation                   |
-            Cisco Modeling Labs          Ansible / Python                     |
-            Management IP:               SNMP trap receiver             CML SERVER 2
-            192.168.50.172               NAS services                   Desktop
-                                                                        AMD Ryzen 9 5900X
-                                                                        32 GB RAM
-                                                                        1 TB NVMe SSD
-                                                                        Windows 11
-                                                                        VMware Workstation
-                                                                        Cisco Modeling Labs
-                                                                        5 GbE-capable NIC
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../diagrams/physical-network-topology-dark.svg">
+  <img src="../diagrams/physical-network-topology.svg" alt="Physical home-lab topology showing internet, ISP, ONT, ASUS RT-BE92U router, six-gigahertz AiMesh backhaul, ASUS TUF BE9400 node, two CML servers and Raspberry Pi 5">
+</picture>
 
-```
+[Open full-size physical topology](../diagrams/physical-network-topology.svg) · [Dark version](../diagrams/physical-network-topology-dark.svg) · [Network diagram gallery](../diagrams/README.md#physical-network-topology)
 
 ## Connectivity Notes
 

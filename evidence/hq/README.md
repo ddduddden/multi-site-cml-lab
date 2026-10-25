@@ -2,29 +2,22 @@
 
 [Portfolio](../../README.md) / [Verification Evidence](../README.md) / HQ Evidence Map
 
-Use this index to find a check, open its evidence and return to the verification record. Phase 10 has separate test reports and planned acceptance criteria.
+Use this index to find a check, open its evidence and return to the verification record. Phase 10 retains the original results and supporting captures.
 
-The HQ build was verified in stages before Phase 10 brought the technologies together under controlled failure conditions. I retained the test reports, CLI captures and session records so the results could be examined alongside the original expectations.
+## Follow the Evidence
 
-If you only have time for two tests, these are good places to start.
+Two contrasting results, one six-stage investigation. **10.04 passed** after OSPF selected a higher-cost alternative and recovered its preferred route. **10.08 failed** when IOSvL2 kept an isolated VLAN interface operational, leaving an unusable return path.
 
-**[HQ-VP-10.04 — Cross-Link Failure (PASS)](failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md)**
+| Start | What you will see |
+|---|---|
+| **[🟧 Start with 10.04 — PASS](../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1004-cross-link-loss-and-higher-cost-alternate)** | Begin at **01/06**, follow 10.04's plan, result and routing analysis, then continue into 10.08 |
+| **[🟧 Jump straight to 10.08 — FAIL](../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation)** | Enter at **04/06**, follow the isolation report and session evidence, then open the interactive scenario |
 
-See how OSPF selected an alternative higher-cost route after a cross-link failure, then returned to the preferred route when connectivity was restored.
+**The six stops:** 10.04 test plan → report → routing review → 10.08 test plan → report → session investigation → [interactive 10.08 scenario](https://dominicdudden.co.uk/hq-vp-10-08/index.html#step-1).
 
-**[HQ-VP-10.08 — Layer 2 Isolation (FAIL)](failure-tests/10.08/HQ-VP-10.08-d2-layer2-isolation.md)**
+Every stage has Previous and Next links; original CLI, troubleshooting and engineering references remain optional. The interactive animations explain the observations, while the retained evidence remains here in GitHub.
 
-Follow the investigation into why healthy-looking HSRP and OSPF states did not guarantee a working return path, and how the routing and CEF evidence helped explain the traffic loss.
-
-You can also watch selected test scenarios play out on the [interactive HQ topology](https://dominicdudden.co.uk). The animated walkthroughs help explain the recorded behaviour, while the original reports and CLI captures remain here in GitHub.
-
-**Feel free to dig deeper.** The full evidence index covers every phase, with links to the verification records, retained captures and supporting notes. I've kept the unexpected results and evidence limitations alongside the successful tests so readers can examine the findings for themselves.
-
-**🟧 10-MINUTE ROUTE — FOLLOW THE EVIDENCE**
-
-[![Test Planning](https://img.shields.io/badge/Test%20Planning-bf6700?style=flat-square)](../../docs/implementation/hq/phase-10-test-plan.md) &emsp;<sup>➜</sup>&emsp; [![Verification Records](https://img.shields.io/badge/Verification%20Records-bf6700?style=flat-square)](../../docs/implementation/hq/verification-plan.md) &emsp;<sup>➜</sup>&emsp; [![Test Results and Captures](https://img.shields.io/badge/Test%20Results%20and%20Captures-bf6700?style=flat-square)](failure-tests/README.md) &emsp;<sup>➜</sup>&emsp; [![Engineering Findings](https://img.shields.io/badge/Engineering%20Findings-bf6700?style=flat-square)](../../docs/implementation/hq/phase-10-engineering-review.md) &emsp;<sup>➜</sup>&emsp; [![Final Acceptance](https://img.shields.io/badge/Final%20Acceptance-bf6700?style=flat-square)](../../docs/implementation/hq/phase-11-final-acceptance.md)
-
-[![Choose Another Route ↗](https://img.shields.io/badge/CHOOSE%20ANOTHER%20ROUTE%20%E2%86%97-C2185B?style=flat-square)](../../README.md#explore-the-hq-project)
+[Phase 10 complete test index](failure-tests/README.md) · [HQ Engineering Review](../../docs/implementation/hq/phase-10-engineering-review.md) · [Choose another portfolio route](../../README.md#explore-the-hq-project)
 
 ## Browse by Area
 

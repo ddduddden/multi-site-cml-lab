@@ -6,7 +6,7 @@
 |---|---|
 | [High-level HQ campus topology](#high-level-topology) | [HQ Campus Design](../docs/hq-campus-design.md) |
 | [Detailed HQ campus topology and VLANs](#detailed-topology) | [HQ Campus Design](../docs/hq-campus-design.md) |
-| [Physical network topology](../docs/topology.md) | [Network Plan](../docs/network-plan.md) |
+| [Physical network topology](#physical-network-topology) | [Physical Topology](../docs/topology.md) · [Network Plan](../docs/network-plan.md) |
 
 ## High-level topology
 
@@ -31,6 +31,19 @@ Interface and /31 addressing, VLAN allocations, gateway roles, STP root-port sel
 </picture>
 
 [Open detailed SVG at full size](hq-campus-area10-topology-detailed.svg) · [Dark version](hq-campus-area10-topology-detailed-dark.svg) · [↑ High-level topology](#high-level-topology)
+
+---
+
+## Physical network topology
+
+The physical home-lab connections between the FTTP gateway, two CML hosts, Raspberry Pi 5 and AiMesh backhaul. Service roles labelled as planned are not yet deployed.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="physical-network-topology-dark.svg">
+  <img src="physical-network-topology.svg" alt="Physical network topology showing the FTTP connection, ASUS router and AiMesh node, two CML hosts and Raspberry Pi 5">
+</picture>
+
+[Open physical SVG at full size](physical-network-topology.svg) · [Dark version](physical-network-topology-dark.svg) · [Physical connections and notes](../docs/topology.md) · [↑ High-level topology](#high-level-topology)
 
 ---
 

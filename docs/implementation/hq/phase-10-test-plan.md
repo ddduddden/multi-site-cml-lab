@@ -43,9 +43,7 @@ This plan records the test objectives and acceptance expectations set before exe
 | [10.13](#hq-vp-1013-diagonal-double-device-failure) | Diagonal double-device failure | Settled-state traffic through diagonal pair | [HQ-VP-10.13 report](../../../evidence/hq/failure-tests/10.13/HQ-VP-10.13-diagonal-double-failure.md) |
 | [10.14](#hq-vp-1014-final-restoration-and-hygiene) | Final restoration and hygiene | Forwarding, control plane and config restored | [HQ-VP-10.14 report](../../../evidence/hq/failure-tests/10.14/HQ-VP-10.14-final-restoration.md) |
 
-**🟧 10-MINUTE ROUTE — CONTINUE READING**
-
-[![Verification Records](https://img.shields.io/badge/Verification%20Records-bf6700?style=flat-square)](verification-plan.md) &emsp;<sup>➜</sup>&emsp; [![Test Results and Captures](https://img.shields.io/badge/Test%20Results%20and%20Captures-bf6700?style=flat-square)](../../../evidence/hq/failure-tests/README.md)
+[Follow the Evidence — guided investigation](../../../evidence/hq/README.md#follow-the-evidence)
 
 [![Choose Another Route ↗](https://img.shields.io/badge/CHOOSE%20ANOTHER%20ROUTE%20%E2%86%97-C2185B?style=flat-square)](../../../README.md#explore-the-hq-project)
 
@@ -128,6 +126,11 @@ Confirm that a temporary source address is unused first. Switch sources one at a
 
 ### HQ-VP-10.04: Cross-link loss and higher-cost alternate
 
+**🟧 FOLLOW THE EVIDENCE · 01/06**
+
+[![Orange previous arrow](../../../diagrams/orange-previous.svg)](../../../evidence/hq/README.md#follow-the-evidence) [Previous · Evidence Map](../../../evidence/hq/README.md#follow-the-evidence) &emsp; [Next · 10.04 test report](../../../evidence/hq/failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md) [![Orange next arrow](../../../diagrams/orange-next.svg)](../../../evidence/hq/failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md)
+
+
 **Objective.** Check that the topology retains a valid route when the normal `hq-d2`→`hq-r1` cross-link fails.
 
 **Fault injection.** Shut `hq-r1 Gi0/4` (paired with `hq-d2 Gi3/0`), collect routing and probes, then restore it.
@@ -140,7 +143,10 @@ Confirm that a temporary source address is unused first. Switch sources one at a
 
 **Evidence.** [HQ-VP-10.04 report](../../../evidence/hq/failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md) · [Phase 10 index](../../../evidence/hq/failure-tests/README.md).
 
-[![Orange route step 01 of 12 — next: 10.04 TEST REPORT](https://img.shields.io/badge/ORANGE%20ROUTE-01%2F12%20%20NEXT%3A%2010.04%20TEST%20REPORT-bf6700?style=flat-square)](../../../evidence/hq/failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md)
+**🟧 NEXT STEP — 10.04 test report**
+
+[Continue to 10.04 test report](../../../evidence/hq/failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md) [![Orange next arrow](../../../diagrams/orange-next.svg)](../../../evidence/hq/failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md)
+
 
 [← 10.03](#hq-vp-1003-routed-link-failure-detection) · [↑ Test matrix](#test-matrix) · [Next 10.05 →](#hq-vp-1005-po20-member-link-failure)
 
@@ -202,6 +208,11 @@ Confirm that a temporary source address is unused first. Switch sources one at a
 
 ### HQ-VP-10.08: Distribution Layer 2 isolation
 
+**🟧 FOLLOW THE EVIDENCE · 04/06**
+
+[![Orange previous arrow](../../../diagrams/orange-previous.svg)](phase-10-engineering-review.md#routed-paths--hq-vp-10021004) [Previous · 10.04 engineering review](phase-10-engineering-review.md#routed-paths--hq-vp-10021004) &emsp; [Next · 10.08 test report](../../../evidence/hq/failure-tests/10.08/HQ-VP-10.08-d2-layer2-isolation.md) [![Orange next arrow](../../../diagrams/orange-next.svg)](../../../evidence/hq/failure-tests/10.08/HQ-VP-10.08-d2-layer2-isolation.md)
+
+
 **Objective.** Test whether a distribution switch that loses every campus Layer 2 connection stops presenting itself as a usable VLAN gateway and routed return path.
 
 **Fault injection.** Shut both `hq-d2 Po20` and `Po30`, leaving all five routed uplinks operational. Check the VLAN gateway and the edge-loopback probes, then restore both Port-Channels.
@@ -214,7 +225,10 @@ Confirm that a temporary source address is unused first. Switch sources one at a
 
 **Evidence.** [HQ-VP-10.08 report](../../../evidence/hq/failure-tests/10.08/HQ-VP-10.08-d2-layer2-isolation.md) · [Phase 10 index](../../../evidence/hq/failure-tests/README.md).
 
-[![Orange route step 06 of 12 — next: 10.08 TEST REPORT](https://img.shields.io/badge/ORANGE%20ROUTE-06%2F12%20%20NEXT%3A%2010.08%20TEST%20REPORT-bf6700?style=flat-square)](../../../evidence/hq/failure-tests/10.08/HQ-VP-10.08-d2-layer2-isolation.md)
+**🟧 NEXT STEP — 10.08 test report**
+
+[Continue to 10.08 test report](../../../evidence/hq/failure-tests/10.08/HQ-VP-10.08-d2-layer2-isolation.md) [![Orange next arrow](../../../diagrams/orange-next.svg)](../../../evidence/hq/failure-tests/10.08/HQ-VP-10.08-d2-layer2-isolation.md)
+
 
 [← 10.07](#hq-vp-1007-progressive-po30-degradation-and-complete-loss) · [↑ Test matrix](#test-matrix) · [Next 10.09 →](#hq-vp-1009-active-gateway-loses-routed-uplinks)
 

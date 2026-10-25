@@ -51,9 +51,7 @@ Browse the [HQ Evidence Map](../../../evidence/hq/README.md) for the complete ev
 
 ## Contents
 
-**🟧 10-MINUTE ROUTE — CONTINUE READING**
-
-[![Test Results and Captures](https://img.shields.io/badge/Test%20Results%20and%20Captures-bf6700?style=flat-square)](../../../evidence/hq/failure-tests/README.md)
+[Follow the Evidence — guided investigation](../../../evidence/hq/README.md#follow-the-evidence)
 
 [← Test planning](phase-10-test-plan.md)
 

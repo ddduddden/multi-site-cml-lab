@@ -22,13 +22,22 @@ Phase 10 tested how the as-built HQ campus behaved when links and devices failed
 
 ## Routed paths | HQ-VP-10.02–10.04
 
+**🟧 FOLLOW THE EVIDENCE · 03/06**
+
+[![Orange previous arrow](../../../diagrams/orange-previous.svg)](../../../evidence/hq/failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md) [Previous · 10.04 report](../../../evidence/hq/failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md) &emsp; [Next · 10.08 test plan](phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation) [![Orange next arrow](../../../diagrams/orange-next.svg)](phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation)
+
+
 *Evidence: [HQ-VP-10.02–10.03](../../../evidence/hq/failure-tests/10.02-10.03/HQ-VP-10.02-10.03-routed-link-ecmp.md) · [HQ-VP-10.04](../../../evidence/hq/failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md)*
 
 Removing one routed ECMP link reduced the number of equal-cost paths, but the destination was still reachable through the remaining links. When the normal cross-link failed, OSPF used the surviving higher-cost route. On hq-d2, the route to hq-r1 Loopback0 changed from metric 101 to 121, then returned to 101 when the link was restored.
 
 This supported my cost design from Phase 09: the planned alternate links were there when needed, but did not become the preferred paths during normal operation. IP SLA recorded some failed samples while the route changed, so the switchover was not loss-free. The alternate route worked, and the original route returned after recovery.
 
-[![Orange route step 05 of 12 — next: 10.08 ORIGINAL TEST PLAN](https://img.shields.io/badge/ORANGE%20ROUTE-05%2F12%20%20NEXT%3A%2010.08%20ORIGINAL%20TEST%20PLAN-bf6700?style=flat-square)](phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation)
+**🟧 NEXT STEP — 10.08 original test plan**
+
+[Continue to 10.08 original test plan](phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation) [![Orange next arrow](../../../diagrams/orange-next.svg)](phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation)
+
+**Optional interactive walkthrough:** [Launch 10.04 scenario](https://dominicdudden.co.uk/hq-vp-10-04/index.html#step-1).
 
 ## Access member and uplink failures | HQ-VP-10.05–10.06
 
@@ -67,8 +76,6 @@ I went away and read Cisco's documentation on Catalyst SVI autostate to understa
 This was one of the main learning points for me. It went beyond the straightforward failover examples from my CCNA study. The two locally Active HSRP states showed the split-brain condition, but they did not explain the different traffic results. Understanding that meant checking the SVI state, OSPF advertisement and hq-r2’s selected return route.
 
 The network recovered once the links were restored, but the test had exposed a gap in traffic continuity despite the gateway remaining reachable.
-
-[![Orange route step 12 of 12 — next: RETURN TO INTERACTIVE PORTFOLIO](https://img.shields.io/badge/ORANGE%20ROUTE-12%2F12%20%20NEXT%3A%20RETURN%20TO%20INTERACTIVE%20PORTFOLIO-bf6700?style=flat-square)](https://dominicdudden.co.uk/)
 
 [↑ Phase 10 Test Index](../../../evidence/hq/failure-tests/README.md) · [← HQ-TS-002 investigation](troubleshooting.md#hq-ts-002--iosvl2-svi-state-during-layer-2-isolation)
 
@@ -119,9 +126,7 @@ The HQ design provided useful resilience during the tested routed-link, EtherCha
 
 The most useful part of this phase for me was working out why traffic stopped during those failures. It showed what worked, where the lab image behaved differently from normal Catalyst SVI autostate and what I want to address in a later revision. The fault tests and final configuration close-out are complete; the 10.08 failure and 10.12 inconclusive coverage remain documented in their reports. Availability and precise convergence times were not measured.
 
-**🟧 10-MINUTE ROUTE — CONTINUE READING**
-
-[![Final Acceptance](https://img.shields.io/badge/Final%20Acceptance-bf6700?style=flat-square)](phase-11-final-acceptance.md)
+[Follow the Evidence — guided investigation](../../../evidence/hq/README.md#follow-the-evidence)
 
 [![Choose Another Route ↗](https://img.shields.io/badge/CHOOSE%20ANOTHER%20ROUTE%20%E2%86%97-C2185B?style=flat-square)](../../../README.md#explore-the-hq-project)
 

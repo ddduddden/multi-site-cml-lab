@@ -2,6 +2,11 @@
 
 # HQ-VP-10.04 — Cross-Link Failure
 
+**🟧 FOLLOW THE EVIDENCE · 02/06**
+
+[![Orange previous arrow](../../../../diagrams/orange-previous.svg)](../../../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1004-cross-link-loss-and-higher-cost-alternate) [Previous · 10.04 test plan](../../../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1004-cross-link-loss-and-higher-cost-alternate) &emsp; [Next · 10.04 engineering review](../../../../docs/implementation/hq/phase-10-engineering-review.md#routed-paths--hq-vp-10021004) [![Orange next arrow](../../../../diagrams/orange-next.svg)](../../../../docs/implementation/hq/phase-10-engineering-review.md#routed-paths--hq-vp-10021004)
+
+
 Phase 10 — Failure and Resilience Testing
 
 **Result: PASS**
@@ -9,8 +14,6 @@ Phase 10 — Failure and Resilience Testing
 **Original test plan:** [HQ-VP-10.04 — Cross-link loss and higher-cost alternate](../../../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1004-cross-link-loss-and-higher-cost-alternate)\
 **Evidence:** [Failure CLI](10.04-failure.md) · [Recovery CLI](10.04-recovery.md)\
 **Evidence commit:** [a8624b1](https://github.com/ddduddden/multi-site-cml-lab/commit/a8624b176298e3b0132daedf082c2aae0c704ebd)
-
-[![Start the featured orange route with the original test plan](https://img.shields.io/badge/FEATURED%20ORANGE%20ROUTE-START%20WITH%20THE%20TEST%20PLAN-bf6700?style=flat-square)](../../../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1004-cross-link-loss-and-higher-cost-alternate)
 
 ## Test objective
 
@@ -91,6 +94,8 @@ The routing and CEF captures confirmed that the Phase 09 cost engineering worked
 
 ---
 
-[![Orange route step 02 of 12 — next: FAILURE CLI](https://img.shields.io/badge/ORANGE%20ROUTE-02%2F12%20%20NEXT%3A%20FAILURE%20CLI-bf6700?style=flat-square)](10.04-failure.md)
+**🟧 NEXT STEP — 10.04 engineering review**
+
+[Continue to 10.04 engineering review](../../../../docs/implementation/hq/phase-10-engineering-review.md#routed-paths--hq-vp-10021004) [![Orange next arrow](../../../../diagrams/orange-next.svg)](../../../../docs/implementation/hq/phase-10-engineering-review.md#routed-paths--hq-vp-10021004)
 
 [◀ Test evidence](README.md) · [Failure CLI ▶](10.04-failure.md) · [Recovery CLI](10.04-recovery.md) · [Engineering Review](../../../../docs/implementation/hq/phase-10-engineering-review.md#routed-paths--hq-vp-10021004) · [↑ Phase 10 Test Index](../README.md)
