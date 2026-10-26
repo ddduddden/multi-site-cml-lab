@@ -51,7 +51,7 @@ Browse the [HQ Evidence Map](../../../evidence/hq/README.md) for the complete ev
 
 ## Contents
 
-[Follow the Evidence — guided investigation](../../../evidence/hq/README.md#follow-the-evidence)
+[Explore the Test Investigations](../../../evidence/hq/README.md#follow-the-evidence)
 
 [← Test planning](phase-10-test-plan.md)
 
@@ -1191,6 +1191,10 @@ The five-way metric-`111` loopback case is verified separately in `HQ-VP-08.05`.
 
 ### Higher-Cost Alternate Activation — HQ-VP-09.02
 
+<a href="../../hq-campus-design.md#intended-behaviour-during-routed-link-failures" title="Previous: Stop 1 · Design intent" aria-label="Previous: Stop 1 · Design intent"><img src="../../../diagrams/orange-previous.svg" alt="" width="30" height="26"></a> **🟧 10-MINUTE ROUTE · EXPLORE THE EVIDENCE · 02/07** <a href="phase-10-test-plan.md" title="Next: Stop 3 · Phase 10 test plan" aria-label="Next: Stop 3 · Phase 10 test plan"><img src="../../../diagrams/orange-next.svg" alt="" width="30" height="26"></a>
+
+*Phase verification.* Every Phase 01–09 check is recorded in this format, with a Git commit for each phase. Here Phase 09 removes each four-link direct set to exercise the cross-links from Stop 1. Read *Expected result* and *Observed result*. Matching build-log entry: [Phase 09](build-log.md#phase-09--ospf-cost-engineering). About 1 minute.
+
 **Objective:**\
 Confirm that removing a complete four-link direct set causes OSPF to use the surviving higher-cost alternate route, while traffic remains reachable through the opposite edge/distribution pair.
 
@@ -1217,6 +1221,8 @@ Verified
 
 **Notes / Troubleshooting:**\
 HSRP state was captured during the `hq-r1`↔`hq-d1` test. During the mirrored `hq-r2`↔`hq-d2` test, one traceroute probe showed `*`; the same alternate hops remained visible and the selected route and `10/10` reachability were stable. Complete routed-uplink isolation of an Active HSRP distribution switch was tested in [HQ-VP-10.09](../../../evidence/hq/failure-tests/10.09/HQ-VP-10.09-d2-routed-isolation.md).
+
+🟧 **NEXT STEP —** [Stop 3 · Phase 10 test plan](phase-10-test-plan.md) [![Next stop](../../../diagrams/orange-next.svg)](phase-10-test-plan.md)
 
 ---
 

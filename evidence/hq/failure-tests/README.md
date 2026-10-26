@@ -1,5 +1,9 @@
 # Phase 10 — Failure and Resilience Testing
 
+<a href="../../../docs/implementation/hq/phase-10-test-plan.md" title="Previous: Stop 3 · Phase 10 test plan" aria-label="Previous: Stop 3 · Phase 10 test plan"><img src="../../../diagrams/orange-previous.svg" alt="" width="30" height="26"></a> **🟧 10-MINUTE ROUTE · EXPLORE THE EVIDENCE · 04/07** <a href="10.02-10.03/HQ-VP-10.02-10.03-routed-link-ecmp.md" title="Next: Stop 5 · A test report and its CLI" aria-label="Next: Stop 5 · A test report and its CLI"><img src="../../../diagrams/orange-next.svg" alt="" width="30" height="26"></a>
+
+*Recorded results.* All 14 test IDs, including the FAIL and the INCONCLUSIVE. Scan the table and read the notes. 10.04 and 10.08 are followed in depth in the Test Investigations at the end of the route. About 1½ minutes.
+
 Phase 10 evaluates the resilience of the HQ network under individual link failures, EtherChannel degradation, device outages and combined failure conditions.
 
 Failure testing took place from 03-10-2026 to 06-10-2026, with final configuration reconciliation completed on 12-10-2026. Results are supported by summarised evidence, retained CLI captures and session records.
@@ -56,7 +60,9 @@ The notes below the table provide important context for interpreting the results
 
 **HQ-VP-10.14 — Final restoration:** The forwarding baseline recovered on 06-10-2026. Final five-device configuration comparisons, the hq-a1 logging reset and a private CML export were completed on 12-10-2026. See the retained [configuration close-out evidence](10.14/10.14-config-excerpts.md).
 
-[Follow the Evidence — guided investigation](../README.md#follow-the-evidence) · [Engineering review](../../../docs/implementation/hq/phase-10-engineering-review.md) · [Final acceptance](../../../docs/implementation/hq/phase-11-final-acceptance.md)
+🟧 **NEXT STEP —** [Stop 5 · A test report and its CLI](10.02-10.03/HQ-VP-10.02-10.03-routed-link-ecmp.md) [![Next stop](../../../diagrams/orange-next.svg)](10.02-10.03/HQ-VP-10.02-10.03-routed-link-ecmp.md)
+
+[Explore the Test Investigations](../README.md#follow-the-evidence) · [Engineering review](../../../docs/implementation/hq/phase-10-engineering-review.md) · [Final acceptance](../../../docs/implementation/hq/phase-11-final-acceptance.md)
 
 [![Choose Another Route ↗](https://img.shields.io/badge/CHOOSE%20ANOTHER%20ROUTE%20%E2%86%97-C2185B?style=flat-square)](../../../README.md#explore-the-hq-project)
 

@@ -84,6 +84,10 @@ The startup finding is recorded separately from the Layer 2 isolation behaviour 
 
 ## Overall assessment
 
+<a href="phase-10-engineering-review.md#layer-2-isolation-and-split-brain--hq-vp-1008" title="Previous: Stop 6 · Troubleshooting and engineering review" aria-label="Previous: Stop 6 · Troubleshooting and engineering review"><img src="../../../diagrams/orange-previous.svg" alt="" width="30" height="26"></a> **🟧 10-MINUTE ROUTE · EXPLORE THE EVIDENCE · 07/07**
+
+*Final acceptance, limitations and future development.* Where HQ V1 stands at close-out and what the next revision would change. Open findings are listed under [Key findings](#key-findings). About 1 minute.
+
 The HQ build gave me a working campus to test beyond individual configuration exercises. The routed and access-path tests showed the alternate paths doing their job. Working through the isolation cases helped me understand how HSRP, spanning tree and the return route could combine to produce different traffic results.
 
 The build, failure testing and configuration close-out are complete. The reports record the working design and the findings I would carry into the next revision. HSRP upstream tracking would allow the gateway role to respond to a loss of upstream connectivity, while an independent inter-distribution connection would provide an alternative when Po30 is lost. Both changes would need to be tested during failure and recovery, with Root Guard retained on the access-facing Port-Channels.
@@ -97,5 +101,11 @@ Status: Final documentation and evidence review is in progress. Acceptance remai
 ---
 
 [← HQ Verification Plan](verification-plan.md) · [↑ HQ Implementation](README.md) · [Phase 10 Engineering Review →](phase-10-engineering-review.md)
+
+**END OF THE 10-MINUTE ROUTE**
+
+Follow two contrasting results in depth, explore the network visually, or choose another route.
+
+[![Explore the Test Investigations ↗](https://img.shields.io/badge/EXPLORE%20THE%20TEST%20INVESTIGATIONS%20%E2%86%97-bf6700?style=flat-square)](../../../evidence/hq/README.md#explore-the-test-investigations) [![Explore the Interactive Portfolio ↗](https://img.shields.io/badge/EXPLORE%20THE%20INTERACTIVE%20PORTFOLIO%20%E2%86%97-0969da?style=flat-square)](https://dominicdudden.co.uk)
 
 [![Choose Another Route ↗](https://img.shields.io/badge/CHOOSE%20ANOTHER%20ROUTE%20%E2%86%97-C2185B?style=flat-square)](../../../README.md#explore-the-hq-project)

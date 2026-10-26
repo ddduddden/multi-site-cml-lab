@@ -2,6 +2,10 @@
 
 # HQ-VP-10.02 / 10.03 — Routed Link Failure and ECMP Reduction
 
+<a href="../README.md" title="Previous: Stop 4 · Recorded results" aria-label="Previous: Stop 4 · Recorded results"><img src="../../../../diagrams/orange-previous.svg" alt="" width="30" height="26"></a> **🟧 10-MINUTE ROUTE · EXPLORE THE EVIDENCE · 05/07** <a href="10.02-10.03-failure.md" title="Next: Stop 5 continued · Original CLI" aria-label="Next: Stop 5 continued · Original CLI"><img src="../../../../diagrams/orange-next.svg" alt="" width="30" height="26"></a>
+
+*A real test report.* The first routed failure test checks a prediction from Stop 1: lose one direct link, lose one next hop, keep the destination. Read *Routed-link failure* and *Result*. The CLI comes next. About 1¼ minutes.
+
 Phase 10 — Failure and Resilience Testing
 
 **Result: PASS**
@@ -58,5 +62,7 @@ The six cumulative SLA101 failures were retained, but no immediate pre-shutdown 
 Both tests met their recorded routing and neighbour-state acceptance criteria without requiring separate fault injections.
 
 ---
+
+🟧 **NEXT STEP —** [Stop 5 continued · Original CLI](10.02-10.03-failure.md) [![Next stop](../../../../diagrams/orange-next.svg)](10.02-10.03-failure.md)
 
 [◀ Test evidence](README.md) · [Failure CLI ▶](10.02-10.03-failure.md) · [Recovery CLI](10.02-10.03-recovery.md) · [↑ Phase 10 Test Index](../README.md)

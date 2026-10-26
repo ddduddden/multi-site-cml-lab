@@ -2,7 +2,7 @@
 
 # <a href="../../../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1004-cross-link-loss-and-higher-cost-alternate" title="Previous: 10.04 test plan" aria-label="Previous: 10.04 test plan"><img src="../../../../diagrams/orange-previous.svg" alt="" width="30" height="26"></a> HQ-VP-10.04 — Cross-Link Failure <a href="../../../../docs/implementation/hq/phase-10-engineering-review.md#routed-paths--hq-vp-10021004" title="Next: 10.04 engineering review" aria-label="Next: 10.04 engineering review"><img src="../../../../diagrams/orange-next.svg" alt="" width="30" height="26"></a>
 
-**🟧 WORKED EXAMPLE · 02/06**
+**🟧 TEST INVESTIGATION · 02/06**
 
 
 Phase 10 — Failure and Resilience Testing

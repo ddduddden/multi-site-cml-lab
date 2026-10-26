@@ -2,7 +2,7 @@
 
 # <a href="../../../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation" title="Previous: 10.08 test plan" aria-label="Previous: 10.08 test plan"><img src="../../../../diagrams/orange-previous.svg" alt="" width="30" height="26"></a> HQ-VP-10.08 — hq-d2 Layer-2 Isolation <a href="10.08-session-record.md" title="Next: 10.08 session investigation" aria-label="Next: 10.08 session investigation"><img src="../../../../diagrams/orange-next.svg" alt="" width="30" height="26"></a>
 
-**🟧 WORKED EXAMPLE · 05/06**
+**🟧 TEST INVESTIGATION · 05/06**
 
 
 Phase 10 — Failure and Resilience Testing

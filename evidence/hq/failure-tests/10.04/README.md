@@ -6,7 +6,7 @@ Start with the [test report](HQ-VP-10.04-cross-link-failure.md), then follow the
 
 **Planned checks:** [HQ-VP-10.04](../../../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1004-cross-link-loss-and-higher-cost-alternate)
 
-[Follow the Evidence — guided investigation](../../README.md#follow-the-evidence)
+[Explore the Test Investigations](../../README.md#follow-the-evidence)
 
 ## Captures and session records
 

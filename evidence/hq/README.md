@@ -8,9 +8,11 @@ Use this index to find a check, open its evidence and return to the verification
 
 [Start the broader evidence tour](evidence-overview.md) to follow the documentation from original design and implementation through the verification plan, Phase 10 test matrix, reports, CLI evidence, troubleshooting, engineering review and final acceptance.
 
-## Follow the Evidence
+<a name="follow-the-evidence"></a>
 
-**Worked examples — optional deeper investigations.** These two contrasting tests demonstrate how the planned criteria, recorded outcome and retained evidence fit together. **10.04 passed** after OSPF selected a higher-cost alternative and recovered its preferred route. **10.08 failed** when IOSvL2 kept an isolated VLAN interface operational, leaving an unusable return path.
+## Explore the Test Investigations
+
+**Optional, deeper investigations.** These two contrasting tests demonstrate how the planned criteria, recorded outcome and retained evidence fit together. **10.04 passed** after OSPF selected a higher-cost alternative and recovered its preferred route. **10.08 failed** when IOSvL2 kept an isolated VLAN interface operational, leaving an unusable return path.
 
 | Start | What you will see |
 |---|---|
