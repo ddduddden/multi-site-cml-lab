@@ -2,7 +2,7 @@
 
 <a href="../../../docs/implementation/hq/phase-10-test-plan.md" title="Previous: Stop 3 · Phase 10 test plan" aria-label="Previous: Stop 3 · Phase 10 test plan"><img src="../../../diagrams/orange-previous.svg" alt="" width="30" height="26"></a> **🟧 10-MINUTE ROUTE · EXPLORE THE EVIDENCE · 04/07** <a href="10.02-10.03/HQ-VP-10.02-10.03-routed-link-ecmp.md" title="Next: Stop 5 · A test report and its CLI" aria-label="Next: Stop 5 · A test report and its CLI"><img src="../../../diagrams/orange-next.svg" alt="" width="30" height="26"></a>
 
-*Recorded results.* All 14 test IDs, including the FAIL and the INCONCLUSIVE. Scan the table and read the notes. 10.04 and 10.08 are followed in depth in the Test Investigations at the end of the route. About 1½ minutes.
+*Recorded results* · **Just over a minute** | All 14 test IDs, including the FAIL and the INCONCLUSIVE. Scan the table and read the notes. 10.04 and 10.08 are followed in depth in the Test Investigations at the end of the route.
 
 Phase 10 evaluates the resilience of the HQ network under individual link failures, EtherChannel degradation, device outages and combined failure conditions.
 

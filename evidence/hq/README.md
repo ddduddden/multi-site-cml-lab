@@ -94,7 +94,7 @@ Phase 10 results need to be read with the [result notes](failure-tests/README.md
 
 ## Phase 11 — Final Acceptance
 
-Phase 11 is a narrative close-out, with final documentation review still in progress. The boot checks succeeded after a manual management SVI reset; the cause of the initial failure remains unresolved.
+Phase 11 was accepted as an HQ V1 engineering milestone on 26 October 2026, with the documented findings retained. Startup checks on 16 and 26 October both required a manual VLAN199 SVI reset; the cause remains unresolved and an intervention-free boot has not been demonstrated.
 
 [Boot recovery and final operational checks](final-acceptance/README.md) · [Verification record](../../docs/implementation/hq/verification-plan.md#phase-11--final-acceptance) · [Final acceptance document](../../docs/implementation/hq/phase-11-final-acceptance.md)
 

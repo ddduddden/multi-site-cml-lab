@@ -4,7 +4,7 @@
 
 <a href="verification-plan.md#higher-cost-alternate-activation--hq-vp-0902" title="Previous: Stop 2 · Phase verification" aria-label="Previous: Stop 2 · Phase verification"><img src="../../../diagrams/orange-previous.svg" alt="" width="30" height="26"></a> **🟧 10-MINUTE ROUTE · EXPLORE THE EVIDENCE · 03/07** <a href="../../../evidence/hq/failure-tests/README.md" title="Next: Stop 4 · Recorded results" aria-label="Next: Stop 4 · Recorded results"><img src="../../../diagrams/orange-next.svg" alt="" width="30" height="26"></a>
 
-*Test planning and acceptance criteria.* What every Phase 10 result is judged against. Read *Purpose and document boundaries*, especially the *Interpretation* rule, then scan the test matrix. How the tests were run: [Testing Methodology](phase-10-testing-methodology.md). About 1½ minutes.
+*Test planning and acceptance criteria* · **Just over a minute** | What every Phase 10 result is judged against. Read *Purpose and document boundaries*, especially the *Interpretation* rule, then scan the test matrix. How the tests were run: [Testing Methodology](phase-10-testing-methodology.md).
 
 **Site:** HQ campus · **Coverage:** `HQ-VP-10.01`–`HQ-VP-10.14`  
 **Pre-test requirements:** 3 October 2026 · **Baseline:** [`1aa65c5`](https://github.com/ddduddden/multi-site-cml-lab/commit/1aa65c52ead4f23f09e9dbe7450b8f358acb0f0e)  

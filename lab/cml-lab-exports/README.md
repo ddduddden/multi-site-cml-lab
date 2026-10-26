@@ -25,7 +25,7 @@ Credential values and local usernames are replaced with `<sanitised>`. The permi
 
 The public copy was checked for valid YAML, valid link endpoints, matching per-device configurations and preserved HQ routing, SVI and Port-Channel configuration. It has not been imported or boot-tested in CML. The `lab.version` value is the YAML format version, not the CML software version. Device timestamps are retained as exported and do not establish the capture date.
 
-This milestone records the final configuration; it does not change the Phase 10 test outcomes or imply that Phase 11 sign-off is complete.
+This export records the 15 October configuration milestone, not the acceptance decision. HQ V1 was accepted as an engineering milestone on 26 October 2026, with the Phase 10 findings and unresolved VLAN199 startup issue retained. The operational checks used the private export, not this sanitised public copy.
 
 ## HQ Exports
 

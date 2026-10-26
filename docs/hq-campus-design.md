@@ -558,7 +558,7 @@ Therefore, having four equal-cost routes installed does not guarantee that traff
 
 <a href="../evidence/hq/evidence-overview.md" title="Previous: route start" aria-label="Previous: route start"><img src="../diagrams/orange-previous.svg" alt="" width="30" height="26"></a> **🟧 10-MINUTE ROUTE · EXPLORE THE EVIDENCE · 01/07** <a href="implementation/hq/verification-plan.md#higher-cost-alternate-activation--hq-vp-0902" title="Next: Stop 2 · Phase verification" aria-label="Next: Stop 2 · Phase verification"><img src="../diagrams/orange-next.svg" alt="" width="30" height="26"></a>
 
-*Design intent.* What the routed design should do when links fail. Direct links cost 10 and the two diagonal cross-links 100 ([cost table](#ospf-cost-and-ecmp-policy)). Read this section, then scan the decision table in section 8; the next step follows it. About 1½ minutes.
+*Design intent* · **Just over a minute** | What the routed design should do when links fail. Direct links cost 10 and the two diagonal cross-links 100 ([cost table](#ospf-cost-and-ecmp-policy)). Read this section, then scan the decision table in section 8; the next step follows it.
 
 Under normal conditions, the four direct links within each primary Distribution-to-Edge connection are intended to provide up to four equal-cost next hops for routes using that path set.
 

@@ -96,7 +96,7 @@ This is a second observed occurrence with the same recovery procedure. The cause
 
 <a href="phase-10-engineering-review.md#layer-2-isolation-and-split-brain--hq-vp-1008" title="Previous: Stop 6 · Troubleshooting and engineering review" aria-label="Previous: Stop 6 · Troubleshooting and engineering review"><img src="../../../diagrams/orange-previous.svg" alt="" width="30" height="26"></a> **🟧 10-MINUTE ROUTE · EXPLORE THE EVIDENCE · 07/07**
 
-*Final acceptance, limitations and future development.* Where HQ V1 stands at close-out and what the next revision would change. Open findings are listed under [Key findings](#key-findings). About 1 minute.
+*Final acceptance, limitations and future development* · **About a minute** | Where HQ V1 stands at close-out and what the next revision would change. Open findings are listed under [Key findings](#key-findings).
 
 The HQ build gave me a working campus to test beyond individual configuration exercises. The routed and access-path tests showed the alternate paths doing their job. Working through the isolation cases helped me understand how HSRP, spanning tree and the return route could combine to produce different traffic results.
 

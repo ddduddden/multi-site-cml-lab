@@ -61,7 +61,7 @@ This showed me the limit of the design. The four Po30 members protect against in
 
 <a href="../../../evidence/hq/failure-tests/10.02-10.03/10.02-10.03-failure.md" title="Previous: Stop 5 · Original CLI" aria-label="Previous: Stop 5 · Original CLI"><img src="../../../diagrams/orange-previous.svg" alt="" width="30" height="26"></a> **🟧 10-MINUTE ROUTE · EXPLORE THE EVIDENCE · 06/07** <a href="phase-11-final-acceptance.md#overall-assessment" title="Next: Stop 7 · Final acceptance" aria-label="Next: Stop 7 · Final acceptance"><img src="../../../diagrams/orange-next.svg" alt="" width="30" height="26"></a>
 
-*Troubleshooting and engineering review.* The FAIL from Stop 4: healthy-looking interfaces and routing, but return traffic lost. The review explains how the return-path blackhole developed and why the IOSvL2 SVI remained operational despite losing its Layer 2 forwarding path. Full investigation: [HQ-TS-002](troubleshooting.md#hq-ts-002--iosvl2-svi-state-during-layer-2-isolation). About 1½ minutes.
+*Troubleshooting and engineering review* · **Just over a minute** | The FAIL from Stop 4: healthy-looking interfaces and routing, but return traffic lost. The review explains how the return-path blackhole developed and why the IOSvL2 SVI remained operational despite losing its Layer 2 forwarding path. Full investigation: [HQ-TS-002](troubleshooting.md#hq-ts-002--iosvl2-svi-state-during-layer-2-isolation).
 
 *Evidence: [HQ-VP-10.08](../../../evidence/hq/failure-tests/10.08/HQ-VP-10.08-d2-layer2-isolation.md)*
 

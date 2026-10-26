@@ -1193,7 +1193,7 @@ The five-way metric-`111` loopback case is verified separately in `HQ-VP-08.05`.
 
 <a href="../../hq-campus-design.md#intended-behaviour-during-routed-link-failures" title="Previous: Stop 1 · Design intent" aria-label="Previous: Stop 1 · Design intent"><img src="../../../diagrams/orange-previous.svg" alt="" width="30" height="26"></a> **🟧 10-MINUTE ROUTE · EXPLORE THE EVIDENCE · 02/07** <a href="phase-10-test-plan.md" title="Next: Stop 3 · Phase 10 test plan" aria-label="Next: Stop 3 · Phase 10 test plan"><img src="../../../diagrams/orange-next.svg" alt="" width="30" height="26"></a>
 
-*Phase verification.* Every Phase 01–09 check is recorded in this format, with a Git commit for each phase. Here Phase 09 removes each four-link direct set to exercise the cross-links from Stop 1. Read *Expected result* and *Observed result*. Matching build-log entry: [Phase 09](build-log.md#phase-09--ospf-cost-engineering). About 1 minute.
+*Phase verification* · **About a minute** | Every Phase 01–09 check is recorded in this format, with supporting Git commits and evidence linked to the relevant phases. Here Phase 09 removes each four-link direct set to exercise the cross-links from Stop 1. Read *Expected result* and *Observed result*. Matching build-log entry: [Phase 09](build-log.md#phase-09--ospf-cost-engineering).
 
 **Objective:**\
 Confirm that removing a complete four-link direct set causes OSPF to use the surviving higher-cost alternate route, while traffic remains reachable through the opposite edge/distribution pair.
