@@ -1,49 +1,15 @@
 # Physical Network Topology
 
-This diagram represents the current physical infrastructure supporting the multi-site Cisco Modeling Labs environment.
+[Portfolio](../README.md) / [Documentation](README.md) / Physical Network Topology
 
-```text
-                                              INTERNET
-                                                 |
-                                                 |
-                                                ISP
-                                                 |
-                                            Fibre / FTTP
-                                                 |
-                                                 |
-                                                ONT
-                                                 |
-                                             Ethernet WAN
-                                                 |
-                                                 |
-                                          ASUS RT-BE92U
-                                    Primary Router / Gateway
-                    _____________________________|_____________________________
-                   |                             |                             |
-                   |                             |                             |
-                 1 GbE                        1 GbE                    6 GHz Wi-Fi 7
-                   |                             |                      IEEE 802.11be
-                   |                             |                 AiMesh Wireless Backhaul
-                   |                             |                             |
-                   |                             |                             |
-            CML SERVER 1                 RASPBERRY PI 5                ASUS TUF BE9400
-            Laptop                       Automation Server              AiMesh Node
-            Intel Core i5-9300H          8 GB RAM                             |
-            16 GB RAM                    240 GB NVMe                          |
-            Windows 11                   2 TB SSD                             | 2.5 GbE
-            VMware Workstation           Network automation                   |
-            Cisco Modeling Labs          Ansible / Python                     |
-            Management IP:               SNMP trap receiver             CML SERVER 2
-            192.168.50.172               NAS services                   Desktop
-                                                                        AMD Ryzen 9 5900X
-                                                                        32 GB RAM
-                                                                        1 TB NVMe SSD
-                                                                        Windows 11
-                                                                        VMware Workstation
-                                                                        Cisco Modeling Labs
-                                                                        5 GbE-capable NIC
+This diagram represents the current physical infrastructure supporting the multi-site Cisco Modeling Labs environment. The Raspberry Pi 5 is shown as installed hardware; its automation, monitoring and NAS services are planned work. The separate Raspberry Pi 3B+ DNS server is also planned and is not shown as an installed connection.
 
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../diagrams/physical-network-topology-dark.svg">
+  <img src="../diagrams/physical-network-topology.svg" alt="Physical home-lab topology showing internet, ISP, ONT, ASUS RT-BE92U router, six-gigahertz AiMesh backhaul, ASUS TUF BE9400 node, two CML servers and Raspberry Pi 5">
+</picture>
+
+[Open full-size physical topology](../diagrams/physical-network-topology.svg) · [Dark version](../diagrams/physical-network-topology-dark.svg) · [Network diagram gallery](../diagrams/README.md#physical-network-topology)
 
 ## Connectivity Notes
 
@@ -56,3 +22,7 @@ This diagram represents the current physical infrastructure supporting the multi
 - The 2.4 GHz radio on the AiMesh node is disabled.
 - CML Server 2 connects to the AiMesh node using a 2.5 GbE link.
 - CML Server 2 has a 5 GbE-capable network adapter, with the physical link limited by the AiMesh node's 2.5 GbE LAN interface.
+
+---
+
+[↑ Documentation](README.md) · [Lab Environment](environment.md) · [Network Plan](network-plan.md) · [Physical Topology](topology.md)

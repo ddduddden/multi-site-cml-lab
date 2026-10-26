@@ -1,5 +1,9 @@
 # HQ Implementation
 
+[Portfolio](../../../README.md) / [Documentation](../../README.md) / [Implementation Records](../README.md) / HQ Implementation
+
+[HQ Evidence Map](../../../evidence/hq/README.md) — find the captures and reports for each phase.
+
 > The HQ design document (`docs/hq-campus-design.md`) records architectural intent. This implementation area records what was actually configured, tested, observed, troubleshot, and accepted. A surprising result does not rewrite the design baseline. Any accepted difference is recorded as a design deviation first.
 
 ## Purpose
@@ -11,10 +15,10 @@ The five documents have distinct primary responsibilities, with deliberate cross
 | File | Primary responsibility |
 |---|---|
 | `README.md` | Dashboard, working rules, phase index, status rules, and reference-ID key |
-| `verification-plan.md` | What we intend to prove and how each test will be verified |
-| `build-log.md` | Chronological record of significant implementation steps |
-| `troubleshooting.md` | Meaningful diagnostic investigations |
-| `deviations.md` | Accepted differences between design intent and as-built implementation |
+| [`verification-plan.md`](verification-plan.md) | What we intend to prove and how each test will be verified |
+| [`build-log.md`](build-log.md) | Chronological record of significant implementation steps |
+| [`troubleshooting.md`](troubleshooting.md) | Meaningful diagnostic investigations |
+| [`deviations.md`](deviations.md) | Accepted differences between design intent and as-built implementation |
 
 Phase 10 has its own [Test Plan](phase-10-test-plan.md), [Testing Methodology](phase-10-testing-methodology.md), [Engineering Review](phase-10-engineering-review.md), and [test reports and evidence](../../../evidence/hq/failure-tests/README.md).
 
@@ -70,19 +74,19 @@ The phase numbers are a project-specific indexing convention. They are not a Cis
 
 | Phase | Scope | Objective |
 |---:|---|---|
-| 01 | Platform baseline | Confirm the actual CML nodes, images, interfaces, and platform assumptions before configuration |
-| 02 | Layer 2 / VLAN baseline | Establish the VLAN database, access-port assignments, and parking-VLAN policy |
-| 03 | LACP EtherChannel | Build and verify Po10, Po20, and Po30, including trunking and member-link behaviour |
-| 04 | Rapid PVST+ | Verify root placement, port state, and spanning-tree failure behaviour |
-| 05 | SVIs and HSRP | Verify SVI addressing, HSRP roles, preemption, and gateway failover |
-| 06 | Routed `/31` underlay | Build and verify the ten routed point-to-point links before dynamic routing |
-| 07 | Loopbacks and OSPF Area 10 | Add stable loopback identities and verify the Area 10 routing domain |
-| 08 | ECMP | Prove the intended equal-cost routes are actually installed and usable |
-| 09 | OSPF cost engineering | Prove preferred and higher-cost alternate path selection behaves as designed |
-| 10 | Failure testing | Exercise defined device, interface, Port-Channel, and routing failures and recovery |
-| 11 | Final acceptance | Confirm the evidence required to describe HQ as verified as-built |
+| 01 | [Platform baseline](build-log.md#phase-01--hq-platform-baseline) | Confirm the actual CML nodes, images, interfaces, and platform assumptions before configuration |
+| 02 | [Layer 2 / VLAN baseline](build-log.md#phase-02--layer-2--vlan-baseline) | Establish the VLAN database, access-port assignments, and parking-VLAN policy |
+| 03 | [LACP EtherChannel](build-log.md#phase-03--lacp-etherchannel) | Build and verify Po10, Po20, and Po30, including trunking and member-link behaviour |
+| 04 | [Rapid PVST+](build-log.md#phase-04--rapid-pvst) | Verify root placement, port state, and spanning-tree failure behaviour |
+| 05 | [SVIs and HSRP](build-log.md#phase-05--svis-and-hsrp) | Verify SVI addressing, HSRP roles, preemption, and gateway failover |
+| 06 | [Routed `/31` underlay](build-log.md#phase-06--routed-31-underlay) | Build and verify the ten routed point-to-point links before dynamic routing |
+| 07 | [Loopbacks and OSPF Area 10](build-log.md#phase-07--loopbacks-and-ospf-area-10) | Add stable loopback identities and verify the Area 10 routing domain |
+| 08 | [ECMP](build-log.md#phase-08--ecmp) | Prove the intended equal-cost routes are actually installed and usable |
+| 09 | [OSPF cost engineering](build-log.md#phase-09--ospf-cost-engineering) | Prove preferred and higher-cost alternate path selection behaves as designed |
+| 10 | [Failure testing](build-log.md#phase-10--failure-and-resilience-testing) | Exercise defined device, interface, Port-Channel, and routing failures and recovery |
+| 11 | [Final acceptance](build-log.md#phase-11--final-configuration-milestone) | Confirm the evidence required to describe HQ as verified as-built |
 
-Phases 01–09 are detailed in `verification-plan.md`. Phases 06 and 07 were built and verified in one combined build window, and Phases 08 and 09 were verified in one combined test window; each phase keeps separate test IDs, phase status, and build-log entries. Phase 10 has a standalone test plan and recorded outcomes; Phase 11 remains objective-only.
+Phases 01–09 are detailed in `verification-plan.md`. Phases 06 and 07 were built and verified in one combined build window, and Phases 08 and 09 were verified in one combined test window; each phase keeps separate test IDs, phase status, and build-log entries. Phase 10 has a standalone test plan and recorded outcomes; Phase 11 has an [accepted narrative engineering close-out](phase-11-final-acceptance.md), with outstanding findings retained.
 
 ## Working rules
 
@@ -134,7 +138,7 @@ A phase does not show as `Deviated` just because one test in it has an accepted 
 | 08 | ECMP | **Verified** |
 | 09 | OSPF cost engineering | **Verified** |
 | 10 | Failure testing | **Completed** |
-| 11 | Final acceptance | Not started |
+| 11 | [Final acceptance](phase-11-final-acceptance.md) | **Accepted** |
 
 Phase 10 uses PASS, FAIL and INCONCLUSIVE for individual test outcomes. **Completed** means the planned execution and final reconciliation have finished; it does not mean every test passed. See the [Phase 10 results](../../../evidence/hq/failure-tests/README.md).
 
@@ -144,15 +148,15 @@ Evidence folders are created only when genuine artifacts exist.
 
 | Phase | Folder |
 |---:|---|
-| 01 | `evidence/hq/platform-baseline/` |
-| 02 | `evidence/hq/layer2-vlan-baseline/` |
-| 03 | `evidence/hq/etherchannel/` |
-| 04 | `evidence/hq/spanning-tree/` |
-| 05 | `evidence/hq/hsrp/` |
-| 06 | `evidence/hq/layer3-underlay/` |
-| 07–09 | `evidence/hq/ospf/` |
-| 10 | `evidence/hq/failure-tests/` |
-| 11 | No dedicated folder unless useful artifacts warrant one |
+| 01 | [evidence/hq/platform-baseline/](../../../evidence/hq/platform-baseline/README.md) |
+| 02 | [evidence/hq/layer2-vlan-baseline/](../../../evidence/hq/layer2-vlan-baseline/README.md) |
+| 03 | [evidence/hq/etherchannel/](../../../evidence/hq/etherchannel/README.md) |
+| 04 | [evidence/hq/spanning-tree/](../../../evidence/hq/spanning-tree/README.md) |
+| 05 | [evidence/hq/hsrp/](../../../evidence/hq/hsrp/README.md) |
+| 06 | [evidence/hq/layer3-underlay/](../../../evidence/hq/layer3-underlay/README.md) |
+| 07–09 | [evidence/hq/ospf/](../../../evidence/hq/ospf/README.md) |
+| 10 | [evidence/hq/failure-tests/](../../../evidence/hq/failure-tests/README.md) |
+| 11 | [evidence/hq/final-acceptance/](../../../evidence/hq/final-acceptance/README.md) |
 
 Smaller evidence sets can use files directly inside the relevant phase folder:
 
@@ -168,7 +172,9 @@ evidence/hq/etherchannel/HQ-VP-03.04-member-link-failure/
 
 ## Configs and Git traceability
 
-`configs/hq/` contains the readable sanitised as-built device configurations from the latest milestone (currently Phase 07):
+[HQ Device Configurations](../../../configs/hq/README.md) · [CML Lab Exports](../../../lab/cml-lab-exports/README.md)
+
+`configs/hq/` contains the readable sanitised as-built device configurations from the latest milestone (currently the sanitised Phase 11 milestone):
 
 ```text
 configs/hq/
@@ -211,5 +217,9 @@ Check that:
 - Each verification test uses the `Status` field to record its result.
 - Meaningful faults use `HQ-TS-NNN`, not routine typing mistakes.
 - `Deviated` is backed by an accepted `HQ-DEV-NNN`, and every test in the phase is resolved before the phase itself reads as `Deviated`.
-- Phase 10 documentation links to the executed tests; Phase 11 remains objective-only.
+- Phase 10 documentation links to the executed tests; Phase 11 links to its final operational captures and accepted engineering close-out, with known limitations retained.
 - Config/evidence directories contain real content rather than placeholders.
+
+---
+
+[← HQ Campus Design](../../hq-campus-design.md) · [↑ Phase index](#phase-index) · [HQ Build Log →](build-log.md)

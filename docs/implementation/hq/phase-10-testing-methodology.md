@@ -1,9 +1,9 @@
 # Testing Methodology
 
-[HQ implementation](README.md) / [Phase 10 Test Plan](phase-10-test-plan.md) / [Engineering Review](phase-10-engineering-review.md) / [Phase 10 Evidence Index](../../../evidence/hq/failure-tests/README.md)
+[Portfolio](../../../README.md) / [HQ Implementation](README.md) / Testing Methodology
 
-> **Scope:** HQ Campus · Test window: 3–6 October 2026 · HQ-VP-10.01–10.14  
-> **Status:** Fault tests completed 3–6 October; final configuration reconciliation completed 12 October 2026
+> **Scope:** HQ Campus · Test window: 03-10-2026 to 06-10-2026 · HQ-VP-10.01–10.14  
+> **Status:** Fault tests completed 03-10-2026 to 06-10-2026; final configuration reconciliation completed 12-10-2026
 
 ## Contents
 
@@ -34,7 +34,7 @@ Before each test I checked the relevant healthy path and recorded the starting p
 
 I used shutdown commands for most link and Port-Channel failures, and stopped nodes in CML for the device tests. Those were repeatable fault conditions, but not quite the same as pulling a physical cable or losing hardware. In HQ-VP-10.05, the one-ended shutdown specified in the plan caused sustained traffic loss rather than a cleanly isolated member failure; the cause was not established.
 
-Once I had captured the failure state, I restored the component and checked the Port-Channel, STP, HSRP and routing state that was available to verify. I then tested traffic again and removed the temporary addressing and probes. The remaining logging change and final configuration comparisons are recorded as open close-out work under HQ-VP-10.14. Capturing failures before restoring them mattered because a clean recovery could otherwise hide the problem.
+Once I had captured the failure state, I restored the component and checked the Port-Channel, STP, HSRP and routing state that was available to verify. I then tested traffic again and removed the temporary addressing and probes. The buffered-logging reset and final configuration comparisons were completed on 12-10-2026 and recorded under HQ-VP-10.14. Capturing failures before restoring them mattered because a clean recovery could otherwise hide the problem.
 
 | Stage | What I did |
 |---|---|
@@ -63,7 +63,7 @@ Because of that split, I ran HQ-VP-10.06 in two modes. In Mode A (VLAN199), I sh
 
 After the access-uplink checks, HQ-VP-10.07 took Po30 down one member at a time, from four members to none. HQ-VP-10.08 and 10.09 then tested two kinds of isolation on hq-d2: removing its Layer-2 connections while keeping routed uplinks up, and then the reverse. I compared HSRP and routing state with sourced traffic in both cases. The recorded return-route and CEF analysis belongs to 10.08; that return-path check was not captured for 10.09.
 
-The last fault tests, HQ-VP-10.10–10.13, covered each distribution switch and one edge router, followed by hq-d1 and hq-r2 stopping in sequence. HQ-VP-10.14 demonstrated the network had returned to its normal forwarding state, but the final configuration clean-up and comparisons remain to be signed off.
+The last fault tests, HQ-VP-10.10–10.13, covered each distribution switch and one edge router, followed by hq-d1 and hq-r2 stopping in sequence. HQ-VP-10.14 demonstrated that normal forwarding was restored on 06-10-2026. The remaining configuration comparisons and logging reset were completed on 12-10-2026.
 
 ### Checking traffic as well as protocol state
 
@@ -77,7 +77,7 @@ I kept the test reports separate from captured CLI, condensed excerpts, event lo
 
 Changes from the original plan need to be visible. The planned 20/20 settled-state pings were not used consistently: later device tests mainly recorded 5-packet checks, and 10.09–10.14 did not retain continuous IP SLA coverage. Instead of running every fault in both planned source modes, I tested selected VLANs across the sequence: 130, 160, 152, 140, 170 and 120, alongside VLAN199 and VLAN112. The bilateral 10.05 test was an added rerun; 10.07 did not repeat complete Po30 loss in Mode B or capture the zero-link return route; 10.10 and 10.11 each had one device stop/start cycle rather than the two planned. The VLAN112 live-flow/probe-103 check in 10.12 was not performed, and 10.13 does not have the planned Mode A transition record. I have left those gaps in the evidence instead of treating unperformed checks as passed.
 
-The original 3 October Test Plan stays unchanged. I am assessing the documented outcomes against its original acceptance criteria, while recording the checks that were changed or not captured during execution. Restored reachability does not by itself turn an unmet traffic-continuity criterion into a pass. The Phase 10 result index uses the following outcome labels:
+The original 03-10-2026 Test Plan stays unchanged. I am assessing the documented outcomes against its original acceptance criteria, while recording the checks that were changed or not captured during execution. Restored reachability does not by itself turn an unmet traffic-continuity criterion into a pass. The Phase 10 result index uses the following outcome labels:
 
 | Result | Meaning |
 |---|---|
@@ -86,6 +86,8 @@ The original 3 October Test Plan stays unchanged. I am assessing the documented 
 | INCONCLUSIVE | The retained evidence was not enough to confirm either PASS or FAIL. |
 
 The PASS, FAIL and INCONCLUSIVE labels describe the Phase 10 test outcome; they are not a direct replacement for the repository’s earlier Verified/Blocked/Deviated phase-status fields. The separate Engineering Review discusses what I learnt. This document records how I tested and what evidence I actually kept.
+
+🟧 [← Return to Stop 3 · Phase 10 Test Plan](phase-10-test-plan.md)
 
 ---
 

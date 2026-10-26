@@ -1,8 +1,6 @@
-[Phase 10](../README.md) / [10.06](access-uplink-failure-evidence.md)
+[Portfolio](../../../../README.md) / [Evidence Map](../../README.md) / [Phase 10](../README.md) / [10.06](README.md) / Capture / record
 
-[← Previous](HQ-VP-10.06-mode-a-po20-access-uplink-failure.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](access-uplink-failure-evidence.md) · [Next →](HQ-VP-10.06-mode-b-po10-traffic-continuity.md)
-
----
+# HQ-VP-10.06 — Mode B Po10 failure state
 
 <details>
 <summary><strong>Original retained CLI / source capture</strong></summary>
@@ -110,4 +108,4 @@ hq-d2#
 
 ---
 
-[← Previous](HQ-VP-10.06-mode-a-po20-access-uplink-failure.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](access-uplink-failure-evidence.md) · [Next →](HQ-VP-10.06-mode-b-po10-traffic-continuity.md)
+[◀ Previous record](HQ-VP-10.06-mode-b-vlan112-setup-baseline.md) · [↑ Test evidence](README.md) · [Next record ▶](HQ-VP-10.06-mode-b-po10-traffic-continuity.md)

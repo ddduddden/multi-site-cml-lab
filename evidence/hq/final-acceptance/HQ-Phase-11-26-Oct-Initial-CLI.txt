@@ -1,0 +1,187 @@
+Password: 
+hq-a1#
+hq-a1#
+hq-a1#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0     unassigned      YES unset  up                    up      
+GigabitEthernet0/1     unassigned      YES unset  up                    up      
+GigabitEthernet0/2     unassigned      YES unset  administratively down down    
+GigabitEthernet0/3     unassigned      YES unset  administratively down down    
+GigabitEthernet1/0     unassigned      YES unset  up                    up      
+GigabitEthernet1/1     unassigned      YES unset  up                    up      
+GigabitEthernet1/2     unassigned      YES unset  administratively down down    
+GigabitEthernet1/3     unassigned      YES unset  administratively down down    
+GigabitEthernet2/0     unassigned      YES unset  down                  down    
+GigabitEthernet2/1     unassigned      YES unset  down                  down    
+GigabitEthernet2/2     unassigned      YES unset  down                  down    
+GigabitEthernet2/3     unassigned      YES unset  down                  down    
+GigabitEthernet3/0     unassigned      YES unset  down                  down    
+GigabitEthernet3/1     unassigned      YES unset  down                  down    
+GigabitEthernet3/2     unassigned      YES unset  down                  down    
+GigabitEthernet3/3     unassigned      YES unset  down                  down    
+Port-channel10         unassigned      YES unset  up                    up      
+Port-channel20         unassigned      YES unset  up                    up      
+Vlan199                10.10.99.4      YES TFTP   down                  down    
+hq-a1#show vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    
+112  CORP-USERS                       active    Gi2/0, Gi2/1
+120  VOICE                            active    Gi2/0
+130  SERVERS                          active    Gi2/2
+140  IOT-CCTV                         active    Gi2/3
+152  GUEST                            active    Gi3/0
+160  FACILITIES                       active    Gi3/1
+170  BYOD-WLAN                        active    Gi3/2
+190  NATIVE                           active    
+191  PARKING                          active    Gi0/2, Gi0/3, Gi1/2, Gi1/3
+199  NET-MGMT                         active    Gi3/3
+1002 fddi-default                     act/unsup 
+1003 token-ring-default               act/unsup 
+1004 fddinet-default                  act/unsup 
+1005 trnet-default                    act/unsup 
+hq-a1#show interfaces trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Po10        on               802.1q         trunking      190
+Po20        on               802.1q         trunking      190
+
+Port        Vlans allowed on trunk
+Po10        112,120,130,140,152,160,170,190,199
+Po20        112,120,130,140,152,160,170,190,199
+
+Port        Vlans allowed and active in management domain
+Po10        112,120,130,140,152,160,170,190,199
+Po20        112,120,130,140,152,160,170,190,199
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Po10        112,130,152,170,190
+Po20        120,140,160,199
+hq-a1#show etherchannel summary
+Flags:  D - down        P - bundled in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        U - in use      N - not in use, no aggregation
+        f - failed to allocate aggregator
+
+        M - not in use, minimum links not met
+        m - not in use, port not aggregated due to minimum links not met
+        u - unsuitable for bundling
+        w - waiting to be aggregated
+        d - default port
+
+        A - formed by Auto LAG
+
+
+Number of channel-groups in use: 2
+Number of aggregators:           2
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+10     Po10(SU)        LACP      Gi0/0(P)    Gi0/1(P)    
+20     Po20(SU)        LACP      Gi1/0(P)    Gi1/1(P)    
+          
+hq-a1#how spanning-tree vlan 199
+       ^
+% Invalid input detected at '^' marker.
+
+hq-a1#ping 10.10.99.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.10.99.1, timeout is 2 seconds:
+.....
+Success rate is 0 percent (0/5)
+hq-a1#show spanning-tree vlan 199
+
+VLAN0199
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24775
+             Address     5254.00ed.4166
+             Cost        3
+             Port        66 (Port-channel20)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32967  (priority 32768 sys-id-ext 199)
+             Address     5254.0001.189a
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi3/3               Desg FWD 4         128.16   P2p Edge 
+Po10                Altn BLK 3         128.65   P2p 
+Po20                Root FWD 3         128.66   P2p 
+
+
+hq-a1#show interfaces Vlan199
+Vlan199 is down, line protocol is down 
+  Hardware is Ethernet SVI, address is 5254.0001.80c7 (bia 5254.0001.80c7)
+  Internet address is 10.10.99.4/26
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive not supported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     1 packets output, 60 bytes, 0 underruns
+     0 output errors, 0 interface resets
+     0 unknown protocol drops
+          
+hq-a1#how running-config interface Vlan199
+       ^
+% Invalid input detected at '^' marker.
+
+hq-a1#show logging | include Vlan199|LINEPROTO|SPANTREE
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+*Oct 26 15:00:29.522: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+*Oct 26 15:00:29.523: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/2, changed state to up
+*Oct 26 15:00:29.525: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/3, changed state to up
+*Oct 26 15:00:29.526: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0, changed state to up
+*Oct 26 15:00:29.527: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/1, changed state to up
+*Oct 26 15:00:29.528: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/2, changed state to up
+*Oct 26 15:00:29.529: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/3, changed state to up
+*Oct 26 15:00:29.531: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2/0, changed state to up
+*Oct 26 15:00:29.532: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2/1, changed state to up
+*Oct 26 15:00:29.533: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2/2, changed state to up
+*Oct 26 15:00:29.535: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2/3, changed state to up
+*Oct 26 15:00:29.536: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet3/0, changed state to up
+*Oct 26 15:00:29.536: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet3/1, changed state to up
+*Oct 26 15:00:29.537: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet3/2, changed state to up
+*Oct 26 15:00:29.538: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet3/3, changed state to up
+*Oct 26 15:00:31.569: %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan199, changed state to down
+*Oct 26 15:00:32.152: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/3, changed state to down
+*Oct 26 15:00:32.154: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/2, changed state to down
+*Oct 26 15:00:32.155: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/1, changed state to down
+*Oct 26 15:00:32.156: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0, changed state to down
+*Oct 26 15:00:32.158: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/3, changed state to down
+*Oct 26 15:00:32.159: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/2, changed state to down
+*Oct 26 15:00:32.160: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to down
+*Oct 26 15:00:32.162: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to down
+*Oct 26 15:00:38.045: %LINK-3-UPDOWN: Interface Vlan199, changed state to up
+*Oct 26 15:00:38.705: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet3/3, changed state to down
+*Oct 26 15:00:38.706: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet3/2, changed state to down
+*Oct 26 15:00:38.707: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet3/1, changed state to down
+*Oct 26 15:00:38.709: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet3/0, changed state to down
+*Oct 26 15:00:38.710: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2/3, changed state to down
+*Oct 26 15:00:38.711: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2/2, changed state to down
+*Oct 26 15:00:38.713: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2/1, changed state to down
+*Oct 26 15:00:38.714: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2/0, changed state to down
+*Oct 26 15:00:39.137: %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan199, changed state to up
+*Oct 26 15:01:21.724: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+*Oct 26 15:01:21.729: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+*Oct 26 15:01:25.563: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0, changed state to up
+*Oct 26 15:01:25.570: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/1, changed state to up
+*Oct 26 15:01:26.094: %LINEPROTO-5-UPDOWN: Line protocol on Interface Port-channel10, changed state to up
+*Oct 26 15:01:29.751: %LINEPROTO-5-UPDOWN: Line protocol on Interface Port-channel20, changed state to up
+hq-a1#

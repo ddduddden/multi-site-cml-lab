@@ -1,20 +1,7 @@
 # HQ-VP-10.14 — Final Restoration
 
-[Phase 10](../README.md) / 10.14
-
-[← Previous](../10.13/diagonal-double-failure-evidence.md) · [↑ Phase 10 Index](../README.md)
-
-**Test report:** [HQ-VP-10.14 — Final restoration](HQ-VP-10.14-final-restoration.md)
+[Portfolio](../../../../README.md) / [Evidence Map](../../README.md) / [Phase 10](../README.md) / 10.14
 
 ## Captures and session records
 
-| Capture / record | Device / purpose |
-|---|---|
-| [Config excerpts and final 12 October checks](10.14-config-excerpts.md) | Original capture and five-device configuration reconciliation |
-| [Session record](10.14-session-record.md) | Test session notes and measurements |
-
-Test date: 6 October 2026. Configuration close-out: 12 October 2026. The original captures and later sign-off checks are kept separately.
-
----
-
-[← Previous](../10.13/diagonal-double-failure-evidence.md) · [↑ Phase 10 Index](../README.md)
+[Open the test evidence index](README.md). The report and captures are listed there in reading order.

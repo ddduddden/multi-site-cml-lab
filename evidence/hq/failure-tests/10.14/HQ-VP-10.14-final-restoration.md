@@ -1,102 +1,70 @@
-[Phase 10](../README.md) / [10.14](final-restoration-evidence.md)
+[Portfolio](../../../../README.md) / [Evidence Map](../../README.md) / [Phase 10](../README.md) / [10.14](README.md) / Test report
 
-[← Previous](final-restoration-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](final-restoration-evidence.md) · [Next →](10.14-config-excerpts.md)
-
----
-
-# [←](../10.13/HQ-VP-10.13-diagonal-double-failure.md "Previous VP") HQ-VP-10.14 — Final Restoration
+# HQ-VP-10.14 — Final Restoration
 
 Phase 10 — Failure and Resilience Testing
 
-**Evidence commit:** [`a8624b1`](https://github.com/ddduddden/multi-site-cml-lab/commit/a8624b176298e3b0132daedf082c2aae0c704ebd)
-Evidence: [captured CLI and session records](final-restoration-evidence.md)
+**Result: PASS**
 
-Final baseline
---------------
-All temporary failure conditions were removed and the HQ network was returned
-to its normal operating state.
+**Original test plan:** [10.14 — Final restoration and hygiene](../../../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1014-final-restoration-and-hygiene)\
+**Evidence:** [Session record](10.14-session-record.md)\
+**Original evidence commit:** [a8624b1](https://github.com/ddduddden/multi-site-cml-lab/commit/a8624b176298e3b0132daedf082c2aae0c704ebd)\
+**Follow-up evidence (12 October 2026):** [Configuration reconciliation](10.14-config-excerpts.md#configuration-reconciliation--12-october-2026)
 
-Final checks showed:
+## Test objective
 
-- Po10 and Po20 were up with both members bundled.
-- Po30 was up with all four members bundled.
-- STP showed no inconsistent ports.
-- The intended STP root and HSRP Active/Standby split was restored.
-- hq-d1, hq-d2, hq-r1 and hq-r2 each had five OSPF neighbours in Full state.
-- No IP SLA test operations remained on hq-a1.
+Confirm that failure testing left the HQ network in its intended operating state, with temporary configurations removed and the final device configurations reconciled.
 
-Final reachability from hq-a1:
+## Final operational state
 
-- VLAN199 (NET-MGMT) gateway 10.10.99.1: 5/5 replies.
-- hq-r1 Loopback0: 5/5 replies.
-- hq-r2 Loopback0: 5/5 replies.
+The checks on 6 October 2026 confirmed:
 
-VLAN120 (VOICE) final coverage
-------------------------------
-A temporary VLAN120 source was used for the last routed-VLAN check.
-Not retained: a pre-assignment availability check for 10.10.20.4.
+- Po10 and Po20 operational with both members bundled.
+- Po30 operational with all four members bundled.
+- No STP inconsistent ports.
+- The intended STP root and HSRP Active/Standby roles restored.
+- Five FULL OSPF adjacencies on each Layer 3 device.
+- No remaining IP SLA test operations on hq-a1.
 
-- HSRP VIP 10.10.20.1: 5/5 replies.
-- hq-r1 Loopback0: 5/5 replies.
-- hq-r2 Loopback0: 5/5 replies.
+From hq-a1 on VLAN199 (10.10.99.4), the gateway and both edge-router loopbacks each responded to 5/5 pings.
 
-The gateway ping recorded min/avg/max 3/205/1009 ms. No cause was proved.
+## Final VLAN120 check
 
-The temporary VLAN120 configuration was then removed.
+A temporary VLAN120 (VOICE) source, 10.10.20.4/23, was used for a final routed-VLAN connectivity check.
 
-During this check, the temporary address was briefly entered on hq-d1 instead
-of hq-a1. The mistake was spotted straight away and hq-d1 Vlan120 was restored
-to 10.10.20.2/23 with its normal HSRP state. The incorrect default-gateway line
-was also removed.
+The gateway 10.10.20.1 and both edge-router loopbacks returned 5/5 replies. The gateway ping recorded min/avg/max 3/205/1009 ms, with no established cause for the higher response time.
 
-Cleanup and configuration checks
---------------------------------
-hq-a1 finished with:
+A pre-assignment availability check for 10.10.20.4 was not retained.
 
-- VLAN199 at 10.10.99.4/26.
+The temporary VLAN120 configuration was initially entered on hq-d1 instead of hq-a1. This was corrected: hq-d1 Vlan120 was restored to 10.10.20.2/23, its intended HSRP Standby state was confirmed in the session record, and the incorrect default-gateway setting was removed.
+
+The temporary VLAN120 configuration was removed from hq-a1 after testing.
+
+## Configuration close-out
+
+At the end of the 6 October 2026 session, hq-a1 had returned to:
+
+- VLAN199 management address 10.10.99.4/26.
 - Default gateway 10.10.99.1.
-- No temporary source SVI.
-- No IP SLA test configuration.
+- No temporary test SVI or IP SLA operations.
 
-The 6 October running/startup comparison was retained for hq-a1:
+The 6 October configuration checks identified an outstanding buffered-logging change on hq-a1. I restored the original settings and saved the configuration during the 12 October follow-up.
 
-- hq-a1: `logging buffered 65536 informational` remained from Phase 10.
+I also completed the remaining configuration checks across all five devices. The follow-up confirmed that:
 
-The session notes record the hq-d1 comparison result, but its CLI output was not
-retained: only IOSv banner differences remained, with no VLAN120 or
-default-gateway test residue present.
+- hq-a1 had its intended EtherChannel, STP and management state, with no remaining IP SLA operations.
+- The running/startup comparisons showed no unexplained failure-test configuration differences.
 
-At the close of the 6 October session, final post-change running/startup
-comparisons for hq-d2, hq-r1 and hq-r2 had not been retained.
+The remaining VTY timeout differences were the known CML configuration-fetch artefact, shown in the [retained configuration comparisons](10.14-config-excerpts.md). Management-only SSH access controls, management host routes and the hq-r1 Gi0/5 external management connection were not treated as forwarding-test residue.
 
-The original 6 October close-out record reports no failure-test interface shutdowns or temporary
-addressing left in the forwarding design. Management-only changes, including
-SSH access controls, management host routes and the hq-r1 Gi0/5 external
-management connection, are outside the public HQ design configs and were
-not treated as failure-test residue.
+A fresh private CML export was retained after cleanup.
 
-Follow-up configuration verification — 12 October 2026
----------------------------------------------------
-The outstanding five-device comparisons were completed and retained in the
-[final configuration captures](10.14-config-excerpts.md). All four Layer 3
-devices showed default buffered logging. On hq-a1, the original 8192/debugging
-buffer setting was restored and saved; the startup configuration no longer
-contained the custom logging setting.
+## Result
 
-Each comparison showed only the known CML configuration-fetch VTY timeout
-artefact (plus hq-a1's logging change before its final save). No unexplained
-failure-test configuration differences appeared. The hq-a1 interface, STP,
-EtherChannel and IP SLA checks also matched the intended final state.
-A fresh CML export was retained privately after cleanup.
+**PASS.** The 6 October session confirmed restored forwarding, redundancy and connectivity. The 12 October follow-up completed the configuration close-out.
 
-Result
-------
-PASS. The original session confirmed restored forwarding and redundancy.
-The 12 October follow-up reconciled the remaining configuration differences,
-restored the logging baseline, and retained the previously missing comparisons.
-The CML VTY timeout difference is a known export artefact, not a leftover
-failure-test change.
+I kept the 6 and 12 October checks separate so it's clear what was completed during each session.
 
 ---
 
-[← Previous](final-restoration-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](final-restoration-evidence.md) · [Next →](10.14-config-excerpts.md)
+[◀ Test evidence](README.md) · [Session record ▶](10.14-session-record.md) · [Configuration captures](10.14-config-excerpts.md) · [↑ Phase 10 Test Index](../README.md)

@@ -1,6 +1,6 @@
 # HQ Engineering Review and Conclusions
 
-[HQ implementation](README.md) / [Phase 10 Test Plan](phase-10-test-plan.md) / [Testing Methodology](phase-10-testing-methodology.md) / [Phase 10 Evidence Index](../../../evidence/hq/failure-tests/README.md)
+[Portfolio](../../../README.md) / [HQ Implementation](README.md) / Engineering Review
 
 > **Scope:** HQ Campus · Test window: 3–6 October 2026 · HQ-VP-10.01–10.14  
 > **Status:** Fault tests completed 3–6 October; final configuration reconciliation completed 12 October 2026
@@ -20,13 +20,22 @@
 
 Phase 10 tested how the as-built HQ campus behaved when links and devices failed. Several alternate paths worked as intended, while the isolation tests exposed limits in the current design. This review explains those findings, the troubleshooting behind them and the remaining work before sign-off.
 
-## Routed paths | HQ-VP-10.02–10.04
+<a name="routed-paths--hq-vp-10021004"></a>
+
+## <a href="../../../evidence/hq/failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md" title="Previous: 10.04 report" aria-label="Previous: 10.04 report"><img src="../../../diagrams/orange-previous.svg" alt="" width="30" height="26"></a> Routed paths | HQ-VP-10.02–10.04 <a href="phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation" title="Next: 10.08 test plan" aria-label="Next: 10.08 test plan"><img src="../../../diagrams/orange-next.svg" alt="" width="30" height="26"></a>
+
+**🟧 TEST INVESTIGATION · 03/06**
+
 
 *Evidence: [HQ-VP-10.02–10.03](../../../evidence/hq/failure-tests/10.02-10.03/HQ-VP-10.02-10.03-routed-link-ecmp.md) · [HQ-VP-10.04](../../../evidence/hq/failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md)*
 
 Removing one routed ECMP link reduced the number of equal-cost paths, but the destination was still reachable through the remaining links. When the normal cross-link failed, OSPF used the surviving higher-cost route. On hq-d2, the route to hq-r1 Loopback0 changed from metric 101 to 121, then returned to 101 when the link was restored.
 
 This supported my cost design from Phase 09: the planned alternate links were there when needed, but did not become the preferred paths during normal operation. IP SLA recorded some failed samples while the route changed, so the switchover was not loss-free. The alternate route worked, and the original route returned after recovery.
+
+🟧 **NEXT STEP —** [10.08 original test plan](phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation) [![Next stage](../../../diagrams/orange-next.svg)](phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation)
+
+**Optional interactive walkthrough:** [Launch 10.04 scenario](https://dominicdudden.co.uk/hq-vp-10-04/index.html#step-1).
 
 ## Access member and uplink failures | HQ-VP-10.05–10.06
 
@@ -50,6 +59,10 @@ This showed me the limit of the design. The four Po30 members protect against in
 
 ## Layer 2 isolation and split brain | HQ-VP-10.08
 
+<a href="../../../evidence/hq/failure-tests/10.02-10.03/10.02-10.03-failure.md" title="Previous: Stop 5 · Original CLI" aria-label="Previous: Stop 5 · Original CLI"><img src="../../../diagrams/orange-previous.svg" alt="" width="30" height="26"></a> **🟧 10-MINUTE ROUTE · EXPLORE THE EVIDENCE · 06/07** <a href="phase-11-final-acceptance.md#overall-assessment" title="Next: Stop 7 · Final acceptance" aria-label="Next: Stop 7 · Final acceptance"><img src="../../../diagrams/orange-next.svg" alt="" width="30" height="26"></a>
+
+*Troubleshooting and engineering review* · **Just over a minute** | The FAIL from Stop 4: healthy-looking interfaces and routing, but return traffic lost. The review explains how the return-path blackhole developed and why the IOSvL2 SVI remained operational despite losing its Layer 2 forwarding path. Full investigation: [HQ-TS-002](troubleshooting.md#hq-ts-002--iosvl2-svi-state-during-layer-2-isolation).
+
 *Evidence: [HQ-VP-10.08](../../../evidence/hq/failure-tests/10.08/HQ-VP-10.08-d2-layer2-isolation.md)*
 
 Shutting down Po20 and Po30 on hq-d2 isolated it at Layer 2 while leaving its routed uplinks operational. The HSRP states and traffic failures that followed took some working out.
@@ -65,6 +78,10 @@ I went away and read Cisco's documentation on Catalyst SVI autostate to understa
 This was one of the main learning points for me. It went beyond the straightforward failover examples from my CCNA study. The two locally Active HSRP states showed the split-brain condition, but they did not explain the different traffic results. Understanding that meant checking the SVI state, OSPF advertisement and hq-r2’s selected return route.
 
 The network recovered once the links were restored, but the test had exposed a gap in traffic continuity despite the gateway remaining reachable.
+
+🟧 **NEXT STEP —** [Stop 7 · Final acceptance](phase-11-final-acceptance.md#overall-assessment) [![Next stop](../../../diagrams/orange-next.svg)](phase-11-final-acceptance.md#overall-assessment)
+
+[↑ Phase 10 Test Index](../../../evidence/hq/failure-tests/README.md) · [← HQ-TS-002 investigation](troubleshooting.md#hq-ts-002--iosvl2-svi-state-during-layer-2-isolation)
 
 ## Upstream isolation and HSRP | HQ-VP-10.09
 
@@ -112,6 +129,10 @@ The unexpected IOSvL2 autostate behaviour also needs a clear follow-up: it is re
 The HQ design provided useful resilience during the tested routed-link, EtherChannel-member, access-uplink and device failures, within the limits of the traffic captures. The isolation tests also exposed gaps: loss of the only logical inter-distribution path, SVIs and OSPF advertisements remaining active after Layer-2 isolation in IOSvL2, and HSRP staying on a switch with no upstream routes.
 
 The most useful part of this phase for me was working out why traffic stopped during those failures. It showed what worked, where the lab image behaved differently from normal Catalyst SVI autostate and what I want to address in a later revision. The fault tests and final configuration close-out are complete; the 10.08 failure and 10.12 inconclusive coverage remain documented in their reports. Availability and precise convergence times were not measured.
+
+[Explore the Test Investigations](../../../evidence/hq/README.md#follow-the-evidence)
+
+[![Choose Another Route ↗](https://img.shields.io/badge/CHOOSE%20ANOTHER%20ROUTE%20%E2%86%97-C2185B?style=flat-square)](../../../README.md#explore-the-hq-project)
 
 ## Technical references
 

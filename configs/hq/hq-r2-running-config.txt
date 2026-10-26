@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration : 4209 bytes
+Current configuration : 6237 bytes
 !
-! Last configuration change at 07:26:42 UTC Sun Sep 27 2026 by <sanitised>
+! Last configuration change at 21:13:43 UTC Mon Oct 5 2026 by <sanitised>
 !
 version 15.9
 service timestamps debug datetime msec
@@ -39,6 +39,7 @@ mmi snmp-timeout 180
 !
 !
 no ip domain lookup
+ip domain name example.com
 ip cef
 no ipv6 cef
 !
@@ -154,6 +155,11 @@ ip forward-protocol nd
 !
 no ip http server
 no ip http secure-server
+ip route 192.0.2.10 255.255.255.255 10.255.10.129
+ip ssh version 2
+!
+ip access-list standard SSH-ACCESS
+ permit 192.0.2.10
 !
 ipv6 ioam timestamp
 !
@@ -161,8 +167,34 @@ ipv6 ioam timestamp
 !
 control-plane
 !
+banner exec ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner incoming ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner login ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
 banner motd ^C
-
 ####################################################################
 #                                                                  #
 #               NETWORK OPERATIONS / SECURITY NOTICE               #
@@ -185,17 +217,19 @@ banner motd ^C
 !
 line con 0
  exec-timeout 0 0
- password 7 <sanitised>
  logging synchronous
  login local
 line aux 0
 line vty 0 4
+ access-class SSH-ACCESS in
  exec-timeout 0 0
- password 7 <sanitised>
+ logging synchronous
  login local
  transport input ssh
 line vty 5 15
- password 7 <sanitised>
+ access-class SSH-ACCESS in
+ exec-timeout 5 0
+ logging synchronous
  login local
  transport input ssh
 !

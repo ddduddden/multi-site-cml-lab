@@ -1,181 +1,119 @@
-[Phase 10](../README.md) / [10.08](d2-layer2-isolation-evidence.md)
+[Portfolio](../../../../README.md) / [Evidence Map](../../README.md) / [Phase 10](../README.md) / [10.08](README.md) / Test report
 
-[← Previous](d2-layer2-isolation-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](d2-layer2-isolation-evidence.md) · [Next →](10.08-original-event-buffer.md)
+# <a href="../../../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation" title="Previous: 10.08 test plan" aria-label="Previous: 10.08 test plan"><img src="../../../../diagrams/orange-previous.svg" alt="" width="30" height="26"></a> HQ-VP-10.08 — hq-d2 Layer-2 Isolation <a href="10.08-session-record.md" title="Next: 10.08 session investigation" aria-label="Next: 10.08 session investigation"><img src="../../../../diagrams/orange-next.svg" alt="" width="30" height="26"></a>
 
----
+**🟧 TEST INVESTIGATION · 05/06**
 
-# [←](../10.07/HQ-VP-10.07-po30-progressive-failure.md "Previous VP") HQ-VP-10.08 — hq-d2 Layer-2 Isolation [→](../10.09/HQ-VP-10.09-d2-routed-isolation.md "Next VP")
 
 Phase 10 — Failure and Resilience Testing
 
-**Evidence commit:** [`a8624b1`](https://github.com/ddduddden/multi-site-cml-lab/commit/a8624b176298e3b0132daedf082c2aae0c704ebd)
-Evidence: [captured CLI and session records](d2-layer2-isolation-evidence.md)
-Related troubleshooting: HQ-TS-002
+**Result: FAIL**
 
-Test setup
-----------
-VLAN160 (FACILITIES) was used for the test.
+**Original test plan:** [HQ-VP-10.08 — Distribution Layer 2 isolation](../../../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation)\
+**Evidence:** [Session record](10.08-session-record.md) · [Recovery CLI](10.08-original-recovery-cli.md) · [Original event buffer](10.08-original-event-buffer.md)\
+**Evidence commit:** [a8624b1](https://github.com/ddduddden/multi-site-cml-lab/commit/a8624b176298e3b0132daedf082c2aae0c704ebd)\
+**Related troubleshooting:** [HQ-TS-002 — IOSvL2 SVI state](../../../../docs/implementation/hq/troubleshooting.md#hq-ts-002--iosvl2-svi-state-during-layer-2-isolation)
 
-- Subnet: 10.10.60.0/26.
-- HSRP virtual IP address (VIP): 10.10.60.1.
-- hq-d1: 10.10.60.2.
-- hq-d2: 10.10.60.3.
-- Temporary hq-a1 address: 10.10.60.4.
+## Test objective
 
-Temporary-address availability check
-------------------------------------
-Before assigning 10.10.60.4/26 to hq-a1:
+Verify how hq-d2 behaves when it loses both campus Layer 2 connections but keeps its routed uplinks. The test checks whether the VLAN gateway, SVI and OSPF routing state reflect the isolation, and whether traffic still has a working return path.
 
-- 10.10.60.4: 0/3 replies.
-- ARP remained incomplete.
+VLAN160 (FACILITIES) was used because hq-d2 is its preferred HSRP Active gateway. The test source was hq-a1 at 10.10.60.4/26, with virtual gateway 10.10.60.1. The distribution SVI addresses were 10.10.60.2 on hq-d1 and 10.10.60.3 on hq-d2.
 
-During setup, the temporary VLAN160 test configuration was first entered on
-hq-d2 instead of hq-a1. This temporarily removed hq-d2 Vlan130 and changed
-Vlan160 from 10.10.60.3 to 10.10.60.4. hq-d2 was restored before the failure
-test started.
+## Healthy baseline
 
-After the test source moved to hq-a1, SLA101 recorded one startup failed sample.
-The probes were recreated once the path had settled.
+Before assigning 10.10.60.4/26 to hq-a1, I checked the address. The ping returned 0/3 replies and ARP remained incomplete.
 
-Clean baseline:
+During setup, I corrected an unintended configuration change on hq-d2 before starting the failure test.
+
+After moving the test source to hq-a1, SLA101 recorded one startup failed sample. I recreated the probes once the path had settled, giving a clean baseline:
 
 - SLA101: 146 successful probes / 0 failures.
 - SLA102: 147 successful probes / 0 failures.
 
-Before the failure
-------------------
-- Po20 and Po30 were up on hq-d2.
-- hq-d2 Vlan160 was up/up.
-- hq-d2 was HSRP Active.
-- hq-d1 was HSRP Standby.
-- hq-d2 had five OSPF neighbours in Full state.
-- hq-a1 used Po20 as the root path, with Po10 as the alternate path.
+The baseline checks confirmed:
 
-Reachability from hq-a1:
+- Po20 and Po30 operational on hq-d2, with Vlan160 up/up.
+- hq-d2 HSRP Active and hq-d1 Standby for VLAN160.
+- Five FULL OSPF adjacencies on hq-d2.
+- hq-a1 using Po20 as its STP root port, with Po10 as the alternate.
+- VLAN160 gateway and both edge-router loopbacks reachable from hq-a1, each with 5/5 replies.
 
-- VIP: 5/5 replies.
-- hq-r2 Loopback0: 5/5 replies.
-- hq-r1 Loopback0: 5/5 replies.
+## Layer 2 isolation
 
-Failure
--------
-Po20 and Po30 were shut on hq-d2. The five routed links were deliberately left
-up.
+I shut Po20 and Po30 on hq-d2, leaving all five routed uplinks operational.
 
 After the shutdown:
 
 - hq-a1 moved to Po10 through hq-d1.
-- hq-d2 Vlan160 still showed up/up.
-- hq-d2 stayed locally HSRP Active but could no longer see its peer.
-- hq-d1 also became locally Active because it could no longer see hq-d2.
-- hq-d2 still had all five OSPF neighbours in Full state.
+- hq-d2 Vlan160 continued reporting up/up.
+- hq-d2 remained locally HSRP Active, while hq-d1 also became locally Active because the peers could no longer see each other.
+- hq-d2 retained all five FULL OSPF adjacencies.
 
-Layer 2 had failed on hq-d2, but from the routed side it still looked healthy.
+The Layer 2 connections were gone, but hq-d2 still appeared healthy from the routed side.
 
-OSPF and the return path
-------------------------
-Because Vlan160 stayed up/up on hq-d2:
+### OSPF and the return path
 
-- 10.10.60.0/26 stayed in the connected routing table.
-- hq-d2 continued advertising the subnet into OSPF.
-- hq-r2 kept four metric-11 paths through hq-d2.
-- The checked CEF return flow to 10.10.60.4 still selected hq-d2.
+Because Vlan160 stayed up/up on hq-d2, 10.10.60.0/26 remained in its connected routing table and continued to be advertised into OSPF. hq-r2 retained four metric-11 paths through hq-d2, and its checked CEF return flow towards 10.10.60.4 still selected hq-d2.
 
-The later recovery capture shows the hq-r2 route entries had already been
-present for hours, so they were not withdrawn and relearned during this test.
+The later recovery capture showed that hq-r2's route entries had already been present for hours, rather than being withdrawn and relearned during this test.
 
-Extra checks on hq-d2 showed:
+Further checks on hq-d2 found no active campus trunks, no STP instance for VLAN160 and no member ports in the VLAN. Despite this, Vlan160 remained up/up, keeping its connected route in the routing table and the subnet advertised through OSPF.
 
-- no active campus trunks;
-- no STP instance for VLAN160;
-- VLAN160 active with no member ports;
-- Vlan160 still up/up.
+### Traffic verification
 
-So this was not just STP taking time to settle. IOSvL2 kept the SVI and
-connected
-route up even though hq-d2 had no working Layer-2 path back into the VLAN.
+From hq-a1 at 10.10.60.4, the failure-state checks returned:
 
-Traffic result
---------------
-From hq-a1 at 10.10.60.4:
+| Destination | Recorded result |
+|---|---|
+| VLAN160 gateway 10.10.60.1 | 5/5 replies |
+| hq-d1 SVI 10.10.60.2 | 5/5 replies |
+| hq-d2 SVI 10.10.60.3 | 0/5 replies |
+| hq-r2 Loopback0 10.255.10.130 | 0/5 replies |
+| hq-r1 Loopback0 10.255.10.129 | 5/5 replies |
 
-- VIP 10.10.60.1: 5/5 replies.
-- hq-d1 SVI 10.10.60.2: 5/5 replies.
-- hq-d2 SVI 10.10.60.3: 0/5 replies.
-- hq-r2 Loopback0 10.255.10.130: 0/5 replies.
-- hq-r1 Loopback0 10.255.10.129: 5/5 replies.
+SLA101 went into Timeout. SLA102 returned to OK, but recorded 9 failed samples during the failure window.
 
-SLA101 went into Timeout.
+Traffic from hq-a1 could leave through hq-d1. Replies from hq-r2 still followed the route through hq-d2, which no longer had a usable Layer 2 path back to the test host.
 
-SLA102 returned to OK, but was not without loss. It recorded 9 failed samples
-during the failure window.
+**The resulting return-path blackhole:**
 
-Why hq-r2 failed
-----------------
-Traffic from hq-a1 could leave through hq-d1.
+```text
+hq-a1 → hq-d1 → routed network → hq-r2
 
-The reply from hq-r2 still followed the route through hq-d2. It reached hq-d2,
-but hq-d2 no longer had a usable Layer-2 path back to 10.10.60.4.
+hq-r2 → hq-d2 → no Layer 2 path back to hq-a1
+```
 
-The result was a return-path blackhole:
+OSPF was using the route hq-d2 continued to advertise. The unexpected behaviour was that IOSvL2 kept the SVI and connected route up after its Layer 2 connections had been removed.
 
-hq-a1 -> hq-d1 -> routed network -> hq-r2
-hq-r2 -> hq-d2 -> no Layer-2 path back to hq-a1
+## Recovery
 
-OSPF was following the route hq-d2 was still advertising. The unusual part was
-IOSvL2 keeping the SVI and connected route up after the Layer-2 paths were gone.
+I restored Po20 and Po30 on hq-d2. Both Port-Channels returned to service, with all four Po30 members bundled. hq-d2 returned to HSRP Active and hq-d1 to Standby, hq-a1 selected Po20 again, and STP showed no inconsistent ports. hq-d2 continued to have five FULL OSPF adjacencies.
 
-Recovery
---------
-Po20 and Po30 were restored on hq-d2.
+The retained IP SLA readings were:
 
-After recovery:
-
-- both Port-Channels were back up;
-- Po30 had all four links bundled again;
-- hq-d2 returned to HSRP Active and hq-d1 to Standby;
-- STP showed no inconsistent ports;
-- hq-d2 still had five OSPF neighbours in Full state;
-- hq-a1 returned to Po20 as the root path.
-
-IP SLA before recovery:
-
-- SLA101: 186 successes / 2626 failures / Timeout.
-- SLA102: 2805 successes / 9 failures / OK.
-
-After recovery:
-
-- SLA101: 445 successes / 2687 failures / OK.
-- SLA102: 3117 successes / 15 failures / OK.
+| Capture | SLA101 | SLA102 |
+|---|---|---|
+| Before recovery | 186 successes / 2,626 failures / Timeout | 2,805 successes / 9 failures / OK |
+| After recovery | 445 successes / 2,687 failures / OK | 3,117 successes / 15 failures / OK |
 
 SLA102 added another 6 failed samples during recovery.
 
-Reachability was restored:
+The VLAN160 gateway, hq-d2 SVI and both edge-router loopbacks each returned 5/5 replies after restoration. One hq-d2 SVI reply was much slower than the others (min/avg/max 3/204/1006 ms), with no confirmed cause.
 
-- VIP: 5/5 replies.
-- hq-d2 SVI: 5/5 replies.
-- hq-r2 Loopback0: 5/5 replies.
-- hq-r1 Loopback0: 5/5 replies.
+## Platform behaviour
 
-One reply to the hq-d2 SVI was much slower than the others
-(min/avg/max 3/204/1006 ms). No cause was proved.
+Cisco documents normal Catalyst SVI autostate as requiring at least one Layer 2 port in the VLAN to be up and forwarding. This is intended to prevent routing protocols from using an SVI that cannot forward traffic. The up/up SVI in this test is therefore recorded as the IOSvL2/CML behaviour observed in the lab, not as the expected behaviour of Catalyst switches generally.
 
-Result
-------
-FAIL. The VLAN160 gateway failed over to hq-d1, but traffic to hq-r2 was
-blackholed on the return path. The expected SVI withdrawal and working return
-path were not demonstrated.
+## Result
 
-hq-d2's VLAN160 SVI and connected route stayed up, so the subnet continued to
-be advertised into OSPF even though hq-d2 no longer had a usable Layer-2 path
-back to the test host.
+**FAIL.** The VLAN160 gateway failed over to hq-d1, but traffic to hq-r2 was blackholed on the return path. The expected SVI withdrawal and working return path were not demonstrated.
 
-Platform note: Cisco documents normal Catalyst SVI autostate as requiring at
-least one Layer-2 port in the VLAN to be up and forwarding. The feature is
-intended to stop routing protocols using an SVI that cannot forward at Layer 2
-and to avoid routing black holes. The up/up SVI seen here is therefore kept as
-IOSvL2/CML behaviour observed in this lab, not a general Catalyst expectation.
+The hq-d2 VLAN160 SVI and connected route remained up, so hq-d2 continued advertising the subnet into OSPF even though it could no longer forward traffic back to the test host at Layer 2. The traffic checks captured the failure, and the recovery checks confirmed that connectivity returned.
+
 
 ---
 
-[← Previous](d2-layer2-isolation-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](d2-layer2-isolation-evidence.md) · [Next →](10.08-original-event-buffer.md)
+🟧 **NEXT STEP —** [10.08 session investigation](10.08-session-record.md) [![Next stage](../../../../diagrams/orange-next.svg)](10.08-session-record.md)
+
+[◀ Test evidence](README.md) · [Session record ▶](10.08-session-record.md) · [Recovery CLI](10.08-original-recovery-cli.md) · [Original event buffer](10.08-original-event-buffer.md) · [↑ Phase 10 Test Index](../README.md)

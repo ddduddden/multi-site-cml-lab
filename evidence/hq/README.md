@@ -1,0 +1,103 @@
+# HQ Evidence Map
+
+[Portfolio](../../README.md) / [Verification Evidence](../README.md) / HQ Evidence Map
+
+Use this index to find a check, open its evidence and return to the verification record. Phase 10 retains the original results and supporting captures.
+
+## Explore the Evidence — ten-minute overview
+
+🟧 [Start the broader evidence tour](evidence-overview.md) to follow the documentation from original design and implementation through the verification plan, Phase 10 test matrix, reports, CLI evidence, troubleshooting, engineering review and final acceptance.
+
+<a name="follow-the-evidence"></a>
+
+## Explore the Test Investigations
+
+**Optional, deeper investigations.** These two contrasting tests demonstrate how the planned criteria, recorded outcome and retained evidence fit together. **10.04 passed** after OSPF selected a higher-cost alternative and recovered its preferred route. **10.08 failed** when IOSvL2 kept an isolated VLAN interface operational, leaving an unusable return path.
+
+| Start | What you will see |
+|---|---|
+| **[🟧 Start with 10.04 — PASS](../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1004-cross-link-loss-and-higher-cost-alternate)** | Begin at **01/06**, follow 10.04's plan, result and routing analysis, then continue into 10.08 |
+| **[🟧 Jump straight to 10.08 — FAIL](../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation)** | Enter at **04/06**, follow the isolation report and session evidence, then open the interactive scenario |
+
+**The six GitHub stages:** 10.04 test plan → report → routing review → 10.08 test plan → report → session investigation. The [interactive 10.08 scenario](https://dominicdudden.co.uk/hq-vp-10-08/index.html#step-1) is an optional continuation.
+
+The orange arrows beside each stage heading take you backward or forward. The single-line next-step link is repeated near the end, while original CLI and troubleshooting records remain available separately. The interactive animations explain the observations; the retained engineering evidence remains here in GitHub.
+
+[Phase 10 complete test index](failure-tests/README.md) · [HQ Engineering Review](../../docs/implementation/hq/phase-10-engineering-review.md)
+
+[![Choose Another Route ↗](https://img.shields.io/badge/CHOOSE%20ANOTHER%20ROUTE%20%E2%86%97-C2185B?style=flat-square)](../../README.md#explore-the-hq-project)
+
+## Browse by Area
+
+[Platform](platform-baseline/README.md) · [VLANs](layer2-vlan-baseline/README.md) · [EtherChannel](etherchannel/README.md) · [Spanning Tree](spanning-tree/README.md) · [HSRP](hsrp/README.md)
+
+[Routed Underlay](layer3-underlay/README.md) · [OSPF / ECMP / Cost Engineering](ospf/README.md) · [Failure Testing](failure-tests/README.md) · [Final Acceptance](final-acceptance/README.md)
+
+## Verification Records
+
+Phases 01–09 use the recorded status **Verified**. Phase 10 uses **PASS**, **FAIL** and **INCONCLUSIVE**.
+
+| Phase | Test | Check | Recorded status / result | Evidence | Verification record / planned check |
+|---|---|---|---|---|---|
+| 01 | [HQ-VP-01.01](../../docs/implementation/hq/verification-plan.md#hq-device-inventory--hq-vp-0101) | HQ Device Inventory | Verified | [Captures](platform-baseline/README.md#hq-vp-0101) | [Verification record](../../docs/implementation/hq/verification-plan.md#hq-device-inventory--hq-vp-0101) |
+| 01 | [HQ-VP-01.02](../../docs/implementation/hq/verification-plan.md#image-and-software-version-inventory--hq-vp-0102) | Image and Software Version Inventory | Verified | [Captures](platform-baseline/README.md#hq-vp-0102) | [Verification record](../../docs/implementation/hq/verification-plan.md#image-and-software-version-inventory--hq-vp-0102) |
+| 01 | [HQ-VP-01.03](../../docs/implementation/hq/verification-plan.md#interface-inventory-and-topology-fit--hq-vp-0103) | Interface Inventory and Topology Fit | Verified | [Captures](platform-baseline/README.md#hq-vp-0103) | [Verification record](../../docs/implementation/hq/verification-plan.md#interface-inventory-and-topology-fit--hq-vp-0103) |
+| 01 | [HQ-VP-01.04](../../docs/implementation/hq/verification-plan.md#platform-capability-review--hq-vp-0104) | Platform Capability Review | Verified | [Captures](platform-baseline/README.md#hq-vp-0104) | [Verification record](../../docs/implementation/hq/verification-plan.md#platform-capability-review--hq-vp-0104) |
+| 02 | [HQ-VP-02.01](../../docs/implementation/hq/verification-plan.md#vlan-database--hq-vp-0201) | VLAN Database | Verified | [Captures](layer2-vlan-baseline/README.md#hq-vp-0201) | [Verification record](../../docs/implementation/hq/verification-plan.md#vlan-database--hq-vp-0201) |
+| 02 | [HQ-VP-02.02](../../docs/implementation/hq/verification-plan.md#access-port-assignments--hq-vp-0202) | Access-Port Assignments | Verified | [Captures](layer2-vlan-baseline/README.md#hq-vp-0202) | [Verification record](../../docs/implementation/hq/verification-plan.md#access-port-assignments--hq-vp-0202) |
+| 02 | [HQ-VP-02.03](../../docs/implementation/hq/verification-plan.md#parking-vlan-policy--hq-vp-0203) | Parking-VLAN Policy | Verified | [Captures](layer2-vlan-baseline/README.md#hq-vp-0203) | [Verification record](../../docs/implementation/hq/verification-plan.md#parking-vlan-policy--hq-vp-0203) |
+| 03 | [HQ-VP-03.01](../../docs/implementation/hq/verification-plan.md#etherchannel-formation-and-lacp-state--hq-vp-0301) | EtherChannel Formation and LACP State | Verified | [Captures](etherchannel/README.md#hq-vp-0301) | [Verification record](../../docs/implementation/hq/verification-plan.md#etherchannel-formation-and-lacp-state--hq-vp-0301) |
+| 03 | [HQ-VP-03.02](../../docs/implementation/hq/verification-plan.md#port-channel-trunk-policy--hq-vp-0302) | Port-Channel Trunk Policy | Verified | [Captures](etherchannel/README.md#hq-vp-0302) | [Verification record](../../docs/implementation/hq/verification-plan.md#port-channel-trunk-policy--hq-vp-0302) |
+| 03 | [HQ-VP-03.03](../../docs/implementation/hq/verification-plan.md#operational-trunk-and-vlan-state--hq-vp-0303) | Operational Trunk and VLAN State | Verified | [Captures](etherchannel/README.md#hq-vp-0303) | [Verification record](../../docs/implementation/hq/verification-plan.md#operational-trunk-and-vlan-state--hq-vp-0303) |
+| 03 | [HQ-VP-03.04](../../docs/implementation/hq/verification-plan.md#etherchannel-member-link-failure-and-recovery--hq-vp-0304) | EtherChannel Member-Link Failure and Recovery | Verified | [Captures](etherchannel/README.md#hq-vp-0304) | [Verification record](../../docs/implementation/hq/verification-plan.md#etherchannel-member-link-failure-and-recovery--hq-vp-0304) |
+| 04 | [HQ-VP-04.01](../../docs/implementation/hq/verification-plan.md#rapid-pvst-mode-and-root-placement--hq-vp-0401) | Rapid PVST+ Mode and Root Placement | Verified | [Captures](spanning-tree/README.md#hq-vp-0401) | [Verification record](../../docs/implementation/hq/verification-plan.md#rapid-pvst-mode-and-root-placement--hq-vp-0401) |
+| 04 | [HQ-VP-04.02](../../docs/implementation/hq/verification-plan.md#access-layer-forwarding-and-alternate-paths--hq-vp-0402) | Access-Layer Forwarding and Alternate Paths | Verified | [Captures](spanning-tree/README.md#hq-vp-0402) | [Verification record](../../docs/implementation/hq/verification-plan.md#access-layer-forwarding-and-alternate-paths--hq-vp-0402) |
+| 04 | [HQ-VP-04.03](../../docs/implementation/hq/verification-plan.md#stp-path-failure-and-recovery--hq-vp-0403) | STP Path Failure and Recovery | Verified | [Captures](spanning-tree/README.md#hq-vp-0403) | [Verification record](../../docs/implementation/hq/verification-plan.md#stp-path-failure-and-recovery--hq-vp-0403) |
+| 05 | [HQ-VP-05.01](../../docs/implementation/hq/verification-plan.md#svi-addressing-and-layer-3-baseline--hq-vp-0501) | SVI Addressing and Layer 3 Baseline | Verified | [Captures](hsrp/README.md#hq-vp-0501) | [Verification record](../../docs/implementation/hq/verification-plan.md#svi-addressing-and-layer-3-baseline--hq-vp-0501) |
+| 05 | [HQ-VP-05.02](../../docs/implementation/hq/verification-plan.md#hsrp-configuration-and-normal-operating-state--hq-vp-0502) | HSRP Configuration and Normal Operating State | Verified | [Captures](hsrp/README.md#hq-vp-0502) | [Verification record](../../docs/implementation/hq/verification-plan.md#hsrp-configuration-and-normal-operating-state--hq-vp-0502) |
+| 05 | [HQ-VP-05.03](../../docs/implementation/hq/verification-plan.md#hsrpstp-alignment-and-gateway-reachability--hq-vp-0503) | HSRP/STP Alignment and Gateway Reachability | Verified | [Captures](hsrp/README.md#hq-vp-0503) | [Verification record](../../docs/implementation/hq/verification-plan.md#hsrpstp-alignment-and-gateway-reachability--hq-vp-0503) |
+| 05 | [HQ-VP-05.04](../../docs/implementation/hq/verification-plan.md#hsrp-gateway-failover--hq-vp-0504) | HSRP Gateway Failover | Verified | [Captures](hsrp/README.md#hq-vp-0504) | [Verification record](../../docs/implementation/hq/verification-plan.md#hsrp-gateway-failover--hq-vp-0504) |
+| 05 | [HQ-VP-05.05](../../docs/implementation/hq/verification-plan.md#hsrp-preemption-and-preferred-state-restoration--hq-vp-0505) | HSRP Preemption and Preferred-State Restoration | Verified | [Captures](hsrp/README.md#hq-vp-0505) | [Verification record](../../docs/implementation/hq/verification-plan.md#hsrp-preemption-and-preferred-state-restoration--hq-vp-0505) |
+| 06 | [HQ-VP-06.01](../../docs/implementation/hq/verification-plan.md#routed-31-interface-addressing-and-state--hq-vp-0601) | Routed `/31` Interface Addressing and State | Verified | [Captures](layer3-underlay/README.md#hq-vp-0601) | [Verification record](../../docs/implementation/hq/verification-plan.md#routed-31-interface-addressing-and-state--hq-vp-0601) |
+| 06 | [HQ-VP-06.02](../../docs/implementation/hq/verification-plan.md#direct-31-point-to-point-reachability--hq-vp-0602) | Direct `/31` Point-to-Point Reachability | Verified | [Captures](layer3-underlay/README.md#hq-vp-0602) | [Verification record](../../docs/implementation/hq/verification-plan.md#direct-31-point-to-point-reachability--hq-vp-0602) |
+| 06 | [HQ-VP-06.03](../../docs/implementation/hq/verification-plan.md#pre-ospf-underlay-baseline--hq-vp-0603) | Pre-OSPF Underlay Baseline | Verified | [Captures](layer3-underlay/README.md#hq-vp-0603) | [Verification record](../../docs/implementation/hq/verification-plan.md#pre-ospf-underlay-baseline--hq-vp-0603) |
+| 07 | [HQ-VP-07.01](../../docs/implementation/hq/verification-plan.md#loopback-and-ospf-process-identity--hq-vp-0701) | Loopback and OSPF Process Identity | Verified | [Captures](ospf/README.md#hq-vp-0701) | [Verification record](../../docs/implementation/hq/verification-plan.md#loopback-and-ospf-process-identity--hq-vp-0701) |
+| 07 | [HQ-VP-07.02](../../docs/implementation/hq/verification-plan.md#ospf-interface-participation-network-type-and-cost--hq-vp-0702) | OSPF Interface Participation, Network Type and Cost | Verified | [Captures](ospf/README.md#hq-vp-0702) | [Verification record](../../docs/implementation/hq/verification-plan.md#ospf-interface-participation-network-type-and-cost--hq-vp-0702) |
+| 07 | [HQ-VP-07.03](../../docs/implementation/hq/verification-plan.md#ospf-area-10-adjacencies--hq-vp-0703) | OSPF Area 10 Adjacencies | Verified | [Captures](ospf/README.md#hq-vp-0703) | [Verification record](../../docs/implementation/hq/verification-plan.md#ospf-area-10-adjacencies--hq-vp-0703) |
+| 07 | [HQ-VP-07.04](../../docs/implementation/hq/verification-plan.md#ospf-link-state-database-and-learned-routing--hq-vp-0704) | OSPF Link-State Database and Learned Routing | Verified | [Captures](ospf/README.md#hq-vp-0704) | [Verification record](../../docs/implementation/hq/verification-plan.md#ospf-link-state-database-and-learned-routing--hq-vp-0704) |
+| 07 | [HQ-VP-07.05](../../docs/implementation/hq/verification-plan.md#routed-and-end-to-end-reachability--hq-vp-0705) | Routed and End-to-End Reachability | Verified | [Captures](ospf/README.md#hq-vp-0705) | [Verification record](../../docs/implementation/hq/verification-plan.md#routed-and-end-to-end-reachability--hq-vp-0705) |
+| 07 | [HQ-VP-07.06](../../docs/implementation/hq/verification-plan.md#layer-2-and-gateway-regression--hq-vp-0706) | Layer 2 and Gateway Regression | Verified | [Captures](ospf/README.md#hq-vp-0706) | [Verification record](../../docs/implementation/hq/verification-plan.md#layer-2-and-gateway-regression--hq-vp-0706) |
+| 08 | [HQ-VP-08.01](../../docs/implementation/hq/verification-plan.md#ecmp-route-installation--hq-vp-0801) | ECMP Route Installation | Verified | [Captures](ospf/README.md#hq-vp-0801) | [Verification record](../../docs/implementation/hq/verification-plan.md#ecmp-route-installation--hq-vp-0801) |
+| 08 | [HQ-VP-08.02](../../docs/implementation/hq/verification-plan.md#cef-path-selection--hq-vp-0802) | CEF Path Selection | Verified | [Captures](ospf/README.md#hq-vp-0802) | [Verification record](../../docs/implementation/hq/verification-plan.md#cef-path-selection--hq-vp-0802) |
+| 08 | [HQ-VP-08.03](../../docs/implementation/hq/verification-plan.md#aggregate-ecmp-forwarding--hq-vp-0803) | Aggregate ECMP Forwarding | Verified | [Captures](ospf/README.md#hq-vp-0803) | [Verification record](../../docs/implementation/hq/verification-plan.md#aggregate-ecmp-forwarding--hq-vp-0803) |
+| 08 | [HQ-VP-08.04](../../docs/implementation/hq/verification-plan.md#ecmp-contraction-and-restoration--hq-vp-0804) | ECMP Contraction and Restoration | Verified | [Captures](ospf/README.md#hq-vp-0804) | [Verification record](../../docs/implementation/hq/verification-plan.md#ecmp-contraction-and-restoration--hq-vp-0804) |
+| 08 | [HQ-VP-08.05](../../docs/implementation/hq/verification-plan.md#four-path-maximum--hq-vp-0805) | Four-Path Maximum | Verified | [Captures](ospf/README.md#hq-vp-0805) | [Verification record](../../docs/implementation/hq/verification-plan.md#four-path-maximum--hq-vp-0805) |
+| 09 | [HQ-VP-09.01](../../docs/implementation/hq/verification-plan.md#normal-cost-driven-selection--hq-vp-0901) | Normal Cost-Driven Selection | Verified | [Captures](ospf/README.md#hq-vp-0901) | [Verification record](../../docs/implementation/hq/verification-plan.md#normal-cost-driven-selection--hq-vp-0901) |
+| 09 | [HQ-VP-09.02](../../docs/implementation/hq/verification-plan.md#higher-cost-alternate-activation--hq-vp-0902) | Higher-Cost Alternate Activation | Verified | [Captures](ospf/README.md#hq-vp-0902) | [Verification record](../../docs/implementation/hq/verification-plan.md#higher-cost-alternate-activation--hq-vp-0902) |
+| 09 | [HQ-VP-09.03](../../docs/implementation/hq/verification-plan.md#preferred-route-restoration--hq-vp-0903) | Preferred-Route Restoration | Verified | [Captures](ospf/README.md#hq-vp-0903) | [Verification record](../../docs/implementation/hq/verification-plan.md#preferred-route-restoration--hq-vp-0903) |
+| 10 | [HQ-VP-10.01](failure-tests/10.01/HQ-VP-10.01-healthy-baseline.md) | Healthy baseline | PASS | [Test evidence](failure-tests/10.01/README.md) | [Planned check](../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1001-healthy-baseline) |
+| 10 | [HQ-VP-10.02](failure-tests/10.02-10.03/HQ-VP-10.02-10.03-routed-link-ecmp.md) | Routed-link failure and ECMP | PASS | [Test evidence](failure-tests/10.02-10.03/README.md) | [Planned check](../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1002-single-routed-link-loss-and-ecmp-reduction) |
+| 10 | [HQ-VP-10.03](failure-tests/10.02-10.03/HQ-VP-10.02-10.03-routed-link-ecmp.md) | Routed-link failure and ECMP | PASS | [Test evidence](failure-tests/10.02-10.03/README.md) | [Planned check](../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1003-routed-link-failure-detection) |
+| 10 | [HQ-VP-10.04](failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md) | Cross-link failure | PASS | [Test evidence](failure-tests/10.04/README.md) | [Planned check](../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1004-cross-link-loss-and-higher-cost-alternate) |
+| 10 | [HQ-VP-10.05](failure-tests/10.05/HQ-VP-10.05-etherchannel-member-failure.md) | EtherChannel member failure | PASS | [Test evidence](failure-tests/10.05/README.md) | [Planned check](../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1005-po20-member-link-failure) |
+| 10 | [HQ-VP-10.06](failure-tests/10.06/HQ-VP-10.06-access-uplink-failure.md) | Access uplink failure | PASS | [Test evidence](failure-tests/10.06/README.md) | [Planned check](../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1006-access-port-channel-outage) |
+| 10 | [HQ-VP-10.07](failure-tests/10.07/HQ-VP-10.07-po30-progressive-failure.md) | Po30 progressive failure | PASS | [Test evidence](failure-tests/10.07/README.md) | [Planned check](../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1007-progressive-po30-degradation-and-complete-loss) |
+| 10 | [HQ-VP-10.08](failure-tests/10.08/HQ-VP-10.08-d2-layer2-isolation.md) | `hq-d2` Layer 2 isolation | FAIL | [Test evidence](failure-tests/10.08/README.md) | [Planned check](../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation) |
+| 10 | [HQ-VP-10.09](failure-tests/10.09/HQ-VP-10.09-d2-routed-isolation.md) | `hq-d2` routed isolation | PASS | [Test evidence](failure-tests/10.09/README.md) | [Planned check](../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1009-active-gateway-loses-routed-uplinks) |
+| 10 | [HQ-VP-10.10](failure-tests/10.10/HQ-VP-10.10-d1-device-failure.md) | `hq-d1` device failure | PASS | [Test evidence](failure-tests/10.10/README.md) | [Planned check](../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1010-hq-d1-device-outage) |
+| 10 | [HQ-VP-10.11](failure-tests/10.11/HQ-VP-10.11-d2-device-failure.md) | `hq-d2` device failure | PASS | [Test evidence](failure-tests/10.11/README.md) | [Planned check](../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1011-hq-d2-device-outage) |
+| 10 | [HQ-VP-10.12](failure-tests/10.12/HQ-VP-10.12-r1-device-failure.md) | `hq-r1` device failure | INCONCLUSIVE | [Test evidence](failure-tests/10.12/README.md) | [Planned check](../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1012-hq-r1-device-outage) |
+| 10 | [HQ-VP-10.13](failure-tests/10.13/HQ-VP-10.13-diagonal-double-failure.md) | Combined failures | PASS | [Test evidence](failure-tests/10.13/README.md) | [Planned check](../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1013-diagonal-double-device-failure) |
+| 10 | [HQ-VP-10.14](failure-tests/10.14/HQ-VP-10.14-final-restoration.md) | Final restoration | PASS | [Test evidence](failure-tests/10.14/README.md) | [Planned check](../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1014-final-restoration-and-hygiene) |
+
+Phase 10 results need to be read with the [result notes](failure-tests/README.md#notes), particularly the rerun in 10.05, the tracking limitation in 10.09 and the settled-state checks in 10.13.
+
+## Phase 11 — Final Acceptance
+
+Phase 11 was accepted as an HQ V1 engineering milestone on 26 October 2026, with the documented findings retained. Startup checks on 16 and 26 October both required a manual VLAN199 SVI reset; the cause remains unresolved and an intervention-free boot has not been demonstrated.
+
+[Boot recovery and final operational checks](final-acceptance/README.md) · [Verification record](../../docs/implementation/hq/verification-plan.md#phase-11--final-acceptance) · [Final acceptance document](../../docs/implementation/hq/phase-11-final-acceptance.md)
+
+---
+
+[↑ Portfolio](../../README.md) · [HQ Implementation](../../docs/implementation/hq/README.md)

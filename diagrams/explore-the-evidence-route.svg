@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+<title id="title">Explore the Evidence: ten-minute route map</title>
+<desc id="desc">Seven stops through the original HQ records. 01 Design intent, HQ Campus Design. 02 Phase verification, Verification Plan HQ-VP-09.02. 03 Test plan, Phase 10 Test Plan. 04 Results, Phase 10 results index. 05 Report and CLI, HQ-VP-10.02 to 10.03 report and original CLI. 06 Engineering review, Layer 2 isolation HQ-VP-10.08. 07 Acceptance, Phase 11 final acceptance. Green rings mark the alternate routing that worked (stops 01, 02 and 05); red rings mark the Layer 2 isolation that failed (stops 04, 06 and 07). After stop 07 the route offers the optional Test Investigations, the interactive portfolio, or a choice of another route.</desc>
+<style>
+  .sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif; }
+  .title { font-size: 24px; font-weight: 600; letter-spacing: -0.01em; fill: #1f2328; }
+  .subtitle { font-size: 14.5px; font-weight: 400; fill: #59636e; }
+  .name { font-size: 15px; font-weight: 600; fill: #1f2328; }
+  .detail { font-size: 13.5px; font-weight: 400; fill: #59636e; }
+  .legend { font-size: 13.5px; font-weight: 400; fill: #59636e; }
+</style>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#818b98"/></marker></defs>
+<rect x="0.5" y="0.5" width="959" height="419" rx="12" fill="#ffffff" stroke="#d1d9e0" stroke-width="1"/>
+<text class="sans title" x="480" y="46" text-anchor="middle">Explore the Evidence — 10-minute route</text>
+<text class="sans subtitle" x="480" y="70" text-anchor="middle">Seven stops through the original records, then three ways on</text>
+<path d="M60 180 H880" stroke="#bf6700" stroke-width="4" stroke-linecap="round"/>
+<circle cx="60" cy="180" r="8" fill="#bf6700" stroke="#ffffff" stroke-width="2"/>
+<text class="sans name" x="60" y="118" text-anchor="middle">Start</text>
+<text class="sans detail" x="60" y="138" text-anchor="middle">This page</text>
+<circle cx="162" cy="180" r="14" fill="none" stroke="#1a7f37" stroke-width="2.5"/>
+<circle cx="162" cy="180" r="8" fill="#bf6700" stroke="#ffffff" stroke-width="2"/>
+<text class="sans name" x="162" y="228" text-anchor="middle">01 Design intent</text>
+<text class="sans detail" x="162" y="248" text-anchor="middle">HQ Campus Design</text>
+<circle cx="265" cy="180" r="14" fill="none" stroke="#1a7f37" stroke-width="2.5"/>
+<circle cx="265" cy="180" r="8" fill="#bf6700" stroke="#ffffff" stroke-width="2"/>
+<text class="sans name" x="265" y="118" text-anchor="middle">02 Phase verification</text>
+<text class="sans detail" x="265" y="138" text-anchor="middle">Verification Plan · 09.02</text>
+<circle cx="367" cy="180" r="8" fill="#bf6700" stroke="#ffffff" stroke-width="2"/>
+<text class="sans name" x="367" y="228" text-anchor="middle">03 Test plan</text>
+<text class="sans detail" x="367" y="248" text-anchor="middle">Phase 10 Test Plan</text>
+<circle cx="470" cy="180" r="14" fill="none" stroke="#cf222e" stroke-width="2.5"/>
+<circle cx="470" cy="180" r="8" fill="#bf6700" stroke="#ffffff" stroke-width="2"/>
+<text class="sans name" x="470" y="118" text-anchor="middle">04 Results</text>
+<text class="sans detail" x="470" y="138" text-anchor="middle">Phase 10 results index</text>
+<circle cx="572" cy="180" r="14" fill="none" stroke="#1a7f37" stroke-width="2.5"/>
+<circle cx="572" cy="180" r="8" fill="#bf6700" stroke="#ffffff" stroke-width="2"/>
+<text class="sans name" x="572" y="228" text-anchor="middle">05 Report and CLI</text>
+<text class="sans detail" x="572" y="248" text-anchor="middle">10.02–10.03 report + CLI</text>
+<circle cx="675" cy="180" r="14" fill="none" stroke="#cf222e" stroke-width="2.5"/>
+<circle cx="675" cy="180" r="8" fill="#bf6700" stroke="#ffffff" stroke-width="2"/>
+<text class="sans name" x="675" y="118" text-anchor="middle">06 Engineering review</text>
+<text class="sans detail" x="675" y="138" text-anchor="middle">Engineering Review · 10.08</text>
+<circle cx="777" cy="180" r="14" fill="none" stroke="#cf222e" stroke-width="2.5"/>
+<circle cx="777" cy="180" r="8" fill="#bf6700" stroke="#ffffff" stroke-width="2"/>
+<text class="sans name" x="777" y="228" text-anchor="middle">07 Acceptance</text>
+<text class="sans detail" x="777" y="248" text-anchor="middle">Phase 11 acceptance</text>
+<circle cx="880" cy="180" r="8" fill="#bf6700" stroke="#ffffff" stroke-width="2"/>
+<text class="sans name" x="880" y="118" text-anchor="middle">End of route</text>
+<text class="sans detail" x="880" y="138" text-anchor="middle">Three ways on</text>
+<path d="M880 196 V288 H200 V300" fill="none" stroke="#818b98" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M480 288 V300" fill="none" stroke="#818b98" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M760 288 V300" fill="none" stroke="#818b98" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="75" y="304" width="250" height="56" rx="10" fill="#bf6700" fill-opacity="0.08" stroke="#bf6700" stroke-width="2"/>
+<text class="sans name" x="200" y="327" text-anchor="middle">Test Investigations</text>
+<text class="sans detail" x="200" y="347" text-anchor="middle">Optional · 10.04 and 10.08</text>
+<rect x="355" y="304" width="250" height="56" rx="10" fill="#ffffff" stroke="#0969da" stroke-width="1.5"/>
+<text class="sans name" x="480" y="327" text-anchor="middle">Interactive portfolio</text>
+<text class="sans detail" x="480" y="347" text-anchor="middle">Visual companion site</text>
+<rect x="635" y="304" width="250" height="56" rx="10" fill="#ffffff" stroke="#c2185b" stroke-width="1.5"/>
+<text class="sans name" x="760" y="327" text-anchor="middle">Choose another route</text>
+<text class="sans detail" x="760" y="347" text-anchor="middle">Back to the four routes</text>
+<circle cx="72" cy="388" r="7" fill="none" stroke="#1a7f37" stroke-width="2.5"/>
+<text class="sans legend" x="88" y="392.5">Alternate routing that worked: stops 01, 02 and 05</text>
+<circle cx="520" cy="388" r="7" fill="none" stroke="#cf222e" stroke-width="2.5"/>
+<text class="sans legend" x="536" y="392.5">Layer 2 isolation that failed: stops 04, 06 and 07</text>
+</svg>

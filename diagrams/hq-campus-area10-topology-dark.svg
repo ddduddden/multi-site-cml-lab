@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="688" viewBox="0 0 920 688" role="img" aria-labelledby="title desc">
+<title id="title">HQ Campus — OSPF Area 10: high-level topology</title>
+<desc id="desc">Edge routers hq-r1 and hq-r2 each connect to distribution switches hq-d1 and hq-d2 over four /31 routed links with ECMP, plus higher-cost /31 cross-links (hq-r1 to hq-d2, hq-r2 to hq-d1) as alternate paths; all four devices are in OSPF Area 10. hq-d1 and hq-d2 are joined by Po30 and connect to access switch hq-a1 by Po10 and Po20, all 802.1Q trunks using LACP. A future Area 0 inter-site backbone will attach to both edge routers.</desc>
+<style>
+  .sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif; }
+  .mono { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; }
+  .title { font-size: 24px; font-weight: 600; letter-spacing: -0.01em; fill: #f0f6fc; }
+  .subtitle { font-size: 14.5px; font-weight: 400; fill: #9198a1; }
+  .host { font-size: 17.5px; font-weight: 600; fill: #f0f6fc; }
+  .role { font-size: 14px; font-weight: 400; fill: #9198a1; }
+  .lbl { font-size: 14px; font-weight: 600; fill: #f0f6fc; }
+  .lbl-sub { font-size: 13.5px; font-weight: 400; fill: #9198a1; }
+  .po { font-size: 12.5px; font-weight: 600; fill: #3fb950; }
+  .area { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; fill: #4493f8; }
+  .bb { font-size: 14px; font-weight: 600; fill: #9198a1; }
+  .legend { font-size: 13.5px; font-weight: 400; fill: #9198a1; }
+</style>
+<rect x="0.5" y="0.5" width="919" height="687" rx="12" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+<text class="sans title" x="460" y="48" text-anchor="middle">HQ Campus — OSPF Area 10</text>
+<text class="sans subtitle" x="460" y="72" text-anchor="middle">High-level topology</text>
+<rect x="64" y="170" width="792" height="310" rx="14" fill="#151b23" stroke="#30363d" stroke-width="1"/>
+<rect x="84" y="159" width="124" height="22" rx="11" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+<text class="sans area" x="146" y="174.2" text-anchor="middle">OSPF AREA 10</text>
+<g fill="none" stroke-linecap="round">
+  <path d="M230 138 V200" stroke="#656c76" stroke-width="2" stroke-dasharray="0 6.200"/>
+  <path d="M690 138 V200" stroke="#656c76" stroke-width="2" stroke-dasharray="0 6.200"/>
+  <path d="M218 268 V384" stroke="#4493f8" stroke-width="2"/>
+  <path d="M226 268 V384" stroke="#4493f8" stroke-width="2"/>
+  <path d="M234 268 V384" stroke="#4493f8" stroke-width="2"/>
+  <path d="M242 268 V384" stroke="#4493f8" stroke-width="2"/>
+  <path d="M678 268 V384" stroke="#4493f8" stroke-width="2"/>
+  <path d="M686 268 V384" stroke="#4493f8" stroke-width="2"/>
+  <path d="M694 268 V384" stroke="#4493f8" stroke-width="2"/>
+  <path d="M702 268 V384" stroke="#4493f8" stroke-width="2"/>
+  <path d="M330 268 L590 384" stroke="#4493f8" stroke-width="1.75" stroke-dasharray="7 5.07" stroke-linecap="butt"/>
+  <path d="M590 268 L330 384" stroke="#4493f8" stroke-width="1.75" stroke-dasharray="7 5.07" stroke-linecap="butt"/>
+  <path d="M352 418 H568" stroke="#3fb950" stroke-width="4"/>
+  <path d="M230 452 V538 Q230 552 244 552 H338" stroke="#3fb950" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M690 452 V538 Q690 552 676 552 H582" stroke="#3fb950" stroke-width="4" stroke-linejoin="round"/>
+</g>
+<rect x="108" y="96" width="704" height="42" rx="10" fill="#0d1117" stroke="#656c76" stroke-width="1.25" stroke-dasharray="6 4"/>
+<text class="sans bb" x="460" y="122" text-anchor="middle">Future Area 0 · Inter-site backbone</text>
+<text class="sans lbl" x="206" y="324" text-anchor="end">4 × /31</text>
+<text class="sans lbl-sub" x="206" y="342" text-anchor="end">ECMP</text>
+<text class="sans lbl" x="714" y="324">4 × /31</text>
+<text class="sans lbl-sub" x="714" y="342">ECMP</text>
+<rect x="434" y="406" width="52" height="24" rx="12" fill="#0d1117" stroke="#3fb950" stroke-width="1.5"/>
+<text class="mono po" x="460" y="422.5" text-anchor="middle">Po30</text>
+<rect x="265" y="540" width="52" height="24" rx="12" fill="#0d1117" stroke="#3fb950" stroke-width="1.5"/>
+<text class="mono po" x="291" y="556.5" text-anchor="middle">Po10</text>
+<rect x="603" y="540" width="52" height="24" rx="12" fill="#0d1117" stroke="#3fb950" stroke-width="1.5"/>
+<text class="mono po" x="629" y="556.5" text-anchor="middle">Po20</text>
+<rect x="108" y="200" width="244" height="68" rx="10" fill="#0d1117" stroke="#3d444d" stroke-width="1.25"/>
+<rect x="121" y="213" width="42" height="42" rx="9" fill="#212830"/>
+<g transform="translate(130 222)" fill="none" stroke="#d1d7e0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M13.6 10.4 L16.8 7.2 M14.3 7.2 H16.8 V9.7 M10.4 13.6 L7.2 16.8 M9.7 16.8 H7.2 V14.3 M7.2 7.2 L10.4 10.4 M7.9 10.4 H10.4 V7.9 M16.8 16.8 L13.6 13.6 M16.1 13.6 H13.6 V16.1"/></g>
+<text class="mono host" x="176" y="230">hq-r1</text>
+<text class="sans role" x="176" y="250">Edge router</text>
+<rect x="568" y="200" width="244" height="68" rx="10" fill="#0d1117" stroke="#3d444d" stroke-width="1.25"/>
+<rect x="581" y="213" width="42" height="42" rx="9" fill="#212830"/>
+<g transform="translate(590 222)" fill="none" stroke="#d1d7e0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M13.6 10.4 L16.8 7.2 M14.3 7.2 H16.8 V9.7 M10.4 13.6 L7.2 16.8 M9.7 16.8 H7.2 V14.3 M7.2 7.2 L10.4 10.4 M7.9 10.4 H10.4 V7.9 M16.8 16.8 L13.6 13.6 M16.1 13.6 H13.6 V16.1"/></g>
+<text class="mono host" x="636" y="230">hq-r2</text>
+<text class="sans role" x="636" y="250">Edge router</text>
+<rect x="108" y="384" width="244" height="68" rx="10" fill="#0d1117" stroke="#3d444d" stroke-width="1.25"/>
+<rect x="121" y="397" width="42" height="42" rx="9" fill="#212830"/>
+<g transform="translate(130 406)" fill="none" stroke="#d1d7e0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.75" y="2.75" width="18.5" height="18.5" rx="3"/><path d="M13.6 10.4 L16.8 7.2 M14.3 7.2 H16.8 V9.7 M10.4 13.6 L7.2 16.8 M9.7 16.8 H7.2 V14.3 M7.2 7.2 L10.4 10.4 M7.9 10.4 H10.4 V7.9 M16.8 16.8 L13.6 13.6 M16.1 13.6 H13.6 V16.1"/></g>
+<text class="mono host" x="176" y="414">hq-d1</text>
+<text class="sans role" x="176" y="434">Distribution switch</text>
+<rect x="568" y="384" width="244" height="68" rx="10" fill="#0d1117" stroke="#3d444d" stroke-width="1.25"/>
+<rect x="581" y="397" width="42" height="42" rx="9" fill="#212830"/>
+<g transform="translate(590 406)" fill="none" stroke="#d1d7e0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.75" y="2.75" width="18.5" height="18.5" rx="3"/><path d="M13.6 10.4 L16.8 7.2 M14.3 7.2 H16.8 V9.7 M10.4 13.6 L7.2 16.8 M9.7 16.8 H7.2 V14.3 M7.2 7.2 L10.4 10.4 M7.9 10.4 H10.4 V7.9 M16.8 16.8 L13.6 13.6 M16.1 13.6 H13.6 V16.1"/></g>
+<text class="mono host" x="636" y="414">hq-d2</text>
+<text class="sans role" x="636" y="434">Distribution switch</text>
+<rect x="338" y="518" width="244" height="68" rx="10" fill="#0d1117" stroke="#3d444d" stroke-width="1.25"/>
+<rect x="351" y="531" width="42" height="42" rx="9" fill="#212830"/>
+<g transform="translate(360 540)" fill="none" stroke="#d1d7e0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.75" y="2.75" width="18.5" height="18.5" rx="3"/><path d="M7 9.25 H17 M14.5 6.75 L17 9.25 L14.5 11.75 M17 14.75 H7 M9.5 12.25 L7 14.75 L9.5 17.25"/></g>
+<text class="mono host" x="406" y="548">hq-a1</text>
+<text class="sans role" x="406" y="568">Access switch</text>
+<path d="M32 624 H888" stroke="#30363d" stroke-width="1"/>
+<path d="M46.69 651.5 H76.69" stroke="#4493f8" stroke-width="2" stroke-linecap="round"/>
+<text class="sans legend" x="85.69" y="656">Routed /31 link · OSPF</text>
+<path d="M274.13 651.5 H304.13" stroke="#4493f8" stroke-width="1.75" stroke-dasharray="7 4.50"/>
+<text class="sans legend" x="313.13" y="656">Alternate path · higher OSPF cost</text>
+<path d="M580.79 651.5 H606.79" stroke="#3fb950" stroke-width="4" stroke-linecap="round"/>
+<text class="sans legend" x="617.79" y="656">802.1Q trunk · LACP</text>
+<path d="M786.17 651.5 H814.17" stroke="#656c76" stroke-width="2" stroke-linecap="round" stroke-dasharray="0 5.600"/>
+<text class="sans legend" x="824.17" y="656">Planned</text>
+</svg>

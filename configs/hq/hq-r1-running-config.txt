@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration : 6058 bytes
+Current configuration : 6205 bytes
 !
-! Last configuration change at 07:26:39 UTC Sun Sep 27 2026 by <sanitised>
+! Last configuration change at 21:13:15 UTC Mon Oct 5 2026 by <sanitised>
 !
 version 15.9
 service timestamps debug datetime msec
@@ -39,6 +39,7 @@ mmi snmp-timeout 180
 !
 !
 no ip domain lookup
+ip domain name example.com
 ip cef
 no ipv6 cef
 !
@@ -120,8 +121,8 @@ interface GigabitEthernet0/4
  media-type rj45
 !
 interface GigabitEthernet0/5
- no ip address
- shutdown
+ description External management connection
+ ip address dhcp
  duplex auto
  speed auto
  media-type rj45
@@ -154,6 +155,10 @@ ip forward-protocol nd
 !
 no ip http server
 no ip http secure-server
+ip ssh version 2
+!
+ip access-list standard SSH-ACCESS
+ permit 192.0.2.10
 !
 ipv6 ioam timestamp
 !
@@ -188,8 +193,7 @@ banner login ^C
 * purposes is expressly prohibited except as otherwise authorized by     *
 * Cisco in writing.                                                      *
 **************************************************************************^C
-banner motd ^CC
-
+banner motd ^C
 ####################################################################
 #                                                                  #
 #               NETWORK OPERATIONS / SECURITY NOTICE               #
@@ -212,17 +216,19 @@ banner motd ^CC
 !
 line con 0
  exec-timeout 0 0
- password 7 <sanitised>
  logging synchronous
  login local
 line aux 0
 line vty 0 4
+ access-class SSH-ACCESS in
  exec-timeout 0 0
- password 7 <sanitised>
+ logging synchronous
  login local
  transport input ssh
 line vty 5 15
- password 7 <sanitised>
+ access-class SSH-ACCESS in
+ exec-timeout 5 0
+ logging synchronous
  login local
  transport input ssh
 !

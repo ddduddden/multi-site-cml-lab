@@ -1,46 +1,42 @@
-[Phase 10](../README.md) / [10.01](healthy-baseline-evidence.md)
+[Portfolio](../../../../README.md) / [Evidence Map](../../README.md) / [Phase 10](../README.md) / [10.01](README.md) / Test report
 
-[← Previous](healthy-baseline-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](healthy-baseline-evidence.md) · [Next →](10.01-hq-a1-baseline-cli.md)
-
----
-
-# HQ-VP-10.01 — Healthy Baseline [→](../10.02-10.03/HQ-VP-10.02-10.03-routed-link-ecmp.md "Next VP")
+# HQ-VP-10.01 — Healthy Baseline
 
 Phase 10 — Failure and Resilience Testing
 
-**Evidence commit:** [`a8624b1`](https://github.com/ddduddden/multi-site-cml-lab/commit/a8624b176298e3b0132daedf082c2aae0c704ebd)
-Raw CLI: [hq-a1 baseline capture](10.01-hq-a1-baseline-cli.md)
+**Result: PASS**
 
-Baseline
---------
-Before failure testing started:
+**Original test plan:** [10.01 — Healthy baseline](../../../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1001-healthy-baseline)\
+**Evidence:** [hq-a1 baseline CLI](10.01-hq-a1-baseline-cli.md)\
+**Evidence commit:** [a8624b1](https://github.com/ddduddden/multi-site-cml-lab/commit/a8624b176298e3b0132daedf082c2aae0c704ebd)
 
-- Po10 and Po20 were up on hq-a1 with both members bundled.
-- Po30 was up between hq-d1 and hq-d2 with all four members bundled.
-- STP root placement on hq-a1 matched the design.
-- STP showed no inconsistent ports.
-- HSRP ownership matched the design.
-- hq-d1, hq-d2, hq-r1 and hq-r2 each had five OSPF neighbours in Full state.
-- hq-a1 management was on VLAN199 (NET-MGMT) at 10.10.99.4/26.
-- hq-a1 buffered logging was at debugging level with an 8192-byte buffer.
+## Test objective
 
-Reachability:
+Verify that the HQ network is operating in its intended healthy state before introducing faults, establishing a baseline for the Phase 10 failure and recovery tests.
 
-- HSRP management VIP 10.10.99.1: 5/5 replies.
-- hq-r1 Loopback0 10.255.10.129: 5/5 replies.
+## Healthy baseline
 
-Retention note: the 10.01 CLI capture directly preserves hq-a1 Po10/Po20,
-STP root paths, management state, logging and the HSRP VIP ping. The Po30,
-STP inconsistent-port, HSRP ownership, OSPF-neighbour and hq-r1 Loopback0
-baseline observations above were recorded during the session, but their command
-output was not retained in the 10.01 capture.
+**Retained CLI — hq-a1**
 
-Not retained: the hq-r2 Loopback0 baseline ping capture; the check was run.
+- Po10 and Po20 operational, with both members bundled.
+- STP root ports matching the design.
+- VLAN199 management at 10.10.99.4/26, with gateway 10.10.99.1.
+- HSRP virtual IP address (VIP) 10.10.99.1: 5/5 replies.
 
-Result
-------
-BASELINE ESTABLISHED. Phase 10 started from the intended healthy HQ state.
+**Observed during the session — CLI not retained**
+
+- Po30 operational with all four members bundled.
+- No STP inconsistent ports.
+- HSRP Active roles matching the design: hq-d1 for VLANs 112, 130, 152 and 170; hq-d2 for VLANs 120, 140, 160 and 199.
+- Five FULL OSPF adjacencies on each Layer 3 device.
+- hq-r1 Loopback0 (10.255.10.129): 5/5 replies.
+
+The hq-r2 Loopback0 baseline ping was also performed, but its result was not retained.
+
+## Result
+
+**PASS.** The baseline checks confirmed the intended HQ operating state before Phase 10 failure testing. This was a healthy-state verification, not a failure or recovery test.
 
 ---
 
-[← Previous](healthy-baseline-evidence.md) · [↑ Phase 10 Index](../README.md) · [Test evidence](healthy-baseline-evidence.md) · [Next →](10.01-hq-a1-baseline-cli.md)
+[◀ Test evidence](README.md) · [Baseline CLI ▶](10.01-hq-a1-baseline-cli.md) · [↑ Phase 10 Test Index](../README.md)

@@ -1,0 +1,503 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1665" viewBox="0 0 1280 1665" role="img" aria-labelledby="title desc" xmlns:c2pa="http://c2pa.org/manifest"><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTpmMTMyOGNmZi0wYTVhLTQzMjYtYmIwNS0xZjM2Y2QzMDdhYTcAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaCyNi3ZrsVihwrQK6AhJOHcAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDoxMjQ2MWJhMi03ZmMzLTQxYTEtOTkwMC1hNGE3Yzc4MWZlN2VscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoTIYLCPsguTrsbiqkbl2/5AAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggJZkDVN1RjD5DZzIOTCea5PioFM8VWZ8VasQz9bEgNPGkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaBvQNjDLil0Z+y043WrLTlYAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCAsAw8jf8pULbzUMAUbAXAssRTqlywsoGO/D/T/IldIxGRuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBjCZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOmYxMzI4Y2ZmLTBhNWEtNDMyNi1iYjA1LTFmMzZjZDMwN2FhNy9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOjE1NjYyMTQxLTM1MzAtNGZlMC04YWRjLWQ3Yzc0YmQ1NWNkN3JjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCAlmQNU3VGMPkNnMg5MJ5rk+KgUzxVZnxVqxDP1sSA08aJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggnQWNSnT2WL1OYCvG2p5n0IkSR7yFg1kDetfOf0Jqoa+iY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFgg3nG29lWGAfKnKK/mvfQT267YeZ9U0ad3dECRzPK6gcd0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQANNdGC8KHO35Nln39DKBl1zDgg63WUwfZish3CsyZyV9ujdXZVINNzZ0eqM4RK4t143wwjqBY7nq+sDHf8bgIo=</c2pa:manifest></metadata>
+<title id="title">HQ Campus — OSPF Area 10: detailed topology (healthy baseline)</title>
+<desc id="desc">Detailed HQ Campus topology from the Cisco CML lab: every routed /31 link with interfaces, addresses and OSPF cost; LACP port-channels and members; HSRP active and STP root roles per distribution switch; hq-a1 access ports and VLANs; the management path from the CML external connector; and a VLAN and gateway table.</desc>
+<style>
+  .sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif; }
+  .mono { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; }
+  .title { font-size: 26px; font-weight: 600; letter-spacing: -0.01em; fill: #1f2328; }
+  .subtitle { font-size: 15px; fill: #59636e; }
+  .meta { font-size: 13px; fill: #59636e; }
+  .host { font-size: 18px; font-weight: 600; fill: #1f2328; }
+  .role { font-size: 13px; fill: #59636e; }
+  .k { font-size: 12.5px; fill: #59636e; }
+  .v { font-size: 12.5px; fill: #1f2328; }
+  .if { font-size: 12px; font-weight: 600; fill: #1f2328; }
+  .ip { font-size: 12px; fill: #0969da; }
+  .cost { font-size: 12px; font-weight: 600; fill: #0969da; }
+  .po { font-size: 12.5px; font-weight: 600; fill: #1a7f37; }
+  .area { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; fill: #0969da; }
+  .bb { font-size: 14px; font-weight: 600; fill: #59636e; }
+  .bbs { font-size: 12.5px; fill: #59636e; }
+  .h { font-size: 13.5px; font-weight: 600; fill: #1f2328; }
+  .n { font-size: 12.5px; fill: #59636e; }
+  .nm { font-size: 12px; fill: #1f2328; }
+  .chip { font-size: 11.5px; font-weight: 600; fill: #1f2328; }
+  .th { font-size: 10.5px; font-weight: 600; letter-spacing: 0.06em; fill: #59636e; }
+  .td { font-size: 12.5px; fill: #1f2328; }
+  .tdb { font-size: 12.5px; font-weight: 600; fill: #1f2328; }
+  .tdm { font-size: 12px; fill: #1f2328; }
+  .sec { font-size: 15px; font-weight: 600; fill: #1f2328; }
+  .foot { font-size: 12px; fill: #59636e; }
+  .mute { fill: #59636e; }
+  .hr { paint-order: stroke; stroke: #f6f8fa; stroke-width: 4px; stroke-linejoin: round; }
+  .hc { paint-order: stroke; stroke: #ffffff; stroke-width: 4px; stroke-linejoin: round; }
+</style>
+<rect x="0.5" y="0.5" width="1279" height="1664" rx="12" fill="#ffffff" stroke="#d1d9e0" stroke-width="1"/>
+<text class="sans title" x="640" y="54" text-anchor="middle">HQ Campus — OSPF Area 10</text>
+<text class="sans subtitle" x="640" y="81" text-anchor="middle">Detailed topology · healthy baseline</text>
+<text class="sans meta" x="640" y="105" text-anchor="middle">Cisco CML · OSPF process 10 · 5 devices + external connector · 19 links (L0–L18) · 10 × P2P /31 · 3 LACP port-channels · 10 VLANs</text>
+<rect x="32" y="232" width="1216" height="570" rx="14" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1"/>
+<rect x="1104" y="221" width="124" height="22" rx="11" fill="#ffffff" stroke="#d1d9e0" stroke-width="1"/>
+<text class="sans area" x="1166" y="236.2" text-anchor="middle">OSPF AREA 10</text>
+<path d="M110 196 V284 Q110 298 124 298 H232" fill="none" stroke="#9a6700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M382 192 V264" fill="none" stroke="#818b98" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0 6.000"/>
+<path d="M898 192 V264" fill="none" stroke="#818b98" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0 6.000"/>
+<path d="M292 406 V606" fill="none" stroke="#0969da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M352 406 V606" fill="none" stroke="#0969da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M412 406 V606" fill="none" stroke="#0969da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M472 406 V606" fill="none" stroke="#0969da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M808 406 V606" fill="none" stroke="#0969da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M868 406 V606" fill="none" stroke="#0969da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M928 406 V606" fill="none" stroke="#0969da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M988 406 V606" fill="none" stroke="#0969da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M512 406 L768 606" fill="none" stroke="#0969da" stroke-width="1.75" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="7 5.23"/>
+<path d="M768 406 L512 606" fill="none" stroke="#0969da" stroke-width="1.75" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="7 5.23"/>
+<path d="M532 678.5 H748" fill="none" stroke="#1a7f37" stroke-width="2.25" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M532 685.5 H748" fill="none" stroke="#1a7f37" stroke-width="2.25" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M532 692.5 H748" fill="none" stroke="#1a7f37" stroke-width="2.25" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M532 699.5 H748" fill="none" stroke="#1a7f37" stroke-width="2.25" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M378 772 V949 Q378 967 396 967 H490" fill="none" stroke="#1a7f37" stroke-width="2.25" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M386 772 V949 Q386 959 396 959 H490" fill="none" stroke="#1a7f37" stroke-width="2.25" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M902 772 V949 Q902 967 884 967 H790" fill="none" stroke="#1a7f37" stroke-width="2.25" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M894 772 V949 Q894 959 884 959 H790" fill="none" stroke="#1a7f37" stroke-width="2.25" stroke-linecap="butt" stroke-linejoin="round"/>
+<rect x="330" y="136" width="620" height="56" rx="10" fill="#ffffff" stroke="#818b98" stroke-width="1.25" stroke-dasharray="6 4"/>
+<text class="sans bb" x="640" y="159" text-anchor="middle">Future Area 0 · Inter-site backbone</text>
+<text class="sans bbs" x="640" y="178" text-anchor="middle">Planned uplinks from hq-r1 and hq-r2 · not built</text>
+<rect x="52" y="132" width="244" height="64" rx="10" fill="#ffffff" stroke="#c8d1da" stroke-width="1.25"/>
+<rect x="66" y="146" width="40" height="40" rx="9" fill="#f6f8fa"/>
+<g transform="translate(74 154)" fill="none" stroke="#393f46" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18.5 H17.2 A3.8 3.8 0 0 0 17.6 10.9 A5.6 5.6 0 0 0 6.9 9.6 A4.5 4.5 0 0 0 7 18.5 Z"/></g>
+<text class="mono host" x="118" y="165">ext-mgmt</text>
+<text class="sans role" x="118" y="184">CML external connector</text>
+<rect x="232" y="264" width="300" height="142" rx="10" fill="#ffffff" stroke="#c8d1da" stroke-width="1.25"/>
+<rect x="246" y="278" width="40" height="40" rx="9" fill="#f6f8fa"/>
+<g transform="translate(254 286)" fill="none" stroke="#393f46" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M13.6 10.4 L16.8 7.2 M14.3 7.2 H16.8 V9.7 M10.4 13.6 L7.2 16.8 M9.7 16.8 H7.2 V14.3 M7.2 7.2 L10.4 10.4 M7.9 10.4 H10.4 V7.9 M16.8 16.8 L13.6 13.6 M16.1 13.6 H13.6 V16.1"/></g>
+<text class="mono host" x="298" y="297">hq-r1</text>
+<text class="sans role" x="298" y="316">Edge router · IOSv 15.9</text>
+<path d="M246.0 332 H518.0" fill="none" stroke="#d1d9e0" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round"/>
+<text class="sans k" x="246" y="353">Lo0 · RID</text>
+<text class="mono v" x="352" y="353">10.255.10.129/32</text>
+<text class="sans k" x="246" y="375">OSPF</text>
+<text class="sans v" x="352" y="375">area 10 · 5 adjacencies</text>
+<text class="sans k" x="246" y="397">Ports shutdown</text>
+<text class="mono v" x="352" y="397">Gi0/6-7</text>
+<rect x="748" y="264" width="300" height="142" rx="10" fill="#ffffff" stroke="#c8d1da" stroke-width="1.25"/>
+<rect x="762" y="278" width="40" height="40" rx="9" fill="#f6f8fa"/>
+<g transform="translate(770 286)" fill="none" stroke="#393f46" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M13.6 10.4 L16.8 7.2 M14.3 7.2 H16.8 V9.7 M10.4 13.6 L7.2 16.8 M9.7 16.8 H7.2 V14.3 M7.2 7.2 L10.4 10.4 M7.9 10.4 H10.4 V7.9 M16.8 16.8 L13.6 13.6 M16.1 13.6 H13.6 V16.1"/></g>
+<text class="mono host" x="814" y="297">hq-r2</text>
+<text class="sans role" x="814" y="316">Edge router · IOSv 15.9</text>
+<path d="M762.0 332 H1034.0" fill="none" stroke="#d1d9e0" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round"/>
+<text class="sans k" x="762" y="353">Lo0 · RID</text>
+<text class="mono v" x="868" y="353">10.255.10.130/32</text>
+<text class="sans k" x="762" y="375">OSPF</text>
+<text class="sans v" x="868" y="375">area 10 · 5 adjacencies</text>
+<text class="sans k" x="762" y="397">Ports shutdown</text>
+<text class="mono v" x="868" y="397">Gi0/5-7</text>
+<rect x="232" y="606" width="300" height="166" rx="10" fill="#ffffff" stroke="#c8d1da" stroke-width="1.25"/>
+<rect x="246" y="620" width="40" height="40" rx="9" fill="#f6f8fa"/>
+<g transform="translate(254 628)" fill="none" stroke="#393f46" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.75" y="2.75" width="18.5" height="18.5" rx="3"/><path d="M13.6 10.4 L16.8 7.2 M14.3 7.2 H16.8 V9.7 M10.4 13.6 L7.2 16.8 M9.7 16.8 H7.2 V14.3 M7.2 7.2 L10.4 10.4 M7.9 10.4 H10.4 V7.9 M16.8 16.8 L13.6 13.6 M16.1 13.6 H13.6 V16.1"/></g>
+<text class="mono host" x="298" y="639">hq-d1</text>
+<text class="sans role" x="298" y="658">L3 distribution · IOSvL2 15.2</text>
+<path d="M246.0 674 H518.0" fill="none" stroke="#d1d9e0" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round"/>
+<text class="sans k" x="246" y="695">Lo0 · RID</text>
+<text class="mono v" x="352" y="695">10.255.10.131/32</text>
+<text class="sans k" x="246" y="717">HSRP active</text>
+<rect x="352" y="704" width="31" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="367.5" y="717" text-anchor="middle">112</text>
+<rect x="386" y="704" width="31" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="401.5" y="717" text-anchor="middle">130</text>
+<rect x="420" y="704" width="31" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="435.5" y="717" text-anchor="middle">152</text>
+<rect x="454" y="704" width="31" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="469.5" y="717" text-anchor="middle">170</text>
+<text class="sans k" x="246" y="739">STP root</text>
+<rect x="352" y="726" width="31" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="367.5" y="739" text-anchor="middle">112</text>
+<rect x="386" y="726" width="31" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="401.5" y="739" text-anchor="middle">130</text>
+<rect x="420" y="726" width="31" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="435.5" y="739" text-anchor="middle">152</text>
+<rect x="454" y="726" width="31" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="469.5" y="739" text-anchor="middle">170</text>
+<rect x="488" y="726" width="31" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="503.5" y="739" text-anchor="middle">190</text>
+<text class="sans k" x="246" y="761">Ports shutdown</text>
+<text class="mono v" x="352" y="761">Gi0/2-3, Gi3/1-3</text>
+<rect x="748" y="606" width="300" height="166" rx="10" fill="#ffffff" stroke="#c8d1da" stroke-width="1.25"/>
+<rect x="762" y="620" width="40" height="40" rx="9" fill="#f6f8fa"/>
+<g transform="translate(770 628)" fill="none" stroke="#393f46" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.75" y="2.75" width="18.5" height="18.5" rx="3"/><path d="M13.6 10.4 L16.8 7.2 M14.3 7.2 H16.8 V9.7 M10.4 13.6 L7.2 16.8 M9.7 16.8 H7.2 V14.3 M7.2 7.2 L10.4 10.4 M7.9 10.4 H10.4 V7.9 M16.8 16.8 L13.6 13.6 M16.1 13.6 H13.6 V16.1"/></g>
+<text class="mono host" x="814" y="639">hq-d2</text>
+<text class="sans role" x="814" y="658">L3 distribution · IOSvL2 15.2</text>
+<path d="M762.0 674 H1034.0" fill="none" stroke="#d1d9e0" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round"/>
+<text class="sans k" x="762" y="695">Lo0 · RID</text>
+<text class="mono v" x="868" y="695">10.255.10.132/32</text>
+<text class="sans k" x="762" y="717">HSRP active</text>
+<rect x="868" y="704" width="31" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="883.5" y="717" text-anchor="middle">120</text>
+<rect x="902" y="704" width="31" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="917.5" y="717" text-anchor="middle">140</text>
+<rect x="936" y="704" width="31" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="951.5" y="717" text-anchor="middle">160</text>
+<rect x="970" y="704" width="31" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="985.5" y="717" text-anchor="middle">199</text>
+<text class="sans k" x="762" y="739">STP root</text>
+<rect x="868" y="726" width="31" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="883.5" y="739" text-anchor="middle">120</text>
+<rect x="902" y="726" width="31" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="917.5" y="739" text-anchor="middle">140</text>
+<rect x="936" y="726" width="31" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="951.5" y="739" text-anchor="middle">160</text>
+<rect x="970" y="726" width="31" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="985.5" y="739" text-anchor="middle">199</text>
+<text class="sans k" x="762" y="761">Ports shutdown</text>
+<text class="mono v" x="868" y="761">Gi0/2-3, Gi3/1-3</text>
+<rect x="490" y="892" width="300" height="142" rx="10" fill="#ffffff" stroke="#c8d1da" stroke-width="1.25"/>
+<rect x="504" y="906" width="40" height="40" rx="9" fill="#f6f8fa"/>
+<g transform="translate(512 914)" fill="none" stroke="#393f46" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.75" y="2.75" width="18.5" height="18.5" rx="3"/><path d="M7 9.25 H17 M14.5 6.75 L17 9.25 L14.5 11.75 M17 14.75 H7 M9.5 12.25 L7 14.75 L9.5 17.25"/></g>
+<text class="mono host" x="556" y="925">hq-a1</text>
+<text class="sans role" x="556" y="944">L2 access · IOSvL2 15.2</text>
+<path d="M504.0 960 H776.0" fill="none" stroke="#d1d9e0" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round"/>
+<text class="sans k" x="504" y="981">Mgmt SVI</text>
+<text class="mono v" x="610" y="981">Vlan199 10.10.99.4/26</text>
+<text class="sans k" x="504" y="1003">Gateway</text>
+<text class="mono v" x="610" y="1003">10.10.99.1 (HSRP VIP)</text>
+<text class="sans k" x="504" y="1025">Routing</text>
+<text class="mono v" x="610" y="1025">no ip routing</text>
+<text class="hr" x="224" y="290" text-anchor="end"><tspan class="mono if">Gi0/5</tspan><tspan class="sans n"> · DHCP</tspan></text>
+<rect x="270" y="406" width="44" height="39" rx="0" fill="#f6f8fa"/>
+<rect x="270" y="567" width="44" height="39" rx="0" fill="#f6f8fa"/>
+<text class="mono if" x="292" y="424" text-anchor="middle">Gi0/0</text>
+<text class="mono ip" x="292" y="439" text-anchor="middle">.1</text>
+<rect x="266" y="496" width="52" height="20" rx="10" fill="#ffffff" stroke="#d1d9e0" stroke-width="1"/>
+<text class="mono ip" x="292" y="510.2" text-anchor="middle">.0/31</text>
+<text class="mono ip" x="292" y="582" text-anchor="middle">.0</text>
+<text class="mono if" x="292" y="597" text-anchor="middle">Gi2/0</text>
+<rect x="330" y="406" width="44" height="39" rx="0" fill="#f6f8fa"/>
+<rect x="330" y="567" width="44" height="39" rx="0" fill="#f6f8fa"/>
+<text class="mono if" x="352" y="424" text-anchor="middle">Gi0/1</text>
+<text class="mono ip" x="352" y="439" text-anchor="middle">.9</text>
+<rect x="326" y="496" width="52" height="20" rx="10" fill="#ffffff" stroke="#d1d9e0" stroke-width="1"/>
+<text class="mono ip" x="352" y="510.2" text-anchor="middle">.8/31</text>
+<text class="mono ip" x="352" y="582" text-anchor="middle">.8</text>
+<text class="mono if" x="352" y="597" text-anchor="middle">Gi2/1</text>
+<rect x="390" y="406" width="44" height="39" rx="0" fill="#f6f8fa"/>
+<rect x="390" y="567" width="44" height="39" rx="0" fill="#f6f8fa"/>
+<text class="mono if" x="412" y="424" text-anchor="middle">Gi0/2</text>
+<text class="mono ip" x="412" y="439" text-anchor="middle">.11</text>
+<rect x="382.4" y="496" width="59.2" height="20" rx="10" fill="#ffffff" stroke="#d1d9e0" stroke-width="1"/>
+<text class="mono ip" x="412" y="510.2" text-anchor="middle">.10/31</text>
+<text class="mono ip" x="412" y="582" text-anchor="middle">.10</text>
+<text class="mono if" x="412" y="597" text-anchor="middle">Gi2/2</text>
+<rect x="450" y="406" width="44" height="39" rx="0" fill="#f6f8fa"/>
+<rect x="450" y="567" width="44" height="39" rx="0" fill="#f6f8fa"/>
+<text class="mono if" x="472" y="424" text-anchor="middle">Gi0/3</text>
+<text class="mono ip" x="472" y="439" text-anchor="middle">.13</text>
+<rect x="442.4" y="496" width="59.2" height="20" rx="10" fill="#ffffff" stroke="#d1d9e0" stroke-width="1"/>
+<text class="mono ip" x="472" y="510.2" text-anchor="middle">.12/31</text>
+<text class="mono ip" x="472" y="582" text-anchor="middle">.12</text>
+<text class="mono if" x="472" y="597" text-anchor="middle">Gi2/3</text>
+<rect x="786" y="406" width="44" height="39" rx="0" fill="#f6f8fa"/>
+<rect x="786" y="567" width="44" height="39" rx="0" fill="#f6f8fa"/>
+<text class="mono if" x="808" y="424" text-anchor="middle">Gi0/0</text>
+<text class="mono ip" x="808" y="439" text-anchor="middle">.3</text>
+<rect x="782" y="496" width="52" height="20" rx="10" fill="#ffffff" stroke="#d1d9e0" stroke-width="1"/>
+<text class="mono ip" x="808" y="510.2" text-anchor="middle">.2/31</text>
+<text class="mono ip" x="808" y="582" text-anchor="middle">.2</text>
+<text class="mono if" x="808" y="597" text-anchor="middle">Gi2/0</text>
+<rect x="846" y="406" width="44" height="39" rx="0" fill="#f6f8fa"/>
+<rect x="846" y="567" width="44" height="39" rx="0" fill="#f6f8fa"/>
+<text class="mono if" x="868" y="424" text-anchor="middle">Gi0/1</text>
+<text class="mono ip" x="868" y="439" text-anchor="middle">.15</text>
+<rect x="838.4" y="496" width="59.2" height="20" rx="10" fill="#ffffff" stroke="#d1d9e0" stroke-width="1"/>
+<text class="mono ip" x="868" y="510.2" text-anchor="middle">.14/31</text>
+<text class="mono ip" x="868" y="582" text-anchor="middle">.14</text>
+<text class="mono if" x="868" y="597" text-anchor="middle">Gi2/1</text>
+<rect x="906" y="406" width="44" height="39" rx="0" fill="#f6f8fa"/>
+<rect x="906" y="567" width="44" height="39" rx="0" fill="#f6f8fa"/>
+<text class="mono if" x="928" y="424" text-anchor="middle">Gi0/2</text>
+<text class="mono ip" x="928" y="439" text-anchor="middle">.17</text>
+<rect x="898.4" y="496" width="59.2" height="20" rx="10" fill="#ffffff" stroke="#d1d9e0" stroke-width="1"/>
+<text class="mono ip" x="928" y="510.2" text-anchor="middle">.16/31</text>
+<text class="mono ip" x="928" y="582" text-anchor="middle">.16</text>
+<text class="mono if" x="928" y="597" text-anchor="middle">Gi2/2</text>
+<rect x="966" y="406" width="44" height="39" rx="0" fill="#f6f8fa"/>
+<rect x="966" y="567" width="44" height="39" rx="0" fill="#f6f8fa"/>
+<text class="mono if" x="988" y="424" text-anchor="middle">Gi0/3</text>
+<text class="mono ip" x="988" y="439" text-anchor="middle">.19</text>
+<rect x="958.4" y="496" width="59.2" height="20" rx="10" fill="#ffffff" stroke="#d1d9e0" stroke-width="1"/>
+<text class="mono ip" x="988" y="510.2" text-anchor="middle">.18/31</text>
+<text class="mono ip" x="988" y="582" text-anchor="middle">.18</text>
+<text class="mono if" x="988" y="597" text-anchor="middle">Gi2/3</text>
+<text class="mono if hr" x="539.92" y="424">Gi0/4</text>
+<text class="mono ip hr" x="559.12" y="439">.7</text>
+<text class="mono ip hr" x="722.16" y="582" text-anchor="end">.6</text>
+<text class="mono if hr" x="741.36" y="597" text-anchor="end">Gi3/0</text>
+<rect x="553.92" y="456" width="69.76" height="20" rx="10" fill="#ffffff" stroke="#0969da" stroke-width="1"/>
+<text class="sans cost" x="588.8" y="470.2" text-anchor="middle">cost 100</text>
+<rect x="665.2" y="536" width="52" height="20" rx="10" fill="#ffffff" stroke="#d1d9e0" stroke-width="1"/>
+<text class="mono ip" x="691.2" y="550.2" text-anchor="middle">.6/31</text>
+<text class="mono if hr" x="740.08" y="424" text-anchor="end">Gi0/4</text>
+<text class="mono ip hr" x="720.88" y="439" text-anchor="end">.5</text>
+<text class="mono ip hr" x="557.84" y="582">.4</text>
+<text class="mono if hr" x="538.64" y="597">Gi3/0</text>
+<rect x="656.32" y="456" width="69.76" height="20" rx="10" fill="#ffffff" stroke="#0969da" stroke-width="1"/>
+<text class="sans cost" x="691.2" y="470.2" text-anchor="middle">cost 100</text>
+<rect x="562.8" y="536" width="52" height="20" rx="10" fill="#ffffff" stroke="#d1d9e0" stroke-width="1"/>
+<text class="mono ip" x="588.8" y="550.2" text-anchor="middle">.4/31</text>
+<rect x="614" y="677" width="52" height="24" rx="12" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+<text class="mono po" x="640" y="693.5" text-anchor="middle">Po30</text>
+<rect x="356" y="872.5" width="52" height="24" rx="12" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+<text class="mono po" x="382" y="889" text-anchor="middle">Po10</text>
+<rect x="872" y="872.5" width="52" height="24" rx="12" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+<text class="mono po" x="898" y="889" text-anchor="middle">Po20</text>
+<text class="sans n" x="640" y="664" text-anchor="middle">LACP active · 802.1Q trunk</text>
+<text class="mono nm" x="640" y="723" text-anchor="middle">Gi1/0-3 ↔ Gi1/0-3</text>
+<text class="sans n" x="640" y="740" text-anchor="middle">native 190 · 9 VLANs allowed</text>
+<text class="sans n" x="640" y="757" text-anchor="middle">CML L4–L7</text>
+<text class="mono if hc" x="396" y="822">Gi0/0-1</text>
+<text class="mono if hc" x="482" y="951" text-anchor="end">Gi0/0-1</text>
+<text class="mono if hc" x="884" y="822" text-anchor="end">Gi0/0-1</text>
+<text class="mono if hc" x="798" y="951">Gi1/0-1</text>
+<text class="sans h" x="62" y="456.2">4 × P2P /31 · ECMP</text>
+<text class="mono nm" x="62" y="474.2">hq-r1 Gi0/0-3</text>
+<text class="mono nm" x="62" y="492.2">↔ hq-d1 Gi2/0-3</text>
+<text class="mono ip" x="62" y="510.2">10.255.10.x/31</text>
+<text class="sans n" x="62" y="528.2">OSPF P2P · cost 10</text>
+<text class="sans n" x="62" y="546.2">CML L8–L11</text>
+<rect x="52" y="442.2" width="2" height="110" rx="1" fill="#0969da"/>
+<text class="sans h" x="1078" y="456.2">4 × P2P /31 · ECMP</text>
+<text class="mono nm" x="1078" y="474.2">hq-r2 Gi0/0-3</text>
+<text class="mono nm" x="1078" y="492.2">↔ hq-d2 Gi2/0-3</text>
+<text class="mono ip" x="1078" y="510.2">10.255.10.x/31</text>
+<text class="sans n" x="1078" y="528.2">OSPF P2P · cost 10</text>
+<text class="sans n" x="1078" y="546.2">CML L12–L15</text>
+<rect x="1068" y="442.2" width="2" height="110" rx="1" fill="#0969da"/>
+<text class="sans h" x="640" y="316" text-anchor="middle">2 × P2P /31 cross-link</text>
+<text class="sans n" x="640" y="335" text-anchor="middle">OSPF cost 100 · alternate paths</text>
+<text class="sans n" x="640" y="353" text-anchor="middle">CML L16, L17</text>
+<text class="sans h" x="62" y="852">Po10 · hq-d1 ↔ hq-a1</text>
+<text class="sans n" x="62" y="870">LACP active · 802.1Q trunk</text>
+<text class="sans n" x="62" y="888">CML L0, L1 · Root Guard on hq-d1</text>
+<text class="sans n" x="62" y="911">STP forwards</text>
+<rect x="160" y="898" width="31" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="175.5" y="911" text-anchor="middle">112</text>
+<rect x="194" y="898" width="31" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="209.5" y="911" text-anchor="middle">130</text>
+<rect x="228" y="898" width="31" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="243.5" y="911" text-anchor="middle">152</text>
+<rect x="262" y="898" width="31" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="277.5" y="911" text-anchor="middle">170</text>
+<rect x="296" y="898" width="31" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="311.5" y="911" text-anchor="middle">190</text>
+<rect x="52" y="838" width="2" height="79" rx="1" fill="#1a7f37"/>
+<text class="sans h" x="958" y="852">Po20 · hq-d2 ↔ hq-a1</text>
+<text class="sans n" x="958" y="870">LACP active · 802.1Q trunk</text>
+<text class="sans n" x="958" y="888">CML L2, L3 · Root Guard on hq-d2</text>
+<text class="sans n" x="958" y="911">STP forwards</text>
+<rect x="1056" y="898" width="31" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="1071.5" y="911" text-anchor="middle">120</text>
+<rect x="1090" y="898" width="31" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="1105.5" y="911" text-anchor="middle">140</text>
+<rect x="1124" y="898" width="31" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="1139.5" y="911" text-anchor="middle">160</text>
+<rect x="1158" y="898" width="31" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="1173.5" y="911" text-anchor="middle">199</text>
+<rect x="948" y="838" width="2" height="79" rx="1" fill="#1a7f37"/>
+<path d="M640 1034 V1052 M381 1052 H899" fill="none" stroke="#c8d1da" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M381 1052 V1066" fill="none" stroke="#c8d1da" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round"/>
+<rect x="347" y="1066" width="68" height="50" rx="8" fill="#ffffff" stroke="#c8d1da" stroke-width="1.25"/>
+<text class="mono if" x="381" y="1085" text-anchor="middle">Gi2/0</text>
+<rect x="349.85" y="1093" width="26.7" height="17" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="363.2" y="1105.5" text-anchor="middle">112</text>
+<rect x="378.55" y="1093" width="33.6" height="17" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="395.35" y="1105.5" text-anchor="middle">V120</text>
+<path d="M455 1052 V1066" fill="none" stroke="#c8d1da" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round"/>
+<rect x="421" y="1066" width="68" height="50" rx="8" fill="#ffffff" stroke="#c8d1da" stroke-width="1.25"/>
+<text class="mono if" x="455" y="1085" text-anchor="middle">Gi2/1</text>
+<rect x="441.65" y="1093" width="26.7" height="17" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="455" y="1105.5" text-anchor="middle">112</text>
+<path d="M529 1052 V1066" fill="none" stroke="#c8d1da" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round"/>
+<rect x="495" y="1066" width="68" height="50" rx="8" fill="#ffffff" stroke="#c8d1da" stroke-width="1.25"/>
+<text class="mono if" x="529" y="1085" text-anchor="middle">Gi2/2</text>
+<rect x="515.65" y="1093" width="26.7" height="17" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="529" y="1105.5" text-anchor="middle">130</text>
+<path d="M603 1052 V1066" fill="none" stroke="#c8d1da" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round"/>
+<rect x="569" y="1066" width="68" height="50" rx="8" fill="#ffffff" stroke="#c8d1da" stroke-width="1.25"/>
+<text class="mono if" x="603" y="1085" text-anchor="middle">Gi2/3</text>
+<rect x="589.65" y="1093" width="26.7" height="17" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="603" y="1105.5" text-anchor="middle">140</text>
+<path d="M677 1052 V1066" fill="none" stroke="#c8d1da" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round"/>
+<rect x="643" y="1066" width="68" height="50" rx="8" fill="#ffffff" stroke="#c8d1da" stroke-width="1.25"/>
+<text class="mono if" x="677" y="1085" text-anchor="middle">Gi3/0</text>
+<rect x="663.65" y="1093" width="26.7" height="17" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="677" y="1105.5" text-anchor="middle">152</text>
+<path d="M751 1052 V1066" fill="none" stroke="#c8d1da" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round"/>
+<rect x="717" y="1066" width="68" height="50" rx="8" fill="#ffffff" stroke="#c8d1da" stroke-width="1.25"/>
+<text class="mono if" x="751" y="1085" text-anchor="middle">Gi3/1</text>
+<rect x="737.65" y="1093" width="26.7" height="17" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="751" y="1105.5" text-anchor="middle">160</text>
+<path d="M825 1052 V1066" fill="none" stroke="#c8d1da" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round"/>
+<rect x="791" y="1066" width="68" height="50" rx="8" fill="#ffffff" stroke="#c8d1da" stroke-width="1.25"/>
+<text class="mono if" x="825" y="1085" text-anchor="middle">Gi3/2</text>
+<rect x="811.65" y="1093" width="26.7" height="17" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="825" y="1105.5" text-anchor="middle">170</text>
+<path d="M899 1052 V1066" fill="none" stroke="#c8d1da" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round"/>
+<rect x="865" y="1066" width="68" height="50" rx="8" fill="#ffffff" stroke="#c8d1da" stroke-width="1.25"/>
+<text class="mono if" x="899" y="1085" text-anchor="middle">Gi3/3</text>
+<rect x="885.65" y="1093" width="26.7" height="17" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="899" y="1105.5" text-anchor="middle">199</text>
+<text class="sans n" x="640" y="1140" text-anchor="middle">Edge ports: PortFast edge + BPDU Guard · Gi2/0 also carries voice VLAN 120 (VOICE)</text>
+<text class="sans n" x="640" y="1158" text-anchor="middle">Unused ports: Gi0/2-3, Gi1/2-3 in PARKING 191, shutdown</text>
+<rect x="52" y="952" width="280" height="224" rx="10" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1"/>
+<text class="sans h" x="66" y="976">Legend</text>
+<path d="M66 997 H110" fill="none" stroke="#0969da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text class="sans n" x="124" y="1001">P2P /31 · OSPF cost 10</text>
+<path d="M66 1018 H110" fill="none" stroke="#0969da" stroke-width="1.75" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="7 5.33"/>
+<text class="sans n" x="124" y="1022">Cross-link · OSPF cost 100</text>
+<path d="M66 1035.5 H110 M66 1042.5 H110" fill="none" stroke="#1a7f37" stroke-width="2.25" stroke-linecap="butt" stroke-linejoin="round"/>
+<text class="sans n" x="124" y="1043">802.1Q trunk · LACP</text>
+<path d="M66 1060 H110" fill="none" stroke="#9a6700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text class="sans n" x="124" y="1064">Management · DHCP</text>
+<path d="M67 1081 H109" fill="none" stroke="#818b98" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0 6.000"/>
+<text class="sans n" x="124" y="1085">Planned · future Area 0</text>
+<text class="sans n" x="124" y="1122">(10.255.10.x)</text>
+<text class="mono ip" x="88" y="1106" text-anchor="middle">.1</text>
+<text class="sans n" x="124" y="1106">Interface IP — Last Octet</text>
+<rect x="66" y="1129" width="46" height="19" rx="9.5" fill="#ffffff" stroke="#d1d9e0" stroke-width="1"/>
+<text class="mono ip" x="89" y="1143" text-anchor="middle">.0/31</text>
+<text class="sans n" x="124" y="1143">P2P subnet</text>
+<rect x="72" y="1151" width="32" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="88" y="1164" text-anchor="middle">112</text>
+<text class="sans n" x="124" y="1164">VLAN ID</text>
+<rect x="948" y="952" width="280" height="166" rx="10" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1"/>
+<text class="sans h" x="962" y="976">Management access</text>
+<text class="sans k" x="962" y="1001">SSH host</text>
+<text class="" x="1026" y="1001"><tspan class="mono nm">192.0.2.10</tspan></text>
+<text class="sans k" x="962" y="1022">Entry</text>
+<text class="" x="1026" y="1022"><tspan class="mono nm">hq-r1 Gi0/5</tspan><tspan class="sans n"> · DHCP</tspan></text>
+<text class="sans k" x="962" y="1043">Link</text>
+<text class="" x="1026" y="1043"><tspan class="sans n">ext-mgmt bridge · CML L18</tspan></text>
+<text class="sans k" x="962" y="1064">vty 0–15</text>
+<text class="" x="1026" y="1064"><tspan class="sans n">SSH only · ACL SSH-ACCESS</tspan></text>
+<text class="sans k" x="962" y="1085">Return</text>
+<text class="" x="1026" y="1085"><tspan class="sans n">static /32 via hq-r1 Lo0</tspan></text>
+<text class="sans k" x="962" y="1106">hq-a1</text>
+<text class="" x="1026" y="1106"><tspan class="sans n">gateway </tspan><tspan class="mono nm">10.10.99.1</tspan></text>
+<path d="M32 1206 H1248" fill="none" stroke="#d1d9e0" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round"/>
+<text class="sans sec" x="52" y="1238">VLANs and gateways</text>
+<text class="sans n" x="1228" y="1238" text-anchor="end">HSRP active and STP root as configured for the healthy baseline</text>
+<rect x="52" y="1254" width="1176" height="30" rx="6" fill="#f6f8fa"/>
+<text class="sans th" x="64" y="1273.5">VLAN</text>
+<text class="sans th" x="134" y="1273.5">NAME</text>
+<text class="sans th" x="262" y="1273.5">SUBNET</text>
+<text class="sans th" x="408" y="1273.5">GATEWAY (VIP)</text>
+<text class="sans th" x="544" y="1273.5">SVI D1 / D2</text>
+<text class="sans th" x="672" y="1273.5">STP ROOT + HSRP ACTIVE</text>
+<text class="sans th" x="882" y="1273.5">STP ROOT PORT</text>
+<text class="sans th" x="1018" y="1273.5">ACCESS PORTS</text>
+<path d="M52 1284 H1228" fill="none" stroke="#d1d9e0" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round"/>
+<rect x="64" y="1288" width="34" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="81" y="1301" text-anchor="middle">112</text>
+<text class="sans tdb" x="134" y="1301">CORP-USERS</text>
+<text class="mono tdm" x="262" y="1301">10.10.12.0/22</text>
+<text class="mono tdm" x="408" y="1301">10.10.12.1</text>
+<text class="mono tdm" x="544" y="1301">.2 / .3</text>
+<text class="mono tdm" x="672" y="1301">hq-d1</text>
+<text class="mono tdm" x="882" y="1301">Po10</text>
+<text class="mono tdm" x="1018" y="1301">Gi2/0, Gi2/1</text>
+<path d="M53 1309 H1227" fill="none" stroke="#d1d9e0" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round"/>
+<rect x="64" y="1313" width="34" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="81" y="1326" text-anchor="middle">120</text>
+<text class="sans tdb" x="134" y="1326">VOICE</text>
+<text class="mono tdm" x="262" y="1326">10.10.20.0/23</text>
+<text class="mono tdm" x="408" y="1326">10.10.20.1</text>
+<text class="mono tdm" x="544" y="1326">.2 / .3</text>
+<text class="mono tdm" x="672" y="1326">hq-d2</text>
+<text class="mono tdm" x="882" y="1326">Po20</text>
+<text class="mono tdm" x="1018" y="1326">Gi2/0 (voice)</text>
+<path d="M53 1334 H1227" fill="none" stroke="#d1d9e0" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round"/>
+<rect x="64" y="1338" width="34" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="81" y="1351" text-anchor="middle">130</text>
+<text class="sans tdb" x="134" y="1351">SERVERS</text>
+<text class="mono tdm" x="262" y="1351">10.10.30.0/25</text>
+<text class="mono tdm" x="408" y="1351">10.10.30.1</text>
+<text class="mono tdm" x="544" y="1351">.2 / .3</text>
+<text class="mono tdm" x="672" y="1351">hq-d1</text>
+<text class="mono tdm" x="882" y="1351">Po10</text>
+<text class="mono tdm" x="1018" y="1351">Gi2/2</text>
+<path d="M53 1359 H1227" fill="none" stroke="#d1d9e0" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round"/>
+<rect x="64" y="1363" width="34" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="81" y="1376" text-anchor="middle">140</text>
+<text class="sans tdb" x="134" y="1376">IOT-CCTV</text>
+<text class="mono tdm" x="262" y="1376">10.10.40.0/23</text>
+<text class="mono tdm" x="408" y="1376">10.10.40.1</text>
+<text class="mono tdm" x="544" y="1376">.2 / .3</text>
+<text class="mono tdm" x="672" y="1376">hq-d2</text>
+<text class="mono tdm" x="882" y="1376">Po20</text>
+<text class="mono tdm" x="1018" y="1376">Gi2/3</text>
+<path d="M53 1384 H1227" fill="none" stroke="#d1d9e0" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round"/>
+<rect x="64" y="1388" width="34" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="81" y="1401" text-anchor="middle">152</text>
+<text class="sans tdb" x="134" y="1401">GUEST</text>
+<text class="mono tdm" x="262" y="1401">10.10.52.0/22</text>
+<text class="mono tdm" x="408" y="1401">10.10.52.1</text>
+<text class="mono tdm" x="544" y="1401">.2 / .3</text>
+<text class="mono tdm" x="672" y="1401">hq-d1</text>
+<text class="mono tdm" x="882" y="1401">Po10</text>
+<text class="mono tdm" x="1018" y="1401">Gi3/0</text>
+<path d="M53 1409 H1227" fill="none" stroke="#d1d9e0" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round"/>
+<rect x="64" y="1413" width="34" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="81" y="1426" text-anchor="middle">160</text>
+<text class="sans tdb" x="134" y="1426">FACILITIES</text>
+<text class="mono tdm" x="262" y="1426">10.10.60.0/26</text>
+<text class="mono tdm" x="408" y="1426">10.10.60.1</text>
+<text class="mono tdm" x="544" y="1426">.2 / .3</text>
+<text class="mono tdm" x="672" y="1426">hq-d2</text>
+<text class="mono tdm" x="882" y="1426">Po20</text>
+<text class="mono tdm" x="1018" y="1426">Gi3/1</text>
+<path d="M53 1434 H1227" fill="none" stroke="#d1d9e0" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round"/>
+<rect x="64" y="1438" width="34" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="81" y="1451" text-anchor="middle">170</text>
+<text class="sans tdb" x="134" y="1451">BYOD-WLAN</text>
+<text class="mono tdm" x="262" y="1451">10.10.70.0/23</text>
+<text class="mono tdm" x="408" y="1451">10.10.70.1</text>
+<text class="mono tdm" x="544" y="1451">.2 / .3</text>
+<text class="mono tdm" x="672" y="1451">hq-d1</text>
+<text class="mono tdm" x="882" y="1451">Po10</text>
+<text class="mono tdm" x="1018" y="1451">Gi3/2</text>
+<path d="M53 1459 H1227" fill="none" stroke="#d1d9e0" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round"/>
+<rect x="64" y="1463" width="34" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip mute" x="81" y="1476" text-anchor="middle">190</text>
+<text class="sans tdb mute" x="134" y="1476">NATIVE</text>
+<text class="mono tdm mute" x="262" y="1476">—</text>
+<text class="mono tdm mute" x="408" y="1476">—</text>
+<text class="mono tdm mute" x="544" y="1476">—</text>
+<text class="mono tdm mute" x="672" y="1476">hq-d1 (root only)</text>
+<text class="mono tdm mute" x="882" y="1476">Po10</text>
+<text class="mono tdm mute" x="1018" y="1476">native on all trunks</text>
+<path d="M53 1484 H1227" fill="none" stroke="#d1d9e0" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round"/>
+<rect x="64" y="1488" width="34" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip mute" x="81" y="1501" text-anchor="middle">191</text>
+<text class="sans tdb mute" x="134" y="1501">PARKING</text>
+<text class="mono tdm mute" x="262" y="1501">—</text>
+<text class="mono tdm mute" x="408" y="1501">—</text>
+<text class="mono tdm mute" x="544" y="1501">—</text>
+<text class="mono tdm mute" x="672" y="1501">—</text>
+<text class="mono tdm mute" x="882" y="1501">—</text>
+<text class="mono tdm mute" x="1018" y="1501">Gi0/2-3, Gi1/2-3 (shut)</text>
+<path d="M53 1509 H1227" fill="none" stroke="#d1d9e0" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round"/>
+<rect x="64" y="1513" width="34" height="18" rx="4" fill="#f6f8fa" stroke="#c8d1da" stroke-width="1"/>
+<text class="mono chip" x="81" y="1526" text-anchor="middle">199</text>
+<text class="sans tdb" x="134" y="1526">NET-MGMT</text>
+<text class="mono tdm" x="262" y="1526">10.10.99.0/26</text>
+<text class="mono tdm" x="408" y="1526">10.10.99.1</text>
+<text class="mono tdm" x="544" y="1526">.2 / .3</text>
+<text class="mono tdm" x="672" y="1526">hq-d2</text>
+<text class="mono tdm" x="882" y="1526">Po20</text>
+<text class="mono tdm" x="1018" y="1526">Gi3/3 · hq-a1 SVI .4</text>
+<rect x="52" y="1254" width="1176" height="280" rx="6" fill="none" stroke="#d1d9e0" stroke-width="1"/>
+<text class="sans n" x="52" y="1562">HSRP: the active gateway runs priority 110 with preempt; the standby peer keeps the default 100.</text>
+<text class="sans n" x="52" y="1581">Rapid PVST+: root priority 24576, peer 28672. hq-a1 forwards each VLAN on the uplink towards its root; the other uplink is the STP alternate.</text>
+<text class="sans n" x="52" y="1600">Trunks Po10, Po20 and Po30: 802.1Q, native VLAN 190, allowed 112, 120, 130, 140, 152, 160, 170, 190, 199. PARKING 191 is not trunked.</text>
+<text class="sans n" x="52" y="1619">Management return: hq-r2, hq-d1 and hq-d2 route 192.0.2.10/32 via 10.255.10.129 (hq-r1 Lo0); hq-a1 uses its default gateway 10.10.99.1.</text>
+<text class="sans foot" x="1228" y="1645" text-anchor="end">Source: CML topology and device configurations · Phase 10 healthy baseline</text>
+</svg>
