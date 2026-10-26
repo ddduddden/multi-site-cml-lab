@@ -30,6 +30,8 @@ Interface and /31 addressing, VLAN allocations, gateway roles, STP root-port sel
   <img src="hq-campus-area10-topology-detailed.svg" alt="Detailed HQ topology showing routed interfaces, VLANs, HSRP, STP root ports and management connectivity">
 </picture>
 
+**Addressing scheme:** HQ uses VLSM for its VLANs, a consistent HSRP gateway convention and dedicated `/31` point-to-point links. See the [VLAN and VLSM Addressing Plan](../docs/hq-campus-design.md#vlan-and-vlsm-addressing-plan) and [Layer 3 Infrastructure Addressing](../docs/hq-campus-design.md#4-layer-3-infrastructure-addressing).
+
 [Open detailed SVG at full size](hq-campus-area10-topology-detailed.svg) · [Dark version](hq-campus-area10-topology-detailed-dark.svg) · [↑ High-level topology](#high-level-topology)
 
 ---

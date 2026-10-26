@@ -107,6 +107,8 @@ I included these choices before the phased implementation because I wanted to te
 | 191      | PARKING    | Unused ports                      | —               | —                | —                   |
 | 199      | NET-MGMT   | Network infrastructure management | 10.10.99.0/26   | 62               | 10.10.99.1          |
 
+**Related diagram:** [↑ Detailed HQ Campus Topology](../diagrams/README.md#detailed-topology)
+
 #### Address Allocation Rationale
 
 I have allocated 10.10.0.0/16 to HQ user, service and management addressing, retaining the unallocated space for future HQ requirements.
@@ -572,9 +574,7 @@ The timing of these routing changes, the number of installed next hops and the f
 
 The objective of this routing design is to provide predictable path preference, multiple equal-cost direct connections and higher-cost alternatives without depending on individual physical links for all Layer 3 connectivity.
 
-[↑ Back to Contents](#contents)
-
----
+🟧 **↓ Continue reading**
 
 ## 8. Design Rationale
 
