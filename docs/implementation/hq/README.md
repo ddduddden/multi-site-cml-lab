@@ -138,7 +138,7 @@ A phase does not show as `Deviated` just because one test in it has an accepted 
 | 08 | ECMP | **Verified** |
 | 09 | OSPF cost engineering | **Verified** |
 | 10 | Failure testing | **Completed** |
-| 11 | [Final acceptance](phase-11-final-acceptance.md) | **ACCEPTED** |
+| 11 | [Final acceptance](phase-11-final-acceptance.md) | **Accepted** |
 
 Phase 10 uses PASS, FAIL and INCONCLUSIVE for individual test outcomes. **Completed** means the planned execution and final reconciliation have finished; it does not mean every test passed. See the [Phase 10 results](../../../evidence/hq/failure-tests/README.md).
 

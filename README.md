@@ -163,7 +163,7 @@ The HQ campus is organised into eleven documented phases, progressing from the i
 | 05–07 | SVIs, HSRP, routed infrastructure and OSPF Area 10 | **Verified** |
 | 08–09 | ECMP and OSPF cost engineering | **Verified** |
 | 10 | Failure and resilience testing | **Completed with findings** |
-| 11 | Final acceptance and close-out | **ACCEPTED** |
+| 11 | Final acceptance and close-out | **Accepted** |
 
 Phase 11 includes the final sanitised CML export and device configurations. Startup checks on 16 and 26 October both found `hq-a1` VLAN199 `down/down` until a manual SVI reset. The broader operational checks were recorded on 16 October; the 26 October recheck confirmed management-gateway recovery. The cause remains unresolved. HQ V1 was accepted as a documented engineering milestone on 26 October 2026, not as evidence of an intervention-free startup.
 

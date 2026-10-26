@@ -104,7 +104,7 @@ The build, failure testing and configuration close-out are complete. The reports
 
 Before the next test cycle, I would also add NTP synchronisation and continuous monitoring. That would make it easier to compare events across devices and measure the traffic impact of a failure. These are the next steps I would take to develop the HQ design; they remain future work.
 
-**Status: ACCEPTED — HQ V1 engineering milestone, with documented findings and limitations retained.** Acceptance recorded 26 October 2026.
+**Status: Accepted — HQ V1 engineering milestone, with documented findings and limitations retained.** Acceptance recorded 26 October 2026.
 
 **Final acceptance:** HQ V1 is accepted as a completed engineering and portfolio milestone. The network build, failure testing, configuration reconciliation and final operational checks have been documented, with supporting evidence retained in GitHub. The outstanding findings remain part of the accepted record, including the 10.08 FAIL, 10.12 INCONCLUSIVE result, unexplained one-sided Po20 behaviour and the VLAN199 startup issue reproduced on 16 and 26 October. The operational checks passed after manual recovery; an intervention-free startup has not been demonstrated. Further resilience improvements belong to the next design revision.
 

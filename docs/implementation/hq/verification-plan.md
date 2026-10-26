@@ -1287,7 +1287,7 @@ Normal forwarding was restored on 06-10-2026, with final configuration reconcili
 
 **Final operational check:** 16-10-2026\
 **Startup recheck:** 26-10-2026\
-**Status:** **ACCEPTED** — documented HQ V1 engineering milestone; limitations retained (26-10-2026).
+**Status:** **Accepted** — documented HQ V1 engineering milestone; limitations retained (26-10-2026).
 
 **Objective:** Check the final HQ operational state, record any startup intervention, and confirm that the documentation and retained evidence describe the completed network accurately.
 

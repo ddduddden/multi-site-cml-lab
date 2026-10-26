@@ -26,7 +26,7 @@ Detailed verification results are recorded in [verification-plan.md](verificatio
 | 08 | [ECMP](#phase-08--ecmp) | Verified |
 | 09 | [OSPF Cost Engineering](#phase-09--ospf-cost-engineering) | Verified |
 | 10 | [Failure and Resilience Testing](#phase-10--failure-and-resilience-testing) | Completed — mixed outcomes |
-| 11 | [Final configuration milestone](#phase-11--final-configuration-milestone) | **ACCEPTED** — findings retained |
+| 11 | [Final configuration milestone](#phase-11--final-configuration-milestone) | **Accepted** — findings retained |
 
 ## Phase 01 — HQ Platform Baseline
 
