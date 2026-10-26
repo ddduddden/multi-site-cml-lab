@@ -87,6 +87,8 @@ The original 03-10-2026 Test Plan stays unchanged. I am assessing the documented
 
 The PASS, FAIL and INCONCLUSIVE labels describe the Phase 10 test outcome; they are not a direct replacement for the repository’s earlier Verified/Blocked/Deviated phase-status fields. The separate Engineering Review discusses what I learnt. This document records how I tested and what evidence I actually kept.
 
+🟧 [← Return to Stop 3 · Phase 10 Test Plan](phase-10-test-plan.md)
+
 ---
 
 [← Phase 10 Test Plan](phase-10-test-plan.md) · [↑ Phase 10 Evidence Index](../../../evidence/hq/failure-tests/README.md) · [HQ implementation](README.md)

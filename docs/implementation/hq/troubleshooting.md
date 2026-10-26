@@ -232,6 +232,8 @@ None. The unexpected result is being recorded as platform-specific behaviour rat
 **Status:**
 Open — investigation complete; the observed SVI behaviour has not been corrected.
 
+🟧 [← Return to Stop 6 · Engineering Review](phase-10-engineering-review.md#layer-2-isolation-and-split-brain--hq-vp-1008)
+
 [← Previous: HQ-TS-001](#hq-ts-001--iosvl2-routing-mode-on-hq-a1) | [↑ Troubleshooting Contents](#troubleshooting-contents) | [HQ Verification Plan →](verification-plan.md)
 
 [↑ Phase 10 Test Index](../../../evidence/hq/failure-tests/README.md) · [← Original event buffer](../../../evidence/hq/failure-tests/10.08/10.08-original-event-buffer.md)

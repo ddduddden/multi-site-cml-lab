@@ -26,7 +26,7 @@ Detailed verification results are recorded in [verification-plan.md](verificatio
 | 08 | [ECMP](#phase-08--ecmp) | Verified |
 | 09 | [OSPF Cost Engineering](#phase-09--ospf-cost-engineering) | Verified |
 | 10 | [Failure and Resilience Testing](#phase-10--failure-and-resilience-testing) | Completed — mixed outcomes |
-| 11 | [Final configuration milestone](#phase-11--final-configuration-milestone) | Published; acceptance pending |
+| 11 | [Final configuration milestone](#phase-11--final-configuration-milestone) | **ACCEPTED** — findings retained |
 
 ## Phase 01 — HQ Platform Baseline
 
@@ -407,6 +407,8 @@ No new milestone artifact. Phase 09 changed no intended device configuration; th
 
 Phase 08/09 verification evidence commit: [79d27bf](https://github.com/ddduddden/multi-site-cml-lab/commit/79d27bfa3351bb6ffbf9363ee66675251e9aa1a2).
 
+🟧 [← Return to Stop 2 · Phase Verification](verification-plan.md#higher-cost-alternate-activation--hq-vp-0902)
+
 [↑ Back to phase index](#phase-index)
 
 ---
@@ -478,7 +480,7 @@ Final sanitised CML export and five matching device configurations: [commit 1ee6
 
 This commit records the published configuration milestone. Final documentation review and Phase 11 acceptance are separate close-out activities.
 
-The filename records preparation of the public copy on 15-10-2026. It does not move the original tests or configuration close-out to that date. The Phase 11 operational check on 16-10-2026 is recorded below. Final documentation and acceptance review remain in progress.
+The filename records preparation of the public copy on 15-10-2026. It does not move the original tests or configuration close-out to that date. The Phase 11 operational check on 16-10-2026 is recorded below. Final documentation review and engineering acceptance were completed on 26 October 2026.
 
 ### Operational check — 16-10-2026
 
@@ -492,7 +494,13 @@ Post-recovery checks recorded operational HSRP roles and EtherChannels. On `hq-r
 
 **Git traceability:** [`39b68a7` — Add Phase 11 boot evidence and HQ troubleshooting records](https://github.com/ddduddden/multi-site-cml-lab/commit/39b68a790a3b9ed0de55071fdf7f9b004d0638b2).
 
-The [Phase 11 engineering close-out](phase-11-final-acceptance.md) retains the completed Phase 10 findings alongside this operational check. Final acceptance is pending documentation, evidence and navigation review.
+### Follow-up startup check — 26-10-2026
+
+A further CML boot reproduced the `hq-a1` VLAN199 SVI startup fault. The SVI was `down/down` and the management gateway returned `0/5`, although the VLAN was active and Po20 was operational and forwarding. Running and startup SVI configuration matched. `no shutdown` alone did not recover it; `shutdown` followed by `no shutdown` brought the SVI `up/up` and restored gateway reachability (`5/5`). The cause remains undetermined, and no wider routing/HSRP acceptance run was recorded during this recheck.
+
+**Evidence:** [26 October startup recheck and CLI](../../../evidence/hq/final-acceptance/HQ-Phase-11-26-Oct-Boot-Retest.md).
+
+The [Phase 11 engineering close-out](phase-11-final-acceptance.md) records HQ V1 as an accepted engineering milestone on 26 October 2026. The Phase 10 FAIL and INCONCLUSIVE results and other open findings remain documented; the 16 October operational checks and 26 October management-gateway recheck both required manual SVI recovery; a clean startup was not demonstrated.
 
 [↑ Back to phase index](#phase-index)
 

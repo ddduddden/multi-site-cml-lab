@@ -151,7 +151,7 @@ LACP provides redundancy within Layer 2 EtherChannels, while OSPF uses independe
 
 I developed HQ through eleven documented phases, progressing from VLANs and campus switching to gateway redundancy, OSPF routing, ECMP and deliberate cost engineering. Each stage has supporting verification records, with Phase 10 bringing the separate technologies together for controlled resilience testing.
 
-The tests demonstrated working alternative routes and access paths, while also exposing limitations in the inter-distribution connection, HSRP upstream tracking and Layer 2 isolation behaviour. The resulting findings are retained alongside the original evidence. Phase 11 configuration and operational checks are documented, with final acceptance still under review.
+The tests demonstrated working alternative routes and access paths, while also exposing limitations in the inter-distribution connection, HSRP upstream tracking and Layer 2 isolation behaviour. The resulting findings are retained alongside the original evidence. Phase 11 is accepted as a completed HQ V1 engineering milestone, with the findings and the 16 October post-recovery operational checks documented.
 
 ## Implementation Progress
 
@@ -163,9 +163,9 @@ The HQ campus is organised into eleven documented phases, progressing from the i
 | 05–07 | SVIs, HSRP, routed infrastructure and OSPF Area 10 | **Verified** |
 | 08–09 | ECMP and OSPF cost engineering | **Verified** |
 | 10 | Failure and resilience testing | **Completed with findings** |
-| 11 | Final acceptance and close-out | **In progress** |
+| 11 | Final acceptance and close-out | **ACCEPTED** |
 
-Phase 11 includes the final sanitised CML export and device configurations. During subsequent boot testing, `hq-a1` required a manual management SVI reset before operational checks succeeded. The cause remains unresolved, and final acceptance is still under review.
+Phase 11 includes the final sanitised CML export and device configurations. Startup checks on 16 and 26 October both found `hq-a1` VLAN199 `down/down` until a manual SVI reset. The broader operational checks were recorded on 16 October; the 26 October recheck confirmed management-gateway recovery. The cause remains unresolved. HQ V1 was accepted as a documented engineering milestone on 26 October 2026, not as evidence of an intervention-free startup.
 
 Engineering records: [Build Log](docs/implementation/hq/build-log.md) · [Verification Plan](docs/implementation/hq/verification-plan.md) · [Phase 11 Final Acceptance](docs/implementation/hq/phase-11-final-acceptance.md)
 

@@ -6,7 +6,7 @@ This document defines what the HQ implementation must prove before a feature is 
 
 It is a **controlled living document**. Verification IDs remain permanent, and the records reflect the CML behaviour observed during implementation and testing.
 
-Phases 01–09 retain their individual verification records. Phases 06/07 and 08/09 were completed in combined build and test windows, with separate IDs maintained for each phase. Phase 10 records the completed failure testing and its findings. Phase 11 records final operational checks, with final documentation review still in progress.
+Phases 01–09 retain their individual verification records. Phases 06/07 and 08/09 were completed in combined build and test windows, with separate IDs maintained for each phase. Phase 10 records the completed failure testing and its findings. Phase 11 records final operational checks and the accepted HQ V1 engineering close-out.
 
 ## Project reference key
 
@@ -1286,19 +1286,20 @@ Normal forwarding was restored on 06-10-2026, with final configuration reconcili
 ## Phase 11 — Final Acceptance
 
 **Final operational check:** 16-10-2026\
-**Status:** Final documentation and evidence review in progress.
+**Startup recheck:** 26-10-2026\
+**Status:** **ACCEPTED** — documented HQ V1 engineering milestone; limitations retained (26-10-2026).
 
-**Objective:** Confirm that the final HQ configuration starts and operates as intended, and that the documentation and retained evidence describe the completed network accurately.
+**Objective:** Check the final HQ operational state, record any startup intervention, and confirm that the documentation and retained evidence describe the completed network accurately.
 
 The private five-device CML export was booted and checked against the HQ design. On `hq-r1`, OSPF showed five `FULL` neighbours and four equal-cost, metric-`11` routes to `10.10.12.0/22`. HSRP Active/Standby roles matched the design, and the LACP bundles were operational. From `hq-a1`, both edge-router loopbacks replied `5/5`. The recorded traceroute towards `hq-r2` showed `10.10.99.3` (`hq-d2`) followed by `10.255.10.3`.
 
-**Startup finding:** After boot, `hq-a1`'s VLAN 199 SVI remained `down/down` despite the VLAN, trunk and spanning-tree configuration appearing correct. A manual `shutdown` / `no shutdown` brought the SVI `up/up`, after which the HSRP gateway at `10.10.99.1` responded `5/5`. The underlying cause was not established. The checks therefore passed **after intervention**, not as a completely clean startup.
+**Startup finding:** On 16 October, `hq-a1`'s VLAN199 SVI remained `down/down` despite the VLAN, trunk and spanning-tree configuration appearing correct. A manual `shutdown` / `no shutdown` brought it `up/up`, and the management gateway replied `5/5`. A 26 October startup recheck reproduced the `down/down` state, `0/5` gateway pings and unsuccessful `no shutdown` attempt. The same administrative reset restored `up/up` and `5/5` gateway replies. The cause was not established; **neither check demonstrated intervention-free startup**. The 26 October capture did not repeat the wider routing and HSRP checks.
 
-The outstanding Phase 10 findings remain documented. Final acceptance is pending completion of the documentation, evidence and navigation checks.
+The outstanding Phase 10 findings remain documented. HQ V1 was accepted on 26 October 2026 as a completed engineering milestone with these limitations retained. This decision does not change the recorded Phase 10 outcomes or demonstrate an intervention-free startup.
 
 **Evidence index:** [Phase 11 captures](../../../evidence/hq/final-acceptance/README.md).
 
-**Evidence:** [Phase 11 — Boot recovery CLI](../../../evidence/hq/final-acceptance/HQ-Phase-11-Boot-Recovery-CLI.md) documents the initial VLAN 199 failure, investigation and manual reset. [Phase 11 — Final operational checks](../../../evidence/hq/final-acceptance/HQ-Phase-11-Final-Boot-Verification.txt) retains the subsequent OSPF, HSRP, LACP and connectivity output. Both captures were made on 16-10-2026.
+**Evidence:** [Phase 11 — Boot recovery CLI](../../../evidence/hq/final-acceptance/HQ-Phase-11-Boot-Recovery-CLI.md) documents the initial VLAN 199 failure, investigation and manual reset. [Phase 11 — Final operational checks](../../../evidence/hq/final-acceptance/HQ-Phase-11-Final-Boot-Verification.txt) retains the subsequent OSPF, HSRP, LACP and connectivity output. Both captures were made on 16-10-2026. The separate [26 October startup recheck](../../../evidence/hq/final-acceptance/HQ-Phase-11-26-Oct-Boot-Retest.md) records the repeated failure and manual recovery without extending the original 16 October operational claims.
 
 **Engineering close-out:** [Phase 11 final acceptance and engineering review](phase-11-final-acceptance.md).
 

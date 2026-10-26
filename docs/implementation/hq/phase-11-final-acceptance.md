@@ -18,7 +18,9 @@ Phases 01–09 took HQ from the initial platform setup through to a working camp
 
 - The normal forwarding state was restored and temporary test configuration removed after testing on 6 October. The final configuration checks and logging reset were completed on 12 October.
 
-- The 16 October startup check required a manual reset of hq-a1’s VLAN199 SVI. The operational checks then passed; the cause of the initial SVI state remains unknown.
+- The 16 October startup check required a manual reset of hq-a1’s VLAN199 SVI. A 26 October recheck reproduced the same failure and recovery; the cause remains unknown.
+
+🟧 [← Return to Stop 7 · Final Acceptance](#overall-assessment)
 
 ## Completing the HQ build
 
@@ -82,6 +84,14 @@ The startup finding is recorded separately from the Layer 2 isolation behaviour 
 
 [Startup checks and recovery](../../../evidence/hq/final-acceptance/HQ-Phase-11-Boot-Recovery-CLI.md) | [Operational checks](../../../evidence/hq/final-acceptance/HQ-Phase-11-Final-Boot-Verification.txt) | [Evidence commit 39b68a7](https://github.com/ddduddden/multi-site-cml-lab/commit/39b68a790a3b9ed0de55071fdf7f9b004d0638b2)
 
+## Startup recheck — 26 October
+
+A further CML boot reproduced the VLAN199 startup problem on `hq-a1`. The SVI was `down/down` and the management gateway returned `0/5` even though the VLAN was active, the Po10/Po20 EtherChannels were bundled, and Po20 was the VLAN199 root forwarding port. Running and startup SVI configuration matched. Entering `no shutdown` alone did not change the state. A deliberate `shutdown` / `no shutdown` reset brought the SVI `up/up` and the gateway answered `5/5`.
+
+This is a second observed occurrence with the same recovery procedure. The cause remains unresolved; a clean, intervention-free boot has not been demonstrated. The recheck establishes recovery of the management gateway, **not** a fresh set of full-network routing, HSRP or failover results. The more extensive operational checks above remain those retained on 16 October.
+
+[26 October recheck and recovery evidence](../../../evidence/hq/final-acceptance/HQ-Phase-11-26-Oct-Boot-Retest.md)
+
 ## Overall assessment
 
 <a href="phase-10-engineering-review.md#layer-2-isolation-and-split-brain--hq-vp-1008" title="Previous: Stop 6 · Troubleshooting and engineering review" aria-label="Previous: Stop 6 · Troubleshooting and engineering review"><img src="../../../diagrams/orange-previous.svg" alt="" width="30" height="26"></a> **🟧 10-MINUTE ROUTE · EXPLORE THE EVIDENCE · 07/07**
@@ -94,9 +104,11 @@ The build, failure testing and configuration close-out are complete. The reports
 
 Before the next test cycle, I would also add NTP synchronisation and continuous monitoring. That would make it easier to compare events across devices and measure the traffic impact of a failure. These are the next steps I would take to develop the HQ design; they remain future work.
 
-Status: Final documentation and evidence review is in progress. Acceptance remains pending.
+**Status: ACCEPTED — HQ V1 engineering milestone, with documented findings and limitations retained.** Acceptance recorded 26 October 2026.
 
-[Phase 10 results](../../../evidence/hq/failure-tests/README.md) | [Reviewed repository snapshot 50ec9a9](https://github.com/ddduddden/multi-site-cml-lab/commit/50ec9a9a6caa240837a9e04497b5732f665383e3)
+**Final acceptance:** HQ V1 is accepted as a completed engineering and portfolio milestone. The network build, failure testing, configuration reconciliation and final operational checks have been documented, with supporting evidence retained in GitHub. The outstanding findings remain part of the accepted record, including the 10.08 FAIL, 10.12 INCONCLUSIVE result, unexplained one-sided Po20 behaviour and the VLAN199 startup issue reproduced on 16 and 26 October. The operational checks passed after manual recovery; an intervention-free startup has not been demonstrated. Further resilience improvements belong to the next design revision.
+
+[Phase 10 results](../../../evidence/hq/failure-tests/README.md) | [Reviewed repository baseline 653ce7a](https://github.com/ddduddden/multi-site-cml-lab/commit/653ce7af76fe4e8a24460b5cae217e064675f1b2)
 
 ---
 
