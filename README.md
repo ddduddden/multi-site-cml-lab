@@ -76,11 +76,11 @@ The engineering decisions behind HQ V1,<br>from the initial design to future exp
 <br>
 🟧 &nbsp;<b>03</b> &nbsp;·&nbsp; 10 MINUTES
 <br><br>
-<b>Follow the evidence</b>
+<b>Explore the evidence</b>
 <br>
-From test planning and verification<br>through failure testing to the<br>results and what they revealed.
+A ten-minute tour of planning,<br>test reports, CLI evidence,<br>findings and engineering review.
 <br><br>
-<a href="evidence/hq/README.md"><img src="https://img.shields.io/badge/INVESTIGATE%20%E2%86%97-bf6700?style=flat-square" alt="INVESTIGATE ↗"></a>
+<a href="evidence/hq/evidence-overview.md"><img src="https://img.shields.io/badge/START%20THE%20EVIDENCE%20TOUR%20%E2%86%97-bf6700?style=flat-square" alt="START THE EVIDENCE TOUR ↗"></a>
 <br><br>
 </td>
 <td width="50%" valign="top">
@@ -118,6 +118,7 @@ Explore the topology, routed paths<br>and selected failure scenarios.
 | [Build Log](docs/implementation/hq/build-log.md) | Configuration milestones, implementation notes and Git commit history |
 | [Verification Plan](docs/implementation/hq/verification-plan.md) | Test procedures, results and supporting evidence |
 | [HQ Evidence Map](evidence/hq/README.md) | Evidence for every phase, with links back to the verification records |
+| [Explore the Evidence — Ten-Minute Route](evidence/hq/evidence-overview.md) | Guided overview of planning, test matrix, reports, raw evidence, troubleshooting and acceptance |
 | [Failure Testing](evidence/hq/failure-tests/README.md) | Phase 10 test reports, observations and supporting evidence |
 | [Engineering Review](docs/implementation/hq/phase-10-engineering-review.md) | Investigations, unexpected findings and design limitations |
 | [Troubleshooting](docs/implementation/hq/troubleshooting.md) | Technical problems, investigations and corrective actions |

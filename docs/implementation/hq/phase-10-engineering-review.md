@@ -20,11 +20,9 @@
 
 Phase 10 tested how the as-built HQ campus behaved when links and devices failed. Several alternate paths worked as intended, while the isolation tests exposed limits in the current design. This review explains those findings, the troubleshooting behind them and the remaining work before sign-off.
 
-## Routed paths | HQ-VP-10.02–10.04
+## <a href="../../../evidence/hq/failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md" title="Previous: 10.04 report" aria-label="Previous: 10.04 report"><img src="../../../diagrams/orange-previous.svg" alt="" width="30" height="26"></a> Routed paths | HQ-VP-10.02–10.04 <a href="phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation" title="Next: 10.08 test plan" aria-label="Next: 10.08 test plan"><img src="../../../diagrams/orange-next.svg" alt="" width="30" height="26"></a>
 
-**🟧 FOLLOW THE EVIDENCE · 03/06**
-
-[![Orange previous arrow](../../../diagrams/orange-previous.svg)](../../../evidence/hq/failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md) [Previous · 10.04 report](../../../evidence/hq/failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md) &emsp; [Next · 10.08 test plan](phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation) [![Orange next arrow](../../../diagrams/orange-next.svg)](phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation)
+**🟧 WORKED EXAMPLE · 03/06**
 
 
 *Evidence: [HQ-VP-10.02–10.03](../../../evidence/hq/failure-tests/10.02-10.03/HQ-VP-10.02-10.03-routed-link-ecmp.md) · [HQ-VP-10.04](../../../evidence/hq/failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md)*
@@ -33,9 +31,7 @@ Removing one routed ECMP link reduced the number of equal-cost paths, but the de
 
 This supported my cost design from Phase 09: the planned alternate links were there when needed, but did not become the preferred paths during normal operation. IP SLA recorded some failed samples while the route changed, so the switchover was not loss-free. The alternate route worked, and the original route returned after recovery.
 
-**🟧 NEXT STEP — 10.08 original test plan**
-
-[Continue to 10.08 original test plan](phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation) [![Orange next arrow](../../../diagrams/orange-next.svg)](phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation)
+🟧 **NEXT STEP —** [10.08 original test plan](phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation) [![Next stage](../../../diagrams/orange-next.svg)](phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation)
 
 **Optional interactive walkthrough:** [Launch 10.04 scenario](https://dominicdudden.co.uk/hq-vp-10-04/index.html#step-1).
 

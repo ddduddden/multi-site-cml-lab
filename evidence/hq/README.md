@@ -4,20 +4,26 @@
 
 Use this index to find a check, open its evidence and return to the verification record. Phase 10 retains the original results and supporting captures.
 
+## Explore the Evidence — ten-minute overview
+
+[Start the broader evidence tour](evidence-overview.md) to follow the documentation from original design and implementation through the verification plan, Phase 10 test matrix, reports, CLI evidence, troubleshooting, engineering review and final acceptance.
+
 ## Follow the Evidence
 
-Two contrasting results, one six-stage investigation. **10.04 passed** after OSPF selected a higher-cost alternative and recovered its preferred route. **10.08 failed** when IOSvL2 kept an isolated VLAN interface operational, leaving an unusable return path.
+**Worked examples — optional deeper investigations.** These two contrasting tests demonstrate how the planned criteria, recorded outcome and retained evidence fit together. **10.04 passed** after OSPF selected a higher-cost alternative and recovered its preferred route. **10.08 failed** when IOSvL2 kept an isolated VLAN interface operational, leaving an unusable return path.
 
 | Start | What you will see |
 |---|---|
 | **[🟧 Start with 10.04 — PASS](../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1004-cross-link-loss-and-higher-cost-alternate)** | Begin at **01/06**, follow 10.04's plan, result and routing analysis, then continue into 10.08 |
 | **[🟧 Jump straight to 10.08 — FAIL](../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation)** | Enter at **04/06**, follow the isolation report and session evidence, then open the interactive scenario |
 
-**The six stops:** 10.04 test plan → report → routing review → 10.08 test plan → report → session investigation → [interactive 10.08 scenario](https://dominicdudden.co.uk/hq-vp-10-08/index.html#step-1).
+**The six GitHub stages:** 10.04 test plan → report → routing review → 10.08 test plan → report → session investigation. The [interactive 10.08 scenario](https://dominicdudden.co.uk/hq-vp-10-08/index.html#step-1) is an optional continuation.
 
-Every stage has Previous and Next links; original CLI, troubleshooting and engineering references remain optional. The interactive animations explain the observations, while the retained evidence remains here in GitHub.
+The orange arrows beside each stage heading take you backward or forward. The single-line next-step link is repeated near the end, while original CLI and troubleshooting records remain available separately. The interactive animations explain the observations; the retained engineering evidence remains here in GitHub.
 
-[Phase 10 complete test index](failure-tests/README.md) · [HQ Engineering Review](../../docs/implementation/hq/phase-10-engineering-review.md) · [Choose another portfolio route](../../README.md#explore-the-hq-project)
+[Phase 10 complete test index](failure-tests/README.md) · [HQ Engineering Review](../../docs/implementation/hq/phase-10-engineering-review.md)
+
+[![Choose Another Route ↗](https://img.shields.io/badge/CHOOSE%20ANOTHER%20ROUTE%20%E2%86%97-C2185B?style=flat-square)](../../README.md#explore-the-hq-project)
 
 ## Browse by Area
 

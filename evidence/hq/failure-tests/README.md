@@ -12,6 +12,8 @@ Failure testing took place from 03-10-2026 to 06-10-2026, with final configurati
 
 ## Test Results
 
+The notes below the table provide important context for interpreting the results, including observed limitations and findings.
+
 | Test | Scenario | Result | Evidence |
 |---|---|---|---|
 | [HQ-VP-10.01 — Healthy baseline](10.01/HQ-VP-10.01-healthy-baseline.md) | Healthy baseline | PASS | [10.01 — CLI baseline capture](10.01/README.md) |

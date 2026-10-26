@@ -1,5 +1,7 @@
 # Behind the Design — The Thinking Behind HQ V1
 
+🟪 **5-MINUTE ROUTE · BEHIND THE DESIGN**
+
 I started the Multi-Site CML Lab with a larger network in mind. The intention was never to build an isolated HQ campus and decide what to do with it afterwards. I wanted to design the foundations of a multi-site network, implement them in manageable stages and leave room for the routing, connectivity and services I planned to introduce later.
 
 My CCNA studies had given me a foundation in the individual technologies. This project was an opportunity to make my own design decisions, understand how those technologies fitted together and test whether the network behaved as I intended.

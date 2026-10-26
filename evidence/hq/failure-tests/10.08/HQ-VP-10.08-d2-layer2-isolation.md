@@ -1,10 +1,8 @@
 [Portfolio](../../../../README.md) / [Evidence Map](../../README.md) / [Phase 10](../README.md) / [10.08](README.md) / Test report
 
-# HQ-VP-10.08 — hq-d2 Layer-2 Isolation
+# <a href="../../../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation" title="Previous: 10.08 test plan" aria-label="Previous: 10.08 test plan"><img src="../../../../diagrams/orange-previous.svg" alt="" width="30" height="26"></a> HQ-VP-10.08 — hq-d2 Layer-2 Isolation <a href="10.08-session-record.md" title="Next: 10.08 session investigation" aria-label="Next: 10.08 session investigation"><img src="../../../../diagrams/orange-next.svg" alt="" width="30" height="26"></a>
 
-**🟧 FOLLOW THE EVIDENCE · 05/06**
-
-[![Orange previous arrow](../../../../diagrams/orange-previous.svg)](../../../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation) [Previous · 10.08 test plan](../../../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1008-distribution-layer-2-isolation) &emsp; [Next · 10.08 session investigation](10.08-session-record.md) [![Orange next arrow](../../../../diagrams/orange-next.svg)](10.08-session-record.md)
+**🟧 WORKED EXAMPLE · 05/06**
 
 
 Phase 10 — Failure and Resilience Testing
@@ -116,8 +114,6 @@ The hq-d2 VLAN160 SVI and connected route remained up, so hq-d2 continued advert
 
 ---
 
-**🟧 NEXT STEP — 10.08 session investigation**
-
-[Continue to 10.08 session investigation](10.08-session-record.md) [![Orange next arrow](../../../../diagrams/orange-next.svg)](10.08-session-record.md)
+🟧 **NEXT STEP —** [10.08 session investigation](10.08-session-record.md) [![Next stage](../../../../diagrams/orange-next.svg)](10.08-session-record.md)
 
 [◀ Test evidence](README.md) · [Session record ▶](10.08-session-record.md) · [Recovery CLI](10.08-original-recovery-cli.md) · [Original event buffer](10.08-original-event-buffer.md) · [↑ Phase 10 Test Index](../README.md)

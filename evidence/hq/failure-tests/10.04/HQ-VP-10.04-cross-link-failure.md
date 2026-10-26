@@ -1,10 +1,8 @@
 [Portfolio](../../../../README.md) / [Evidence Map](../../README.md) / [Phase 10](../README.md) / [10.04](README.md) / Test report
 
-# HQ-VP-10.04 — Cross-Link Failure
+# <a href="../../../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1004-cross-link-loss-and-higher-cost-alternate" title="Previous: 10.04 test plan" aria-label="Previous: 10.04 test plan"><img src="../../../../diagrams/orange-previous.svg" alt="" width="30" height="26"></a> HQ-VP-10.04 — Cross-Link Failure <a href="../../../../docs/implementation/hq/phase-10-engineering-review.md#routed-paths--hq-vp-10021004" title="Next: 10.04 engineering review" aria-label="Next: 10.04 engineering review"><img src="../../../../diagrams/orange-next.svg" alt="" width="30" height="26"></a>
 
-**🟧 FOLLOW THE EVIDENCE · 02/06**
-
-[![Orange previous arrow](../../../../diagrams/orange-previous.svg)](../../../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1004-cross-link-loss-and-higher-cost-alternate) [Previous · 10.04 test plan](../../../../docs/implementation/hq/phase-10-test-plan.md#hq-vp-1004-cross-link-loss-and-higher-cost-alternate) &emsp; [Next · 10.04 engineering review](../../../../docs/implementation/hq/phase-10-engineering-review.md#routed-paths--hq-vp-10021004) [![Orange next arrow](../../../../diagrams/orange-next.svg)](../../../../docs/implementation/hq/phase-10-engineering-review.md#routed-paths--hq-vp-10021004)
+**🟧 WORKED EXAMPLE · 02/06**
 
 
 Phase 10 — Failure and Resilience Testing
@@ -94,8 +92,6 @@ The routing and CEF captures confirmed that the Phase 09 cost engineering worked
 
 ---
 
-**🟧 NEXT STEP — 10.04 engineering review**
-
-[Continue to 10.04 engineering review](../../../../docs/implementation/hq/phase-10-engineering-review.md#routed-paths--hq-vp-10021004) [![Orange next arrow](../../../../diagrams/orange-next.svg)](../../../../docs/implementation/hq/phase-10-engineering-review.md#routed-paths--hq-vp-10021004)
+🟧 **NEXT STEP —** [10.04 engineering review](../../../../docs/implementation/hq/phase-10-engineering-review.md#routed-paths--hq-vp-10021004) [![Next stage](../../../../diagrams/orange-next.svg)](../../../../docs/implementation/hq/phase-10-engineering-review.md#routed-paths--hq-vp-10021004)
 
 [◀ Test evidence](README.md) · [Failure CLI ▶](10.04-failure.md) · [Recovery CLI](10.04-recovery.md) · [Engineering Review](../../../../docs/implementation/hq/phase-10-engineering-review.md#routed-paths--hq-vp-10021004) · [↑ Phase 10 Test Index](../README.md)

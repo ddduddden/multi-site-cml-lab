@@ -124,11 +124,9 @@ Confirm that a temporary source address is unused first. Switch sources one at a
 
 ---
 
-### HQ-VP-10.04: Cross-link loss and higher-cost alternate
+### <a href="../../../evidence/hq/README.md#follow-the-evidence" title="Previous: Evidence Map" aria-label="Previous: Evidence Map"><img src="../../../diagrams/orange-previous.svg" alt="" width="30" height="26"></a> HQ-VP-10.04: Cross-link loss and higher-cost alternate <a href="../../../evidence/hq/failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md" title="Next: 10.04 test report" aria-label="Next: 10.04 test report"><img src="../../../diagrams/orange-next.svg" alt="" width="30" height="26"></a>
 
-**🟧 FOLLOW THE EVIDENCE · 01/06**
-
-[![Orange previous arrow](../../../diagrams/orange-previous.svg)](../../../evidence/hq/README.md#follow-the-evidence) [Previous · Evidence Map](../../../evidence/hq/README.md#follow-the-evidence) &emsp; [Next · 10.04 test report](../../../evidence/hq/failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md) [![Orange next arrow](../../../diagrams/orange-next.svg)](../../../evidence/hq/failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md)
+**🟧 WORKED EXAMPLE · 01/06**
 
 
 **Objective.** Check that the topology retains a valid route when the normal `hq-d2`→`hq-r1` cross-link fails.
@@ -143,9 +141,7 @@ Confirm that a temporary source address is unused first. Switch sources one at a
 
 **Evidence.** [HQ-VP-10.04 report](../../../evidence/hq/failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md) · [Phase 10 index](../../../evidence/hq/failure-tests/README.md).
 
-**🟧 NEXT STEP — 10.04 test report**
-
-[Continue to 10.04 test report](../../../evidence/hq/failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md) [![Orange next arrow](../../../diagrams/orange-next.svg)](../../../evidence/hq/failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md)
+🟧 **NEXT STEP —** [10.04 test report](../../../evidence/hq/failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md) [![Next stage](../../../diagrams/orange-next.svg)](../../../evidence/hq/failure-tests/10.04/HQ-VP-10.04-cross-link-failure.md)
 
 
 [← 10.03](#hq-vp-1003-routed-link-failure-detection) · [↑ Test matrix](#test-matrix) · [Next 10.05 →](#hq-vp-1005-po20-member-link-failure)
@@ -206,11 +202,9 @@ Confirm that a temporary source address is unused first. Switch sources one at a
 
 ---
 
-### HQ-VP-10.08: Distribution Layer 2 isolation
+### <a href="phase-10-engineering-review.md#routed-paths--hq-vp-10021004" title="Previous: 10.04 engineering review" aria-label="Previous: 10.04 engineering review"><img src="../../../diagrams/orange-previous.svg" alt="" width="30" height="26"></a> HQ-VP-10.08: Distribution Layer 2 isolation <a href="../../../evidence/hq/failure-tests/10.08/HQ-VP-10.08-d2-layer2-isolation.md" title="Next: 10.08 test report" aria-label="Next: 10.08 test report"><img src="../../../diagrams/orange-next.svg" alt="" width="30" height="26"></a>
 
-**🟧 FOLLOW THE EVIDENCE · 04/06**
-
-[![Orange previous arrow](../../../diagrams/orange-previous.svg)](phase-10-engineering-review.md#routed-paths--hq-vp-10021004) [Previous · 10.04 engineering review](phase-10-engineering-review.md#routed-paths--hq-vp-10021004) &emsp; [Next · 10.08 test report](../../../evidence/hq/failure-tests/10.08/HQ-VP-10.08-d2-layer2-isolation.md) [![Orange next arrow](../../../diagrams/orange-next.svg)](../../../evidence/hq/failure-tests/10.08/HQ-VP-10.08-d2-layer2-isolation.md)
+**🟧 WORKED EXAMPLE · 04/06**
 
 
 **Objective.** Test whether a distribution switch that loses every campus Layer 2 connection stops presenting itself as a usable VLAN gateway and routed return path.
@@ -225,9 +219,7 @@ Confirm that a temporary source address is unused first. Switch sources one at a
 
 **Evidence.** [HQ-VP-10.08 report](../../../evidence/hq/failure-tests/10.08/HQ-VP-10.08-d2-layer2-isolation.md) · [Phase 10 index](../../../evidence/hq/failure-tests/README.md).
 
-**🟧 NEXT STEP — 10.08 test report**
-
-[Continue to 10.08 test report](../../../evidence/hq/failure-tests/10.08/HQ-VP-10.08-d2-layer2-isolation.md) [![Orange next arrow](../../../diagrams/orange-next.svg)](../../../evidence/hq/failure-tests/10.08/HQ-VP-10.08-d2-layer2-isolation.md)
+🟧 **NEXT STEP —** [10.08 test report](../../../evidence/hq/failure-tests/10.08/HQ-VP-10.08-d2-layer2-isolation.md) [![Next stage](../../../diagrams/orange-next.svg)](../../../evidence/hq/failure-tests/10.08/HQ-VP-10.08-d2-layer2-isolation.md)
 
 
 [← 10.07](#hq-vp-1007-progressive-po30-degradation-and-complete-loss) · [↑ Test matrix](#test-matrix) · [Next 10.09 →](#hq-vp-1009-active-gateway-loses-routed-uplinks)
